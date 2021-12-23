@@ -234,3 +234,164 @@
     --ion-card-background: #1e1e1e;
   }
 }
+
+// below-css-for-on-click-ionic-background-color-remove
+.button-solid {
+    --background-activated: transparent;
+    --background-focused: transparent;
+    --background-hover: transparent;
+    --background-activated-opacity: 1;
+    --background-focused-opacity: 1;
+    --background-hover-opacity: 1;
+    --color-activated: var(--Black);
+    --color-focused: var(--Black);
+    --color-hover: var(--Black);
+}
+// above-css-for-on-click-ionic-background-color-remove
+
+input:-internal-autofill-selected {
+  background-color: transparent !important;
+}
+
+@font-face {
+    font-family: 'NeueHaasUnicaPro-Bold';
+    src: url('../assets/fonts/NeueHaasUnicaPro-Bold.eot');
+    src: url('../assets/fonts/NeueHaasUnicaPro-Bold.eot?#iefix') format('embedded-opentype'),
+        url('../assets/fonts/NeueHaasUnicaPro-Bold.woff2') format('woff2'),
+        url('../assets/fonts/NeueHaasUnicaPro-Bold.woff') format('woff'),
+        url('../assets/fonts/NeueHaasUnicaPro-Bold.ttf') format('truetype'),
+        url('../assets/fonts/NeueHaasUnicaPro-Bold.svg#NeueHaasUnicaPro-Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'NeueHaasUnicaPro-Medium';
+    src: url('../assets/fonts/NeueHaasUnicaPro-Medium.eot');
+    src: url('../assets/fonts/NeueHaasUnicaPro-Medium.eot?#iefix') format('embedded-opentype'),
+        url('../assets/fonts/NeueHaasUnicaPro-Medium.woff2') format('woff2'),
+        url('../assets/fonts/NeueHaasUnicaPro-Medium.woff') format('woff'),
+        url('../assets/fonts/NeueHaasUnicaPro-Medium.ttf') format('truetype'),
+        url('../assets/fonts/NeueHaasUnicaPro-Medium.svg#NeueHaasUnicaPro-Medium') format('svg');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'NeueHaasUnicaPro-Regular';
+    src: url('../assets/fonts/NeueHaasUnicaPro-Regular.eot');
+    src: url('../assets/fonts/NeueHaasUnicaPro-Regular.eot?#iefix') format('embedded-opentype'),
+        url('../assets/fonts/NeueHaasUnicaPro-Regular.woff2') format('woff2'),
+        url('../assets/fonts/NeueHaasUnicaPro-Regular.woff') format('woff'),
+        url('../assets/fonts/NeueHaasUnicaPro-Regular.ttf') format('truetype'),
+        url('../assets/fonts/NeueHaasUnicaPro-Regular.svg#NeueHaasUnicaPro-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Poppins-Bold';
+    src: url('../assets/fonts/Poppins-Bold.eot');
+    src: url('../assets/fonts/Poppins-Bold.eot?#iefix') format('embedded-opentype'),
+        url('../assets/fonts/Poppins-Bold.woff2') format('woff2'),
+        url('../assets/fonts/Poppins-Bold.woff') format('woff'),
+        url('../assets/fonts/Poppins-Bold.ttf') format('truetype'),
+        url('../assets/fonts/Poppins-Bold.svg#Poppins-Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Poppins-Medium';
+    src: url('../assets/fonts/Poppins-Medium.eot');
+    src: url('../assets/fonts/Poppins-Medium.eot?#iefix') format('embedded-opentype'),
+        url('../assets/fonts/Poppins-Medium.woff2') format('woff2'),
+        url('../assets/fonts/Poppins-Medium.woff') format('woff'),
+        url('../assets/fonts/Poppins-Medium.ttf') format('truetype'),
+        url('../assets/fonts/Poppins-Medium.svg#Poppins-Medium') format('svg');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'NeueHaasUnicaPro-MediumIt';
+    src: url('../assets/fonts/NeueHaasUnicaPro-MediumIt.eot');
+    src: url('../assets/fonts/NeueHaasUnicaPro-MediumIt.eot?#iefix') format('embedded-opentype'),
+        url('../assets/fonts/NeueHaasUnicaPro-MediumIt.woff2') format('woff2'),
+        url('../assets/fonts/NeueHaasUnicaPro-MediumIt.woff') format('woff'),
+        url('../assets/fonts/NeueHaasUnicaPro-MediumIt.ttf') format('truetype'),
+        url('../assets/fonts/NeueHaasUnicaPro-MediumIt.svg#NeueHaasUnicaPro-MediumIt') format('svg');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'NeueHaasUnicaPro-Heavy';
+    src: url('../assets/fonts/NeueHaasUnicaPro-Heavy.eot');
+    src: url('../assets/fonts/NeueHaasUnicaPro-Heavy.eot?#iefix') format('embedded-opentype'),
+        url('../assets/fonts/NeueHaasUnicaPro-Heavy.woff2') format('woff2'),
+        url('../assets/fonts/NeueHaasUnicaPro-Heavy.woff') format('woff'),
+        url('../assets/fonts/NeueHaasUnicaPro-Heavy.ttf') format('truetype'),
+        url('../assets/fonts/NeueHaasUnicaPro-Heavy.svg#NeueHaasUnicaPro-Heavy') format('svg');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'NeueHaasUnicaPro-Light';
+    src: url('../assets/fonts/NeueHaasUnicaPro-Light.eot');
+    src: url('../assets/fonts/NeueHaasUnicaPro-Light.eot?#iefix') format('embedded-opentype'),
+        url('../assets/fonts/NeueHaasUnicaPro-Light.woff2') format('woff2'),
+        url('../assets/fonts/NeueHaasUnicaPro-Light.woff') format('woff'),
+        url('../assets/fonts/NeueHaasUnicaPro-Light.ttf') format('truetype'),
+        url('../assets/fonts/NeueHaasUnicaPro-Light.svg#NeueHaasUnicaPro-Light') format('svg');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Poppins-SemiBold';
+    src: url('../assets/fonts/Poppins-SemiBold.eot');
+    src: url('../assets/fonts/Poppins-SemiBold.eot?#iefix') format('embedded-opentype'),
+        url('../assets/fonts/Poppins-SemiBold.woff2') format('woff2'),
+        url('../assets/fonts/Poppins-SemiBold.woff') format('woff'),
+        url('../assets/fonts/Poppins-SemiBold.ttf') format('truetype'),
+        url('../assets/fonts/Poppins-SemiBold.svg#Poppins-SemiBold') format('svg');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Poppins-Regular';
+    src: url('../assets/fonts/Poppins-Regular.eot');
+    src: url('../assets/fonts/Poppins-Regular.eot?#iefix') format('embedded-opentype'),
+        url('../assets/fonts/Poppins-Regular.woff2') format('woff2'),
+        url('../assets/fonts/Poppins-Regular.woff') format('woff'),
+        url('../assets/fonts/Poppins-Regular.ttf') format('truetype'),
+        url('../assets/fonts/Poppins-Regular.svg#Poppins-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Poppins-Thin';
+    src: url('../assets/fonts/Poppins-Thin.eot');
+    src: url('../assets/fonts/Poppins-Thin.eot?#iefix') format('embedded-opentype'),
+        url('../assets/fonts/Poppins-Thin.woff2') format('woff2'),
+        url('../assets/fonts/Poppins-Thin.woff') format('woff'),
+        url('../assets/fonts/Poppins-Thin.ttf') format('truetype'),
+        url('../assets/fonts/Poppins-Thin.svg#Poppins-Thin') format('svg');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
