@@ -1,0 +1,7 @@
+{
+  "name": "dernafies",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
