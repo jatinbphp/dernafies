@@ -1,0 +1,187 @@
+ion-header {
+	ion-toolbar {
+		// --background: var(--background-gradient);
+        --background: transparent;
+		padding: 16px 7px;
+        ion-button {
+            --background: transparent;
+            --color: transparent;
+            --border-radius: 0px;
+            --border: none;
+            --padding-start: 0;
+            --padding-end: 0;
+            --padding-bottom: 0;
+            --padding-top: 0;
+            width: fit-content;
+            height: fit-content;
+            margin: 0px;
+            padding: 0px;
+            img {
+                max-width: 100%;
+                width: 100%;
+                height: 40px;
+                max-height: 100%;
+                object-fit: contain;
+                object-position: center;
+            }
+        }
+	}
+}
+ion-content {
+	--border-radius: 0px;
+    --background: transparent;
+    --border: none;
+    ion-header {
+        padding: 5px 16px 20px;
+        h2 {
+            width: 100%;
+            font-size: 26px;
+            line-height: 36px;
+            font-family: var(--font-Poppins-Regular);
+            color: var(--White);
+            text-transform: capitalize;
+            letter-spacing: normal;
+            margin: 0px;
+            padding: 0px;
+            @media(max-width:374px) {
+                font-size: 22px;
+                line-height: 32px;
+            }
+        }
+        h1 {
+            width: 100%;
+            font-size: 34px;
+            line-height: 44px;
+            font-family: var(--font-Poppins-Bold);
+            color: var(--White);
+            text-transform: capitalize;
+            letter-spacing: normal;
+            margin: 0px;
+            padding: 0px;
+        }
+        @media(max-width:374px) {
+            font-size: 30px;
+            line-height: 40px;
+        }
+    }
+    .main-div {
+        background: #f8f8f8;
+        padding: 30px 16px 60px;
+        border-radius: 35px 35px 0px 0px;
+        .rsr-sec {
+            h3 {
+                width: 100%;
+                font-size: 22px;
+                line-height: 32px;
+                font-family: var(--font-Poppins-Bold);
+                color: var(--Black);
+                text-transform: capitalize;
+                letter-spacing: normal;
+                margin: 0px;
+                padding: 0px;
+                @media(max-width:374px) {
+                    font-size: 20px;
+                    line-height: 30px;
+                }
+                span {
+                    font-size: 20px;
+                    line-height: 30px;
+                    font-family: var(--font-NeueHaasUnicaPro-Regular);
+                    margin-left: 10px;
+                    @media(max-width:374px) {
+                        font-size: 18px;
+                        line-height: 20px;
+                    }
+                }
+            }
+            .rsr-list {
+                width: 100%;
+                display: flex;
+                flex-wrap: wrap;
+                padding: 0px;
+                margin: 18px 0px 0px;
+                .rsr-item {
+                    width: 100%;
+                    min-width: 100%;
+                    max-width: 100%;
+                    display: flex;
+                    flex-flow: column;
+                    align-items: flex-start;
+                    background-color: #fff;
+                    border-radius: 25px;
+                    padding: 14px 14px 12px;
+                    margin: 0px 0px 8px;
+                    .icon-details {
+                        width: 100%;
+                        display: flex;
+                        flex-flow: row;
+                        align-items: flex-start;
+                        justify-content: flex-start;
+                        .rsr-icon {
+                            width: 25%;
+                            img {
+                                max-width: 100%;
+                                width: 100%;
+                                height: auto;
+                                max-height: 100%;
+                                object-fit: contain;
+                                object-position: center;
+                            }
+                        }
+                        .rsr-details {
+                            width: calc(100% - 25%);
+                            h3 {
+                                width: 100%;
+                                font-size: 22px;
+                                line-height: 32px;
+                                font-family: var(--font-Poppins-Bold);
+                                color: var(--Black);
+                                text-transform: capitalize;
+                                letter-spacing: normal;
+                                margin: 0px;
+                                padding: 0px;
+                                @media(max-width:374px) {}
+                            }
+                            p {
+                                width: 100%;
+                                font-size: 22px;
+                                line-height: 32px;
+                                font-family: var(--font-Poppins-Bold);
+                                color: var(--Black);
+                                text-transform: capitalize;
+                                letter-spacing: normal;
+                                margin: 0px;
+                                padding: 0px;
+                                @media(max-width:374px) {}
+                            }
+                            ion-row {
+                                ion-col {
+                                    &.loc-icon {
+                                        width: 20%;
+                                        max-width: 20%;
+                                        ion-icon {}
+                                    }
+                                    &.loc-text {
+                                        width: calc(100% - 20%);
+                                        max-width: calc(100% - 20%);
+                                        h5 {
+                                            @media(max-width:374px) {}
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .rsr-buttons {
+                        width: 100%;
+                        ion-list {
+                            ion-item {
+                                ion-button {}
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

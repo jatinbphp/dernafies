@@ -1,66 +1,65 @@
-<ion-header>
+<ion-header no-border class="ion-no-border">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>      
+      <ion-menu-button><img src="../../assets/images/menu-icon1.png"></ion-menu-button>    
     </ion-buttons>
     <ion-title>Sign In</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <form [formGroup]="loginForm">
-    <ion-grid class="ion-no-padding">
-      <ion-row>
-        <ion-col size="12" class="ion-text-left ion-no-padding mb-45">
-          <h3>Login</h3>
-        </ion-col>
-        <ion-col size="6" class="ion-text-left ion-no-padding">
-          <ion-button class="border-btn"><img src="../assets/images/fb-icon1.png"></ion-button>
-        </ion-col>
-        <ion-col size="6" class="ion-text-right ion-no-padding">
-          <ion-button class="border-btn"><img src="../assets/images/twt-icon1.png"></ion-button>
-        </ion-col>
-        <ion-col size="12" class="ion-text-left ion-no-padding mb-20 mt-60">
-          <ion-label position="stacked">Email Address</ion-label>
+  <div class="logo-main">
+    <img src="../../assets/images/logo.png">
+  </div>
+  <div class="main-div">
+    <form [formGroup]="loginForm">
+      <ion-grid class="ion-no-padding">
+        <ion-row>
+          <ion-col size="12" class="ion-text-left ion-no-padding">
+            <h3>Login</h3>
+          </ion-col>
+          <ion-col size="12" class="ion-text-left ion-no-padding">
+            <ion-label position="stacked">Email Address</ion-label>
             <ion-input type="text" placeholder="" formControlName="username" pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})"></ion-input>
-          <!--VALIDATION-->
-          <div *ngFor="let validation of validation_messages.username">                
-            <div class="validation-errors">
-              <ng-container>
-                <div class="error-message" *ngIf="loginForm.get('username').hasError(validation.type) && (loginForm.get('username').dirty || loginForm.get('username').touched)">{{ validation.message }}</div>
-              </ng-container>
-            </div>								
-          </div>
-          <!--VALIDATION-->		  
-        </ion-col>
-        <ion-col size="12" class="ion-text-left ion-no-padding mb-20">
-          <ion-label position="stacked">Password</ion-label>
+            <!--VALIDATION-->
+            <div *ngFor="let validation of validation_messages.username">
+              <div class="validation-errors">
+                <ng-container>
+                  <div class="error-message" *ngIf="loginForm.get('username').hasError(validation.type) && (loginForm.get('username').dirty || loginForm.get('username').touched)">{{ validation.message }}</div>
+                </ng-container>
+              </div>								
+            </div>
+            <!--VALIDATION-->		  
+          </ion-col>
+          <ion-col size="12" class="ion-text-left ion-no-padding mb-20">
+            <ion-label position="stacked">Password</ion-label>
             <ion-input [type]="passwordType" placeholder="" formControlName="password"></ion-input>
-          <ion-icon [name]="passwordIcon" (click)='hideShowPassword()'></ion-icon>
-          <!--VALIDATION-->
-          <div *ngFor="let validation of validation_messages.password">                
-            <div class="validation-errors">
-              <ng-container>
-              <div class="error-message" *ngIf="loginForm.get('password').hasError(validation.type) && (loginForm.get('password').dirty || loginForm.get('password').touched)">{{ validation.message }}</div>
-              </ng-container>
-            </div>								
-          </div>
-          <!--VALIDATION-->
-        </ion-col>
-        <ion-col size="6" class="ion-text-left align-center ion-no-padding">
-          <ion-checkbox></ion-checkbox>
-          <p>Remember me</p>
-        </ion-col>
-        <ion-col size="6" class="ion-text-right ion-no-padding sml-dev-full-width">
-          <ion-router-link routerDirection="root" routerLink="/forgot-password" class="">Forgot password?</ion-router-link>
-        </ion-col>
-        <ion-col size="12" class="ion-text-center ion-no-padding mt-60">
-          <ion-button type="submit" class="log-btn" [disabled]="!loginForm.valid">LOG IN</ion-button>
-        </ion-col>
-        <ion-col size="12" class="ion-text-center ion-no-padding mt-25" routerDirection="root" routerLink="/sign-up">
-          <p>Don’t have a account? <ion-router-link>Sign up</ion-router-link></p>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </form>
+            <ion-icon [name]="passwordIcon" (click)='hideShowPassword()'></ion-icon>
+            <!--VALIDATION-->
+            <div *ngFor="let validation of validation_messages.password">
+              <div class="validation-errors">
+                <ng-container>
+                <div class="error-message" *ngIf="loginForm.get('password').hasError(validation.type) && (loginForm.get('password').dirty || loginForm.get('password').touched)">{{ validation.message }}</div>
+                </ng-container>
+              </div>								
+            </div>
+            <!--VALIDATION-->
+          </ion-col>
+          <ion-col class="ion-text-left align-center ion-no-padding width-size">
+            <ion-checkbox></ion-checkbox>
+            <p>Remember me</p>
+          </ion-col>
+          <ion-col class="ion-text-right ion-no-padding width-size">
+            <ion-router-link routerDirection="root" routerLink="/forgot-password" class="">Forgot password?</ion-router-link>
+          </ion-col>
+          <ion-col size="12" class="ion-text-center ion-no-padding button-around-space">
+            <ion-button type="submit" class="log-btn" [disabled]="!loginForm.valid">log in</ion-button>
+          </ion-col>
+          <ion-col size="12" class="ion-text-center ion-no-padding" routerDirection="root" routerLink="/sign-up">
+            <p>Don’t have a account? <ion-router-link>Sign up</ion-router-link></p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </form>
+  </div>
 </ion-content>
