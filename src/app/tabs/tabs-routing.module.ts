@@ -24,6 +24,22 @@ const routes: Routes = [
         loadChildren: () => import('../information/information.module').then(m => m.InformationPageModule)
       },
       {
+        path: 'profile',
+        loadChildren: () => import('../profile/profile.module').then(m => m.ProfilePageModule)
+      },
+      {
+        path: 'current-requests',
+        loadChildren: () => import('../current-requests/current-requests.module').then(m => m.CurrentRequestsPageModule)
+      },
+      {
+        path: 'past-requests',
+        loadChildren: () => import('../past-requests/past-requests.module').then(m => m.PastRequestsPageModule)
+      },
+      {
+        path: 'settings',
+        loadChildren: () => import('../settings/settings.module').then(m => m.SettingsPageModule)
+      },
+      {
         path: '',
         redirectTo: '/tabs/home',
         pathMatch: 'full'
