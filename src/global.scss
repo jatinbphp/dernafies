@@ -47,7 +47,8 @@
     --White: #fff ;
     --Black: #000 ;
     --theme-blue-text: #48a9f5;
-    --background-gradient: linear-gradient(160deg, #047ff1 0%, #2dcffb 100%);
+    //--background-gradient: linear-gradient(160deg, #047ff1 0%, #2dcffb 100%);
+    --background-gradient: linear-gradient(120deg, #047ff1 0%, #2dcffb 100%);
 }
 
 :host(.menu-list) .input-wrapper {
@@ -120,21 +121,29 @@ ion-searchbar {
         input {
             width: 100% !important;
             height: 100% !important;
-            background-color: var(--White) !important;
-            border-radius: 30px !important;
+            background-color: #f8f8f8 !important;
+            background-color: #fff !important;
+            border-radius: 10px !important;
             box-shadow: none !important;
             color: var(--Black) !important;
             padding-right: 40px !important;
             padding-left: 18px !important;
             font-size: 15px !important;
-            font-family: var(--font-Poppins-Medium) !important;
+            font-family: var(--font-NeueHaasUnicaPro-Regular) !important;
             font-weight: normal !important;
             --placeholder-color: var(--Black);
 		    --placeholder-opacity: 1;
+            box-shadow: 2.046px 2.194px 25.5px rgba(4,7,7,0.13) !important;
+            // margin: 20px 0px !important;
             @media screen and (max-width: 360px) {}
         }
         ion-icon {
-            &.searchbar-search-icon {display: none !important;}
+            &.searchbar-search-icon {
+                // display: none !important;
+                margin: 0px !important;
+                left: unset !important;
+                right: 16px !important;
+            }
         }
         button.searchbar-clear-button {
             display: none !important;
@@ -179,11 +188,7 @@ ion-header {
 	}
 }
 
-app-sign-up {
-    background: var(--background-gradient);
-}
-
-app-home {
+app-sign-up, app-home, app-categories, app-search {
     background: var(--background-gradient);
 }
 
@@ -194,6 +199,13 @@ app-sign-in {
     background-size: cover;
     background-position: center;
     background-color: #fff;
+}
+
+.header-background {
+    -webkit-backdrop-filter: unset !important;
+    backdrop-filter: unset !important;
+    --border: none !important;
+    // background-image: var(--background-gradient);
 }
 
 // ion-select {
@@ -227,5 +239,44 @@ ion-select {
 ion-menu {
     ion-backdrop {
         background-color: transparent !important;
+    }
+}
+
+.title-main {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0px 0px 20px;
+    padding: 0px;
+    h2 {
+        width: 100%;
+        text-align: left;
+        font-size: 26px;
+        line-height: 28px;
+        font-family: var(--font-Poppins-Bold);
+        color: var(--Black);
+        text-transform: capitalize;
+        letter-spacing: normal;
+        margin: 0px 0px;
+        padding: 0px;
+        @media(max-width:374px) {
+            font-size: 18px;
+            line-height: 22px;
+        }
+        ion-router-link {
+            width: 100%;
+            text-align: left;
+            font-size: 20px;
+            line-height: 22px;
+            font-family: var(--font-NeueHaasUnicaPro-Regular);
+            color: var(--Black);
+            text-transform: capitalize;
+            letter-spacing: normal;
+            margin: 0px 0px 0px 10px;
+            padding: 0px;
+        }
+        @media(max-width:374px) {}
+            font-size: 18px;
+            line-height: 20px;
     }
 }

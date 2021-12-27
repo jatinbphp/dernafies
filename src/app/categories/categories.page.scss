@@ -1,0 +1,93 @@
+ion-header {
+	ion-toolbar {
+		--background: transparent;
+		padding: 16px;
+		--border-width: 0px;
+    	--opacity: 1;
+    	--opacity-scale: unset;
+		ion-title {
+			padding: 0;
+		}
+		ion-button {
+			--background: transparent;
+            --color: transparent;
+            --border-radius: 0px;
+            --border: none;
+            --padding-start: 0;
+            --padding-end: 0;
+            --padding-bottom: 0;
+            --padding-top: 0;
+            width: fit-content;
+            height: fit-content;
+            margin: 0px;
+            padding: 0px;
+			ion-icon {
+				font-size: 35px;
+				color: var(--White);
+			}
+		}
+	}
+}
+ion-content {
+	--border-radius: 0px;
+    --background: transparent;
+    --border: none;
+    position: relative;
+    &:after {
+        content: '';
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        width: 100%;
+        height: 50px;
+        background-color: #fff;
+        z-index: -1;
+    }
+	.main-div {
+		background: #f8f8f8;
+        padding: 24px 10px 14px;
+        border-radius: 35px 35px 50px 50px;
+		.category-box-list {
+			width: 100%;
+			display: flex;
+			flex-wrap: wrap;
+			.category-box-item {
+				width: 50%;
+				max-width: 50%;
+				min-width: 50%;
+    			.category-box-inner {
+    				background-color: #fff;
+				    box-shadow: 2.046px 2.194px 25.5px rgb(4 7 7 / 4%);
+				    border-radius: 20px;
+				    padding: 22px 10px 20px;
+				    margin: 0px 8px 18px;
+					img {
+						max-width: 100%;
+						width: 100%;
+						height: 70px;
+						max-height: 100%;
+						object-fit: contain;
+						object-position: center;
+					}
+					h6 {
+						width: 100%;
+					    text-align: center;
+					    font-size: 21px;
+					    line-height: 25px;
+					    font-family: var(--font-NeueHaasUnicaPro-Regular);
+					    color: var(--Black);
+					    text-transform: capitalize;
+					    letter-spacing: normal;
+					    margin: 12px 0px 0px;
+					    padding: 0px;
+		                @media(max-width:374px) {
+		                    font-size: 18px;
+		                    line-height: 24px;
+		                }
+					}
+    			}
+			}
+		}
+	}
+}
