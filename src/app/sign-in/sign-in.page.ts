@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ClientService } from '../providers/client.service';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-sign-in',
@@ -13,6 +14,7 @@ export class SignInPage implements OnInit
 	public language_selected = '';
 	public default_language_data: any = [];
 
+	public resultData:any={};
 	public passwordType: string = 'password';
 	public passwordIcon: string = 'eye-off';
 
@@ -34,7 +36,7 @@ export class SignInPage implements OnInit
 		]
 	};
 
-	constructor(public client: ClientService, public fb: FormBuilder)
+	constructor(public client: ClientService, public fb: FormBuilder, public loadingCtrl: LoadingController)
 	{ 
 		this.default_language_data = this.client.default_language_data;
 		this.language_selected = this.client.language_selected;
@@ -49,5 +51,51 @@ export class SignInPage implements OnInit
 	{
 		this.passwordType = this.passwordType === 'text' ? 'password' : 'text';
     	this.passwordIcon = this.passwordIcon === 'eye-off' ? 'eye' : 'eye-off';
+	}
+
+	async makeMeLoggedin(form)
+	{
+		//LOADER
+		const loading = await this.loadingCtrl.create({
+			spinner: null,
+			//duration: 5000,
+			message: 'Please wait...',
+			translucent: true,
+			cssClass: 'custom-class custom-loading'
+		});
+		await loading.present();
+		//LOADER
+
+		let data=
+		{
+			username:form.username, 
+			password:form.password,
+		}
+		await this.client.makeMeLoggedin(data).then(result => 
+		{	
+			loading.dismiss();//DISMISS LOADER			
+			this.resultData=result;
+			
+			if(this.resultData.status==true)
+			{
+				localStorage.setItem('token',this.resultData.token);
+				localStorage.setItem('id',this.resultData.id);
+				localStorage.setItem('email',this.resultData.email);
+				localStorage.setItem('userTypeID',this.resultData.userTypeID);
+				localStorage.setItem('firstName',this.resultData.firstName);
+				localStorage.setItem('lastName',this.resultData.lastName);
+				localStorage.setItem('defaultLanguage',this.resultData.defaultLanguage);
+				localStorage.setItem('role',this.resultData.role);
+				this.client.router.navigate(['/tabs/home']);
+			}
+			
+			console.log(this.resultData);
+						
+		},
+		error => 
+		{
+			loading.dismiss();//DISMISS LOADER
+			console.log();
+		});
 	}
 }

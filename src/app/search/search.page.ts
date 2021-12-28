@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { MenuController, LoadingController, ModalController } from '@ionic/angular';
+import { ClientService } from '../providers/client.service';
+import { FormBuilder, Validators } from '@angular/forms';
+import { ProfilePage } from '../profile/profile.page';
 
 @Component({
   selector: 'app-search',
@@ -8,13 +11,16 @@ import { Router } from '@angular/router';
 })
 export class SearchPage {
 
-  constructor() {}
+  constructor(public fb: FormBuilder, public client: ClientService, public menu: MenuController, public loadingCtrl: LoadingController, public modalCtrl: ModalController) 
+  {}
+  
   categorieSlide = {
     // slidesPerView: 1.3,
     initialSlide: 1,
     slidesPerView: this.categoriecheckScreen(),
     speed: 600,
   };
+  
   categoriecheckScreen() {
     let innerWidth = window.innerWidth;
     switch (true) {
@@ -36,6 +42,23 @@ export class SearchPage {
         return 3.3;
       case 1200 <= innerWidth:
         return 4.3;
+    }
+  }
+
+  async showMyProfile()
+  {
+    let id = (localStorage.getItem('id')) ? localStorage.getItem('id') : undefined;
+    if(id!='' && id!='null' && id!=null && id!=undefined && id!='undefined')
+    {
+      const modal = await this.modalCtrl.create({
+        component: ProfilePage,
+      });
+
+      return await modal.present();
+    }
+    else 
+    {
+      this.client.router.navigate(['sign-in']);  
     }
   }
 

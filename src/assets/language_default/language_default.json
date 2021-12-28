@@ -71,6 +71,64 @@
                   }
                ]
             }
+         ],
+         "register": [
+            {
+               "english": [
+                  {
+                     "screen_title":"Sign Up",
+                     "first_name":"First Name",
+                     "last_name":"Last Name",
+                     "email_address":"Email",
+                     "password":"Password",
+                     "confirm_password":"Confirm Password",
+                     "specialized_in": "Specialized In",
+                     "service_location": "Service Location",
+                     "pricing": "Pricing",
+                     "terms_of_service":"I agree to the",
+                     "terms_of_service_link_text":"Terms of service",
+                     "have_an_account":"Have an account?",
+                     "login_text":"Login",
+                     "register_button": "Sign Up"
+                  }
+               ],
+               "arabic": [
+                  {
+                     "screen_title": "اشتراك",
+                     "first_name":"الاسم الاول",
+                     "last_name":"اسم العائلة",
+                     "email_address":"بريد الالكتروني",
+                     "password":"كلمة المرور",
+                     "confirm_password":"تأكيد كلمة المرور",
+                     "specialized_in": "متخصص في",
+                     "service_location": "موقع الخدمة",
+                     "pricing": "التسعير",
+                     "terms_of_service":"أنا أوافق على",
+                     "terms_of_service_link_text":"شروط الخدمة",
+                     "have_an_account":"هل لديك حساب؟",
+                     "login_text":"تسجيل الدخول",
+                     "register_button": "اشتراك"
+                  }
+               ],
+               "kurdish": [
+                  {
+                     "screen_title":"Tomar kirin",
+                     "first_name":"Nav",
+                     "last_name":"Paşnav",
+                     "email_address":"Email",
+                     "password":"Şîfre",
+                     "confirm_password":"di pêşîyê da em sipas dikin",
+                     "specialized_in": "Specialized In",
+                     "service_location": "Cihê Xizmetê",
+                     "pricing": "Pricing",
+                     "terms_of_service":"Ez qebûl dikim",
+                     "terms_of_service_link_text":"Mercên xizmetê",
+                     "have_an_account":"Hesabek heye?",
+                     "login_text":"Login",
+                     "register_button": "Tomar kirin"
+                  }
+               ]
+            }
          ]
       }
    ]

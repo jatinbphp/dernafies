@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-menu-button><img src="../../assets/images/menu-icon1.png"></ion-menu-button>
     </ion-buttons>
-    <ion-title>Sign Up</ion-title>
+    <ion-title>{{default_language_data['translation'][0]['register'][0][language_selected][0]['screen_title']}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -13,7 +13,7 @@
       <ion-grid>
         <ion-row>
           <ion-col size="12">
-            <ion-label position="stacked">First Name</ion-label>
+            <ion-label position="stacked">{{default_language_data['translation'][0]['register'][0][language_selected][0]['first_name']}}</ion-label>
             <ion-input type="text" formControlName="first_name"></ion-input>
             <!--VALIDATION-->
             <div class="validation-errors">
@@ -30,7 +30,7 @@
         </ion-row>
         <ion-row>
           <ion-col size="12">
-            <ion-label position="stacked">Last Name</ion-label>
+            <ion-label position="stacked">{{default_language_data['translation'][0]['register'][0][language_selected][0]['last_name']}}</ion-label>
             <ion-input type="text" formControlName="last_name"></ion-input>
             <!--VALIDATION-->
             <div class="validation-errors">
@@ -47,7 +47,7 @@
         </ion-row>
         <ion-row>
           <ion-col size="12">
-            <ion-label position="stacked">Email</ion-label>
+            <ion-label position="stacked">{{default_language_data['translation'][0]['register'][0][language_selected][0]['email_address']}}</ion-label>
             <ion-input type="email" formControlName="email"></ion-input>
             <!--VALIDATION-->
             <div class="validation-errors">
@@ -64,7 +64,7 @@
         </ion-row>                    
         <ion-row>
           <ion-col size="12">
-            <ion-label position="stacked">password</ion-label>
+            <ion-label position="stacked">{{default_language_data['translation'][0]['register'][0][language_selected][0]['password']}}</ion-label>
             <ion-input [type]="passwordType" formControlName="password"></ion-input>
             <ion-icon item-end [name]="passwordIcon" class="passwordIcon" (click)='hideShowPassword()'></ion-icon>
             <!--VALIDATION-->
@@ -82,7 +82,7 @@
         </ion-row>        
         <ion-row>
           <ion-col size="12">
-            <ion-label position="stacked">Confirm password</ion-label>
+            <ion-label position="stacked">{{default_language_data['translation'][0]['register'][0][language_selected][0]['confirm_password']}}</ion-label>
             <ion-input [type]="ConfirmPasswordType" formControlName="cpassword"></ion-input>
             <ion-icon item-end [name]="ConfirmPasswordIcon" class="passwordIcon" (click)='hideShowConfirmPassword()'></ion-icon>
             <!--VALIDATION-->
@@ -100,7 +100,7 @@
         </ion-row> 
         <ion-row>
           <ion-col size="12">
-            <ion-label position="stacked">Specialized In</ion-label>
+            <ion-label position="stacked">{{default_language_data['translation'][0]['register'][0][language_selected][0]['specialized_in']}}</ion-label>
             <ion-select formControlName="specialized_in">
               <ion-select-option>Information Technology</ion-select-option>  
             </ion-select>
@@ -119,7 +119,7 @@
         </ion-row>
         <ion-row>
           <ion-col size="12">
-            <ion-label position="stacked">Service Location</ion-label>
+            <ion-label position="stacked">{{default_language_data['translation'][0]['register'][0][language_selected][0]['service_location']}}</ion-label>
             <ion-select formControlName="service_location">
               <ion-select-option>Caneda</ion-select-option>  
             </ion-select>
@@ -138,7 +138,7 @@
         </ion-row>
         <ion-row>
           <ion-col size="12">
-            <ion-label position="stacked">Pricing</ion-label>
+            <ion-label position="stacked">{{default_language_data['translation'][0]['register'][0][language_selected][0]['pricing']}}</ion-label>
             <ion-select formControlName="pricing">
               <ion-select-option>1000</ion-select-option>  
             </ion-select>
@@ -161,16 +161,16 @@
           <ion-col size="1">
             <ion-checkbox (ionChange)="acceptTerms($event)" [(ngModel)]="accept_tems" [ngModelOptions]="{standalone: true}"></ion-checkbox>
           </ion-col>        
-          <ion-col size="11" class="ion-text-left">I agree to the <strong>Terms of service</strong></ion-col>
+          <ion-col size="11" class="ion-text-left">{{default_language_data['translation'][0]['register'][0][language_selected][0]['terms_of_service']}} <strong>{{default_language_data['translation'][0]['register'][0][language_selected][0]['terms_of_service_link_text']}}</strong></ion-col>
         </ion-row>
       </ion-grid>
       <ion-item lines="none">
-        <ion-button type="submit" color="" [disabled]="!registerForm.valid || accept_tems != true">Sign Up</ion-button>
+        <ion-button type="submit" color="" [disabled]="!registerForm.valid || accept_tems != true">{{default_language_data['translation'][0]['register'][0][language_selected][0]['register_button']}}</ion-button>
       </ion-item>
     </form>
     <ion-grid class="other-options">
       <ion-row>        
-        <ion-col size="12" class="ion-text-center" routerDirection="root" routerLink="/sign-in">Have an account? <strong>Login</strong></ion-col>
+        <ion-col size="12" class="ion-text-center" routerDirection="root" routerLink="/sign-in">{{default_language_data['translation'][0]['register'][0][language_selected][0]['have_an_account']}} <strong>{{default_language_data['translation'][0]['register'][0][language_selected][0]['login_text']}}</strong></ion-col>
       </ion-row>
     </ion-grid>
   </div>

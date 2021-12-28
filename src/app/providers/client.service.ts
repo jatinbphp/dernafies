@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
 import { Subject } from 'rxjs'; 
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
@@ -10,8 +10,9 @@ import { AlertController } from '@ionic/angular';
 
 export class ClientService 
 {
-	public site_url: string ="https://eazierapp.co.za/";
-	public api_url: string = "https://eazierapp.co.za/newwebportal/api/";
+	public site_url: string ="https://dernafies.ecnetsolutions.dev/";
+	public api_url: string = "https://dernafies.ecnetsolutions.dev/api/";
+	public serverResponse: any=[];
 	public token:string = '';
 	private default_language_json = '../assets/language_default/language_default.json';
 	public default_language_data: any = [];
@@ -41,7 +42,7 @@ export class ClientService
   	getHeaderOptions(): any 
 	{	
 		this.token=localStorage.getItem('token');
-		var headers = new HttpHeaders().set('Authorization',`${this.token}`).set('Accept','application/json');
+		var headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded').set('Accept','application/json');
 		return { headers }	    
 	}
 
@@ -54,6 +55,36 @@ export class ClientService
 			{   
 				this.default_language_data=res;
 				resolve(res);
+			},
+			err => 
+			{
+				console.log(err);
+				let errorMessage=this.getErrorMessage(err);
+				this.showMessage(errorMessage);
+				reject(errorMessage);
+			});
+		});
+	}
+
+	makeMeLoggedin(data)
+	{	
+		let headers = this.getHeaderOptions();
+		return new Promise((resolve, reject) => 
+		{
+			let dataToPost = new HttpParams().set("email",data.username).set("pwd", data.password);
+			this.http.post(this.api_url + "login",  dataToPost , headers).subscribe((res: any) =>       
+			{
+				if(res.status == true)
+				{
+					this.showMessage(res.message);
+					this.serverResponse=res;
+					resolve(this.serverResponse);					
+				}
+				else
+				{
+					let messageDisplay=this.showMessage(res.message);
+					reject(messageDisplay);
+				}
 			},
 			err => 
 			{
@@ -92,7 +123,7 @@ export class ClientService
 		{
 			const alert = await this.alertCtrl.create(
 			{
-				header: 'The Haydari Project',
+				header: 'DERNAFIES',
 				message: message,
 				buttons: 
 				[

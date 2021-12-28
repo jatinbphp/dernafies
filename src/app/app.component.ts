@@ -38,11 +38,11 @@ export class AppComponent
     console.log(this.language_selected);
     this.default_language_data = await this.client.getLanguageDefault();
     console.log(this.default_language_data);
-    /*
+    
     this.client.publishSomeDataOnLanguageChange({
-      language_selected: 'kurdish'
+      language_selected: 'arabic'
     });//THIS OBSERVABLE IS USED TO SET DEFAULT OR SELECTED LANGUAGE
-    */
+    
     this.appPages[0].title = this.default_language_data['translation'][0]['menu'][0][this.language_selected][0]['profile'];
     this.appPages[1].title = this.default_language_data['translation'][0]['menu'][0][this.language_selected][0]['current_requests'];
     this.appPages[2].title = this.default_language_data['translation'][0]['menu'][0][this.language_selected][0]['past_requests'];
