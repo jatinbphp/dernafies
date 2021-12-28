@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PastRequestsPage implements OnInit {
 
-  constructor() { }
+	public show_in_view: any = 'list';
 
-  ngOnInit() {
-  }
+	constructor() { }
+
+	ngOnInit() {
+	}
+
+	showGridView() {
+	    this.show_in_view='grid';
+	}
+
+	showListView() {
+		this.show_in_view='list';
+	}
 
 }
