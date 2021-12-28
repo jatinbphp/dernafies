@@ -30,8 +30,8 @@
   /** success **/
   --ion-color-success: #8bcd77;
   --ion-color-success-rgb: 139,205,119;
-  --ion-color-success-contrast: #000000;
-  --ion-color-success-contrast-rgb: 0,0,0;
+  --ion-color-success-contrast: #ffffff;
+  --ion-color-success-contrast-rgb: 255,255,255;
   --ion-color-success-shade: #7ab469;
   --ion-color-success-tint: #97d285;
 
@@ -46,8 +46,8 @@
   /** danger **/
   --ion-color-danger: #ed7c7c;
   --ion-color-danger-rgb: 237,124,124;
-  --ion-color-danger-contrast: #000000;
-  --ion-color-danger-contrast-rgb: 0,0,0;
+  --ion-color-success-contrast: #ffffff;
+  --ion-color-success-contrast-rgb: 255,255,255;
   --ion-color-danger-shade: #d16d6d;
   --ion-color-danger-tint: #ef8989;
 
@@ -237,15 +237,15 @@
 
 // below-css-for-on-click-ionic-background-color-remove
 .button-solid {
-    --background-activated: transparent;
-    --background-focused: transparent;
-    --background-hover: transparent;
+    --background-activated: linear-gradient(160deg, #037ff1 0%, #17a3f5 100%);
+    --background-focused: linear-gradient(160deg, #037ff1 0%, #17a3f5 100%);
+    --background-hover: linear-gradient(160deg, #037ff1 0%, #17a3f5 100%);
     --background-activated-opacity: 1;
     --background-focused-opacity: 1;
     --background-hover-opacity: 1;
-    --color-activated: var(--Black);
-    --color-focused: var(--Black);
-    --color-hover: var(--Black);
+    --color-activated: var(--White);
+    --color-focused: var(--White);
+    --color-hover: var(--White);
 }
 // above-css-for-on-click-ionic-background-color-remove
 

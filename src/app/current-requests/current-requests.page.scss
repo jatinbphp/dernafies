@@ -1,0 +1,34 @@
+ion-header {
+	ion-toolbar {
+		--background: transparent;
+		padding: 16px;
+		--border-width: 0px;
+    	--opacity: 1;
+    	--opacity-scale: unset;
+		ion-title {
+			padding: 0;
+		}
+	}
+}
+ion-content {
+	--border-radius: 0px;
+    --background: transparent;
+    --border: none;
+    position: relative;
+    &:after {
+        content: '';
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        width: 100%;
+        height: 50px;
+        background-color: #fff;
+        z-index: -1;
+    }
+	.main-div {
+		background: #f8f8f8;
+        padding: 24px 10px 14px;
+        border-radius: 35px 35px 50px 50px;
+    }
+}
