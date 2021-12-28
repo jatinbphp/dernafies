@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { ClientService } from '../providers/client.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -9,7 +10,10 @@ import { FormBuilder, Validators } from '@angular/forms';
 
 export class SignInPage implements OnInit 
 {
-  	public passwordType: string = 'password';
+	public language_selected = '';
+	public default_language_data: any = [];
+
+	public passwordType: string = 'password';
 	public passwordIcon: string = 'eye-off';
 
 	public loginForm = this.fb.group({
@@ -30,8 +34,13 @@ export class SignInPage implements OnInit
 		]
 	};
 
-	constructor(public fb: FormBuilder)
-	{ }
+	constructor(public client: ClientService, public fb: FormBuilder)
+	{ 
+		this.default_language_data = this.client.default_language_data;
+		this.language_selected = this.client.language_selected;
+		console.log("DATA",this.default_language_data);
+		console.log("LANG",this.language_selected);
+	}
 
 	ngOnInit()
 	{ }

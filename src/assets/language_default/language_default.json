@@ -1,0 +1,77 @@
+{
+   "translation": [
+      {
+         "menu": [
+            {
+               "english": [
+                  {
+                     "profile":"Profile",
+                     "current_requests":"Current Requests",
+                     "past_requests":"Past Requests",
+                     "settings":"Settings",
+                     "logout":"Logout"
+                  }
+               ],
+               "arabic": [
+                  {
+                     "profile":"الملف الشخصي",
+                     "current_requests":"الطلبات الحالية",
+                     "past_requests":"الطلبات السابقة",
+                     "settings":"إعدادات",
+                     "logout":"تسجيل خروج"
+                  }
+               ],
+               "kurdish": [
+                  {
+                     "profile":"Tengal",
+                     "current_requests":"Daxwazên Niha",
+                     "past_requests":"Daxwazên berê",
+                     "settings":"Settings",
+                     "logout":"Derkeve"
+                  }
+               ]
+            }
+         ],
+         "login": [
+            {
+               "english": [
+                  {
+                     "screen_title":"Login",
+                     "remember_me":"Remember me",
+                     "forgot_password":"Forgot password?",
+                     "dont_have_account":"Don't have a account?",
+                     "sign_up":"Sign up",
+                     "email_address": "Email Address",
+                     "password": "Password",
+                     "login_in_button": "Log In"
+                  }
+               ],
+               "arabic": [
+                  {
+                     "screen_title":"تسجيل الدخول",
+                     "remember_me":"تذكرنى",
+                     "forgot_password":"هل نسيت كلمة السر؟",
+                     "dont_have_account":"ليس لديك حساب؟",
+                     "sign_up":"اشتراك",
+                     "email_address":"عنوان البريد الالكترونى",
+                     "password": "كلمه السر",
+                     "login_in_button": "تسجيل الدخول"
+                  }
+               ],
+               "kurdish": [
+                  {
+                     "screen_title":"Login",
+                     "remember_me":"Min bîne bîra xwe",
+                     "forgot_password":"Şîfre ji bîr kir?",
+                     "dont_have_account":"Hesabê we tune?",
+                     "sign_up":"Tomar kirin",
+                     "email_address": "Navnîşana emailê",
+                     "password": "Şîfre",
+                     "login_in_button": "log.in"
+                  }
+               ]
+            }
+         ]
+      }
+   ]
+}

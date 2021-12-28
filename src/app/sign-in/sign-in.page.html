@@ -16,10 +16,10 @@
       <ion-grid class="ion-no-padding">
         <ion-row>
           <ion-col size="12" class="ion-text-left ion-no-padding">
-            <h3>Login</h3>
+            <h3>{{default_language_data['translation'][0]['login'][0][language_selected][0]['screen_title']}}</h3>
           </ion-col>
           <ion-col size="12" class="ion-text-left ion-no-padding">
-            <ion-label position="stacked">Email Address</ion-label>
+            <ion-label position="stacked">{{default_language_data['translation'][0]['login'][0][language_selected][0]['email_address']}}</ion-label>
             <ion-input type="text" placeholder="" formControlName="username" pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})"></ion-input>
             <!--VALIDATION-->
             <div *ngFor="let validation of validation_messages.username">
@@ -32,7 +32,7 @@
             <!--VALIDATION-->		  
           </ion-col>
           <ion-col size="12" class="ion-text-left ion-no-padding mb-20">
-            <ion-label position="stacked">Password</ion-label>
+            <ion-label position="stacked">{{default_language_data['translation'][0]['login'][0][language_selected][0]['password']}}</ion-label>
             <ion-input [type]="passwordType" placeholder="" formControlName="password"></ion-input>
             <ion-icon [name]="passwordIcon" (click)='hideShowPassword()'></ion-icon>
             <!--VALIDATION-->
@@ -47,16 +47,16 @@
           </ion-col>
           <ion-col class="ion-text-left align-center ion-no-padding width-size">
             <ion-checkbox></ion-checkbox>
-            <p>Remember me</p>
+            <p>{{default_language_data['translation'][0]['login'][0][language_selected][0]['remember_me']}}</p>
           </ion-col>
           <ion-col class="ion-text-right ion-no-padding width-size">
-            <ion-router-link routerDirection="root" routerLink="/forgot-password" class="">Forgot password?</ion-router-link>
+            <ion-router-link routerDirection="root" routerLink="/forgot-password" class="">{{default_language_data['translation'][0]['login'][0][language_selected][0]['forgot_password']}}</ion-router-link>
           </ion-col>
           <ion-col size="12" class="ion-text-center ion-no-padding button-around-space">
-            <ion-button type="submit" class="log-btn" [disabled]="!loginForm.valid">log in</ion-button>
+            <ion-button type="submit" class="log-btn" [disabled]="!loginForm.valid">{{default_language_data['translation'][0]['login'][0][language_selected][0]['login_in_button']}}</ion-button>
           </ion-col>
           <ion-col size="12" class="ion-text-center ion-no-padding" routerDirection="root" routerLink="/sign-up">
-            <p>Don’t have a account? <ion-router-link>Sign up</ion-router-link></p>
+            <p>{{default_language_data['translation'][0]['login'][0][language_selected][0]['dont_have_account']}} <ion-router-link>{{default_language_data['translation'][0]['login'][0][language_selected][0]['sign_up']}}</ion-router-link></p>
           </ion-col>
         </ion-row>
       </ion-grid>
