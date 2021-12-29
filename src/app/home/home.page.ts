@@ -54,7 +54,7 @@ export class HomePage
     let innerWidth = window.innerWidth;
     switch (true) {
       case 320 <= innerWidth && innerWidth <= 374:
-        return 2.3;
+        return 1.6;
       case 375 <= innerWidth && innerWidth <= 475:
         return 2.6;
       case 476 <= innerWidth && innerWidth <= 575:
@@ -85,7 +85,7 @@ export class HomePage
     let innerWidth = window.innerWidth;
     switch (true) {
       case 320 <= innerWidth && innerWidth <= 374:
-        return 2.3;
+        return 1.6;
       case 375 <= innerWidth && innerWidth <= 475:
         return 2.6;
       case 476 <= innerWidth && innerWidth <= 575:

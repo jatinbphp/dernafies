@@ -62,7 +62,7 @@ ion-content {
     }
     .main-div {
         background: #f8f8f8;
-        padding: 30px 16px 60px;
+        padding: 30px 16px 35px;
         border-radius: 35px 35px 50px 50px;
         .rsr-sec {
             h2 {
@@ -242,6 +242,9 @@ ion-content {
                                         @media(max-width:399px) {
                                             left: -4px;
                                         }
+                                        @media(max-width:333px) {
+                                            left: 0px;
+                                        }
                                     }
                                     @media(max-width:399px) {
                                         height: 38px;
@@ -250,6 +253,14 @@ ion-content {
                                         min-width: 130px;
                                         --padding-start: 14px;
                                         --padding-end: 14px;
+                                    }
+                                    @media(max-width:333px) {
+                                        height: 36px;
+                                        line-height: 36px;
+                                        font-size: 13px;
+                                        min-width: 120px;
+                                        --padding-start: 10px;
+                                        --padding-end: 10px;
                                     }
                                 }
                             }
@@ -264,7 +275,7 @@ ion-content {
         }
         .category-slider-main {
             width: 100%;
-            padding: 30px 0px;
+            padding: 15px 0px;
             margin: 0px;
             ion-slides {
                 ion-slide {
@@ -308,7 +319,7 @@ ion-content {
         }
         .completed-service-main {
             width: 100%;
-            padding: 30px 0px;
+            padding: 15px 0px;
             margin: 0px;
             .title-main {
                 h2 {
@@ -524,11 +535,114 @@ ion-content {
         }
         .featured-slider-main {
             width: 100%;
-            padding: 30px 0px;
+            padding: 15px 0px;
             margin: 0px;
             .title-main {
                 h2 {
                     ion-router-link {}
+                }
+            }
+            ion-slides {
+                ion-slide {
+                    .featured-box-main {
+                        width: 100%;
+                        height: 100%;
+                        background-color: #535455;
+                        border-radius: 10px;
+                        padding: 0px;
+                        margin: 35px 16px 0px 0px;
+                        .featured-box-img {
+                            width: 80px;
+                            height: 80px;
+                            border-radius: 100%;
+                            margin: -35px auto 0px;
+                            border: 3px solid #fff;
+                            img {
+                                width: 100%;
+                                max-width: 100%;
+                                max-height: 100%;
+                                object-fit: cover;
+                                object-position: center;
+                            }
+                        }
+                        .featured-box-txt {
+                            width: 100%;
+                            display: flex;
+                            flex-wrap: wrap;
+                            .rating {
+                                width: 98%;
+                                text-align: var(--text-center);
+                                padding: 0px;
+                                margin: 14px auto 6px;
+                                ion-icon {
+                                    width: 16px;
+                                    height: 16px;
+                                    line-height: 16px;
+                                    font-size: 16px;
+                                    color: #f4b130;
+                                    margin: 0px 1px;
+                                }
+                            }
+                            .name {
+                                width: 98%;
+                                text-align: var(--text-center);
+                                font-size: 18px;
+                                line-height: 26px;
+                                font-family: var(--font-NeueHaasUnicaPro-Bold);
+                                color: var(--White);
+                                text-transform: capitalize;
+                                letter-spacing: normal;
+                                margin: 0px auto 4px;
+                                padding: 0px;
+                                @media(max-width:374px) {
+                                    font-size: 17px;
+                                    line-height: 25px;
+                                }
+                            }
+                            .experience {
+                                width: 98%;
+                                text-align: var(--text-center);
+                                font-size: 14px;
+                                line-height: 17px;
+                                font-family: var(--font-NeueHaasUnicaPro-Regular);
+                                color: var(--White);
+                                text-transform: capitalize;
+                                letter-spacing: normal;
+                                margin: 0px auto 12px;
+                                padding: 0px;
+                                @media(max-width:374px) {
+                                    font-size: 13px;
+                                    line-height: 16px;
+                                }
+                            }
+                            .hr-txt {
+                                width: 100%;
+                                text-align: var(--text-center);
+                                font-size: 18px;
+                                line-height: 26px;
+                                font-family: var(--font-Poppins-Medium);
+                                color: var(--White);
+                                text-transform: capitalize;
+                                letter-spacing: normal;
+                                margin: 14px 0px 0px;
+                                padding: 6px 0px 6px;
+                                border-top: 1px solid #5cc9e5;
+                                @media(max-width:374px) {
+                                    font-size: 17px;
+                                    line-height: 25px;
+                                }
+                                span {
+                                    font-size: 13px;
+                                    line-height: normal;
+                                    margin: 0px 1px;
+                                    @media(max-width:374px) {
+                                        font-size: 13px;
+                                        line-height: normal;
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }

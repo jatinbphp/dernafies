@@ -355,6 +355,9 @@ app-home {
     ion-slides {
         .swiper-wrapper {
             padding-bottom: 14px;
+            @media(max-width:374px) {
+                padding-bottom: 26px;
+            }
         }
         &.swiper-container-horizontal {
             .swiper-pagination-bullets {
@@ -396,6 +399,18 @@ app-home {
                         height: 6px !important;
                         opacity: 1 !important;
                     }
+                }
+            }
+        }
+    }
+}
+app-home {
+    .featured-slider-main {
+        ion-slides {
+            .swiper-wrapper {
+                padding-bottom: 0px;
+                @media(max-width:374px) {
+                    padding-bottom: 0px;
                 }
             }
         }
