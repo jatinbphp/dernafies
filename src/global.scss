@@ -237,6 +237,12 @@ ion-header {
                 @media(max-width:374px) {
                     font-size: 28px;
                 }
+                &[aria-label="close sharp"] {
+                    font-size: 36px;
+                    @media(max-width:374px) {
+                        font-size: 32px;
+                    }
+                }
             }
             img {
                 max-width: 100%;
