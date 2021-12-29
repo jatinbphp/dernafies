@@ -46,6 +46,13 @@ export class ClientService
 		return { headers }	    
 	}
 
+	getHeaderOptionsWithToken(): any 
+	{	
+		this.token=localStorage.getItem('token');
+		var headers = new HttpHeaders().set('Authorization',`${this.token}`).set('Content-Type','application/x-www-form-urlencoded').set('Accept','application/json');
+		return { headers }	    
+	}
+
   	getLanguageDefault()
 	{
 		let headers = this.getHeaderOptions();
@@ -137,6 +144,65 @@ export class ClientService
 				{
 					this.showMessage(res.message);
 					this.serverResponse=res;
+					resolve(this.serverResponse);					
+				}
+				else
+				{
+					let messageDisplay=this.showMessage(res.message);
+					reject(messageDisplay);
+				}
+			},
+			err => 
+			{
+				console.log(err);
+				let errorMessage=this.getErrorMessage(err);
+				this.showMessage(errorMessage);
+				reject(errorMessage);
+			});
+		});
+	}
+
+	getUserDetailById(data)
+	{	
+		let headers = this.getHeaderOptions();
+		return new Promise((resolve, reject) => 
+		{
+			let dataToPost = new HttpParams().set("user_id",data.user_id);
+			this.http.post(this.api_url + "getUserDetailById",  dataToPost , headers).subscribe((res: any) =>       
+			{
+				if(res.status == true)
+				{
+					this.serverResponse=res.data;
+					resolve(this.serverResponse);					
+				}
+				else
+				{
+					let messageDisplay=this.showMessage(res.message);
+					reject(messageDisplay);
+				}
+			},
+			err => 
+			{
+				console.log(err);
+				let errorMessage=this.getErrorMessage(err);
+				this.showMessage(errorMessage);
+				reject(errorMessage);
+			});
+		});
+	}
+
+	updateProfile(data)
+	{	
+		let headers = this.getHeaderOptions();
+		return new Promise((resolve, reject) => 
+		{
+			let dataToPost = new HttpParams().set("user_id",data.user_id).set("firstname",data.firstname).set("lastname",data.lastname).set("password",data.password);
+			this.http.post(this.api_url + "updateProfile",  dataToPost , headers).subscribe((res: any) =>       
+			{
+				if(res.status == true)
+				{
+					this.showMessage("Profile updated!!");
+					this.serverResponse=res.data;
 					resolve(this.serverResponse);					
 				}
 				else

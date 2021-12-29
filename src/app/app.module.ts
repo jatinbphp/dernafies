@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
 import { InAppBrowser } from '@awesome-cordova-plugins/in-app-browser/ngx';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent],
@@ -14,6 +15,7 @@ import { InAppBrowser } from '@awesome-cordova-plugins/in-app-browser/ngx';
   imports: 
   [
     BrowserModule,
+    ReactiveFormsModule,
     HttpClientModule, 
     IonicModule.forRoot(), 
     AppRoutingModule

@@ -35,4 +35,10 @@ export class SettingsPage implements OnInit
       this.client.router.navigate(['sign-in']);  
     }
   }
+
+  Logout()
+  {
+    localStorage.clear();
+    this.client.router.navigate(['sign-in']);
+  }
 }

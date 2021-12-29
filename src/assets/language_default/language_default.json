@@ -130,6 +130,52 @@
                ]
             }
          ],
+         "profile": [
+            {
+               "english": [
+                  {
+                     "screen_title":"Profile",
+                     "first_name":"First Name",
+                     "last_name":"Last Name",
+                     "email_address":"Email",
+                     "password":"Password",
+                     "confirm_password":"Confirm Password",
+                     "specialized_in": "Specialized In",
+                     "service_location": "Service Location",
+                     "pricing": "Pricing",
+                     "profile_button": "Update"
+                  }
+               ],
+               "arabic": [
+                  {
+                     "screen_title": "الملف الشخصي",
+                     "first_name":"الاسم الاول",
+                     "last_name":"اسم العائلة",
+                     "email_address":"بريد الالكتروني",
+                     "password":"كلمة المرور",
+                     "confirm_password":"تأكيد كلمة المرور",
+                     "specialized_in": "متخصص في",
+                     "service_location": "موقع الخدمة",
+                     "pricing": "التسعير",
+                     "profile_button": "تحديث"
+                  }
+               ],
+               "kurdish": [
+                  {
+                     "screen_title":"Tengal",
+                     "first_name":"Nav",
+                     "last_name":"Paşnav",
+                     "email_address":"Email",
+                     "password":"Şîfre",
+                     "confirm_password":"di pêşîyê da em sipas dikin",
+                     "specialized_in": "Specialized In",
+                     "service_location": "Cihê Xizmetê",
+                     "pricing": "Pricing",
+                     "profile_button": "Nûvekirin"
+                  }
+               ]
+            }
+         ],
          "forgot-password": [
             {
                "english": [

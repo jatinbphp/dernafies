@@ -12,9 +12,36 @@ import { ProfilePage } from '../profile/profile.page';
 
 export class HomePage 
 {
-
+  public id:any = '';
+  public welcome_text:any = '';
+  public greetings:any = '';
   constructor(public fb: FormBuilder, public client: ClientService, public menu: MenuController, public loadingCtrl: LoadingController, public modalCtrl: ModalController) 
   {}
+
+  async ionViewWillEnter()
+  {
+    this.id=localStorage.getItem('id');
+    if(this.id!='' && this.id!=null && this.id!=undefined && this.id!='null' && this.id!='undefined')
+    {
+      let today = new Date()
+      let curHr = today.getHours()
+      if(curHr < 12)
+      {
+        this.greetings='Good Morning';
+      }
+      else if (curHr < 18) 
+      {
+        this.greetings='Good Afternoon';
+      }
+      else
+      {
+        this.greetings='Good Evening';
+      }
+      let firstName = (localStorage.getItem('firstName')) ? localStorage.getItem('firstName') : "";
+      let lastName = (localStorage.getItem('lastName')) ? localStorage.getItem('lastName') : "";
+      this.welcome_text = 'Hi, '+firstName+' '+lastName;      
+    }
+  }
 
   categorieSlide = {
     // slidesPerView: 1.3,
