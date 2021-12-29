@@ -11,6 +11,7 @@
 <ion-content>
   <ion-header>
     <ion-segment [(ngModel)]="CurrentRequestList">
+        <ion-segment-button value="All">All</ion-segment-button>
         <ion-segment-button value="AcceptRequest">Accept Request</ion-segment-button>
         <ion-segment-button value="Completed">Completed</ion-segment-button>
         <ion-segment-button value="ScheduledTime">Scheduled Time</ion-segment-button>
@@ -18,7 +19,7 @@
   </ion-header>
   <div class="main-div">
     <div class="current-request-list" [ngSwitch]="CurrentRequestList">
-      <ion-row class="requ-box-list" *ngSwitchCase="'AcceptRequest'">
+      <ion-row class="requ-box-list" *ngSwitchCase="'All'">
         <ion-col class="requ-box-item">
           <div class="requ-box-inner">
             <div class="requ-box-img">
@@ -48,6 +49,104 @@
             <div class="requ-box-btns">
               <ion-button color="success">Completed</ion-button>
               <ion-button color="primary">Request Review</ion-button>
+            </div>
+          </div>
+        </ion-col>
+        <ion-col class="requ-box-item">
+          <div class="requ-box-inner">
+            <div class="requ-box-img">
+              <img src="../assets/images/person-img1.png">
+            </div>
+            <div class="requ-box-txt">
+              <h2 class="title">Johny Depp</h2>
+              <h6 class="sub-title">Plumbing Repairs</h6>
+              <p>20 Sep 21<span></span>2Hrs<span></span>$200</p>
+            </div>
+            <div class="requ-box-btns">
+              <ion-button color="success">Completed</ion-button>
+              <ion-button color="primary">Request Review</ion-button>
+            </div>
+          </div>
+        </ion-col>
+        <ion-col class="requ-box-item">
+          <div class="requ-box-inner">
+            <div class="requ-box-img">
+              <img src="../assets/images/person-img1.png">
+            </div>
+            <div class="requ-box-txt">
+              <h2 class="title">Johny Depp</h2>
+              <h6 class="sub-title">Plumbing Repairs</h6>
+              <p>20 Sep 21<span></span>2Hrs<span></span>$200</p>
+            </div>
+            <div class="requ-box-btns">
+              <ion-button color="success">Completed</ion-button>
+              <ion-button color="primary">Request Review</ion-button>
+            </div>
+          </div>
+        </ion-col>
+        <ion-col class="requ-box-item">
+          <div class="requ-box-inner">
+            <div class="requ-box-img">
+              <img src="../assets/images/person-img1.png">
+            </div>
+            <div class="requ-box-txt">
+              <h2 class="title">Johny Depp</h2>
+              <h6 class="sub-title">Plumbing Repairs</h6>
+              <p>20 Sep 21<span></span>2Hrs<span></span>$200</p>
+            </div>
+            <div class="requ-box-btns">
+              <ion-button color="success">Completed</ion-button>
+              <ion-button color="primary">Request Review</ion-button>
+            </div>
+          </div>
+        </ion-col>
+        <ion-col class="requ-box-item">
+          <div class="requ-box-inner">
+            <div class="requ-box-img">
+              <img src="../assets/images/person-img1.png">
+            </div>
+            <div class="requ-box-txt">
+              <h2 class="title">Johny Depp</h2>
+              <h6 class="sub-title">Plumbing Repairs</h6>
+              <p>20 Sep 21<span></span>2Hrs<span></span>$200</p>
+            </div>
+            <div class="requ-box-btns">
+              <ion-button color="success">Completed</ion-button>
+              <ion-button color="primary">Request Review</ion-button>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row class="requ-box-list" *ngSwitchCase="'AcceptRequest'">
+        <ion-col class="requ-box-item">
+          <div class="requ-box-inner">
+            <div class="requ-box-img">
+              <img src="../assets/images/person-img1.png">
+            </div>
+            <div class="requ-box-txt">
+              <h2 class="title">Johny Depp</h2>
+              <h6 class="sub-title">Plumbing Repairs</h6>
+              <p>20 Sep 21<span></span>2Hrs<span></span>$200</p>
+            </div>
+            <div class="requ-box-btns">
+              <ion-button color="success">Completed</ion-button>
+              <ion-button color="primary">Request Review</ion-button>
+            </div>
+          </div>
+        </ion-col>
+        <ion-col class="requ-box-item">
+          <div class="requ-box-inner">
+            <div class="requ-box-img">
+              <img src="../assets/images/person-img1.png">
+            </div>
+            <div class="requ-box-txt">
+              <h2 class="title">Johny Depp</h2>
+              <h6 class="sub-title">Plumbing Repairs</h6>
+              <p>20 Sep 21<span></span>2Hrs<span></span>$200</p>
+            </div>
+            <div class="requ-box-btns">
+              <ion-button color="success">Completed</ion-button>
+              <ion-button disabled color="primary">Request Review</ion-button>
             </div>
           </div>
         </ion-col>
@@ -129,39 +228,39 @@
             </div>
             <div class="requ-box-btns">
               <ion-button color="success">Completed</ion-button>
+              <ion-button color="primary">Request Review</ion-button>
+            </div>
+          </div>
+        </ion-col>
+        <ion-col class="requ-box-item">
+          <div class="requ-box-inner">
+            <div class="requ-box-img">
+              <img src="../assets/images/person-img1.png">
+            </div>
+            <div class="requ-box-txt">
+              <h2 class="title">Johny Depp</h2>
+              <h6 class="sub-title">Plumbing Repairs</h6>
+              <p>20 Sep 21<span></span>2Hrs<span></span>$200</p>
+            </div>
+            <div class="requ-box-btns">
+              <ion-button color="success">Completed</ion-button>
+              <ion-button color="primary">Request Review</ion-button>
+            </div>
+          </div>
+        </ion-col>
+        <ion-col class="requ-box-item">
+          <div class="requ-box-inner">
+            <div class="requ-box-img">
+              <img src="../assets/images/person-img1.png">
+            </div>
+            <div class="requ-box-txt">
+              <h2 class="title">Johny Depp</h2>
+              <h6 class="sub-title">Plumbing Repairs</h6>
+              <p>20 Sep 21<span></span>2Hrs<span></span>$200</p>
+            </div>
+            <div class="requ-box-btns">
+              <ion-button color="success">Completed</ion-button>
               <ion-button disabled color="primary">Request Review</ion-button>
-            </div>
-          </div>
-        </ion-col>
-        <ion-col class="requ-box-item">
-          <div class="requ-box-inner">
-            <div class="requ-box-img">
-              <img src="../assets/images/person-img1.png">
-            </div>
-            <div class="requ-box-txt">
-              <h2 class="title">Johny Depp</h2>
-              <h6 class="sub-title">Plumbing Repairs</h6>
-              <p>20 Sep 21<span></span>2Hrs<span></span>$200</p>
-            </div>
-            <div class="requ-box-btns">
-              <ion-button color="success">Completed</ion-button>
-              <ion-button color="primary">Request Review</ion-button>
-            </div>
-          </div>
-        </ion-col>
-        <ion-col class="requ-box-item">
-          <div class="requ-box-inner">
-            <div class="requ-box-img">
-              <img src="../assets/images/person-img1.png">
-            </div>
-            <div class="requ-box-txt">
-              <h2 class="title">Johny Depp</h2>
-              <h6 class="sub-title">Plumbing Repairs</h6>
-              <p>20 Sep 21<span></span>2Hrs<span></span>$200</p>
-            </div>
-            <div class="requ-box-btns">
-              <ion-button color="success">Completed</ion-button>
-              <ion-button color="primary">Request Review</ion-button>
             </div>
           </div>
         </ion-col>
@@ -227,87 +326,87 @@
             </div>
             <div class="requ-box-btns">
               <ion-button color="success">Completed</ion-button>
+              <ion-button color="primary">Request Review</ion-button>
+            </div>
+          </div>
+        </ion-col>
+        <ion-col class="requ-box-item">
+          <div class="requ-box-inner">
+            <div class="requ-box-img">
+              <img src="../assets/images/person-img1.png">
+            </div>
+            <div class="requ-box-txt">
+              <h2 class="title">Johny Depp</h2>
+              <h6 class="sub-title">Plumbing Repairs</h6>
+              <p>20 Sep 21<span></span>2Hrs<span></span>$200</p>
+            </div>
+            <div class="requ-box-btns">
+              <ion-button color="success">Completed</ion-button>
+              <ion-button color="primary">Request Review</ion-button>
+            </div>
+          </div>
+        </ion-col>
+        <ion-col class="requ-box-item">
+          <div class="requ-box-inner">
+            <div class="requ-box-img">
+              <img src="../assets/images/person-img1.png">
+            </div>
+            <div class="requ-box-txt">
+              <h2 class="title">Johny Depp</h2>
+              <h6 class="sub-title">Plumbing Repairs</h6>
+              <p>20 Sep 21<span></span>2Hrs<span></span>$200</p>
+            </div>
+            <div class="requ-box-btns">
+              <ion-button color="success">Completed</ion-button>
+              <ion-button color="primary">Request Review</ion-button>
+            </div>
+          </div>
+        </ion-col>
+        <ion-col class="requ-box-item">
+          <div class="requ-box-inner">
+            <div class="requ-box-img">
+              <img src="../assets/images/person-img1.png">
+            </div>
+            <div class="requ-box-txt">
+              <h2 class="title">Johny Depp</h2>
+              <h6 class="sub-title">Plumbing Repairs</h6>
+              <p>20 Sep 21<span></span>2Hrs<span></span>$200</p>
+            </div>
+            <div class="requ-box-btns">
+              <ion-button color="success">Completed</ion-button>
+              <ion-button color="primary">Request Review</ion-button>
+            </div>
+          </div>
+        </ion-col>
+        <ion-col class="requ-box-item">
+          <div class="requ-box-inner">
+            <div class="requ-box-img">
+              <img src="../assets/images/person-img1.png">
+            </div>
+            <div class="requ-box-txt">
+              <h2 class="title">Johny Depp</h2>
+              <h6 class="sub-title">Plumbing Repairs</h6>
+              <p>20 Sep 21<span></span>2Hrs<span></span>$200</p>
+            </div>
+            <div class="requ-box-btns">
+              <ion-button color="success">Completed</ion-button>
+              <ion-button color="primary">Request Review</ion-button>
+            </div>
+          </div>
+        </ion-col>
+        <ion-col class="requ-box-item">
+          <div class="requ-box-inner">
+            <div class="requ-box-img">
+              <img src="../assets/images/person-img1.png">
+            </div>
+            <div class="requ-box-txt">
+              <h2 class="title">Johny Depp</h2>
+              <h6 class="sub-title">Plumbing Repairs</h6>
+              <p>20 Sep 21<span></span>2Hrs<span></span>$200</p>
+            </div>
+            <div class="requ-box-btns">
+              <ion-button color="success">Completed</ion-button>
               <ion-button disabled color="primary">Request Review</ion-button>
-            </div>
-          </div>
-        </ion-col>
-        <ion-col class="requ-box-item">
-          <div class="requ-box-inner">
-            <div class="requ-box-img">
-              <img src="../assets/images/person-img1.png">
-            </div>
-            <div class="requ-box-txt">
-              <h2 class="title">Johny Depp</h2>
-              <h6 class="sub-title">Plumbing Repairs</h6>
-              <p>20 Sep 21<span></span>2Hrs<span></span>$200</p>
-            </div>
-            <div class="requ-box-btns">
-              <ion-button color="success">Completed</ion-button>
-              <ion-button color="primary">Request Review</ion-button>
-            </div>
-          </div>
-        </ion-col>
-        <ion-col class="requ-box-item">
-          <div class="requ-box-inner">
-            <div class="requ-box-img">
-              <img src="../assets/images/person-img1.png">
-            </div>
-            <div class="requ-box-txt">
-              <h2 class="title">Johny Depp</h2>
-              <h6 class="sub-title">Plumbing Repairs</h6>
-              <p>20 Sep 21<span></span>2Hrs<span></span>$200</p>
-            </div>
-            <div class="requ-box-btns">
-              <ion-button color="success">Completed</ion-button>
-              <ion-button color="primary">Request Review</ion-button>
-            </div>
-          </div>
-        </ion-col>
-        <ion-col class="requ-box-item">
-          <div class="requ-box-inner">
-            <div class="requ-box-img">
-              <img src="../assets/images/person-img1.png">
-            </div>
-            <div class="requ-box-txt">
-              <h2 class="title">Johny Depp</h2>
-              <h6 class="sub-title">Plumbing Repairs</h6>
-              <p>20 Sep 21<span></span>2Hrs<span></span>$200</p>
-            </div>
-            <div class="requ-box-btns">
-              <ion-button color="success">Completed</ion-button>
-              <ion-button color="primary">Request Review</ion-button>
-            </div>
-          </div>
-        </ion-col>
-        <ion-col class="requ-box-item">
-          <div class="requ-box-inner">
-            <div class="requ-box-img">
-              <img src="../assets/images/person-img1.png">
-            </div>
-            <div class="requ-box-txt">
-              <h2 class="title">Johny Depp</h2>
-              <h6 class="sub-title">Plumbing Repairs</h6>
-              <p>20 Sep 21<span></span>2Hrs<span></span>$200</p>
-            </div>
-            <div class="requ-box-btns">
-              <ion-button color="success">Completed</ion-button>
-              <ion-button color="primary">Request Review</ion-button>
-            </div>
-          </div>
-        </ion-col>
-        <ion-col class="requ-box-item">
-          <div class="requ-box-inner">
-            <div class="requ-box-img">
-              <img src="../assets/images/person-img1.png">
-            </div>
-            <div class="requ-box-txt">
-              <h2 class="title">Johny Depp</h2>
-              <h6 class="sub-title">Plumbing Repairs</h6>
-              <p>20 Sep 21<span></span>2Hrs<span></span>$200</p>
-            </div>
-            <div class="requ-box-btns">
-              <ion-button color="success">Completed</ion-button>
-              <ion-button color="primary">Request Review</ion-button>
             </div>
           </div>
         </ion-col>
