@@ -4,7 +4,9 @@
             <ion-menu-button><img src="../../assets/images/menu-icon1.png"></ion-menu-button>
         </ion-buttons> -->
         <ion-title slot="">profile</ion-title>
-        <ion-button slot="end"><ion-icon name="close-sharp"></ion-icon></ion-button>
+        <ion-button slot="end" (click)="dismissModal()">
+			<ion-icon name="close-sharp"></ion-icon>
+		</ion-button>
     </ion-toolbar>
 </ion-header>
 

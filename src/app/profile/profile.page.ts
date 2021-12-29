@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-profile',
@@ -9,10 +10,16 @@ import { Component, OnInit } from '@angular/core';
 export class ProfilePage implements OnInit 
 {
 
-  constructor()
+  constructor(public modalCtrl: ModalController)
   { }
 
   ngOnInit()
   { }
 
+  dismissModal(form)
+	{
+		this.modalCtrl.dismiss({
+			'dismissed': true
+		});
+  }
 }
