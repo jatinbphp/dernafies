@@ -37,7 +37,7 @@
 			<div class="title-main">
 				<h2>others</h2>
 			</div>
-			<ion-list>
+			<!--<ion-list>
 				<ion-item>
 					<ion-label slot="start">Text Messages</ion-label>
 					<ion-thumbnail slot="end"><img src="../../assets/images/rit-arw1.png"></ion-thumbnail>
@@ -50,7 +50,59 @@
 					<ion-label slot="start">Languages</ion-label>
 					<ion-thumbnail slot="end"><img src="../../assets/images/rit-arw1.png"></ion-thumbnail>
 				</ion-item>
-			</ion-list>
+			</ion-list>-->
+			<!--ACCORDIAN-->
+			<ion-accordion-group>
+				<ion-accordion value="colors" toggle-icon="chevron-down">
+					<ion-item slot="header">
+						<ion-label>Text Messages</ion-label>
+					</ion-item>
+					<ion-list slot="content">
+						<ion-item>
+							<ion-label>Message 1</ion-label>
+						</ion-item>
+						<ion-item>
+							<ion-label>Message 2</ion-label>
+						</ion-item>
+						<ion-item>
+							<ion-label>Message 3</ion-label>
+						</ion-item>
+					</ion-list>
+				</ion-accordion>
+				<ion-accordion value="shapes" toggle-icon="chevron-down">
+					<ion-item slot="header">
+						<ion-label>Currency</ion-label>
+					</ion-item>
+					<ion-list slot="content">
+						<ion-item>
+							<ion-label>CAD</ion-label>
+						</ion-item>
+						<ion-item>
+							<ion-label>USD</ion-label>
+						</ion-item>
+						<ion-item>
+							<ion-label>INR</ion-label>
+						</ion-item>
+					</ion-list>
+				</ion-accordion>
+				<ion-accordion value="numbers" toggle-icon="chevron-down">
+					<ion-item slot="header">
+						<ion-label>Languages</ion-label>
+					</ion-item>
+					<ion-list slot="content">
+						<ion-item (click)="changeDefaultLanguage('arabic')">
+							<ion-label>Arabic</ion-label>
+						</ion-item>
+						<ion-item (click)="changeDefaultLanguage('kurdish')">
+							<ion-label>Kurdish</ion-label>
+						</ion-item>
+						<ion-item (click)="changeDefaultLanguage('english')">
+							<ion-label>English</ion-label>
+						</ion-item>
+					</ion-list>
+				</ion-accordion>
+			</ion-accordion-group>
+			<!--ACCORDIAN-->
 		</div>
 	</div>
 </ion-content>

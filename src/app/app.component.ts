@@ -17,16 +17,18 @@ export class AppComponent
   public appPages = [
     //{ title: 'Sign In', url: '/sign-in', icon: 'person'},//[0]
     //{ title: 'Sign Up', url: '/sign-up', icon: 'person'},//[0]
-    { title: 'Profile', url: '/tabs/profile', icon: 'person', is_function:1},//[0]
-    { title: 'Current Requests', url: '/tabs/current-requests', icon: 'reorder-four', is_function:0},//[1]    
-    { title: 'Past Requests', url: '/tabs/past-requests', icon: 'time', is_function:0},//[2]    
-    { title: 'Settings', url: '/tabs/settings', icon: 'settings', is_function:0},//[3]    
-    { title: 'Logout', url: '/tabs/home', icon: 'power', is_function:1},//[4]    
+    { title: 'Profile', title_for_menu:'Profile', url: '/tabs/profile', icon: 'person', is_function:1},//[0]
+    { title: 'Current Requests', title_for_menu:'Current Requests', url: '/tabs/current-requests', icon: 'reorder-four', is_function:0},//[1]    
+    { title: 'Past Requests', title_for_menu:'Past Requests', url: '/tabs/past-requests', icon: 'time', is_function:0},//[2]    
+    { title: 'Settings', title_for_menu:'Settings', url: '/tabs/settings', icon: 'settings', is_function:0},//[3]    
+    { title: 'Logout', title_for_menu:'Logout', url: '/tabs/home', icon: 'power', is_function:1},//[4]    
   ];
   constructor(public client: ClientService, public modalCtrl: ModalController, public menu: MenuController) 
   {
+    this.language_selected = localStorage.getItem('default_language');
     this.client.getObservableOnLanguageChange().subscribe((data) => {
       this.language_selected = data.language_selected;
+      this.InitializeAPP();
       //console.log('Data received', data);
     });//THIS OBSERVABLE IS USED TO SET DEFAULT OR SELECTED LANGUAGE
 

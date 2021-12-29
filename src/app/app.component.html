@@ -12,11 +12,11 @@
                 <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
                 <ion-label>{{ p.title }}</ion-label>
               </ion-item>
-              <ion-item *ngIf="p.is_function == 1 && p.title=='Logout'" lines="full" lines="none" detail="false" (click)="Logout()">
+              <ion-item *ngIf="p.is_function == 1 && p.title_for_menu=='Logout'" lines="full" lines="none" detail="false" (click)="Logout()">
                 <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
                 <ion-label>{{ p.title }}</ion-label>
               </ion-item>
-              <ion-item *ngIf="p.is_function == 1 && p.title=='Profile'" lines="full" lines="none" detail="false" (click)="showMyProfile()">
+              <ion-item *ngIf="p.is_function == 1 && p.title_for_menu=='Profile'" lines="full" lines="none" detail="false" (click)="showMyProfile()">
                 <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
                 <ion-label>{{ p.title }}</ion-label>
               </ion-item>              

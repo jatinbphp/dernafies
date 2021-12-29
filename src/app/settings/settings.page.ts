@@ -44,4 +44,12 @@ export class SettingsPage implements OnInit
     localStorage.clear();
     this.client.router.navigate(['sign-in']);
   }
+
+  changeDefaultLanguage(language)
+  {
+    localStorage.setItem('default_language',language);
+    this.client.publishSomeDataOnLanguageChange({
+      language_selected: language
+    });//THIS OBSERVABLE IS USED TO SET DEFAULT OR SELECTED LANGUAGE
+  }
 }
