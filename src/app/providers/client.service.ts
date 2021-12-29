@@ -18,6 +18,7 @@ export class ClientService
 	public default_language_data: any = [];
 	public language_selected = '';
 	private SubjectDefaultLanguage = new Subject<any>();//THIS OBSERVABLE IS USED TO SET DEFAULT OR SELECTED LANGUAGE
+	private SubjectOnSignIn = new Subject<any>();//THIS OBSERVABLE IS USED TO KNOW IS ANY HAS SIGNIN
 
 	constructor(public http: HttpClient, public router: Router, private alertCtrl: AlertController)
 	{ 
@@ -38,6 +39,14 @@ export class ClientService
     getObservableOnLanguageChange(): Subject<any> {
         return this.SubjectDefaultLanguage;
 	}//THIS OBSERVABLE IS USED TO SET DEFAULT OR SELECTED LANGUAGE
+
+	publishSomeDataOnSignIn(data: any) {
+        this.SubjectOnSignIn.next(data);
+    }//THIS OBSERVABLE IS USED TO KNOW IS ANY HAS SIGNIN
+
+    getObservableOnSignIn(): Subject<any> {
+        return this.SubjectOnSignIn;
+	}//THIS OBSERVABLE IS USED TO KNOW IS ANY HAS SIGNIN
 
   	getHeaderOptions(): any 
 	{	
@@ -196,7 +205,7 @@ export class ClientService
 		let headers = this.getHeaderOptions();
 		return new Promise((resolve, reject) => 
 		{
-			let dataToPost = new HttpParams().set("user_id",data.user_id).set("firstname",data.firstname).set("lastname",data.lastname).set("password",data.password);
+			let dataToPost = new HttpParams().set("user_id",data.user_id).set("firstName",data.first_name).set("lastName",data.last_name);
 			this.http.post(this.api_url + "updateProfile",  dataToPost , headers).subscribe((res: any) =>       
 			{
 				if(res.status == true)

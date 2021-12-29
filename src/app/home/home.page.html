@@ -14,7 +14,7 @@
     <h1>{{greetings}}</h1>
   </ion-header>
   <div class="main-div">
-    <div class="rsr-sec">
+    <div class="rsr-sec" *ngIf="role == 'handyman'">
       <h2>Recent Service Requests<span>(124)</span></h2>
       <ion-row class="rsr-list">
         <ion-col class="rsr-item">
@@ -175,10 +175,10 @@
         </ion-col>
       </ion-row>
     </div>
-    <div class="src-box-main">
+    <div class="src-box-main" *ngIf="role == 'customer'">
       <ion-searchbar placeholder="Search for services" animated></ion-searchbar>
     </div>
-    <div class="category-slider-main">
+    <div class="category-slider-main" *ngIf="role == 'customer'">
       <div class="title-main">
         <h2>Categories<ion-router-link href="Javascript:;" >View all</ion-router-link></h2>
       </div>
@@ -257,7 +257,7 @@
         </ion-slide>
       </ion-slides>
     </div>
-    <div class="completed-service-main">
+    <div class="completed-service-main" *ngIf="role == 'customer'">
       <div class="title-main">
         <h2>Completed Services<ion-router-link href="Javascript:;" >View all</ion-router-link></h2>
       </div>
@@ -324,12 +324,12 @@
         </ion-col>
       </ion-row>
     </div>
-    <div class="featured-slider-main">
+    <div class="featured-slider-main" *ngIf="role == 'customer'">
       <div class="title-main">
-        <h2>Featured Handyman<ion-router-link href="Javascript:;" >View all</ion-router-link></h2>
+        <h2>Featured Handyman<ion-router-link href="/tabs/handyman-view-all">View all</ion-router-link></h2>
       </div>
       <ion-slides [options]="featuredSlide">
-        <ion-slide>
+        <ion-slide (click)="showHandyMan()">
           <div class="featured-box-main">
             <div class="featured-box-img">
               <img src="../../assets/images/person-img1.png">

@@ -13,6 +13,7 @@ import { ProfilePage } from '../profile/profile.page';
 export class HomePage 
 {
   public id:any = '';
+  public role:any = '';
   public welcome_text:any = '';
   public greetings:any = '';
   constructor(public fb: FormBuilder, public client: ClientService, public menu: MenuController, public loadingCtrl: LoadingController, public modalCtrl: ModalController) 
@@ -21,6 +22,8 @@ export class HomePage
   async ionViewWillEnter()
   {
     this.id=localStorage.getItem('id');
+    this.role=localStorage.getItem('role');
+    
     if(this.id!='' && this.id!=null && this.id!=undefined && this.id!='null' && this.id!='undefined')
     {
       let today = new Date()
@@ -120,5 +123,10 @@ export class HomePage
     {
       this.client.router.navigate(['sign-in']);  
     }
+  }
+
+  showHandyMan()
+  {
+    this.client.router.navigate(['/tabs/handyman-selected']);
   }
 }

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ClientService } from './providers/client.service';
-import { ModalController } from '@ionic/angular';
+import { MenuController, ModalController } from '@ionic/angular';
 import { ProfilePage } from './profile/profile.page';
 
 @Component({
@@ -13,6 +13,7 @@ export class AppComponent
 {
   public language_selected = '';
   public default_language_data: any = [];
+  public should_menu_enable:boolean = false;
   public appPages = [
     //{ title: 'Sign In', url: '/sign-in', icon: 'person'},//[0]
     //{ title: 'Sign Up', url: '/sign-up', icon: 'person'},//[0]
@@ -22,12 +23,26 @@ export class AppComponent
     { title: 'Settings', url: '/tabs/settings', icon: 'settings', is_function:0},//[3]    
     { title: 'Logout', url: '/tabs/home', icon: 'power', is_function:1},//[4]    
   ];
-  constructor(public client: ClientService, public modalCtrl: ModalController) 
+  constructor(public client: ClientService, public modalCtrl: ModalController, public menu: MenuController) 
   {
     this.client.getObservableOnLanguageChange().subscribe((data) => {
       this.language_selected = data.language_selected;
-      console.log('Data received', data);
+      //console.log('Data received', data);
     });//THIS OBSERVABLE IS USED TO SET DEFAULT OR SELECTED LANGUAGE
+
+    this.client.getObservableOnSignIn().subscribe((data) => {
+			this.should_menu_enable = data.should_menu_enable;
+			if(this.should_menu_enable == true)
+      {
+        this.menu.enable(true);
+      }
+      if(this.should_menu_enable == false)
+      {
+        this.menu.enable(false);
+      }
+      //console.log('Data received', data);
+		});//THIS OBSERVABLE IS USED TO KNOW IS ANY HAS SIGNIN
+
     this.InitializeAPP();
   }
 
@@ -71,6 +86,9 @@ export class AppComponent
 
   Logout()
   {
+    this.client.publishSomeDataOnSignIn({
+      should_menu_enable: false
+    });//THIS OBSERVABLE IS USED TO KNOW IS ANY HAS SIGNIN
     localStorage.clear();
     this.client.router.navigate(['sign-in']);
   }

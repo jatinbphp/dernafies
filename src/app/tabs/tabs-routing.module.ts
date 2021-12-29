@@ -40,6 +40,14 @@ const routes: Routes = [
         loadChildren: () => import('../settings/settings.module').then(m => m.SettingsPageModule)
       },
       {
+        path: 'handyman-view-all',
+        loadChildren: () => import('../handyman-view-all/handyman-view-all.module').then(m => m.HandymanViewAllPageModule)
+      },
+      {
+        path: 'handyman-selected',
+        loadChildren: () => import('../handyman-selected/handyman-selected.module').then(m => m.HandymanSelectedPageModule)
+      },
+      {
         path: '',
         //redirectTo: '/tabs/home',
         redirectTo: '/sign-in',

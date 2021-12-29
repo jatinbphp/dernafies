@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./current-requests.page.scss'],
 })
 export class CurrentRequestsPage implements OnInit {
-
+  public CurrentRequestList:string='AcceptRequest';
   constructor() { }
 
   ngOnInit() {

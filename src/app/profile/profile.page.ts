@@ -91,10 +91,8 @@ export class ProfilePage implements OnInit
 		});
   	}
 
-	async updateMyProfile(form)
+	async updateProfile(form)
 	{
-		console.log(form);
-		return false;
 		//LOADER
 		const loading = await this.loadingCtrl.create({
 			spinner: null,
@@ -109,14 +107,11 @@ export class ProfilePage implements OnInit
 		let data=
 		{
 			user_id:this.id,
-			firstname:form.firstname,
-			lastname:form.lastname,
-			username:form.username, 
-			password:form.password,
+			first_name:form.first_name,
+			last_name:form.last_name
 		}
 		await this.client.updateProfile(data).then(result => 
 		{	
-			this.profileForm.controls['password'].setValue("");
 			loading.dismiss();//DISMISS LOADER			
 			this.ngOnInit();
 						

@@ -38,6 +38,9 @@ export class SettingsPage implements OnInit
 
   Logout()
   {
+    this.client.publishSomeDataOnSignIn({
+      should_menu_enable: false
+    });//THIS OBSERVABLE IS USED TO KNOW IS ANY HAS SIGNIN
     localStorage.clear();
     this.client.router.navigate(['sign-in']);
   }

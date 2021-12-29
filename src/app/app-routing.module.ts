@@ -41,6 +41,18 @@ const routes: Routes = [
   {
     path: 'review-rating',
     loadChildren: () => import('./review-rating/review-rating.module').then( m => m.ReviewRatingPageModule)
+  },
+  {
+    path: 'handyman-view-all',
+    loadChildren: () => import('./handyman-view-all/handyman-view-all.module').then( m => m.HandymanViewAllPageModule)
+  },
+  {
+    path: 'handyman-selected',
+    loadChildren: () => import('./handyman-selected/handyman-selected.module').then( m => m.HandymanSelectedPageModule)
+  },
+  {
+    path: 'handyman-send-location',
+    loadChildren: () => import('./handyman-send-location/handyman-send-location.module').then( m => m.HandymanSendLocationPageModule)
   }
 ];
 @NgModule({
