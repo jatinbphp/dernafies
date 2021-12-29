@@ -33,6 +33,10 @@ const routes: Routes = [
   {
     path: 'past-requests',
     loadChildren: () => import('./past-requests/past-requests.module').then( m => m.PastRequestsPageModule)
+  },
+  {
+    path: 'forgot-password',
+    loadChildren: () => import('./forgot-password/forgot-password.module').then( m => m.ForgotPasswordPageModule)
   }
 ];
 @NgModule({

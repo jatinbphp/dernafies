@@ -9,7 +9,7 @@
 
 <ion-content>
   <div class="main-div">
-    <form [formGroup]="registerForm" (ngSubmit)="makeMeLoggedin(registerForm.value)">
+    <form [formGroup]="registerForm" (ngSubmit)="makeMeRegistered(registerForm.value)">
       <ion-grid>
         <ion-row>
           <ion-col size="12">
@@ -98,13 +98,15 @@
             <!--VALIDATION-->          
           </ion-col>
         </ion-row> 
-        <ion-row>
+        <!--<ion-row>
           <ion-col size="12">
-            <ion-label position="stacked">{{default_language_data['translation'][0]['register'][0][language_selected][0]['specialized_in']}}</ion-label>
-            <ion-select formControlName="specialized_in">
-              <ion-select-option>Information Technology</ion-select-option>  
-            </ion-select>
-            <!--VALIDATION-->
+            <ion-item lines="none" class="ion-no-padding">
+              <ion-label position="stacked">{{default_language_data['translation'][0]['register'][0][language_selected][0]['specialized_in']}}</ion-label>
+              <ion-select formControlName="specialized_in">
+                <ion-select-option>Information Technology</ion-select-option>  
+              </ion-select>
+            </ion-item>
+            VALIDATION
             <div class="validation-errors">
               <ng-container *ngFor="let validation of validation_messages.specialized_in">
                 <div class="error-message"
@@ -114,16 +116,18 @@
                 </div>
               </ng-container>
             </div>
-            <!--VALIDATION-->
+            VALIDATION
           </ion-col>       
-        </ion-row>
-        <ion-row>
+        </ion-row>-->
+        <!--<ion-row>
           <ion-col size="12">
-            <ion-label position="stacked">{{default_language_data['translation'][0]['register'][0][language_selected][0]['service_location']}}</ion-label>
-            <ion-select formControlName="service_location">
-              <ion-select-option>Caneda</ion-select-option>  
-            </ion-select>
-            <!--VALIDATION-->
+            <ion-item lines="none" class="ion-no-padding">
+              <ion-label position="stacked">{{default_language_data['translation'][0]['register'][0][language_selected][0]['service_location']}}</ion-label>
+              <ion-select formControlName="service_location">
+                <ion-select-option>Caneda</ion-select-option>  
+              </ion-select>
+            </ion-item>
+            VALIDATION
             <div class="validation-errors">
               <ng-container *ngFor="let validation of validation_messages.service_location">
                 <div class="error-message"
@@ -133,16 +137,18 @@
                 </div>
               </ng-container>
             </div>
-            <!--VALIDATION-->          
+            VALIDATION
           </ion-col>
-        </ion-row>
-        <ion-row>
+        </ion-row>-->
+        <!--<ion-row>
           <ion-col size="12">
-            <ion-label position="stacked">{{default_language_data['translation'][0]['register'][0][language_selected][0]['pricing']}}</ion-label>
-            <ion-select formControlName="pricing">
-              <ion-select-option>1000</ion-select-option>  
-            </ion-select>
-            <!--VALIDATION-->
+            <ion-item lines="none" class="ion-no-padding">
+              <ion-label position="stacked">{{default_language_data['translation'][0]['register'][0][language_selected][0]['pricing']}}</ion-label>
+              <ion-select formControlName="pricing">
+                <ion-select-option>1000</ion-select-option>  
+              </ion-select>
+            </ion-item>
+            VALIDATION
             <div class="validation-errors">
               <ng-container *ngFor="let validation of validation_messages.pricing">
                 <div class="error-message"
@@ -152,16 +158,16 @@
                 </div>
               </ng-container>
             </div>
-            <!--VALIDATION-->          
+            VALIDATION
           </ion-col>
-        </ion-row>               
+        </ion-row>-->              
       </ion-grid>
       <ion-grid class="terms-options">
         <ion-row>
           <ion-col size="1">
             <ion-checkbox (ionChange)="acceptTerms($event)" [(ngModel)]="accept_tems" [ngModelOptions]="{standalone: true}"></ion-checkbox>
           </ion-col>        
-          <ion-col size="11" class="ion-text-left">{{default_language_data['translation'][0]['register'][0][language_selected][0]['terms_of_service']}} <strong>{{default_language_data['translation'][0]['register'][0][language_selected][0]['terms_of_service_link_text']}}</strong></ion-col>
+          <ion-col size="11" class="ion-text-left">{{default_language_data['translation'][0]['register'][0][language_selected][0]['terms_of_service']}} <strong (click)="openActionRequested('https://dernafies.ecnetsolutions.dev/terms-and-conditions')">{{default_language_data['translation'][0]['register'][0][language_selected][0]['terms_of_service_link_text']}}</strong></ion-col>
         </ion-row>
       </ion-grid>
       <ion-item lines="none">

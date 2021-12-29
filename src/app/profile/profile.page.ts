@@ -5,11 +5,14 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './profile.page.html',
   styleUrls: ['./profile.page.scss'],
 })
-export class ProfilePage implements OnInit {
 
-  constructor() { }
+export class ProfilePage implements OnInit 
+{
 
-  ngOnInit() {
-  }
+  constructor()
+  { }
+
+  ngOnInit()
+  { }
 
 }

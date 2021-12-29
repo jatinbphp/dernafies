@@ -129,6 +129,37 @@
                   }
                ]
             }
+         ],
+         "forgot-password": [
+            {
+               "english": [
+                  {
+                     "screen_title":"Forgot Password",
+                     "back_to_login":"Back to ",
+                     "sign_in":"Sign in",
+                     "email_address": "Email Address",
+                     "forgotpassword_in_button": "Submit"
+                  }
+               ],
+               "arabic": [
+                  {
+                     "screen_title":"هل نسيت كلمة السر",
+                     "back_to_login":"ارجع الى",
+                     "sign_in":"تسجيل الدخول",
+                     "email_address":"عنوان البريد الالكترونى",
+                     "forgotpassword_in_button": "إرسال"
+                  }
+               ],
+               "kurdish": [
+                  {
+                     "screen_title":"Şîfre ji bîr kir",
+                     "back_to_login":"Vegere",
+                     "sign_in":"Têketin",
+                     "email_address": "Navnîşana emailê",
+                     "forgotpassword_in_button": "Nermijîn"
+                  }
+               ]
+            }
          ]
       }
    ]
