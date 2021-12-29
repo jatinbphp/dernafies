@@ -145,7 +145,11 @@ ion-content {
                     height: 20px;
                     object-fit: contain;
                     object-position: center;
+                    filter: invert(100%) sepia(1%) saturate(2176%) hue-rotate(173deg) brightness(90%) contrast(92%);
                     margin: 0px 0px 0px 10px;
+                    &.active {
+                        filter: invert(0%) sepia(18%) saturate(7497%) hue-rotate(278deg) brightness(96%) contrast(103%);
+                    }
                 }
             }
         }
@@ -306,6 +310,40 @@ ion-content {
                                 margin: 0px 7px 0px 0px;
                             }
                         }
+                        ion-button {
+                            width: 100%;
+                            max-width: 100%;
+                            min-width: 162px;
+                            color: var(--White);
+                            font-size: 18px;
+                            height: 42px;
+                            line-height: 42px;
+                            --border-radius: 30px;
+                            text-transform: capitalize;
+                            letter-spacing: normal;
+                            --box-shadow: none;
+                            font-family: var(--font-Poppins-SemiBold);
+                            margin: 0px;
+                            --padding-start: 20px;
+                            --padding-end: 20px;
+                            position: relative;
+                            ion-icon {
+                                position: absolute;
+                                left: -6px;
+                                color: var(--White) !important;
+                                @media(max-width:399px) {
+                                    left: -4px;
+                                }
+                            }
+                            @media(max-width:399px) {
+                                height: 38px;
+                                line-height: 38px;
+                                font-size: 14px;
+                                min-width: 100%;
+                                --padding-start: 14px;
+                                --padding-end: 14px;
+                            }
+                        }
                     }
                 }
             }
@@ -322,6 +360,7 @@ ion-content {
                         margin-left: 8px;
                     }
                     .requ-box-inner {
+                        height: 100%;
                         padding: 20px 14px;
                         .requ-box-img {
                             width: 100%;
@@ -347,6 +386,7 @@ ion-content {
                         .requ-box-btns {
                             width: 100%;
                             ion-badge {}
+                            ion-button {}
                         }
                     }
                 }

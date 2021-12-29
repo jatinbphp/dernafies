@@ -11,9 +11,9 @@ ion-menu {
 			ion-item {
 				--min-height: fit-content;
 				&.menu-icon {
-					padding: 20px;
+					padding: 28px;
 					@media(max-width:374px) {
-						padding: 16px;
+						padding: 23px;
 					}
 					img {
 						max-width: 100%;
