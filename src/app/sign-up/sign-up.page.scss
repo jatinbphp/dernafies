@@ -31,8 +31,10 @@ ion-content {
         					color: var(--Black);
         					font-family: var(--font-NeueHaasUnicaPro-Bold);
                             text-transform: capitalize;
-        					padding: 0px 0px 10px;
+        					padding: 0px 0px;
                             margin: 0px 0px 10px;
+                            transform: unset;
+                            -webkit-transform: unset;
                             @media(max-width:374px) {
                                 font-size: 18px;
                                 line-height: 26px;
@@ -112,6 +114,7 @@ ion-content {
         		&.terms-options {
         			ion-row {
     	    			justify-content: center;
+                        align-items: center;
     	    			margin: 40px 0px 0px;
         				ion-col {
         					flex: unset !important;
@@ -126,7 +129,7 @@ ion-content {
     							font-weight: normal;
     					    }
         					ion-checkbox {
-        						margin-right: 10px;
+        						margin: 0px 10px;
         						--border-radius: 50%;
     						    --border-width: 1px;
     						    --border-style: solid;

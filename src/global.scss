@@ -166,6 +166,19 @@ ion-searchbar {
     right: unset !important;
 }
 
+[dir=rtl] .sc-ion-input-md-h,
+[dir=rtl] .sc-ion-input-md-s {
+    text-align: right !important;
+    --padding-start: 0px;
+    --padding-end: 0px;
+}
+
+[dir=rtl] app-sign-in.ion-page form ion-icon[aria-label="eye off"],
+[dir=rtl] app-sign-in.ion-page form ion-icon[aria-label="eye"] {
+    right: unset !important;
+    left: 15px !important;
+}
+
 [dir=rtl] .menu-side-start .menu-icon img {
     margin-left: auto !important;
 }

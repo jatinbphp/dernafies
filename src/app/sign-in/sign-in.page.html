@@ -45,6 +45,8 @@
             </div>
             <!--VALIDATION-->
           </ion-col>
+        </ion-row>
+        <ion-row class="otr-lang">
           <ion-col class="ion-text-left align-center ion-no-padding width-size">
             <ion-checkbox></ion-checkbox>
             <p>{{default_language_data['translation'][0]['login'][0][language_selected][0]['remember_me']}}</p>
@@ -52,6 +54,8 @@
           <ion-col class="ion-text-right ion-no-padding width-size">
             <ion-router-link routerDirection="root" routerLink="/forgot-password" class="">{{default_language_data['translation'][0]['login'][0][language_selected][0]['forgot_password']}}</ion-router-link>
           </ion-col>
+        </ion-row>
+        <ion-row>
           <ion-col size="12" class="ion-text-center ion-no-padding button-around-space">
             <ion-button type="submit" class="log-btn" [disabled]="!loginForm.valid">{{default_language_data['translation'][0]['login'][0][language_selected][0]['login_in_button']}}</ion-button>
           </ion-col>
