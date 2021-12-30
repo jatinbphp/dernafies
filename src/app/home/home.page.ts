@@ -12,6 +12,9 @@ import { ProfilePage } from '../profile/profile.page';
 
 export class HomePage 
 {
+  public language_selected = '';
+	public default_language_data: any = [];
+  
   public id:any = '';
   public role:any = '';
   public welcome_text:any = '';
@@ -21,6 +24,9 @@ export class HomePage
 
   async ionViewWillEnter()
   {
+    this.default_language_data = this.client.default_language_data;
+		this.language_selected = this.client.language_selected;
+    
     this.id=localStorage.getItem('id');
     this.role=localStorage.getItem('role');
     

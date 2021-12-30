@@ -11,6 +11,7 @@ import { ProfilePage } from './profile/profile.page';
 
 export class AppComponent 
 {
+  public rtl_or_ltr = '';
   public language_selected = '';
   public default_language_data: any = [];
   public should_menu_enable:boolean = false;
@@ -28,9 +29,11 @@ export class AppComponent
     this.language_selected = localStorage.getItem('default_language');
     this.client.getObservableOnLanguageChange().subscribe((data) => {
       this.language_selected = data.language_selected;
+      this.rtl_or_ltr = (this.language_selected == 'arabic') ? 'rtl' : 'ltr';
       this.InitializeAPP();
       //console.log('Data received', data);
     });//THIS OBSERVABLE IS USED TO SET DEFAULT OR SELECTED LANGUAGE
+    this.rtl_or_ltr = (this.language_selected == 'arabic') ? 'rtl' : 'ltr';
 
     this.client.getObservableOnSignIn().subscribe((data) => {
 			this.should_menu_enable = data.should_menu_enable;
@@ -91,7 +94,14 @@ export class AppComponent
     this.client.publishSomeDataOnSignIn({
       should_menu_enable: false
     });//THIS OBSERVABLE IS USED TO KNOW IS ANY HAS SIGNIN
-    localStorage.clear();
+    //localStorage.clear();
+    localStorage.removeItem('token');
+    localStorage.removeItem('id');
+    localStorage.removeItem('email');
+    localStorage.removeItem('userTypeID');
+    localStorage.removeItem('firstName');
+    localStorage.removeItem('lastName');
+    localStorage.removeItem('role');
     this.client.router.navigate(['sign-in']);
   }
 }

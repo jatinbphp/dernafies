@@ -41,7 +41,14 @@ export class SettingsPage implements OnInit
     this.client.publishSomeDataOnSignIn({
       should_menu_enable: false
     });//THIS OBSERVABLE IS USED TO KNOW IS ANY HAS SIGNIN
-    localStorage.clear();
+    //localStorage.clear();
+    localStorage.removeItem('token');
+    localStorage.removeItem('id');
+    localStorage.removeItem('email');
+    localStorage.removeItem('userTypeID');
+    localStorage.removeItem('firstName');
+    localStorage.removeItem('lastName');
+    localStorage.removeItem('role');
     this.client.router.navigate(['sign-in']);
   }
 

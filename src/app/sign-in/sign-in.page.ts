@@ -87,7 +87,6 @@ export class SignInPage implements OnInit
 				localStorage.setItem('userTypeID',this.resultData.userTypeID);
 				localStorage.setItem('firstName',this.resultData.firstName);
 				localStorage.setItem('lastName',this.resultData.lastName);
-				localStorage.setItem('defaultLanguage',this.resultData.defaultLanguage);
 				localStorage.setItem('role',this.resultData.role);
 				this.client.router.navigate(['/tabs/home']);
 			}

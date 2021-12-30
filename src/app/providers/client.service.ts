@@ -17,15 +17,20 @@ export class ClientService
 	private default_language_json = '../assets/language_default/language_default.json';
 	public default_language_data: any = [];
 	public language_selected = '';
+	public rtl_or_ltr = '';
 	private SubjectDefaultLanguage = new Subject<any>();//THIS OBSERVABLE IS USED TO SET DEFAULT OR SELECTED LANGUAGE
 	private SubjectOnSignIn = new Subject<any>();//THIS OBSERVABLE IS USED TO KNOW IS ANY HAS SIGNIN
 
 	constructor(public http: HttpClient, public router: Router, private alertCtrl: AlertController)
 	{ 
+		this.language_selected = localStorage.getItem('default_language');
 		this.getObservableOnLanguageChange().subscribe((data) => {
 			this.language_selected = data.language_selected;
+			this.rtl_or_ltr = (this.language_selected == 'arabic') ? 'rtl' : 'ltr';
 			console.log('Data received', data);
 		});//THIS OBSERVABLE IS USED TO SET DEFAULT OR SELECTED LANGUAGE
+		this.rtl_or_ltr = (this.language_selected == 'arabic') ? 'rtl' : 'ltr';
+
 		if(this.language_selected == null || this.language_selected == undefined || this.language_selected == '')
 		{
 			this.language_selected = 'english';
@@ -250,8 +255,15 @@ export class ClientService
 	{
 		if(message == 'Token not valid') 
 		{
-			localStorage.clear();
-		    this.router.navigate(['/login']);
+			//localStorage.clear();
+			localStorage.removeItem('token');
+			localStorage.removeItem('id');
+			localStorage.removeItem('email');
+			localStorage.removeItem('userTypeID');
+			localStorage.removeItem('firstName');
+			localStorage.removeItem('lastName');
+			localStorage.removeItem('role');
+		    this.router.navigate(['sign-in']);
 		}
 		else
 		{

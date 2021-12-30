@@ -176,11 +176,11 @@
       </ion-row>
     </div>
     <div class="src-box-main" *ngIf="role == 'customer'">
-      <ion-searchbar placeholder="Search for services" animated></ion-searchbar>
+      <ion-searchbar placeholder="{{default_language_data['translation'][0]['home'][0][language_selected][0]['search_for_services']}}" animated></ion-searchbar>
     </div>
     <div class="category-slider-main" *ngIf="role == 'customer'">
       <div class="title-main">
-        <h2>Categories<ion-router-link href="Javascript:;" >View all</ion-router-link></h2>
+        <h2>{{default_language_data['translation'][0]['general'][0][language_selected][0]['categories']}}<ion-router-link href="Javascript:;" >{{default_language_data['translation'][0]['general'][0][language_selected][0]['view_all']}}</ion-router-link></h2>
       </div>
       <ion-slides pager [options]="categorieSlide">
         <ion-slide>
@@ -259,7 +259,7 @@
     </div>
     <div class="completed-service-main" *ngIf="role == 'customer'">
       <div class="title-main">
-        <h2>Completed Services<ion-router-link href="Javascript:;" >View all</ion-router-link></h2>
+        <h2>{{default_language_data['translation'][0]['home'][0][language_selected][0]['completed_services']}}<ion-router-link href="Javascript:;" >{{default_language_data['translation'][0]['general'][0][language_selected][0]['view_all']}}</ion-router-link></h2>
       </div>
       <ion-row class="requ-box-list">
         <ion-col class="requ-box-item">
@@ -273,7 +273,7 @@
               <p><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><strong>4.9</strong></p>
             </div>
             <div class="requ-box-btns">
-              <ion-button color="success">Completed</ion-button>
+              <ion-button color="success">{{default_language_data['translation'][0]['general'][0][language_selected][0]['completed_text']}}</ion-button>
               <div class="requ-details">
                 <p><span></span>20 Sep 21</p>
                 <p><span></span>2Hrs</p>
@@ -293,7 +293,7 @@
               <p><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><strong>4.9</strong></p>
             </div>
             <div class="requ-box-btns">
-              <ion-button color="success">Completed</ion-button>
+              <ion-button color="success">{{default_language_data['translation'][0]['general'][0][language_selected][0]['completed_text']}}</ion-button>
               <div class="requ-details">
                 <p><span></span>20 Sep 21</p>
                 <p><span></span>2Hrs</p>
@@ -313,7 +313,7 @@
               <p><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><strong>4.9</strong></p>
             </div>
             <div class="requ-box-btns">
-              <ion-button color="success">Completed</ion-button>
+              <ion-button color="success">{{default_language_data['translation'][0]['general'][0][language_selected][0]['completed_text']}}</ion-button>
               <div class="requ-details">
                 <p><span></span>20 Sep 21</p>
                 <p><span></span>2Hrs</p>
@@ -326,7 +326,7 @@
     </div>
     <div class="featured-slider-main" *ngIf="role == 'customer'">
       <div class="title-main">
-        <h2>Featured Handyman<ion-router-link href="/tabs/handyman-view-all">View all</ion-router-link></h2>
+        <h2>{{default_language_data['translation'][0]['home'][0][language_selected][0]['featured_handyman']}}<ion-router-link href="/tabs/handyman-view-all">{{default_language_data['translation'][0]['general'][0][language_selected][0]['view_all']}}</ion-router-link></h2>
       </div>
       <ion-slides [options]="featuredSlide">
         <ion-slide (click)="showHandyMan()">

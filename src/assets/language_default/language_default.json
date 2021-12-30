@@ -206,6 +206,96 @@
                   }
                ]
             }
+         ],
+         "general": [
+            {
+               "english": [
+                  {
+                     "categories":"Categories",
+                     "view_all":"View All",
+                     "completed_text": "Completed",
+                     "pending_text": "Pending",
+                     "cancelled_text": "Cancelled",
+                     "request_review":"Request Review",
+                     "featured_text": "Featured",
+                     "handyman_text":"Handyman"
+                  }
+               ],
+               "arabic": [
+                  {
+                     "categories":"التصنيفات",
+                     "view_all":"مشاهدة الكل",
+                     "completed_text": "مكتمل",
+                     "pending_text": "قيد الانتظار",
+                     "cancelled_text": "ألغيت",
+                     "request_review":"طلب مراجعة",
+                     "featured_text": "متميز",
+                     "handyman_text":"عامل يدوي"
+                  }
+               ],
+               "kurdish": [
+                  {
+                     "categories":"Kategorî",
+                     "view_all":"Binêre Hemî",
+                     "completed_text": "Temam kirin",
+                     "pending_text": "Nexelas",
+                     "cancelled_text": "Betal kirin",
+                     "request_review":"Daxwaza Review",
+                     "featured_text": "Featured",
+                     "handyman_text":"Handyman"
+                  }
+               ]
+            }
+         ],
+         "home": [
+            {
+               "english": [
+                  {
+                     "completed_services":"Completed Services",
+                     "featured_handyman":"Featured Handyman",
+                     "search_for_services":"Search for services"
+                  }
+               ],
+               "arabic": [
+                  {
+                     "completed_services":"الخدمات المكتملة",
+                     "featured_handyman":"بارع مميز",
+                     "search_for_services":"ابحث عن الخدمات"
+                  }
+               ],
+               "kurdish": [
+                  {
+                     "completed_services":"Xizmetên qedandî",
+                     "featured_handyman":"Featured Handyman",
+                     "search_for_services":"Ji bo xizmetên lêgerîn"
+                  }
+               ]
+            }
+         ],
+         "current-request": [
+            {
+               "english": [
+                  {
+                     "accept_request":"Accept Request",
+                     "completed":"Completed",
+                     "scheduled_time":"Scheduled Time"
+                  }
+               ],
+               "arabic": [
+                  {
+                     "accept_request":"قبول الطلب",
+                     "completed":"مكتمل",
+                     "scheduled_time":"جدول زمني"
+                  }
+               ],
+               "kurdish": [
+                  {
+                     "accept_request":"Daxwazê qebûl bikin",
+                     "completed":"Temam kirin",
+                     "scheduled_time":"Demjimêra plankirî"
+                  }
+               ]
+            }
          ]
       }
    ]
