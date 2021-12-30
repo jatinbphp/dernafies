@@ -235,6 +235,25 @@ export class ClientService
 		});
 	}
 
+	getCategories()
+	{
+		let headers = this.getHeaderOptions();
+		return new Promise((resolve, reject) => 
+		{
+			this.http.get(this.api_url + "getCategories",headers).subscribe((res: any) =>       
+			{   
+				resolve(res.data);
+			},
+			err => 
+			{
+				console.log(err);
+				let errorMessage=this.getErrorMessage(err);
+				this.showMessage(errorMessage);
+				reject(errorMessage);
+			});
+		});
+	}
+
   	getErrorMessage(err)
 	{	
 		if(err.error == null)

@@ -19,8 +19,35 @@ export class HomePage
   public role:any = '';
   public welcome_text:any = '';
   public greetings:any = '';
+  public resultDataCategories: any = [];
   constructor(public fb: FormBuilder, public client: ClientService, public menu: MenuController, public loadingCtrl: LoadingController, public modalCtrl: ModalController) 
   {}
+
+  async ngOnInit() 
+  {
+    //LOADER
+		const loading = await this.loadingCtrl.create({
+			spinner: null,
+			//duration: 5000,
+			message: 'Please wait...',
+			translucent: true,
+			cssClass: 'custom-class custom-loading'
+		});
+		await loading.present();
+		//LOADER
+    await this.client.getCategories().then(result => 
+    {	
+      loading.dismiss();//DISMISS LOADER			
+      this.resultDataCategories=result;
+      console.log(this.resultDataCategories);
+            
+    },
+    error => 
+    {
+      loading.dismiss();//DISMISS LOADER
+      console.log();
+    });//CATEGORIES
+  }
 
   async ionViewWillEnter()
   {
