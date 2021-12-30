@@ -9,6 +9,13 @@ export class HandymanViewAllPage implements OnInit {
 
   constructor() { }
 
+  handymanSlide = {
+    // slidesPerView: 1.3,
+    initialSlide: 1,
+    //slidesPerView: this.handymancheckScreen(),
+    speed: 600,
+  };
+
   ngOnInit() {
   }
 

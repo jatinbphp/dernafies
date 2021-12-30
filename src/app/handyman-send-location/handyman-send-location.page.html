@@ -1,9 +1,27 @@
-<ion-header>
+<ion-header no-border class="ion-no-border" [translucent]="true">
   <ion-toolbar>
-    <ion-title>handyman-send-location</ion-title>
+    <!-- <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>      
+    </ion-buttons> -->
+    <ion-title slot="start">Send Location</ion-title>
+    <ion-button slot="end"><ion-icon name="arrow-back-outline"></ion-icon></ion-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+	<div class="main-div">
+		<img class="map-img" src="../../assets/images/map-img.png">
+		<div class="loc-con-box">
+			<div class="review-box-txt">
+				<h2 class="title">David Cooper</h2>
+				<div class="person-contact">
+					<p><ion-icon name="call"></ion-icon>+1 123-456-7890</p>
+					<p><ion-icon name="location-sharp"></ion-icon>World Trade Centre, 667 VG Ave</p>
+				</div>
+			</div>
+			<div class="review-box-btns">
+				<ion-button color="secondary"><ion-icon name="location-sharp"></ion-icon>Send Location Pin</ion-button>
+			</div>
+		</div>
+	</div>
 </ion-content>

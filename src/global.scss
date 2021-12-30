@@ -257,7 +257,8 @@ ion-header {
 }
 
 app-sign-up, app-home, app-categories, app-search, app-settings, 
-app-profile, app-current-requests, app-past-requests, app-review-rating {
+app-profile, app-current-requests, app-past-requests, app-review-rating,
+app-handyman-view-all, app-handyman-selected, app-handyman-send-location {
     background: var(--background-gradient);
 }
 
@@ -343,10 +344,10 @@ ion-menu {
             letter-spacing: normal;
             margin: 0px 0px 0px 10px;
             padding: 0px;
-        }
-        @media(max-width:374px) {
-            font-size: 16px;
-            line-height: 18px;
+            @media(max-width:374px) {
+                font-size: 16px;
+                line-height: 18px;
+            }
         }
     }
 }
@@ -404,6 +405,7 @@ app-home {
         }
     }
 }
+
 app-home {
     .featured-slider-main {
         ion-slides {
@@ -411,6 +413,33 @@ app-home {
                 padding-bottom: 0px;
                 @media(max-width:374px) {
                     padding-bottom: 0px;
+                }
+            }
+        }
+    }
+}
+
+app-handyman-view-all {
+    ion-slides {
+        .swiper-wrapper {
+            padding-bottom: 35px;
+            @media(max-width:374px) {}
+        }
+        &.swiper-container-horizontal {
+            .swiper-pagination-bullets {
+                bottom: 0px !important;
+                height: fit-content;
+                .swiper-pagination-bullet {
+                    width: 8px !important;
+                    height: 8px !important;
+                    background-color: #000 !important;
+                    opacity: 0.2 !important;
+                    border-radius: 50% !important;
+                    margin: 0px 4px;
+                    &.swiper-pagination-bullet-active {
+                        background-color: #1aabf7 !important;
+                        opacity: 1 !important;
+                    }
                 }
             }
         }

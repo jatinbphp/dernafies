@@ -1,0 +1,160 @@
+ion-header {
+	ion-toolbar {
+		// --background: var(--background-gradient);
+        --background: transparent;
+		padding: 40px 16px 16px;
+        padding: 16px 16px 16px;
+        ion-title {
+            padding: 0px;
+        }
+	}
+}
+ion-content {
+	--border-radius: 0px;
+    --background: transparent;
+    --border: none;
+    position: relative;
+    &:after {
+        content: '';
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        width: 100%;
+        height: 50px;
+        background-color: #fff;
+        z-index: -1;
+    }
+    .main-div {
+        background: #f8f8f8;
+        padding: 30px 8px 30px;
+        border-radius: 35px 35px 50px 50px;
+        ion-slides {
+            ion-slide {
+                .handyman-list {
+                    width: 100%;
+                    display: flex;
+                    flex-wrap: wrap;
+                    .handyman-item {
+                        width: 33.33%;
+                        max-width: 33.33%;
+                        min-width: 33.33%;
+                        margin: 35px 0px 10px;
+                        @media(max-width:374px) {
+                            width: 50%;
+                            max-width: 50%;
+                            min-width: 50%;
+                        }
+                        .featured-box-main {
+                            width: calc(100% - 8px);
+                            height: 100%;
+                            background-color: #535455;
+                            border-radius: 10px;
+                            padding: 45px 0px 0px;
+                            margin: 0px auto 0px;
+                            position: relative;
+                            &:hover, &:focus, &:active {
+                                background-color: #0472cc;
+                            }
+                            .featured-box-img {
+                                width: 80px;
+                                height: 80px;
+                                border-radius: 100%;
+                                border: 3px solid #fff;
+                                position: absolute;
+                                left: 0;
+                                right: 0;
+                                top: -35px;
+                                margin: 0px auto 0px;
+                                img {
+                                    width: 100%;
+                                    max-width: 100%;
+                                    max-height: 100%;
+                                    object-fit: cover;
+                                    object-position: center;
+                                }
+                            }
+                            .featured-box-txt {
+                                width: 100%;
+                                display: flex;
+                                flex-wrap: wrap;
+                                .rating {
+                                    width: 98%;
+                                    text-align: var(--text-center);
+                                    padding: 0px;
+                                    margin: 14px auto 6px;
+                                    ion-icon {
+                                        width: 16px;
+                                        height: 16px;
+                                        line-height: 16px;
+                                        font-size: 16px;
+                                        color: #f4b130;
+                                        margin: 0px 1px;
+                                    }
+                                }
+                                .name {
+                                    width: 98%;
+                                    text-align: var(--text-center);
+                                    font-size: 18px;
+                                    line-height: 26px;
+                                    font-family: var(--font-NeueHaasUnicaPro-Bold);
+                                    color: var(--White);
+                                    text-transform: capitalize;
+                                    letter-spacing: normal;
+                                    margin: 0px auto 4px;
+                                    padding: 0px;
+                                    @media(max-width:374px) {
+                                        font-size: 17px;
+                                        line-height: 25px;
+                                    }
+                                }
+                                .experience {
+                                    width: 98%;
+                                    text-align: var(--text-center);
+                                    font-size: 14px;
+                                    line-height: 17px;
+                                    font-family: var(--font-NeueHaasUnicaPro-Regular);
+                                    color: var(--White);
+                                    text-transform: capitalize;
+                                    letter-spacing: normal;
+                                    margin: 0px auto 12px;
+                                    padding: 0px;
+                                    @media(max-width:374px) {
+                                        font-size: 13px;
+                                        line-height: 16px;
+                                    }
+                                }
+                                .hr-txt {
+                                    width: 100%;
+                                    text-align: var(--text-center);
+                                    font-size: 18px;
+                                    line-height: 26px;
+                                    font-family: var(--font-Poppins-Medium);
+                                    color: var(--White);
+                                    text-transform: capitalize;
+                                    letter-spacing: normal;
+                                    margin: 14px 0px 0px;
+                                    padding: 6px 0px 6px;
+                                    border-top: 1px solid #5cc9e5;
+                                    @media(max-width:374px) {
+                                        font-size: 17px;
+                                        line-height: 25px;
+                                    }
+                                    span {
+                                        font-size: 13px;
+                                        line-height: normal;
+                                        margin: 0px 1px;
+                                        @media(max-width:374px) {
+                                            font-size: 13px;
+                                            line-height: normal;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
