@@ -6,6 +6,7 @@ ion-header {
     	--opacity: 1;
     	--opacity-scale: unset;
 		ion-title {
+            padding: 0px 80px;
 			padding: 0;
 		}
 	}
@@ -71,7 +72,7 @@ ion-content {
                     margin: 10px 0px 24px;
                     p {
                         width: 100%;
-                        text-align: var(--text-left);
+                        // text-align: var(--text-left);
                         font-size: 19px;
                         line-height: 27px;
                         font-family: var(--font-NeueHaasUnicaPro-Regular);
@@ -99,7 +100,7 @@ ion-content {
                 }
                 .title {
                     width: 100%;
-                    text-align: var(--text-left);
+                    // text-align: var(--text-left);
                     font-size: 22px;
                     line-height: 32px;
                     font-family: var(--font-NeueHaasUnicaPro-Bold);
@@ -115,7 +116,7 @@ ion-content {
                 }
                 .sub-title {
                     width: 100%;
-                    text-align: var(--text-left);
+                    // text-align: var(--text-left);
                     font-size: 19px;
                     line-height: 27px;
                     font-family: var(--font-NeueHaasUnicaPro-Regular);
@@ -131,7 +132,7 @@ ion-content {
                 }
                 .rating-stars {
                     width: 100%;
-                    text-align: var(--text-left);
+                    // text-align: var(--text-left);
                     padding: 0px;
                     margin: 0px 0px 16px;
                     ion-icon {
@@ -145,7 +146,7 @@ ion-content {
                 }
                 .hr-txt {
                     width: 100%;
-                    text-align: var(--text-left);
+                    // text-align: var(--text-left);
                     font-size: 20px;
                     line-height: 26px;
                     font-family: var(--font-Poppins-Medium);

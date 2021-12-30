@@ -29,7 +29,7 @@ ion-content {
         box-shadow: none !important;
         h2 {
             width: 100%;
-            text-align: var(--text-left);
+            // text-align: var(--text-left);
             font-size: 22px;
             line-height: 32px;
             font-family: var(--font-Poppins-Regular);
@@ -45,7 +45,7 @@ ion-content {
         }
         h1 {
             width: 100%;
-            text-align: var(--text-left);
+            // text-align: var(--text-left);
             font-size: 28px;
             line-height: 38px;
             font-family: var(--font-Poppins-Bold);
@@ -364,7 +364,7 @@ ion-content {
                             }
                             .title {
                                 width: 100%;
-                                text-align: var(--text-left);
+                                // text-align: var(--text-left);
                                 font-size: 22px;
                                 line-height: 32px;
                                 font-family: var(--font-NeueHaasUnicaPro-Bold);
@@ -380,7 +380,7 @@ ion-content {
                             }
                             .sub-title {
                                 width: 100%;
-                                text-align: var(--text-left);
+                                // text-align: var(--text-left);
                                 font-size: 18px;
                                 line-height: 26px;
                                 font-family: var(--font-NeueHaasUnicaPro-Regular);
@@ -523,7 +523,7 @@ ion-content {
                                         background-color: var(--Black);
                                         display: inline-block;
                                         &:first-child {
-                                            margin-left: 0px;
+                                            // margin-left: 0px;
                                         }
                                     }
                                 }

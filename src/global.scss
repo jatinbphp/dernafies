@@ -157,6 +157,32 @@ ion-searchbar {
     display: none !important;
 }
 
+[dir=rtl] .sc-ion-searchbar-md-h .searchbar-input.sc-ion-searchbar-md {
+    padding-left: 40px !important;
+    padding-right: 18px !important;
+}
+[dir=rtl] .sc-ion-searchbar-md-h .searchbar-search-icon.sc-ion-searchbar-md {
+    left:  16px!important;
+    right: unset !important;
+}
+
+[dir=rtl] .menu-side-start .menu-icon img {
+    margin-left: auto !important;
+}
+[dir=rtl] .menu-side-start .item  {
+    display: flex !important;
+    align-items: center !important;
+}
+[dir=rtl] .menu-side-start .item ion-icon {
+    display: flex !important;
+    order: 1 !important;
+    margin: 0px 0px 0px 12px !important;
+}
+[dir=rtl] .menu-side-start .item .sc-ion-label-md-h,
+[dir=rtl] .menu-side-start .item .sc-ion-label-md-s {
+    text-align: right !important;
+}
+
 // .texture-bck-img-1 {
 //     background-image: url(assets/images/bck-img1.png);
 //     --background: url(assets/images/bck-img1.png) 100% 100%/100% 100% no-repeat/no-repeat !important;
@@ -207,7 +233,7 @@ ion-header {
 		}
 		ion-title {
             width: 100%;
-			text-align: var(--text-left);
+			// text-align: var(--text-left);
             text-transform: capitalize;
 			font-size: 28px;
 			line-height: 38px;
@@ -320,7 +346,7 @@ ion-menu {
     padding: 0px;
     h2 {
         width: 100%;
-        text-align: left;
+        // text-align: left;
         font-size: 22px;
         line-height: 24px;
         font-family: var(--font-Poppins-Bold);
@@ -335,7 +361,7 @@ ion-menu {
         }
         ion-router-link {
             width: 100%;
-            text-align: left;
+            // text-align: left;
             font-size: 17px;
             line-height: 19px;
             font-family: var(--font-NeueHaasUnicaPro-Regular);

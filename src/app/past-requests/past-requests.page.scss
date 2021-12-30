@@ -6,6 +6,7 @@ ion-header {
     	--opacity: 1;
     	--opacity-scale: unset;
 		ion-title {
+            padding: 0px 80px;
 			padding: 0;
 		}
 	}
@@ -105,7 +106,7 @@ ion-content {
             align-items: center;
             margin: 0px 0px 16px;
             .filter-txt-sec {
-                width: 50%;
+                // width: 50%;
                 display: flex;
                 align-items: center;
                 justify-content: flex-start;
@@ -116,11 +117,11 @@ ion-content {
                     height: 16px;
                     object-fit: contain;
                     object-position: center;
-                    margin-right: 8px;
+                    margin: 0px 6px;
                 }
                 p {
                     width: 100%;
-                    text-align: var(--text-left);
+                    // text-align: var(--text-left);
                     font-size: 18px;
                     line-height: 20px;
                     font-family: var(--font-Poppins-Regular);
@@ -136,8 +137,11 @@ ion-content {
                 }
             }
             .filter-img-sec {
-                width: 50%;
-                text-align: var(--text-right);
+                // width: 50%;
+                // text-align: var(--text-right);
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
                 img {
                     max-width: 100%;
                     width: auto;
@@ -154,10 +158,13 @@ ion-content {
             }
         }
         .requ-box-list {
-            width: 100%;
+            // width: 100%;
+            width: auto;
             display: flex;
             flex-wrap: wrap;
             justify-content: flex-start;
+            margin-left: -8px;
+            margin-right: -8px;
             .requ-box-item {
                 width: 100%;
                 max-width: 100%;
@@ -184,14 +191,14 @@ ion-content {
                     }
                     .requ-box-txt {
                         width: calc(100% - 60px - 34%);
-                        padding: 0px 4px 0px 6px;
+                        padding: 0px 5px 0px 5px;
                         @media(max-width:362px) {
                             width: calc(100% - 60px);
-                            padding: 0px 4px 0px 10px;
+                            padding: 0px 7px 0px 7px;
                         }
                         .title {
                             width: 100%;
-                            text-align: var(--text-left);
+                            // text-align: var(--text-left);
                             font-size: 22px;
                             line-height: 32px;
                             font-family: var(--font-NeueHaasUnicaPro-Bold);
@@ -207,7 +214,7 @@ ion-content {
                         }
                         .sub-title {
                             width: 100%;
-                            text-align: var(--text-left);
+                            // text-align: var(--text-left);
                             font-size: 18px;
                             line-height: 26px;
                             font-family: var(--font-NeueHaasUnicaPro-Regular);
@@ -223,7 +230,7 @@ ion-content {
                         }
                         p {
                             width: 100%;
-                            text-align: var(--text-left);
+                            // text-align: var(--text-left);
                             font-size: 18px;
                             line-height: 22px;
                             font-family: var(--font-NeueHaasUnicaPro-Regular);
@@ -349,17 +356,19 @@ ion-content {
             }
             &.grid-view {
                 .requ-box-item {
-                    width: calc(100% - 50% - 8px);
-                    max-width: calc(100% - 50% - 8px);
-                    min-width: calc(100% - 50% - 8px);
+                    width: 50%;
+                    max-width: 50%;
+                    min-width: 50%;
                     margin-bottom: 16px;
                     &:nth-child(odd) {
-                        margin-right: 8px;
+                        // margin-right: 8px;
                     }
                     &:nth-child(even) {
-                        margin-left: 8px;
+                        // margin-left: 8px;
                     }
                     .requ-box-inner {
+                        width: calc(100% - 16px);
+                        margin: 0px auto;
                         height: 100%;
                         padding: 20px 14px;
                         .requ-box-img {
