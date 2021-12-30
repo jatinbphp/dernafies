@@ -36,15 +36,48 @@ export class HomePage
       let curHr = today.getHours()
       if(curHr < 12)
       {
-        this.greetings='Good Morning';
+        if(this.language_selected == "english")
+        {
+          this.greetings='Good Morning';
+        }
+        if(this.language_selected == "arabic")
+        {
+          this.greetings='صباح الخير';
+        }
+        if(this.language_selected == "kurdish")
+        {
+          this.greetings='Roj baş';
+        }
       }
       else if (curHr < 18) 
       {
-        this.greetings='Good Afternoon';
+        if(this.language_selected == "english")
+        {
+          this.greetings='Good Afternoon';
+        }
+        if(this.language_selected == "arabic")
+        {
+          this.greetings='طاب مسائك';
+        }
+        if(this.language_selected == "kurdish")
+        {
+          this.greetings='Paş nîvro';
+        }
       }
       else
       {
-        this.greetings='Good Evening';
+        if(this.language_selected == "english")
+        {
+          this.greetings='Good Evening';
+        }
+        if(this.language_selected == "arabic")
+        {
+          this.greetings='مساء الخير';
+        }
+        if(this.language_selected == "kurdish")
+        {
+          this.greetings='Êvar baş';
+        }
       }
       let firstName = (localStorage.getItem('firstName')) ? localStorage.getItem('firstName') : "";
       let lastName = (localStorage.getItem('lastName')) ? localStorage.getItem('lastName') : "";

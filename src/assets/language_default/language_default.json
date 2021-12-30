@@ -218,6 +218,9 @@
                      "cancelled_text": "Cancelled",
                      "request_review":"Request Review",
                      "featured_text": "Featured",
+                     "location_map":"Location Map",
+                     "accept_text":"Accept",
+                     "reject_text":"Reject",
                      "handyman_text":"Handyman"
                   }
                ],
@@ -230,6 +233,9 @@
                      "cancelled_text": "ألغيت",
                      "request_review":"طلب مراجعة",
                      "featured_text": "متميز",
+                     "location_map":"خريطة الموقع",
+                     "accept_text":"قبول",
+                     "reject_text":"يرفض",
                      "handyman_text":"عامل يدوي"
                   }
                ],
@@ -242,6 +248,9 @@
                      "cancelled_text": "Betal kirin",
                      "request_review":"Daxwaza Review",
                      "featured_text": "Featured",
+                     "location_map":"Nexşeya cihan",
+                     "accept_text":"Baweranîn",
+                     "reject_text":"Refzkirin",
                      "handyman_text":"Handyman"
                   }
                ]
@@ -253,21 +262,24 @@
                   {
                      "completed_services":"Completed Services",
                      "featured_handyman":"Featured Handyman",
-                     "search_for_services":"Search for services"
+                     "search_for_services":"Search for services",
+                     "recent_service_request":"Recent Service Requests"
                   }
                ],
                "arabic": [
                   {
                      "completed_services":"الخدمات المكتملة",
                      "featured_handyman":"بارع مميز",
-                     "search_for_services":"ابحث عن الخدمات"
+                     "search_for_services":"ابحث عن الخدمات",
+                     "recent_service_request":"طلبات الخدمة الأخيرة"
                   }
                ],
                "kurdish": [
                   {
                      "completed_services":"Xizmetên qedandî",
                      "featured_handyman":"Featured Handyman",
-                     "search_for_services":"Ji bo xizmetên lêgerîn"
+                     "search_for_services":"Ji bo xizmetên lêgerîn",
+                     "recent_service_request":"Daxwazên Xizmeta Dawî"
                   }
                ]
             }
