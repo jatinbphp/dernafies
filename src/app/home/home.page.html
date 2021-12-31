@@ -268,7 +268,7 @@
     </div>
     <div class="featured-slider-main" *ngIf="role == 'customer'">
       <div class="title-main">
-        <h2>{{default_language_data['translation'][0]['home'][0][language_selected][0]['featured_handyman']}}<ion-router-link href="/tabs/handyman-view-all">{{default_language_data['translation'][0]['general'][0][language_selected][0]['view_all']}}</ion-router-link></h2>
+        <h2>{{default_language_data['translation'][0]['home'][0][language_selected][0]['featured_handyman']}}<ion-router-link routerDirection="root" routerLink="/tabs/handyman-view-all">{{default_language_data['translation'][0]['general'][0][language_selected][0]['view_all']}}</ion-router-link></h2>
       </div>
       <ion-slides [options]="featuredSlide" dir="rtl" *ngIf="rtl_or_ltr == 'rtl'">
         <ion-slide (click)="showHandyMan()">
