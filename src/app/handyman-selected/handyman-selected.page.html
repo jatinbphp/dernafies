@@ -4,7 +4,9 @@
       <ion-menu-button></ion-menu-button>      
     </ion-buttons> -->
     <ion-title slot="start">Trend Lin</ion-title>
-    <ion-button slot="end"><ion-icon name="arrow-back-outline"></ion-icon></ion-button>
+    <ion-button slot="end" (click)="backToAllHandyMan()">
+		<ion-icon name="arrow-back-outline"></ion-icon>
+	</ion-button>
   </ion-toolbar>
 </ion-header>
 
@@ -18,26 +20,26 @@
 					</div>
 					<div class="review-box-txt">
 						<h2 class="title">David Cooper</h2>
-						<h3 class="sub-title">8 years experience</h3>
+						<h3 class="sub-title">8 {{default_language_data['translation'][0]['handyman-selected'][0][language_selected][0]['text_experience']}}</h3>
 						<p class="rating-stars"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon></p>
 						<h4 class="hr-txt">$20<span>/</span>Hr</h4>
 					</div>
 					<div class="review-counte-list">
 						<div class="review-counte-item">
 							<h2>100</h2>
-							<h6>Reviews</h6>
+							<h6>{{default_language_data['translation'][0]['handyman-selected'][0][language_selected][0]['text_1']}}</h6>
 						</div>
 						<div class="review-counte-item">
 							<h2>500</h2>
-							<h6>Ongoing</h6>
+							<h6>{{default_language_data['translation'][0]['handyman-selected'][0][language_selected][0]['text_2']}}</h6>
 						</div>
 						<div class="review-counte-item">
 							<h2>700</h2>
-							<h6>Clients</h6>
+							<h6>{{default_language_data['translation'][0]['handyman-selected'][0][language_selected][0]['text_3']}}</h6>
 						</div>
 					</div>
 					<div class="review-box-btns">
-						<ion-button color="success">Select Handyman</ion-button>
+						<ion-button color="success">{{default_language_data['translation'][0]['handyman-selected'][0][language_selected][0]['select_handy_man_button']}}</ion-button>
 					</div>
 				</div>
 			</ion-col>
@@ -49,26 +51,26 @@
 					</div>
 					<div class="review-box-txt">
 						<h2 class="title">David Cooper</h2>
-						<h3 class="sub-title">8 years experience</h3>
+						<h3 class="sub-title">8 {{default_language_data['translation'][0]['handyman-selected'][0][language_selected][0]['text_experience']}}</h3>
 						<p class="rating-stars"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon></p>
 						<h4 class="hr-txt">$20<span>/</span>Hr</h4>
 					</div>
 					<div class="review-counte-list">
 						<div class="review-counte-item">
 							<h2>100</h2>
-							<h6>Reviews</h6>
+							<h6>{{default_language_data['translation'][0]['handyman-selected'][0][language_selected][0]['text_1']}}</h6>
 						</div>
 						<div class="review-counte-item">
 							<h2>500</h2>
-							<h6>Ongoing</h6>
+							<h6>{{default_language_data['translation'][0]['handyman-selected'][0][language_selected][0]['text_2']}}</h6>
 						</div>
 						<div class="review-counte-item">
 							<h2>700</h2>
-							<h6>Clients</h6>
+							<h6>{{default_language_data['translation'][0]['handyman-selected'][0][language_selected][0]['text_3']}}</h6>
 						</div>
 					</div>
 					<div class="review-box-btns">
-						<ion-button color="secondary"><ion-icon name="location-sharp"></ion-icon>Send Location Pin</ion-button>
+						<ion-button color="secondary"><ion-icon name="location-sharp"></ion-icon>{{default_language_data['translation'][0]['handyman-selected'][0][language_selected][0]['send_location_pin_button']}}</ion-button>
 					</div>
 				</div>
 			</ion-col>

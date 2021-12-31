@@ -308,6 +308,105 @@
                   }
                ]
             }
+         ],
+         "handyman-view-all": [
+            {
+               "english": [
+                  {
+                     "screen_title":"Select Handyman"
+                  }
+               ],
+               "arabic": [
+                  {
+                     "screen_title":"حدد العامل الماهر"
+                  }
+               ],
+               "kurdish": [
+                  {
+                     "screen_title":"Handyman hilbijêre"
+                  }
+               ]
+            }
+         ],
+         "handyman-selected": [
+            {
+               "english": [
+                  {
+                     "text_experience":"Years Experience",
+                     "text_1":"Reviews",
+                     "text_2":"Ongoing",
+                     "text_3":"Clients",
+                     "select_handy_man_button":"Select Handyman",
+                     "send_location_pin_button":"Send Location Pin"
+                  }
+               ],
+               "arabic": [
+                  {
+                     "text_experience":"سنوات خبرة",
+                     "text_1":"المراجعات",
+                     "text_2":"جاري التنفيذ",
+                     "text_3":"العملاء",
+                     "select_handy_man_button":"حدد العامل الماهر",
+                     "send_location_pin_button":"إرسال رقم التعريف الشخصي للموقع"
+                  }
+               ],
+               "kurdish": [
+                  {
+                     "text_experience":"Tecrûbeya Salan",
+                     "text_1":"Reviews",
+                     "text_2":"Berdewam",
+                     "text_3":"Clients",
+                     "select_handy_man_button":"Handyman hilbijêre",
+                     "send_location_pin_button":"Pîneya Cihê bişînin"
+                  }
+               ]
+            }
+         ],
+         "settings": [
+            {
+               "english": [
+                  {
+                     "screen_title":"Settings",
+                     "account":"Account",
+                     "change_password":"Change Password",
+                     "notifications":"Ongoing",
+                     "privacy_settings":"Privacy Settings",
+                     "signout":"Sign Out",
+                     "other":"Other",
+                     "text_messages":"Text Messages",
+                     "currency":"Currency",
+                     "languages":"Languages"
+                  }
+               ],
+               "arabic": [
+                  {
+                     "screen_title":"إعدادات",
+                     "account":"الحساب",
+                     "change_password":"تغيير كلمة المرور",
+                     "notifications":"جاري التنفيذ",
+                     "privacy_settings":"إعدادات الخصوصية",
+                     "signout":"خروج",
+                     "other":"آخر",
+                     "text_messages":"رسائل نصية",
+                     "currency":"عملة",
+                     "languages":"اللغات"
+                  }
+               ],
+               "kurdish": [
+                  {
+                     "screen_title":"Settings",
+                     "account":"Konto",
+                     "change_password":"Şîfre biguherînin",
+                     "notifications":"Berdewam",
+                     "privacy_settings":"Mîhengên Nepenîtiyê",
+                     "signout":"Guhê xwe nedene",
+                     "other":"Yên din",
+                     "text_messages":"Peyamên Nivîsar",
+                     "currency":"Diravcins",
+                     "languages":"Languages"
+                  }
+               ]
+            }
          ]
       }
    ]
