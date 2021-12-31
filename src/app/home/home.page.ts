@@ -12,6 +12,7 @@ import { ProfilePage } from '../profile/profile.page';
 
 export class HomePage 
 {
+  public rtl_or_ltr = '';
   public language_selected = '';
 	public default_language_data: any = [];
   
@@ -20,11 +21,31 @@ export class HomePage
   public welcome_text:any = '';
   public greetings:any = '';
   public resultDataCategories: any = [];
+  public language_key_exchange_array: any = [];
+  public categorieSlide = 
+  {
+    //slidesPerView: 1.3,
+    initialSlide: 1,
+    slidesPerView: this.categoriecheckScreen(),
+    speed: 600,
+  };  
+
   constructor(public fb: FormBuilder, public client: ClientService, public menu: MenuController, public loadingCtrl: LoadingController, public modalCtrl: ModalController) 
-  {}
+  {
+    this.client.getObservableOnLanguageChange().subscribe((data) => {
+			this.language_selected = data.language_selected;
+			this.rtl_or_ltr = (this.language_selected == 'arabic') ? 'rtl' : 'ltr';
+			console.log('Data received', data);
+		});//THIS OBSERVABLE IS USED TO SET DEFAULT OR SELECTED LANGUAGE
+		this.rtl_or_ltr = (this.language_selected == 'arabic') ? 'rtl' : 'ltr';
+  }
 
   async ngOnInit() 
   {
+    this.language_key_exchange_array['english']='categoryName';
+    this.language_key_exchange_array['arabic']='categoryNameArabic';
+    this.language_key_exchange_array['kurdish']='categoryNameKurdi';
+
     //LOADER
 		const loading = await this.loadingCtrl.create({
 			spinner: null,
@@ -53,6 +74,8 @@ export class HomePage
   {
     this.default_language_data = this.client.default_language_data;
 		this.language_selected = this.client.language_selected;
+    //this.rtl_or_ltr = this.client.rtl_or_ltr;
+    console.log(this.rtl_or_ltr);
     
     this.id=localStorage.getItem('id');
     this.role=localStorage.getItem('role');
@@ -112,12 +135,7 @@ export class HomePage
     }
   }
 
-  categorieSlide = {
-    // slidesPerView: 1.3,
-    initialSlide: 1,
-    slidesPerView: this.categoriecheckScreen(),
-    speed: 600,
-  };
+  
   
   categoriecheckScreen() {
     let innerWidth = window.innerWidth;

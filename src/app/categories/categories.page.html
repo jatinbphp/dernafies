@@ -3,86 +3,22 @@
     <!-- <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>      
     </ion-buttons> -->
-    <ion-title slot="start">Categories</ion-title>
-    <ion-button slot="end"><ion-icon name="arrow-back-outline"></ion-icon></ion-button>
+    <ion-title slot="start">{{default_language_data['translation'][0]['general'][0][language_selected][0]['categories']}}</ion-title>
+    <ion-button slot="end" (click)="backToHome()">
+      <ion-icon name="arrow-back-outline"></ion-icon>
+    </ion-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <div class="main-div">
     <ion-row class="category-box-list">
-      <ion-col class="category-box-item">
+      <ion-col class="category-box-item" *ngFor="let categories of resultDataCategories;let s = index;">
         <div class="category-box-inner">
-          <img src="../../assets/images/home-icon1.png">
-          <h6>Home Repair</h6>
+          <img src="{{categories.categoryImage}}">
+          <h6>{{categories[language_key_exchange_array[language_selected]]}}</h6>
         </div>
-      </ion-col>
-      <ion-col class="category-box-item">
-        <div class="category-box-inner">
-          <img src="../../assets/images/electrician-icon1.png">
-          <h6>Electrician</h6>
-        </div>
-      </ion-col>
-      <ion-col class="category-box-item">
-        <div class="category-box-inner">
-          <img src="../../assets/images/plumbing-icon1.png">
-          <h6>Plumbing</h6>
-        </div>
-      </ion-col>
-      <ion-col class="category-box-item">
-        <div class="category-box-inner">
-          <img src="../../assets/images/roofing-icon1.png">
-          <h6>Roofing</h6>
-        </div>
-      </ion-col>
-      <ion-col class="category-box-item">
-        <div class="category-box-inner">
-          <img src="../../assets/images/cleaning-icon1.png">
-          <h6>Cleaning</h6>
-        </div>
-      </ion-col>
-      <ion-col class="category-box-item">
-        <div class="category-box-inner">
-          <img src="../../assets/images/painting-icon1.png">
-          <h6>Painting</h6>
-        </div>
-      </ion-col>
-      <ion-col class="category-box-item">
-        <div class="category-box-inner">
-          <img src="../../assets/images/fittings-icon1.png">
-          <h6>Fittings</h6>
-        </div>
-      </ion-col>
-      <ion-col class="category-box-item">
-        <div class="category-box-inner">
-          <img src="../../assets/images/lawn-icon1.png">
-          <h6>Lawn</h6>
-        </div>
-      </ion-col>
-      <ion-col class="category-box-item">
-        <div class="category-box-inner">
-          <img src="../../assets/images/pawement-icon1.png">
-          <h6>Pawement</h6>
-        </div>
-      </ion-col>
-      <ion-col class="category-box-item">
-        <div class="category-box-inner">
-          <img src="../../assets/images/maid-icon1.png">
-          <h6>House Maid</h6>
-        </div>
-      </ion-col>
-      <ion-col class="category-box-item">
-        <div class="category-box-inner">
-          <img src="../../assets/images/carpenter-icon1.png">
-          <h6>Carpenter</h6>
-        </div>
-      </ion-col>
-      <ion-col class="category-box-item">
-        <div class="category-box-inner">
-          <img src="../../assets/images/carpet-icon1.png">
-          <h6>Carpet Cleaning</h6>
-        </div>
-      </ion-col>
+      </ion-col>      
     </ion-row>
   </div>
 </ion-content>
