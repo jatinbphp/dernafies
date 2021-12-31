@@ -77,6 +77,7 @@
                "english": [
                   {
                      "screen_title":"Sign Up",
+                     "signup_as_handyman":"Sign up as handyman ?",
                      "first_name":"First Name",
                      "last_name":"Last Name",
                      "email_address":"Email",
@@ -84,6 +85,8 @@
                      "confirm_password":"Confirm Password",
                      "specialized_in": "Specialized In",
                      "service_location": "Service Location",
+                     "service_district": "Service District",
+                     "service_city": "Service City",
                      "pricing": "Pricing",
                      "terms_of_service":"I agree to the",
                      "terms_of_service_link_text":"Terms of service",
@@ -95,6 +98,7 @@
                "arabic": [
                   {
                      "screen_title": "اشتراك",
+                     "signup_as_handyman":"سجل كعامل بارع؟",
                      "first_name":"الاسم الاول",
                      "last_name":"اسم العائلة",
                      "email_address":"بريد الالكتروني",
@@ -102,6 +106,8 @@
                      "confirm_password":"تأكيد كلمة المرور",
                      "specialized_in": "متخصص في",
                      "service_location": "موقع الخدمة",
+                     "service_district": "منطقة الخدمة",
+                     "service_city": "مدينة الخدمة",
                      "pricing": "التسعير",
                      "terms_of_service":"أنا أوافق على",
                      "terms_of_service_link_text":"شروط الخدمة",
@@ -113,6 +119,7 @@
                "kurdish": [
                   {
                      "screen_title":"Tomar kirin",
+                     "signup_as_handyman":"Wek handyman qeyd bikin?",
                      "first_name":"Nav",
                      "last_name":"Paşnav",
                      "email_address":"Email",
@@ -120,6 +127,8 @@
                      "confirm_password":"di pêşîyê da em sipas dikin",
                      "specialized_in": "Specialized In",
                      "service_location": "Cihê Xizmetê",
+                     "service_district": "Navçeya Xizmetê",
+                     "service_city": "City Service",
                      "pricing": "Pricing",
                      "terms_of_service":"Ez qebûl dikim",
                      "terms_of_service_link_text":"Mercên xizmetê",

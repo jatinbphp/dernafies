@@ -15,6 +15,10 @@ export class SignUpPage implements OnInit
   public language_selected = '';
 	public default_language_data: any = [];
   public resultData:any;
+  public signup_as_handyman: boolean = false;
+  public resultDataCategories: any = [];
+  public resultDataDistricts: any = [];
+  public language_key_exchange_array: any = [];
 
   public passwordType: string = 'password';
   public passwordIcon: string = 'eye-off';
@@ -30,9 +34,9 @@ export class SignUpPage implements OnInit
 			Validators.required,
 			Validators.minLength(8)
 		])],
-    //specialized_in: ['', Validators.required],
-    //service_location: ['', Validators.required],
-    //pricing: ['', Validators.required],
+    specialized_in: ['', Validators.required],
+    service_district: ['', Validators.required],
+    pricing: ['', Validators.required],
     },{validator: this.checkIfMatchingPasswords('password', 'cpassword')
   });
 
@@ -60,19 +64,19 @@ export class SignUpPage implements OnInit
     [
       { type: 'required', message: 'Confirm password is required.' },
       { type: 'minlength', message: 'Password must be 8 character long.' },
-    ],/*
+    ],
     'specialized_in': 
     [
       { type: 'required', message: 'Specialized In is required.' }
     ],
-    'service_location': 
+    'service_district': 
     [
-      { type: 'required', message: 'Specialized In is required.' }
+      { type: 'required', message: 'Selecting district is required.' }
     ],
     'pricing': 
     [
       { type: 'required', message: 'Specialized In is required.' }
-    ],*/
+    ],
   };
 
   constructor(public client: ClientService, public fb: FormBuilder, public loadingCtrl: LoadingController, private inAppBrowser: InAppBrowser)
@@ -83,8 +87,58 @@ export class SignUpPage implements OnInit
 		console.log("LANG",this.language_selected);
   }
 
-  ngOnInit()
-  { }
+  async ngOnInit()
+  { 
+    this.language_key_exchange_array['english']='categoryName';
+    this.language_key_exchange_array['arabic']='categoryNameArabic';
+    this.language_key_exchange_array['kurdish']='categoryNameKurdi';
+
+    //LOADER
+		const loading = await this.loadingCtrl.create({
+			spinner: null,
+			//duration: 5000,
+			message: 'Please wait...',
+			translucent: true,
+			cssClass: 'custom-class custom-loading'
+		});
+		await loading.present();
+		//LOADER
+    await this.client.getCategories().then(result => 
+    {	
+      loading.dismiss();//DISMISS LOADER			
+      this.resultDataCategories=result;
+      console.log(this.resultDataCategories);
+            
+    },
+    error => 
+    {
+      loading.dismiss();//DISMISS LOADER
+      console.log();
+    });//CATEGORIES
+
+    //LOADER
+		const loadingDestrict = await this.loadingCtrl.create({
+			spinner: null,
+			//duration: 5000,
+			message: 'Please wait...',
+			translucent: true,
+			cssClass: 'custom-class custom-loading'
+		});
+		await loadingDestrict.present();
+		//LOADER
+    await this.client.getDistricts().then(resultDistricts => 
+    {	
+      loadingDestrict.dismiss();//DISMISS LOADER			
+      this.resultDataDistricts=resultDistricts;
+      console.log(this.resultDataDistricts);
+            
+    },
+    error => 
+    {
+      loadingDestrict.dismiss();//DISMISS LOADER
+      console.log();
+    });//DISTRICTS
+  }
 
   checkIfMatchingPasswords(passwordKey: string, passwordConfirmationKey: string)
 	{
@@ -187,4 +241,11 @@ export class SignUpPage implements OnInit
 	    let target = "_system";
 	    this.inAppBrowser.create(targetUrl,target,options);
 	}
+
+  signupAsHandyman(ev)
+  {
+    this.signup_as_handyman = ev.detail.checked;
+    console.log(this.signup_as_handyman);
+  }
+  
 }

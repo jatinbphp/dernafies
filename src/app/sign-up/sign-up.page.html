@@ -97,16 +97,22 @@
             </div>
             <!--VALIDATION-->          
           </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="1">
+            <ion-checkbox (ionChange)="signupAsHandyman($event)" [(ngModel)]="signup_as_handyman" [ngModelOptions]="{standalone: true}"></ion-checkbox>
+          </ion-col>        
+          <ion-col size="11" class="ion-text-left"><strong>{{default_language_data['translation'][0]['register'][0][language_selected][0]['signup_as_handyman']}}</strong></ion-col>
         </ion-row> 
-        <!--<ion-row>
+        <ion-row *ngIf="signup_as_handyman == true">
           <ion-col size="12">
             <ion-item lines="none" class="ion-no-padding">
               <ion-label position="stacked">{{default_language_data['translation'][0]['register'][0][language_selected][0]['specialized_in']}}</ion-label>
               <ion-select formControlName="specialized_in">
-                <ion-select-option>Information Technology</ion-select-option>  
+                <ion-select-option *ngFor="let categories of resultDataCategories;let s = index;" value="{{categories.id}}">{{categories[language_key_exchange_array[language_selected]]}}</ion-select-option>  
               </ion-select>
             </ion-item>
-            VALIDATION
+            <!--VALIDATION-->
             <div class="validation-errors">
               <ng-container *ngFor="let validation of validation_messages.specialized_in">
                 <div class="error-message"
@@ -116,39 +122,39 @@
                 </div>
               </ng-container>
             </div>
-            VALIDATION
+            <!--VALIDATION-->
           </ion-col>       
-        </ion-row>-->
-        <!--<ion-row>
-          <ion-col size="12">
+        </ion-row>
+        <ion-row>
+          <ion-col size="12" *ngIf="signup_as_handyman == true">
             <ion-item lines="none" class="ion-no-padding">
-              <ion-label position="stacked">{{default_language_data['translation'][0]['register'][0][language_selected][0]['service_location']}}</ion-label>
-              <ion-select formControlName="service_location">
-                <ion-select-option>Caneda</ion-select-option>  
+              <ion-label position="stacked">{{default_language_data['translation'][0]['register'][0][language_selected][0]['service_district']}}</ion-label>
+              <ion-select formControlName="service_district" >
+                <ion-select-option *ngFor="let districts of resultDataDistricts;let s = index;" value="{{districts.id}}">Caneda</ion-select-option>  
               </ion-select>
             </ion-item>
-            VALIDATION
+            <!--VALIDATION-->
             <div class="validation-errors">
-              <ng-container *ngFor="let validation of validation_messages.service_location">
+              <ng-container *ngFor="let validation of validation_messages.service_district">
                 <div class="error-message"
-                  *ngIf="registerForm.get('service_location').hasError(validation.type) && (registerForm.get('service_location').dirty || registerForm.get('service_location').touched)">
+                  *ngIf="registerForm.get('service_district').hasError(validation.type) && (registerForm.get('service_district').dirty || registerForm.get('service_district').touched)">
                   <ion-icon name="information-circle-outline"></ion-icon>
                   <p>{{ validation.message }}</p>
                 </div>
               </ng-container>
             </div>
-            VALIDATION
+            <!--VALIDATION-->
           </ion-col>
-        </ion-row>-->
-        <!--<ion-row>
-          <ion-col size="12">
+        </ion-row>
+        <ion-row>
+          <ion-col size="12" *ngIf="signup_as_handyman == true">
             <ion-item lines="none" class="ion-no-padding">
               <ion-label position="stacked">{{default_language_data['translation'][0]['register'][0][language_selected][0]['pricing']}}</ion-label>
               <ion-select formControlName="pricing">
                 <ion-select-option>1000</ion-select-option>  
               </ion-select>
             </ion-item>
-            VALIDATION
+            <!--VALIDATION-->
             <div class="validation-errors">
               <ng-container *ngFor="let validation of validation_messages.pricing">
                 <div class="error-message"
@@ -158,9 +164,9 @@
                 </div>
               </ng-container>
             </div>
-            VALIDATION
+            <!--VALIDATION-->
           </ion-col>
-        </ion-row>-->              
+        </ion-row>              
       </ion-grid>
       <ion-grid class="terms-options">
         <ion-row>
