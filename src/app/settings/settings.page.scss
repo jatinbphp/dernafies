@@ -34,9 +34,23 @@ ion-content {
         background: #f8f8f8;
         padding: 30px 16px 20px;
         border-radius: 35px 35px 50px 50px;
-        @media (min-height:726px) and (max-height:1000px) {
-            height: 100%;
-        }
+        height: fit-content;
+        height: -webkit-fit-content;
+        height: -moz-fit-content;
+        height: -ms-fit-content;
+        height: -o-fit-content;
+        max-height: fit-content;
+        max-height: -webkit-fit-content;
+        max-height: -moz-fit-content;
+        max-height: -ms-fit-content;
+        max-height: -o-fit-content;
+        min-height: -webkit-fill-available;
+        min-height: -moz-fill-available;
+        min-height: -ms-fill-available;
+        min-height: -o-fill-available;
+        // @media (min-height:726px) and (max-height:1000px) {
+        //     height: 100%;
+        // }
         .account-option {
             width: 100%;
             margin: 0px 0px 40px;
@@ -77,8 +91,8 @@ ion-content {
                         align-items: center;
                         // text-align: var(--text-left);
                         text-transform: capitalize;
-                        font-size: 19px;
-                        line-height: 25px;
+                        font-size: 18px;
+                        line-height: 26px;
                         font-family: var(--font-NeueHaasUnicaPro-Regular);
                         color: var(--Black);
                         padding: 0px 0px 0px 10px;
@@ -86,7 +100,8 @@ ion-content {
                         border-bottom: 1px solid #adadad;
                         @media(max-width:374px) {
                             font-size: 16px;
-                            line-height: 22px;
+                            line-height: 24px;
+                            margin: 0px 0px 8px;
                         }
                     }
                 }
@@ -129,15 +144,15 @@ ion-content {
                         align-items: center;
                         // text-align: var(--text-left);
                         text-transform: capitalize;
-                        font-size: 19px;
-                        line-height: 25px;
+                        font-size: 18px;
+                        line-height: 26px;
                         font-family: var(--font-NeueHaasUnicaPro-Regular);
                         color: var(--Black);
                         padding: 0px 0px 0px;
                         margin: 0px;
                         @media(max-width:374px) {
                             font-size: 16px;
-                            line-height: 22px;
+                            line-height: 24px;
                         }
                     }
                 }
@@ -149,15 +164,15 @@ ion-content {
                         border-bottom: 1px solid #adadad;
                         ion-label {
                             text-transform: capitalize;
-                            font-size: 19px;
-                            line-height: 25px;
+                            font-size: 18px;
+                            line-height: 26px;
                             font-family: var(--font-NeueHaasUnicaPro-Regular);
                             color: var(--Black);
                             padding: 0px 0px 0px;
                             margin: 0px;
                             @media(max-width:374px) {
                                 font-size: 16px;
-                                line-height: 22px;
+                                line-height: 24px;
                             }
                         }
                     }
@@ -166,15 +181,15 @@ ion-content {
                             border-bottom: 1px solid #adadad;
                             ion-label {
                                 text-transform: capitalize;
-                                font-size: 19px;
-                                line-height: 25px;
+                                font-size: 18px;
+                                line-height: 26px;
                                 font-family: var(--font-NeueHaasUnicaPro-Regular);
                                 color: var(--Black);
                                 padding: 0px 0px 0px;
                                 margin: 0px;
                                 @media(max-width:374px) {
                                     font-size: 16px;
-                                    line-height: 22px;
+                                    line-height: 24px;
                                 }
                             }
                         }

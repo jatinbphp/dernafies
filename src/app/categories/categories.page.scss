@@ -29,7 +29,7 @@ ion-content {
     }
 	.main-div {
 		width: 100%;
-		height: 100%;
+		// height: 100%;
 		background: #f8f8f8;
         padding: 24px 10px 14px;
         border-radius: 35px 35px 50px 50px;
@@ -65,17 +65,19 @@ ion-content {
 					h6 {
 						width: 100%;
 					    text-align: center;
-					    font-size: 17px;
-					    line-height: 23px;
+					    font-size: 16px;
+					    line-height: 22px;
 					    font-family: var(--font-NeueHaasUnicaPro-Regular);
 					    color: var(--Black);
 					    text-transform: capitalize;
 					    letter-spacing: normal;
 					    margin: 12px 0px 0px;
 					    padding: 0px;
+					    min-height: 70px;
 		                @media(max-width:374px) {
-		                    font-size: 15px;
-    						line-height: 21px;
+		                    font-size: 14px;
+    						line-height: 20px;
+    						min-height: 40px;
 		                }
 					}
     			}

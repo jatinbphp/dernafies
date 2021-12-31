@@ -47,8 +47,8 @@
     --White: #fff ;
     --Black: #000 ;
     --theme-blue-text: #48a9f5;
-    //--background-gradient: linear-gradient(160deg, #047ff1 0%, #2dcffb 100%);
-    --background-gradient: linear-gradient(120deg, #047ff1 0%, #2dcffb 100%);
+    --background-gradient: linear-gradient(160deg, #047ff1 0%, #2dcffb 100%);
+    //--background-gradient: linear-gradient(120deg, #047ff1 0%, #2dcffb 100%);
     --text-left: left;
     --text-right: right;
     --text-center: center;
@@ -179,22 +179,22 @@ ion-searchbar {
     left: 15px !important;
 }
 
-[dir=rtl] .menu-side-start .menu-icon img {
-    margin-left: auto !important;
-}
-[dir=rtl] .menu-side-start .item {
-    display: flex !important;
-    align-items: center !important;
-}
-[dir=rtl] .menu-side-start .item ion-icon {
-    display: flex !important;
-    order: 1 !important;
-    margin: 0px 0px 0px 12px !important;
-}
-[dir=rtl] .menu-side-start .item .sc-ion-label-md-h,
-[dir=rtl] .menu-side-start .item .sc-ion-label-md-s {
-    text-align: right !important;
-}
+// [dir=rtl] .menu-side-start .menu-icon img {
+//     margin-left: auto !important;
+// }
+// [dir=rtl] .menu-side-start .item {
+//     display: flex !important;
+//     align-items: center !important;
+// }
+// [dir=rtl] .menu-side-start .item ion-icon {
+//     display: flex !important;
+//     order: 1 !important;
+//     margin: 0px 0px 0px 12px !important;
+// }
+// [dir=rtl] .menu-side-start .item .sc-ion-label-md-h,
+// [dir=rtl] .menu-side-start .item .sc-ion-label-md-s {
+//     text-align: right !important;
+// }
 
 .texture-bck-img-1 {
     background-image: url(assets/images/bck-img1.png);
@@ -248,13 +248,13 @@ ion-header {
             width: 100%;
 			// text-align: var(--text-left);
             text-transform: capitalize;
-			font-size: 28px;
-			line-height: 38px;
+			font-size: 24px;
+			line-height: 34px;
 			font-family: var(--font-Poppins-Bold);
 			color: var(--White);
             @media(max-width:374px) {
-                font-size: 22px;
-                line-height: 32px;
+                font-size: 20px;
+                line-height: 30px;
             }
 		}
         ion-button {
@@ -298,7 +298,21 @@ ion-header {
 app-sign-up, app-home, app-categories, app-search, app-settings, 
 app-profile, app-current-requests, app-past-requests, app-review-rating,
 app-handyman-view-all, app-handyman-selected, app-handyman-send-location {
+    // background: var(--background-gradient);
+    background: var(--White);
+}
+app-sign-up:before, app-home:before, app-categories:before, app-search:before, app-settings:before, 
+app-profile:before, app-current-requests:before, app-past-requests:before, app-review-rating:before,
+app-handyman-view-all:before, app-handyman-selected:before, app-handyman-send-location {
+    position: absolute;
+    content: '';
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    width: 100%;
+    height: 50%;
     background: var(--background-gradient);
+    z-index: -1;
 }
 
 app-sign-in {
@@ -360,8 +374,8 @@ ion-menu {
     h2 {
         width: 100%;
         // text-align: left;
-        font-size: 22px;
-        line-height: 24px;
+        font-size: 20px;
+        line-height: 22px;
         font-family: var(--font-Poppins-Bold);
         color: var(--Black);
         text-transform: capitalize;
@@ -369,14 +383,14 @@ ion-menu {
         margin: 0px 0px;
         padding: 0px;
         @media(max-width:374px) {
-            font-size: 18px;
-            line-height: 22px;
+            font-size: 17px;
+            line-height: 21px;
         }
         ion-router-link {
             width: 100%;
             // text-align: left;
-            font-size: 17px;
-            line-height: 19px;
+            font-size: 16px;
+            line-height: 18px;
             font-family: var(--font-NeueHaasUnicaPro-Regular);
             color: var(--Black);
             text-transform: capitalize;
@@ -384,8 +398,8 @@ ion-menu {
             margin: 0px 0px 0px 10px;
             padding: 0px;
             @media(max-width:374px) {
-                font-size: 16px;
-                line-height: 18px;
+                font-size: 15px;
+                line-height: 17px;
             }
         }
     }
@@ -427,8 +441,8 @@ app-home {
                     bottom: 0.2px;
                 }
                 .swiper-pagination-bullet {
-                    width: 4px !important;
-                    height: 2px !important;
+                    width: 0px !important;
+                    height: 0px !important;
                     background-color: transparent !important;
                     opacity: 0 !important;
                     border-radius: 30px !important;
@@ -438,6 +452,7 @@ app-home {
                         width: 100px !important;
                         height: 6px !important;
                         opacity: 1 !important;
+                        margin: 0px auto;
                     }
                 }
             }
