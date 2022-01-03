@@ -162,61 +162,6 @@ ion-input {
   // -webkit-overflow-scrolling: touch;
 }
 
-[dir=rtl] .sc-ion-searchbar-md-h .searchbar-input.sc-ion-searchbar-md {
-    padding-left: 40px !important;
-    padding-right: 18px !important;
-}
-[dir=rtl] .sc-ion-searchbar-md-h .searchbar-search-icon.sc-ion-searchbar-md,
-[dir=rtl] .sc-ion-searchbar-ios-h .searchbar-search-icon.sc-ion-searchbar-ios {
-    left:  16px!important;
-    right: unset !important;
-}
-
-[dir=rtl] .sc-ion-input-md-h,
-[dir=rtl] .sc-ion-input-md-s {
-    text-align: right !important;
-    --padding-start: 0px;
-    --padding-end: 0px;
-}
-
-[dir=rtl] app-sign-in.ion-page form ion-icon[aria-label="eye off"],
-[dir=rtl] app-sign-up.ion-page form ion-icon[aria-label="eye off"],
-[dir=rtl] app-sign-up.ion-page form ion-icon[aria-label="eye"],
-[dir=rtl] app-sign-in.ion-page form ion-icon[aria-label="eye"] {
-    right: unset !important;
-    left: 15px !important;
-}
-
-[dir=rtl] .review-box-btns ion-icon {
-    position: unset !important;
-    margin-left: 3px;
-}
-
-@media(max-width:362px) {
-    [dir=rtl] .requ-box-btns ion-badge,
-    [dir=rtl] .requ-box-btns ion-button {
-        margin-right: 0px !important;
-        margin-left: 6px !important;
-    }
-}
-
-// [dir=rtl] .menu-side-start .menu-icon img {
-//     margin-left: auto !important;
-// }
-// [dir=rtl] .menu-side-start .item {
-//     display: flex !important;
-//     align-items: center !important;
-// }
-// [dir=rtl] .menu-side-start .item ion-icon {
-//     display: flex !important;
-//     order: 1 !important;
-//     margin: 0px 0px 0px 12px !important;
-// }
-// [dir=rtl] .menu-side-start .item .sc-ion-label-md-h,
-// [dir=rtl] .menu-side-start .item .sc-ion-label-md-s {
-//     text-align: right !important;
-// }
-
 .texture-bck-img-1 {
     background-image: url(assets/images/bck-img1.png);
     --background: url(assets/images/bck-img1.png) 100% 100%/100% 100% no-repeat/no-repeat !important;
@@ -240,13 +185,8 @@ ion-header {
     padding: 0px;
     margin: 0px;
 	ion-toolbar {
-        // --min-height: fit-content;
-        --min-height: 67px;
-        --min-height: calc(env(safe-area-inset-top) + 67px);
-        padding-top: 0px !important;
-        padding-bottom: 0px !important;
-        --padding-top: 0;
-        --padding-bottom: 0;
+        --min-height: fit-content;
+        padding: 0px 16px;
         --padding-start: 0;
         --padding-end: 0;
         --border: 0px;
@@ -533,3 +473,104 @@ app-handyman-view-all {
         }
     }
 }
+
+// header-overlap-issue-fix-style-start
+ion-header ion-toolbar {
+    --min-height: fit-content;
+    --padding-top: calc(env(safe-area-inset-top) + 20px);
+    --padding-bottom: 20px;
+}
+ion-menu ion-content {
+    --padding-top: calc(env(safe-area-inset-top) + 20px);
+    --padding-bottom: 0px;
+}
+ion-menu ion-content ion-list ion-item.menu-icon {
+    padding-top: 0px !important;
+}
+ion-header ion-toolbar ion-title {
+    height: fit-content !important;
+    max-height: fit-content !important;
+    min-height: fit-content !important;
+    position: unset !important;
+}
+// header-overlap-issue-fix-style-end
+
+// iphone-issue-fixed-style-start
+.ios app-home ion-header.header-ios ion-toolbar,
+.ios app-settings ion-header.header-ios ion-toolbar {
+    padding: 0px !important;
+}
+.ios ion-searchbar.ios .searchbar-input-container ion-icon.searchbar-search-icon {
+    top: 0px !important;
+}
+.ios app-past-requests .main-div .filter-main-sec .filter-img-sec img {
+    --ion-statusbar-padding: 20px;
+}
+.ios app-handyman-send-location ion-content .main-div {
+    @media (min-height:726px) and (max-height:1000px) {
+        min-height: 100%;
+    }
+}
+.ios app-handyman-send-location ion-content .main-div .loc-con-box {
+    bottom: 80px;
+}
+// iphone-issue-fixed-style-end
+
+// right-to-left-content-issue-fixed-style-start
+[dir=rtl] .sc-ion-searchbar-md-h .searchbar-input.sc-ion-searchbar-md {
+    padding-left: 40px !important;
+    padding-right: 18px !important;
+}
+[dir=rtl] .sc-ion-searchbar-md-h .searchbar-search-icon.sc-ion-searchbar-md,
+[dir=rtl] .sc-ion-searchbar-ios-h .searchbar-search-icon.sc-ion-searchbar-ios {
+    left:  16px!important;
+    right: unset !important;
+}
+[dir=rtl] .sc-ion-input-md-h,
+[dir=rtl] .sc-ion-input-md-s {
+    text-align: right !important;
+    --padding-start: 0px;
+    --padding-end: 0px;
+}
+[dir=rtl] app-sign-in.ion-page form ion-icon[aria-label="eye off"],
+[dir=rtl] app-sign-up.ion-page form ion-icon[aria-label="eye off"],
+[dir=rtl] app-sign-up.ion-page form ion-icon[aria-label="eye"],
+[dir=rtl] app-sign-in.ion-page form ion-icon[aria-label="eye"] {
+    right: unset !important;
+    left: 15px !important;
+}
+[dir=rtl] .review-box-btns ion-icon {
+    position: unset !important;
+    margin-left: 3px;
+}
+@media(max-width:362px) {
+    [dir=rtl] .requ-box-btns ion-badge,
+    [dir=rtl] .requ-box-btns ion-button {
+        margin-right: 0px !important;
+        margin-left: 6px !important;
+    }
+}
+// [dir=rtl] .menu-side-start .menu-icon img {
+//     margin-left: auto !important;
+// }
+// [dir=rtl] .menu-side-start .item {
+//     display: flex !important;
+//     align-items: center !important;
+// }
+// [dir=rtl] .menu-side-start .item ion-icon {
+//     display: flex !important;
+//     order: 1 !important;
+//     margin: 0px 0px 0px 12px !important;
+// }
+// [dir=rtl] .menu-side-start .item .sc-ion-label-md-h,
+// [dir=rtl] .menu-side-start .item .sc-ion-label-md-s {
+//     text-align: right !important;
+// }
+[dir=rtl] .category-box-list .category-box-item .category-box-inner h6 {
+    min-height: fit-content !important;
+    min-height: -webkit-fit-content !important;
+    min-height: -moz-fit-content !important;
+    min-height: -ms-fit-content !important;
+    min-height: -o-fit-content !important;
+}
+// right-to-left-content-issue-fixed-style-end

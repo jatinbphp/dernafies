@@ -23,10 +23,14 @@ ion-menu {
 						// width: -ms-fit-content;
 						// width: -o-fit-content;
 						max-height: 100%;
-						height: 18px;
-						width: 30px;
+						height: 22px;
+						width: 45px;
 						object-fit: contain;
 						object-position: center;
+						@media(max-width:374px) {
+	                        height: 18px;
+							width: 37px;
+	                    }
 					}
 				}
 			}

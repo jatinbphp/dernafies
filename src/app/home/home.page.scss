@@ -1,9 +1,6 @@
 ion-header {
 	ion-toolbar {
-		// --background: var(--background-gradient);
         --background: transparent;
-		padding: 40px 16px 16px;
-        padding: 16px 16px 16px;
 	}
 }
 ion-content {
@@ -29,7 +26,6 @@ ion-content {
         box-shadow: none !important;
         h2 {
             width: 100%;
-            // text-align: var(--text-left);
             font-size: 20px;
             line-height: 30px;
             font-family: var(--font-Poppins-Regular);
@@ -45,7 +41,6 @@ ion-content {
         }
         h1 {
             width: 100%;
-            // text-align: var(--text-left);
             font-size: 25px;
             line-height: 35px;
             font-family: var(--font-Poppins-Bold);
@@ -62,14 +57,12 @@ ion-content {
     }
     .main-div {
         width: 100%;
-        // height: 100%;
         background: #f8f8f8;
         padding: 30px 16px 35px;
         border-radius: 35px 35px 50px 50px;
         .rsr-sec {
             h2 {
                 width: 100%;
-                // text-align: var(--text-left);
                 font-size: 19px;
                 line-height: 21px;
                 font-family: var(--font-Poppins-Bold);
@@ -132,7 +125,6 @@ ion-content {
                             padding: 0px 8px;
                             h3 {
                                 width: 100%;
-                                // text-align: var(--text-left);
                                 font-size: 19px;
                                 line-height: 27px;
                                 font-family: var(--font-NeueHaasUnicaPro-Bold);
@@ -148,7 +140,6 @@ ion-content {
                             }
                             p {
                                 width: 100%;
-                                // text-align: var(--text-left);
                                 font-size: 15px;
                                 line-height: 21px;
                                 font-family: var(--font-NeueHaasUnicaPro-Regular);
@@ -179,7 +170,6 @@ ion-content {
                                         max-width: calc(100% - 12%);
                                         h5 {
                                             width: 100%;
-                                            // text-align: var(--text-left);
                                             font-size: 15px;
                                             line-height: 21px;
                                             font-family: var(--font-NeueHaasUnicaPro-Regular);
@@ -368,7 +358,6 @@ ion-content {
                             }
                             .title {
                                 width: 100%;
-                                // text-align: var(--text-left);
                                 font-size: 20px;
                                 line-height: 30px;
                                 font-family: var(--font-NeueHaasUnicaPro-Bold);
@@ -384,7 +373,6 @@ ion-content {
                             }
                             .sub-title {
                                 width: 100%;
-                                // text-align: var(--text-left);
                                 font-size: 17px;
                                 line-height: 25px;
                                 font-family: var(--font-NeueHaasUnicaPro-Regular);
