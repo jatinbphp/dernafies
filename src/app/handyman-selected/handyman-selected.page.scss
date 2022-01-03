@@ -89,8 +89,8 @@ ion-content {
                             p {
                                 width: 100%;
                                 text-align: var(--text-center);
-                                font-size: 19px;
-                                line-height: 27px;
+                                font-size: 18px;
+                                line-height: 26px;
                                 font-family: var(--font-NeueHaasUnicaPro-Regular);
                                 color: var(--Black);
                                 text-transform: capitalize;
@@ -101,8 +101,8 @@ ion-content {
                                 justify-content: center;
                                 align-items: center;
                                 @media(max-width:374px) {
-                                    font-size: 17px;
-                                    line-height: 25px;
+                                    font-size: 16px;
+                                    line-height: 24px;
                                 }
                                 ion-icon {
                                     color: #8bcd77;
@@ -117,34 +117,36 @@ ion-content {
                         .title {
                             width: 100%;
                             text-align: var(--text-center);
-                            font-size: 22px;
-                            line-height: 32px;
+                            font-size: 20px;
+                            line-height: 30px;
                             font-family: var(--font-NeueHaasUnicaPro-Bold);
                             color: var(--Black);
                             text-transform: capitalize;
                             letter-spacing: normal;
                             margin: 0px 0px 4px;
                             padding: 0px;
-                            @media(max-width:374px) {
-                                font-size: 20px;
-                                line-height: 30px;
+                            @media(max-width:399px) {
+                                font-size: 17px;
+                                line-height: 25px;
                             }
+                            @media(max-width:374px) {}
                         }
                         .sub-title {
                             width: 100%;
                             text-align: var(--text-center);
-                            font-size: 19px;
-                            line-height: 27px;
+                            font-size: 17px;
+                            line-height: 25px;
                             font-family: var(--font-NeueHaasUnicaPro-Regular);
                             color: var(--Black);
                             text-transform: capitalize;
                             letter-spacing: normal;
                             margin: 0px 0px 12px;
                             padding: 0px;
-                            @media(max-width:374px) {
-                                font-size: 17px;
-                                line-height: 25px;
+                            @media(max-width:399px) {
+                                font-size: 14px;
+                                line-height: 22px;
                             }
+                            @media(max-width:374px) {}
                         }
                         .rating-stars {
                             width: 100%;
@@ -163,24 +165,25 @@ ion-content {
                         .hr-txt {
                             width: 100%;
                             text-align: var(--text-center);
-                            font-size: 20px;
-                            line-height: 26px;
+                            font-size: 18px;
+                            line-height: 24px;
                             font-family: var(--font-Poppins-Medium);
                             color: #d20808;
                             text-transform: capitalize;
                             letter-spacing: normal;
                             margin: 0px 0px 10px;
                             padding: 0px;
-                            @media(max-width:374px) {
-                                font-size: 18px;
-                                line-height: 24px;
-                            }
-                            span {
+                            @media(max-width:399px) {
                                 font-size: 16px;
+                                line-height: 22px;
+                            }
+                            @media(max-width:374px) {}
+                            span {
+                                font-size: 14px;
                                 line-height: normal;
                                 margin: 0px 1px;
                                 @media(max-width:374px) {
-                                    font-size: 13px;
+                                    font-size: 12px;
                                     line-height: normal;
                                 }
                             }

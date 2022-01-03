@@ -73,6 +73,8 @@ ion-content {
         					font-size: 18px;
         					color: var(--Black);
         					font-family: var(--font-NeueHaasUnicaPro-Bold);
+                            --padding-top: 0;
+                            --padding-bottom: 0;
                             @media(max-width:374px) {
                                 font-size: 15px;
                                 height: 44px;

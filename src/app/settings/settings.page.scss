@@ -6,10 +6,11 @@ ion-header {
         --border-width: 0px;
         --opacity: 1;
         --opacity-scale: unset;
+        ion-buttons {}
         ion-title {
-            padding: 0px 80px;
-            padding: 0px;
+            padding: 0px 20px;
         }
+        ion-button {}
 	}
 }
 ion-content {

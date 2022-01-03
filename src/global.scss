@@ -157,11 +157,17 @@ ion-searchbar {
     display: none !important;
 }
 
+ion-input {
+  -webkit-transform: translateZ(0) !important;
+  // -webkit-overflow-scrolling: touch;
+}
+
 [dir=rtl] .sc-ion-searchbar-md-h .searchbar-input.sc-ion-searchbar-md {
     padding-left: 40px !important;
     padding-right: 18px !important;
 }
-[dir=rtl] .sc-ion-searchbar-md-h .searchbar-search-icon.sc-ion-searchbar-md {
+[dir=rtl] .sc-ion-searchbar-md-h .searchbar-search-icon.sc-ion-searchbar-md,
+[dir=rtl] .sc-ion-searchbar-ios-h .searchbar-search-icon.sc-ion-searchbar-ios {
     left:  16px!important;
     right: unset !important;
 }
@@ -174,9 +180,24 @@ ion-searchbar {
 }
 
 [dir=rtl] app-sign-in.ion-page form ion-icon[aria-label="eye off"],
+[dir=rtl] app-sign-up.ion-page form ion-icon[aria-label="eye off"],
+[dir=rtl] app-sign-up.ion-page form ion-icon[aria-label="eye"],
 [dir=rtl] app-sign-in.ion-page form ion-icon[aria-label="eye"] {
     right: unset !important;
     left: 15px !important;
+}
+
+[dir=rtl] .review-box-btns ion-icon {
+    position: unset !important;
+    margin-left: 3px;
+}
+
+@media(max-width:362px) {
+    [dir=rtl] .requ-box-btns ion-badge,
+    [dir=rtl] .requ-box-btns ion-button {
+        margin-right: 0px !important;
+        margin-left: 6px !important;
+    }
 }
 
 // [dir=rtl] .menu-side-start .menu-icon img {
@@ -215,8 +236,21 @@ ion-searchbar {
 }
 
 ion-header {
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
 	ion-toolbar {
-        --min-height: fit-content;
+        // --min-height: fit-content;
+        --min-height: 67px;
+        --min-height: calc(env(safe-area-inset-top) + 67px);
+        padding-top: 0px !important;
+        padding-bottom: 0px !important;
+        --padding-top: 0;
+        --padding-bottom: 0;
+        --padding-start: 0;
+        --padding-end: 0;
+        --border: 0px;
+        margin: 0px;
 		ion-buttons {
             margin: 0px;
 			ion-menu-button {
@@ -303,7 +337,7 @@ app-handyman-view-all, app-handyman-selected, app-handyman-send-location {
 }
 app-sign-up:before, app-home:before, app-categories:before, app-search:before, app-settings:before, 
 app-profile:before, app-current-requests:before, app-past-requests:before, app-review-rating:before,
-app-handyman-view-all:before, app-handyman-selected:before, app-handyman-send-location {
+app-handyman-view-all:before, app-handyman-selected:before, app-handyman-send-location:before {
     position: absolute;
     content: '';
     top: 0px;

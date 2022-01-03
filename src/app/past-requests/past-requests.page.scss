@@ -152,7 +152,7 @@ ion-content {
                     object-position: center;
                     filter: invert(100%) sepia(1%) saturate(2176%) hue-rotate(173deg) brightness(90%) contrast(92%);
                     margin: 0px 0px 0px 10px;
-                    &.active {
+                    &.active, &.grid-icon1 {
                         filter: invert(0%) sepia(18%) saturate(7497%) hue-rotate(278deg) brightness(96%) contrast(103%);
                     }
                 }
@@ -316,6 +316,8 @@ ion-content {
                             @media(max-width:362px) {
                                 max-width: 100%;
                                 margin: 0px 7px 0px 0px;
+                                max-width: 129px;
+                                min-width: 129px;
                             }
                         }
                         ion-button {
@@ -351,6 +353,16 @@ ion-content {
                                 --padding-start: 14px;
                                 --padding-end: 14px;
                             }
+                            @media(max-width:362px) {
+                                max-width: 129px;
+                                min-width: 129px;
+                                margin: 0px 7px 0px 0px;
+                                --padding-start: 10px;
+                                --padding-end: 10px;
+                                font-size: 13.5px;
+                                height: 35px;
+                                line-height: 35px;
+                            }
                         }
                     }
                 }
@@ -381,6 +393,11 @@ ion-content {
                         }
                         .requ-box-txt {
                             width: 100%;
+                            height: fit-content;
+                            height: -webkit-fit-content;
+                            height: -moz-fit-content;
+                            height: -ms-fit-content;
+                            height: -o-fit-content;
                             padding: 6px 0px 10px;
                             .title {
                                 text-align: var(--text-center);
@@ -395,8 +412,20 @@ ion-content {
                         }
                         .requ-box-btns {
                             width: 100%;
-                            ion-badge {}
-                            ion-button {}
+                            ion-badge {
+                                @media(max-width:362px) {
+                                    margin: 0px;
+                                    max-width: 100%;
+                                    min-width: 100%;
+                                }
+                            }
+                            ion-button {
+                                @media(max-width:362px) {
+                                    margin: 0px;
+                                    max-width: 100%;
+                                    min-width: 100%;
+                                }
+                            }
                         }
                     }
                 }

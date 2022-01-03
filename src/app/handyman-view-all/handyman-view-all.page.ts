@@ -46,4 +46,8 @@ export class HandymanViewAllPage implements OnInit
   {
     this.client.router.navigate(['/tabs/home']);
   }
+  showHandyMan()
+  {
+    this.client.router.navigate(['/tabs/handyman-selected']);
+  }
 }

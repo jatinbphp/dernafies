@@ -39,7 +39,7 @@
 						</div>
 					</div>
 					<div class="review-box-btns">
-						<ion-button color="success">{{default_language_data['translation'][0]['handyman-selected'][0][language_selected][0]['select_handy_man_button']}}</ion-button>
+						<ion-button color="success" (click)="showLocation()">{{default_language_data['translation'][0]['handyman-selected'][0][language_selected][0]['select_handy_man_button']}}</ion-button>
 					</div>
 				</div>
 			</ion-col>
@@ -70,7 +70,7 @@
 						</div>
 					</div>
 					<div class="review-box-btns">
-						<ion-button color="secondary"><ion-icon name="location-sharp"></ion-icon>{{default_language_data['translation'][0]['handyman-selected'][0][language_selected][0]['send_location_pin_button']}}</ion-button>
+						<ion-button color="secondary" (click)="showLocation()"><ion-icon name="location-sharp"></ion-icon>{{default_language_data['translation'][0]['handyman-selected'][0][language_selected][0]['send_location_pin_button']}}</ion-button>
 					</div>
 				</div>
 			</ion-col>

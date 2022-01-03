@@ -39,5 +39,9 @@ export class HandymanSelectedPage implements OnInit
   {
     this.client.router.navigate(['/tabs/handyman-view-all']);
   }
+  showLocation()
+  {
+    this.client.router.navigate(['/tabs/handyman-send-location']);
+  }
 
 }

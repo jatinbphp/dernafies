@@ -102,7 +102,7 @@
           <ion-col size="1">
             <ion-checkbox (ionChange)="signupAsHandyman($event)" [(ngModel)]="signup_as_handyman" [ngModelOptions]="{standalone: true}"></ion-checkbox>
           </ion-col>        
-          <ion-col size="11" class="ion-text-left"><strong>{{default_language_data['translation'][0]['register'][0][language_selected][0]['signup_as_handyman']}}</strong></ion-col>
+          <ion-col size="11" class="mlr-10"><strong>{{default_language_data['translation'][0]['register'][0][language_selected][0]['signup_as_handyman']}}</strong></ion-col>
         </ion-row> 
         <ion-row *ngIf="signup_as_handyman == true">
           <ion-col size="12">
@@ -173,7 +173,7 @@
           <ion-col size="1">
             <ion-checkbox (ionChange)="acceptTerms($event)" [(ngModel)]="accept_tems" [ngModelOptions]="{standalone: true}"></ion-checkbox>
           </ion-col>        
-          <ion-col size="11" class="ion-text-left">{{default_language_data['translation'][0]['register'][0][language_selected][0]['terms_of_service']}} <strong (click)="openActionRequested('https://dernafies.ecnetsolutions.dev/terms-and-conditions')">{{default_language_data['translation'][0]['register'][0][language_selected][0]['terms_of_service_link_text']}}</strong></ion-col>
+          <ion-col size="11">{{default_language_data['translation'][0]['register'][0][language_selected][0]['terms_of_service']}} <strong (click)="openActionRequested('https://dernafies.ecnetsolutions.dev/terms-and-conditions')">{{default_language_data['translation'][0]['register'][0][language_selected][0]['terms_of_service_link_text']}}</strong></ion-col>
         </ion-row>
       </ion-grid>
       <ion-item lines="none">

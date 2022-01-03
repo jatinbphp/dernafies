@@ -98,8 +98,8 @@ ion-content {
                                 .name {
                                     width: 98%;
                                     text-align: var(--text-center);
-                                    font-size: 18px;
-                                    line-height: 26px;
+                                    font-size: 17px;
+                                    line-height: 25px;
                                     font-family: var(--font-NeueHaasUnicaPro-Bold);
                                     color: var(--White);
                                     text-transform: capitalize;
@@ -107,15 +107,15 @@ ion-content {
                                     margin: 0px auto 4px;
                                     padding: 0px;
                                     @media(max-width:374px) {
-                                        font-size: 17px;
-                                        line-height: 25px;
+                                        font-size: 16px;
+                                        line-height: 24px;
                                     }
                                 }
                                 .experience {
-                                    width: 98%;
+                                    width: 96%;
                                     text-align: var(--text-center);
-                                    font-size: 14px;
-                                    line-height: 17px;
+                                    font-size: 13.5px;
+                                    line-height: 16px;
                                     font-family: var(--font-NeueHaasUnicaPro-Regular);
                                     color: var(--White);
                                     text-transform: capitalize;
@@ -123,15 +123,15 @@ ion-content {
                                     margin: 0px auto 12px;
                                     padding: 0px;
                                     @media(max-width:374px) {
-                                        font-size: 13px;
-                                        line-height: 16px;
+                                        font-size: 12px;
+                                        line-height: 15px;
                                     }
                                 }
                                 .hr-txt {
                                     width: 100%;
                                     text-align: var(--text-center);
-                                    font-size: 18px;
-                                    line-height: 26px;
+                                    font-size: 17px;
+                                    line-height: 25px;
                                     font-family: var(--font-Poppins-Medium);
                                     color: var(--White);
                                     text-transform: capitalize;
@@ -140,15 +140,15 @@ ion-content {
                                     padding: 6px 0px 6px;
                                     border-top: 1px solid #5cc9e5;
                                     @media(max-width:374px) {
-                                        font-size: 17px;
-                                        line-height: 25px;
+                                        font-size: 16px;
+                                        line-height: 24px;
                                     }
                                     span {
-                                        font-size: 13px;
+                                        font-size: 12px;
                                         line-height: normal;
                                         margin: 0px 1px;
                                         @media(max-width:374px) {
-                                            font-size: 13px;
+                                            font-size: 12px;
                                             line-height: normal;
                                         }
                                     }

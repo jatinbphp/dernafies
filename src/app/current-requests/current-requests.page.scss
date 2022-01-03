@@ -235,14 +235,21 @@ ion-content {
                                 @media(max-width:399px) {
                                     height: 38px;
                                     line-height: 38px;
-                                    font-size: 15px;
+                                    font-size: 14px;
                                     min-width: 130px;
+                                    min-width: 100%;
                                     --padding-start: 14px;
                                     --padding-end: 14px;
                                 }
                                 @media(max-width:362px) {
-                                    max-width: 150px;
+                                    max-width: 129px;
+                                    min-width: 129px;
                                     margin: 0px 7px 0px 0px;
+                                    --padding-start: 10px;
+                                    --padding-end: 10px;
+                                    font-size: 13.5px;
+                                    height: 35px;
+                                    line-height: 35px;
                                 }
                             }
                         }
