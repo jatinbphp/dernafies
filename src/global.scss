@@ -514,6 +514,13 @@ ion-header ion-toolbar ion-title {
 .ios app-handyman-send-location ion-content .main-div .loc-con-box {
     bottom: 80px;
 }
+.ios .header-ios ion-buttons ion-menu-button {
+    transform: translateX(-8px) !important;
+    -webkit-transform: translateX(-8px) !important;
+    -moz-transform: translateX(-8px) !important;
+    -ms-transform: translateX(-8px) !important;
+    -o-transform: translateX(-8px) !important;
+}
 // iphone-issue-fixed-style-end
 
 // right-to-left-content-issue-fixed-style-start
@@ -572,5 +579,15 @@ ion-header ion-toolbar ion-title {
     min-height: -moz-fit-content !important;
     min-height: -ms-fit-content !important;
     min-height: -o-fit-content !important;
+}
+[dir=rtl] .header-ios ion-buttons ion-menu-button {
+    transform: translateX(8px) !important;
+    -webkit-transform: translateX(8px) !important;
+    -moz-transform: translateX(8px) !important;
+    -ms-transform: translateX(8px) !important;
+    -o-transform: translateX(8px) !important;
+}
+[dir=rtl] .filter-img-sec .filter-img {
+    margin: 0px 10px 0px 0px !important;
 }
 // right-to-left-content-issue-fixed-style-end

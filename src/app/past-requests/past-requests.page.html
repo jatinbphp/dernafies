@@ -17,8 +17,12 @@
 	    		<p>Filter</p>
 	    	</div>
 	    	<div class="filter-img-sec">
-				<img class="grid-icon1" src="../assets/images/grid-icon1.png" (click)="showGridView()">
-	    		<img class="list-icon1" src="../assets/images/list-icon1.png" (click)="showListView()">
+                <div class="filter-img">
+                    <img class="grid-icon1" src="../assets/images/grid-icon1.png" (click)="showGridView()">
+                </div>
+                <div class="filter-img">
+                    <img class="list-icon1" src="../assets/images/list-icon1.png" (click)="showListView()">
+                </div>
 	    	</div>
 		</div>
         <ion-row class="requ-box-list" [ngClass]="{'grid-view' : show_in_view == 'grid'}">

@@ -265,6 +265,11 @@ ion-content {
                                 @media(max-width:399px) {
                                     left: 20px;
                                 }
+                                @media(max-width:345px) {
+                                    left: 0px;
+                                    position: unset;
+                                    margin: 0px 3px;
+                                }
                             }
                             @media(max-width:399px) {
                                 height: 47px;
@@ -273,6 +278,13 @@ ion-content {
                                 min-width: 130px;
                                 --padding-start: 14px;
                                 --padding-end: 14px;
+                            }
+                            @media(max-width:345px) {
+                                height: 46px;
+                                line-height: 46px;
+                                font-size: 17px;
+                                --padding-start: 13px;
+                                --padding-end: 13px;
                             }
                         }
                     }
