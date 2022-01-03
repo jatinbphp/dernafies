@@ -47,6 +47,12 @@ export class SignInPage implements OnInit
 	ngOnInit()
 	{ }
 
+	ionViewWillEnter()
+	{
+		this.default_language_data = this.client.default_language_data;
+		this.language_selected = this.client.language_selected;
+	}
+	
   	hideShowPassword()
 	{
 		this.passwordType = this.passwordType === 'text' ? 'password' : 'text';
