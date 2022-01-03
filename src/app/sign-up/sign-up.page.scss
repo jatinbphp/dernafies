@@ -25,7 +25,8 @@ ion-content {
         				position: relative;
                         &.mlr-10 {
                             strong {
-                                margin: 0px 10px;
+                                /*margin: 0px 10px;*/
+								line-height: 30px;
                             }
                         }
         				ion-label {
@@ -102,13 +103,33 @@ ion-content {
                                 }
         					}
         				}
+						ion-checkbox {
+							/*margin: 0px 10px;*/
+							--border-radius: 50%;
+							--border-width: 1px;
+							--border-style: solid;
+							--border-color: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.23);
+							--background: var(--ion-item-background, var(--ion-background-color, #fff));
+							--size: 26px;
+							width: var(--size);
+							height: var(--size);
+							--background-checked: #34b120;
+							--border-color-checked: #34b120;
+							--checkmark-color: var(--ion-color-primary-contrast, #fff);
+							--checkmark-width: 2px;
+							@media(max-width:374px) {
+								--size: 18px;
+								width: var(--size);
+								height: var(--size);
+							}
+						}
                         .validation-errors {
                             .error-message {
                                 color: red;
                                 display: flex;
                                 flex-wrap: wrap;
                                 align-items: center;
-                                margin: 10px 0px 0px;
+                                /*margin: 10px 0px 0px;*/
                                 ion-icon {
                                     position: unset;
                                     color: red;

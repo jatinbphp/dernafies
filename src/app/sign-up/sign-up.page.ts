@@ -18,7 +18,10 @@ export class SignUpPage implements OnInit
   public signup_as_handyman: boolean = false;
   public resultDataCategories: any = [];
   public resultDataDistricts: any = [];
+  public resultDataCities: any = [];
   public language_key_exchange_array: any = [];
+  public language_key_exchange_district_array: any = [];
+  public language_key_exchange_city_array: any = [];
 
   public passwordType: string = 'password';
   public passwordIcon: string = 'eye-off';
@@ -36,7 +39,7 @@ export class SignUpPage implements OnInit
 		])],
     specialized_in: ['', Validators.required],
     service_district: ['', Validators.required],
-    pricing: ['', Validators.required],
+    service_city: ['', Validators.required],
     },{validator: this.checkIfMatchingPasswords('password', 'cpassword')
   });
 
@@ -73,10 +76,10 @@ export class SignUpPage implements OnInit
     [
       { type: 'required', message: 'Selecting district is required.' }
     ],
-    'pricing': 
+    'service_city': 
     [
-      { type: 'required', message: 'Specialized In is required.' }
-    ],
+      { type: 'required', message: 'Selecting city is required.' }
+    ]
   };
 
   constructor(public client: ClientService, public fb: FormBuilder, public loadingCtrl: LoadingController, private inAppBrowser: InAppBrowser)
@@ -92,6 +95,16 @@ export class SignUpPage implements OnInit
     this.language_key_exchange_array['english']='categoryName';
     this.language_key_exchange_array['arabic']='categoryNameArabic';
     this.language_key_exchange_array['kurdish']='categoryNameKurdi';
+
+    this.language_key_exchange_district_array['english']='districtName';
+    this.language_key_exchange_district_array['arabic']='districtNameArabic';
+    this.language_key_exchange_district_array['kurdish']='districtNameKurdi';
+
+    this.language_key_exchange_city_array['english']='cityName';
+    this.language_key_exchange_city_array['arabic']='cityNameArabic';
+    this.language_key_exchange_city_array['kurdish']='cityNameKurdi';
+
+    
 
     //LOADER
 		const loading = await this.loadingCtrl.create({
@@ -245,7 +258,44 @@ export class SignUpPage implements OnInit
   signupAsHandyman(ev)
   {
     this.signup_as_handyman = ev.detail.checked;
+    if(this.signup_as_handyman == false)
+    {
+      this.registerForm.controls['specialized_in'].setValue("");
+      this.registerForm.controls['service_district'].setValue("");
+      this.registerForm.controls['service_city'].setValue("");
+    }
     console.log(this.signup_as_handyman);
   }
   
+  async showCitiesBasedOnDistrict(ev)
+  {
+    let selectedDistrict = ev.detail.value;
+    if(selectedDistrict!='' && selectedDistrict!=null && selectedDistrict!=undefined && selectedDistrict!='null' && selectedDistrict!='undefined')
+    {
+      //LOADER
+      const loadingDestrict = await this.loadingCtrl.create({
+        spinner: null,
+        //duration: 5000,
+        message: 'Please wait...',
+        translucent: true,
+        cssClass: 'custom-class custom-loading'
+      });
+      await loadingDestrict.present();
+      //LOADER
+      let data = {
+        districtID: selectedDistrict
+      }
+      await this.client.showCitiesBasedOnDistrict(data).then(resultDistricts => 
+      {	
+        loadingDestrict.dismiss();//DISMISS LOADER			
+        this.resultDataCities=resultDistricts;
+        console.log(this.resultDataCities);            
+      },
+      error => 
+      {
+        loadingDestrict.dismiss();//DISMISS LOADER
+        console.log();
+      });//DISTRICTS
+    }
+  }
 }
