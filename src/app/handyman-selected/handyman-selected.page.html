@@ -13,13 +13,13 @@
 <ion-content>
 	<div class="main-div">
 		<ion-row class="review-boxes-list">
-			<ion-col class="review-box-item">
+			<ion-col class="review-box-item" *ngIf="is_handy_man_selected == false">
 				<div class="review-box-inner">
 					<div class="review-box-img">
 						<img src="../assets/images/person-img1.png">
 					</div>
 					<div class="review-box-txt">
-						<h2 class="title">David Cooper</h2>
+						<h2 class="title">{{resultDataHandyMan.firstName}} {{resultDataHandyMan.lastName}}</h2>
 						<h3 class="sub-title">8 {{default_language_data['translation'][0]['handyman-selected'][0][language_selected][0]['text_experience']}}</h3>
 						<p class="rating-stars"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon></p>
 						<h4 class="hr-txt">$20<span>/</span>Hr</h4>
@@ -39,18 +39,18 @@
 						</div>
 					</div>
 					<div class="review-box-btns">
-						<ion-button color="success" (click)="showLocation()">{{default_language_data['translation'][0]['handyman-selected'][0][language_selected][0]['select_handy_man_button']}}</ion-button>
+						<ion-button color="success" (click)="selectHandyMan()">{{default_language_data['translation'][0]['handyman-selected'][0][language_selected][0]['select_handy_man_button']}}</ion-button>
 					</div>
 				</div>
 			</ion-col>
-			<ion-col class="review-box-item">
+			<ion-col class="review-box-item" *ngIf="is_handy_man_selected == true">
 				<div class="review-box-inner">
 					<div class="review-box-img">
 						<img src="../assets/images/person-img1.png">
 						<ion-icon name="checkmark-circle"></ion-icon>
 					</div>
 					<div class="review-box-txt">
-						<h2 class="title">David Cooper</h2>
+						<h2 class="title">{{resultDataHandyMan.firstName}} {{resultDataHandyMan.lastName}}</h2>
 						<h3 class="sub-title">8 {{default_language_data['translation'][0]['handyman-selected'][0][language_selected][0]['text_experience']}}</h3>
 						<p class="rating-stars"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon></p>
 						<h4 class="hr-txt">$20<span>/</span>Hr</h4>

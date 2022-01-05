@@ -122,7 +122,7 @@ export class ClientService
 		let headers = this.getHeaderOptions();
 		return new Promise((resolve, reject) => 
 		{
-			let dataToPost = new HttpParams().set("firstName",data.first_name).set("lastName", data.last_name).set("email",data.email).set("pwd", data.password);
+			let dataToPost = new HttpParams().set("userTypeID",data.user_type).set("firstName",data.first_name).set("lastName", data.last_name).set("email",data.email).set("pwd", data.password).set("categoryID", data.specialized_in).set("districtID", data.service_district).set("cityID", data.service_city).set("rangeServing", data.service_in_km);
 			this.http.post(this.api_url + "register",  dataToPost , headers).subscribe((res: any) =>       
 			{
 				if(res.status == true)
@@ -280,6 +280,64 @@ export class ClientService
 		{
 			let dataToPost = new HttpParams().set("districtID",data.districtID);
 			this.http.post(this.api_url + "getCities",  dataToPost , headers).subscribe((res: any) =>       
+			{
+				if(res.status == true)
+				{
+					this.serverResponse=res.data;
+					resolve(this.serverResponse);					
+				}
+				else
+				{
+					let messageDisplay=this.showMessage(res.message);
+					reject(messageDisplay);
+				}
+			},
+			err => 
+			{
+				console.log(err);
+				let errorMessage=this.getErrorMessage(err);
+				this.showMessage(errorMessage);
+				reject(errorMessage);
+			});
+		});
+	}
+
+	getActivehandyman(data)
+	{
+		let headers = this.getHeaderOptions();
+		return new Promise((resolve, reject) => 
+		{
+			let dataToPost = new HttpParams().set("categoryID",data.categoryID);
+			this.http.post(this.api_url + "getActivehandyman",  dataToPost , headers).subscribe((res: any) =>       
+			{
+				if(res.status == true)
+				{
+					this.serverResponse=res.data;
+					resolve(this.serverResponse);					
+				}
+				else
+				{
+					let messageDisplay=this.showMessage(res.message);
+					reject(messageDisplay);
+				}
+			},
+			err => 
+			{
+				console.log(err);
+				let errorMessage=this.getErrorMessage(err);
+				//this.showMessage(errorMessage);
+				reject(errorMessage);
+			});
+		});
+	}
+
+	getHandymanDetailById(data)
+	{
+		let headers = this.getHeaderOptions();
+		return new Promise((resolve, reject) => 
+		{
+			let dataToPost = new HttpParams().set("user_id",data.id);
+			this.http.post(this.api_url + "getHandymanDetailById",  dataToPost , headers).subscribe((res: any) =>       
 			{
 				if(res.status == true)
 				{

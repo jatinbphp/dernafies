@@ -37,9 +37,10 @@ export class SignUpPage implements OnInit
 			Validators.required,
 			Validators.minLength(8)
 		])],
-    specialized_in: ['', Validators.required],
-    service_district: ['', Validators.required],
-    service_city: ['', Validators.required],
+    specialized_in: [''],
+    service_district: [''],
+    service_city: [''],
+    service_in_km: [''],
     },{validator: this.checkIfMatchingPasswords('password', 'cpassword')
   });
 
@@ -79,7 +80,12 @@ export class SignUpPage implements OnInit
     'service_city': 
     [
       { type: 'required', message: 'Selecting city is required.' }
+    ],
+    'service_in_km': 
+    [
+      { type: 'required', message: 'Range service is required.' }
     ]
+    
   };
 
   constructor(public client: ClientService, public fb: FormBuilder, public loadingCtrl: LoadingController, private inAppBrowser: InAppBrowser)
@@ -206,14 +212,32 @@ export class SignUpPage implements OnInit
 		});
 		await loading.present();
 		//LOADER
+    
+    let user_type = (this.signup_as_handyman == true) ? 2 : 3;
+    
+    let first_name = (form.first_name) ? form.first_name : "";
+    let last_name = (form.last_name) ? form.last_name : "";
+    let email = (form.email) ? form.email : "";
+    let password = (form.password) ? form.password : "";
+    
+    let specialized_in = (form.specialized_in) ? form.specialized_in : "";
+    let service_district = (form.service_district) ? form.service_district : "";
+    let service_city = (form.service_city) ? form.service_city : "";
+    let service_in_km = (form.service_in_km) ? form.service_in_km : 0;
 
 		let data=
 		{
-			first_name:form.first_name,
-			last_name:form.last_name,
-			email:form.email, 
-			password:form.password,
+      user_type:user_type,
+			first_name:first_name,
+			last_name:last_name,
+			email:email, 
+			password:password,
+      specialized_in:specialized_in,
+      service_district:service_district,
+      service_city:service_city,
+      service_in_km:service_in_km,
 		}
+    
 		await this.client.makeMeRegistered(data).then(result => 
 		{	
 			loading.dismiss();//DISMISS LOADER			
@@ -258,11 +282,38 @@ export class SignUpPage implements OnInit
   signupAsHandyman(ev)
   {
     this.signup_as_handyman = ev.detail.checked;
+    if(this.signup_as_handyman == true)
+    {
+      this.registerForm.get('specialized_in').setValidators([Validators.required]);     
+      this.registerForm.get('specialized_in').updateValueAndValidity();
+
+      this.registerForm.get('service_district').setValidators([Validators.required]);     
+      this.registerForm.get('service_district').updateValueAndValidity();
+
+      this.registerForm.get('service_city').setValidators([Validators.required]);     
+      this.registerForm.get('service_city').updateValueAndValidity();
+
+      this.registerForm.get('service_in_km').setValidators([Validators.required]);     
+      this.registerForm.get('service_in_km').updateValueAndValidity();
+    }
     if(this.signup_as_handyman == false)
     {
       this.registerForm.controls['specialized_in'].setValue("");
       this.registerForm.controls['service_district'].setValue("");
       this.registerForm.controls['service_city'].setValue("");
+      this.registerForm.controls['service_in_km'].setValue("");
+
+      this.registerForm.get('specialized_in').clearValidators();     
+      this.registerForm.get('specialized_in').updateValueAndValidity();
+
+      this.registerForm.get('service_district').clearValidators();     
+      this.registerForm.get('service_district').updateValueAndValidity();
+
+      this.registerForm.get('service_city').clearValidators();     
+      this.registerForm.get('service_city').updateValueAndValidity();
+
+      this.registerForm.get('service_in_km').clearValidators();     
+      this.registerForm.get('service_in_km').updateValueAndValidity();
     }
     console.log(this.signup_as_handyman);
   }

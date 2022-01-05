@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoadingController } from '@ionic/angular';
 import { ClientService } from '../providers/client.service';
+import { ActivatedRoute, Router, NavigationExtras } from "@angular/router";
 
 @Component({
   selector: 'app-handyman-view-all',
@@ -10,10 +11,24 @@ import { ClientService } from '../providers/client.service';
 
 export class HandymanViewAllPage implements OnInit 
 {
+  
+
   public rtl_or_ltr = '';
   public language_selected = '';
 	public default_language_data: any = [];
   public language_key_exchange_array: any = [];
+
+  public id:any='';
+  public resultDataHandyMan: any = [];
+  public resultDataHandyManPerSlide: any = [];
+  public resultDataHandyManPerSlideTemp: any = [];
+  public handyManToBeShowOnSingleSlide:number = 9;
+  public HandyManCovered:number=0;
+  public currentSlide:number=0;
+  public tempH:number=0;
+  public queryString: any=[];
+  public queryStringData: any=[];
+
   public handymanSlide = 
   {
     // slidesPerView: 1.3,
@@ -22,7 +37,7 @@ export class HandymanViewAllPage implements OnInit
     speed: 600,
   };
 
-  constructor(public client: ClientService, public loadingCtrl: LoadingController) 
+  constructor(public client: ClientService, public loadingCtrl: LoadingController, private route: ActivatedRoute) 
   { 
     this.client.getObservableOnLanguageChange().subscribe((data) => {
 			this.language_selected = data.language_selected;
@@ -31,7 +46,7 @@ export class HandymanViewAllPage implements OnInit
 		});//THIS OBSERVABLE IS USED TO SET DEFAULT OR SELECTED LANGUAGE
   }
 
-  ngOnInit() 
+  async ngOnInit() 
   {
     this.default_language_data = this.client.default_language_data;
 		this.language_selected = this.client.language_selected;
@@ -42,12 +57,102 @@ export class HandymanViewAllPage implements OnInit
     this.language_key_exchange_array['kurdish']='categoryNameKurdi';
   }
 
+  async ionViewWillEnter()
+  {
+    //LOADER
+		const loadingFeaturedHandyMan = await this.loadingCtrl.create({
+			spinner: null,
+			//duration: 5000,
+			message: 'Please wait...',
+			translucent: true,
+			cssClass: 'custom-class custom-loading'
+		});
+		await loadingFeaturedHandyMan.present();
+		//LOADER
+
+    this.route.queryParams.subscribe(params => 
+    {
+      if(params && params.special)
+      {
+        this.queryStringData = JSON.parse(params.special);        
+      }
+    });
+    this.id=this.queryStringData['id'];
+
+    let dataHandyMan = {
+      categoryID:(this.id) ? this.id : ''
+    }
+    await this.client.getActivehandyman(dataHandyMan).then(result => 
+    {	
+      loadingFeaturedHandyMan.dismiss();//DISMISS LOADER			
+      this.resultDataHandyMan=result; 
+      console.log(this.resultDataHandyMan);
+            
+    },
+    error => 
+    {
+      loadingFeaturedHandyMan.dismiss();//DISMISS LOADER
+      console.log();
+    });//FEATURED HANDYMAN
+
+    if(this.resultDataHandyMan.length > 0)
+    { 
+      for(let h=this.HandyManCovered; h < this.resultDataHandyMan.length; h++)
+      {
+        this.tempH = this.tempH+1;
+        
+        let objHandyMan = {
+          id:this.resultDataHandyMan[h].id,
+          categoryID:this.resultDataHandyMan[h].categoryID,
+          cityID:this.resultDataHandyMan[h].cityID,
+          dateCreated:this.resultDataHandyMan[h].dateCreated,
+          defaultLanguage:this.resultDataHandyMan[h].defaultLanguage,
+          districtID:this.resultDataHandyMan[h].districtID,
+          email:this.resultDataHandyMan[h].email,
+          firstName:this.resultDataHandyMan[h].firstName,
+          isActive:this.resultDataHandyMan[h].isActive,
+          lastName:this.resultDataHandyMan[h].lastName,
+          profilePic:this.resultDataHandyMan[h].profilePic,
+          pwd:this.resultDataHandyMan[h].pwd,
+          userTypeID:this.resultDataHandyMan[h].userTypeID,
+        }
+        this.resultDataHandyManPerSlideTemp.push(objHandyMan);
+        if(this.tempH % this.handyManToBeShowOnSingleSlide == 0)
+        {
+          this.resultDataHandyManPerSlide[this.currentSlide]=this.resultDataHandyManPerSlideTemp;
+          this.resultDataHandyManPerSlideTemp=[];
+          this.tempH = 0;
+          this.currentSlide++;
+        }
+        else 
+        {
+          this.resultDataHandyManPerSlide[this.currentSlide]=this.resultDataHandyManPerSlideTemp;
+        }
+        this.HandyManCovered++;
+      }
+      console.log(this.resultDataHandyManPerSlide);
+    }
+  }
+
   backToHome()
   {
     this.client.router.navigate(['/tabs/home']);
   }
-  showHandyMan()
+  
+  showHandyMan(id)
   {
-    this.client.router.navigate(['/tabs/handyman-selected']);
+    this.queryString = 
+    {
+      id:id
+    };
+
+    let navigationExtras: NavigationExtras = 
+    {
+      queryParams: 
+      {
+        special: JSON.stringify(this.queryString)
+      }
+    };
+    this.client.router.navigate(['/tabs/handyman-selected'], navigationExtras);
   }
 }

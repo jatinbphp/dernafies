@@ -3,6 +3,7 @@ import { MenuController, LoadingController, ModalController } from '@ionic/angul
 import { ClientService } from '../providers/client.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ProfilePage } from '../profile/profile.page';
+import { NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -20,6 +21,9 @@ export class HomePage
   public role:any = '';
   public welcome_text:any = '';
   public greetings:any = '';
+
+  public queryString: any=[];
+  public resultDataFeaturedHandyMan: any = [];
   public resultDataCategories: any = [];
   public language_key_exchange_array: any = [];
   public categorieSlide = 
@@ -68,6 +72,32 @@ export class HomePage
       loading.dismiss();//DISMISS LOADER
       console.log();
     });//CATEGORIES
+
+    //LOADER
+		const loadingFeaturedHandyMan = await this.loadingCtrl.create({
+			spinner: null,
+			//duration: 5000,
+			message: 'Please wait...',
+			translucent: true,
+			cssClass: 'custom-class custom-loading'
+		});
+		await loadingFeaturedHandyMan.present();
+		//LOADER
+    let dataHandyMan = {
+      categoryID:''
+    }
+    await this.client.getActivehandyman(dataHandyMan).then(result => 
+    {	
+      loadingFeaturedHandyMan.dismiss();//DISMISS LOADER			
+      this.resultDataFeaturedHandyMan=result; 
+      console.log(this.resultDataFeaturedHandyMan);
+            
+    },
+    error => 
+    {
+      loadingFeaturedHandyMan.dismiss();//DISMISS LOADER
+      console.log();
+    });//FEATURED HANDYMAN
   }
 
   async ionViewWillEnter()
@@ -208,9 +238,47 @@ export class HomePage
       this.client.router.navigate(['sign-in']);  
     }
   }
-
-  showHandyMan()
+  
+  viewAllHandyMan()
   {
-    this.client.router.navigate(['/tabs/handyman-selected']);
+    this.client.router.navigate(['/tabs/handyman-view-all']).then(()=>{
+      window.location.reload();
+    });
+  }
+
+  showHandyManByCategory(id)
+  {
+    this.queryString = 
+    {
+      id:id
+    };
+
+    let navigationExtras: NavigationExtras = 
+    {
+      queryParams: 
+      {
+        special: JSON.stringify(this.queryString)
+      }
+    };
+    this.client.router.navigate(['/tabs/handyman-view-all'], navigationExtras).then(()=>{
+      window.location.reload();
+    });
+  }
+
+  showHandyMan(id)
+  {
+    this.queryString = 
+    {
+      id:id
+    };
+
+    let navigationExtras: NavigationExtras = 
+    {
+      queryParams: 
+      {
+        special: JSON.stringify(this.queryString)
+      }
+    };
+    this.client.router.navigate(['/tabs/handyman-selected'], navigationExtras);
   }
 }

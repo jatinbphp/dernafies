@@ -162,6 +162,10 @@ ion-input {
   // -webkit-overflow-scrolling: touch;
 }
 
+.no-records{
+    color: #ff0000;
+    text-align: center;
+}
 .texture-bck-img-1 {
     background-image: url(assets/images/bck-img1.png);
     --background: url(assets/images/bck-img1.png) 100% 100%/100% 100% no-repeat/no-repeat !important;

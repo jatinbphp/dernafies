@@ -184,7 +184,7 @@
       </div>
       <ion-slides pager [options]="categorieSlide" dir="rtl" *ngIf="rtl_or_ltr == 'rtl'">
         <ion-slide *ngFor="let categories of resultDataCategories;let s = index;">
-          <div class="category-box-inner">
+          <div class="category-box-inner" (click)="showHandyManByCategory(categories.id)">
             <img src="{{categories.categoryImage}}">
             <h6>{{categories[language_key_exchange_array[language_selected]]}}</h6>
           </div>
@@ -192,7 +192,7 @@
       </ion-slides>
       <ion-slides pager [options]="categorieSlide" dir="ltr" *ngIf="rtl_or_ltr == 'ltr'">
         <ion-slide *ngFor="let categories of resultDataCategories;let s = index;">
-          <div class="category-box-inner">
+          <div class="category-box-inner" (click)="showHandyManByCategory(categories.id)">
             <img src="{{categories.categoryImage}}">
             <h6>{{categories[language_key_exchange_array[language_selected]]}}</h6>
           </div>
@@ -268,168 +268,40 @@
     </div>
     <div class="featured-slider-main" *ngIf="role == 'customer'">
       <div class="title-main">
-        <h2>{{default_language_data['translation'][0]['home'][0][language_selected][0]['featured_handyman']}}<ion-router-link routerDirection="root" routerLink="/tabs/handyman-view-all">{{default_language_data['translation'][0]['general'][0][language_selected][0]['view_all']}}</ion-router-link></h2>
+        <h2 (click)="viewAllHandyMan()">{{default_language_data['translation'][0]['home'][0][language_selected][0]['featured_handyman']}}<!--<ion-router-link routerDirection="root" routerLink="/tabs/handyman-view-all">{{default_language_data['translation'][0]['general'][0][language_selected][0]['view_all']}}</ion-router-link>--> <ion-router-link>{{default_language_data['translation'][0]['general'][0][language_selected][0]['view_all']}}</ion-router-link></h2>
       </div>
-      <ion-slides [options]="featuredSlide" dir="rtl" *ngIf="rtl_or_ltr == 'rtl'">
-        <ion-slide (click)="showHandyMan()">
-          <div class="featured-box-main">
-            <div class="featured-box-img">
-              <img src="../../assets/images/person-img1.png">
+      <div *ngIf="resultDataFeaturedHandyMan.length > 0">
+        <ion-slides [options]="featuredSlide" dir="rtl" *ngIf="rtl_or_ltr == 'rtl'">
+          <ion-slide *ngFor="let handyMan of resultDataFeaturedHandyMan; let h = index" (click)="showHandyMan(handyMan.id)">
+            <div class="featured-box-main">
+              <div class="featured-box-img">
+                <img src="{{handyMan.profilePic}}">
+              </div>
+              <div class="featured-box-txt">
+                <p class="rating"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon></p>
+                <h2 class="name">{{handyMan.firstName}} {{handyMan.lastName}}</h2>
+                <h4 class="experience">10 years experience</h4>
+                <h3 class="hr-txt">$20<span>/</span>Hr</h3>
+              </div>
             </div>
-            <div class="featured-box-txt">
-              <p class="rating"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon></p>
-              <h2 class="name">Trend Lin</h2>
-              <h4 class="experience">10 years experience</h4>
-              <h3 class="hr-txt">$20<span>/</span>Hr</h3>
+          </ion-slide>
+        </ion-slides>
+        <ion-slides [options]="featuredSlide" dir="ltr" *ngIf="rtl_or_ltr == 'ltr'">
+          <ion-slide *ngFor="let handyMan of resultDataFeaturedHandyMan; let h = index" (click)="showHandyMan(handyMan.id)">
+            <div class="featured-box-main">
+              <div class="featured-box-img">
+                <img src="{{handyMan.profilePic}}">
+              </div>
+              <div class="featured-box-txt">
+                <p class="rating"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon></p>
+                <h2 class="name">{{handyMan.firstName}} {{handyMan.lastName}}</h2>
+                <h4 class="experience">10 years experience</h4>
+                <h3 class="hr-txt">$20<span>/</span>Hr</h3>
+              </div>
             </div>
-          </div>
-        </ion-slide>
-        <ion-slide>
-          <div class="featured-box-main">
-            <div class="featured-box-img">
-              <img src="../../assets/images/person-img1.png">
-            </div>
-            <div class="featured-box-txt">
-              <p class="rating"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon></p>
-              <h2 class="name">Trend Lin</h2>
-              <h4 class="experience">10 years experience</h4>
-              <h3 class="hr-txt">$20<span>/</span>Hr</h3>
-            </div>
-          </div>
-        </ion-slide>
-        <ion-slide>
-          <div class="featured-box-main">
-            <div class="featured-box-img">
-              <img src="../../assets/images/person-img1.png">
-            </div>
-            <div class="featured-box-txt">
-              <p class="rating"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon></p>
-              <h2 class="name">Trend Lin</h2>
-              <h4 class="experience">10 years experience</h4>
-              <h3 class="hr-txt">$20<span>/</span>Hr</h3>
-            </div>
-          </div>
-        </ion-slide>
-        <ion-slide>
-          <div class="featured-box-main">
-            <div class="featured-box-img">
-              <img src="../../assets/images/person-img1.png">
-            </div>
-            <div class="featured-box-txt">
-              <p class="rating"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon></p>
-              <h2 class="name">Trend Lin</h2>
-              <h4 class="experience">10 years experience</h4>
-              <h3 class="hr-txt">$20<span>/</span>Hr</h3>
-            </div>
-          </div>
-        </ion-slide>
-        <ion-slide>
-          <div class="featured-box-main">
-            <div class="featured-box-img">
-              <img src="../../assets/images/person-img1.png">
-            </div>
-            <div class="featured-box-txt">
-              <p class="rating"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon></p>
-              <h2 class="name">Trend Lin</h2>
-              <h4 class="experience">10 years experience</h4>
-              <h3 class="hr-txt">$20<span>/</span>Hr</h3>
-            </div>
-          </div>
-        </ion-slide>
-        <ion-slide>
-          <div class="featured-box-main">
-            <div class="featured-box-img">
-              <img src="../../assets/images/person-img1.png">
-            </div>
-            <div class="featured-box-txt">
-              <p class="rating"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon></p>
-              <h2 class="name">Trend Lin</h2>
-              <h4 class="experience">10 years experience</h4>
-              <h3 class="hr-txt">$20<span>/</span>Hr</h3>
-            </div>
-          </div>
-        </ion-slide>
-      </ion-slides>
-      <ion-slides [options]="featuredSlide" dir="ltr" *ngIf="rtl_or_ltr == 'ltr'">
-        <ion-slide (click)="showHandyMan()">
-          <div class="featured-box-main">
-            <div class="featured-box-img">
-              <img src="../../assets/images/person-img1.png">
-            </div>
-            <div class="featured-box-txt">
-              <p class="rating"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon></p>
-              <h2 class="name">Trend Lin</h2>
-              <h4 class="experience">10 years experience</h4>
-              <h3 class="hr-txt">$20<span>/</span>Hr</h3>
-            </div>
-          </div>
-        </ion-slide>
-        <ion-slide>
-          <div class="featured-box-main">
-            <div class="featured-box-img">
-              <img src="../../assets/images/person-img1.png">
-            </div>
-            <div class="featured-box-txt">
-              <p class="rating"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon></p>
-              <h2 class="name">Trend Lin</h2>
-              <h4 class="experience">10 years experience</h4>
-              <h3 class="hr-txt">$20<span>/</span>Hr</h3>
-            </div>
-          </div>
-        </ion-slide>
-        <ion-slide>
-          <div class="featured-box-main">
-            <div class="featured-box-img">
-              <img src="../../assets/images/person-img1.png">
-            </div>
-            <div class="featured-box-txt">
-              <p class="rating"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon></p>
-              <h2 class="name">Trend Lin</h2>
-              <h4 class="experience">10 years experience</h4>
-              <h3 class="hr-txt">$20<span>/</span>Hr</h3>
-            </div>
-          </div>
-        </ion-slide>
-        <ion-slide>
-          <div class="featured-box-main">
-            <div class="featured-box-img">
-              <img src="../../assets/images/person-img1.png">
-            </div>
-            <div class="featured-box-txt">
-              <p class="rating"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon></p>
-              <h2 class="name">Trend Lin</h2>
-              <h4 class="experience">10 years experience</h4>
-              <h3 class="hr-txt">$20<span>/</span>Hr</h3>
-            </div>
-          </div>
-        </ion-slide>
-        <ion-slide>
-          <div class="featured-box-main">
-            <div class="featured-box-img">
-              <img src="../../assets/images/person-img1.png">
-            </div>
-            <div class="featured-box-txt">
-              <p class="rating"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon></p>
-              <h2 class="name">Trend Lin</h2>
-              <h4 class="experience">10 years experience</h4>
-              <h3 class="hr-txt">$20<span>/</span>Hr</h3>
-            </div>
-          </div>
-        </ion-slide>
-        <ion-slide>
-          <div class="featured-box-main">
-            <div class="featured-box-img">
-              <img src="../../assets/images/person-img1.png">
-            </div>
-            <div class="featured-box-txt">
-              <p class="rating"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon></p>
-              <h2 class="name">Trend Lin</h2>
-              <h4 class="experience">10 years experience</h4>
-              <h3 class="hr-txt">$20<span>/</span>Hr</h3>
-            </div>
-          </div>
-        </ion-slide>
-      </ion-slides>
+          </ion-slide>          
+        </ion-slides>
+      </div>
     </div>
   </div>
 </ion-content>

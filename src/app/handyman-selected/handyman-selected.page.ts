@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoadingController } from '@ionic/angular';
 import { ClientService } from '../providers/client.service';
+import { ActivatedRoute, Router, NavigationExtras } from "@angular/router";
 
 @Component({
   selector: 'app-handyman-selected',
@@ -10,12 +11,16 @@ import { ClientService } from '../providers/client.service';
 
 export class HandymanSelectedPage implements OnInit 
 {
+  public id:any='';
   public rtl_or_ltr = '';
   public language_selected = '';
 	public default_language_data: any = [];
   public language_key_exchange_array: any = [];
+  public queryStringData: any=[];
+  public resultDataHandyMan: any=[];
+  public is_handy_man_selected:boolean = false;
 
-  constructor(public client: ClientService, public loadingCtrl: LoadingController)
+  constructor(public client: ClientService, public loadingCtrl: LoadingController, private route: ActivatedRoute)
   { 
     this.client.getObservableOnLanguageChange().subscribe((data) => {
 			this.language_selected = data.language_selected;
@@ -35,6 +40,44 @@ export class HandymanSelectedPage implements OnInit
     this.language_key_exchange_array['kurdish']='categoryNameKurdi';
   }
 
+  async ionViewWillEnter()
+  {
+    this.route.queryParams.subscribe(params => 
+    {
+      if(params && params.special)
+      {
+        this.queryStringData = JSON.parse(params.special);        
+      }
+    });
+    this.id=this.queryStringData['id'];
+
+    //LOADER
+		const loadingFeaturedHandyMan = await this.loadingCtrl.create({
+			spinner: null,
+			//duration: 5000,
+			message: 'Please wait...',
+			translucent: true,
+			cssClass: 'custom-class custom-loading'
+		});
+		await loadingFeaturedHandyMan.present();
+		//LOADER
+    let dataHandyMan = {
+      id:this.id
+    }
+    await this.client.getHandymanDetailById(dataHandyMan).then(result => 
+    {	
+      loadingFeaturedHandyMan.dismiss();//DISMISS LOADER			
+      this.resultDataHandyMan=result; 
+      console.log(this.resultDataHandyMan);
+            
+    },
+    error => 
+    {
+      loadingFeaturedHandyMan.dismiss();//DISMISS LOADER
+      console.log();
+    });//FEATURED HANDYMAN
+  }
+
   backToAllHandyMan()
   {
     this.client.router.navigate(['/tabs/handyman-view-all']);
@@ -44,4 +87,8 @@ export class HandymanSelectedPage implements OnInit
     this.client.router.navigate(['/tabs/handyman-send-location']);
   }
 
+  selectHandyMan()
+  {
+    this.is_handy_man_selected = true;
+  }
 }

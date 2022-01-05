@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { LoadingController } from '@ionic/angular';
 import { ClientService } from '../providers/client.service';
+import { NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-categories',
@@ -16,6 +17,7 @@ export class CategoriesPage
   
   public resultDataCategories: any = [];
   public language_key_exchange_array: any = [];
+  public queryString: any=[];
   constructor(public client: ClientService, public loadingCtrl: LoadingController) 
   {
     this.client.getObservableOnLanguageChange().subscribe((data) => {
@@ -58,6 +60,25 @@ export class CategoriesPage
       loading.dismiss();//DISMISS LOADER
       console.log();
     });//CATEGORIES
+  }
+
+  showHandyManByCategory(id)
+  {
+    this.queryString = 
+    {
+      id:id
+    };
+
+    let navigationExtras: NavigationExtras = 
+    {
+      queryParams: 
+      {
+        special: JSON.stringify(this.queryString)
+      }
+    };
+    this.client.router.navigate(['/tabs/handyman-view-all'], navigationExtras).then(()=>{
+      window.location.reload();
+    });
   }
 
   backToHome()
