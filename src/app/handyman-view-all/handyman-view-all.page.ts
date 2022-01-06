@@ -19,7 +19,7 @@ export class HandymanViewAllPage implements OnInit
   public language_key_exchange_array: any = [];
 
   public id:any='';
-  public resultDataHandyMan: any = [];
+  public resultDataHandyMan: any = [];  
   public resultDataHandyManPerSlide: any = [];
   public resultDataHandyManPerSlideTemp: any = [];
   public handyManToBeShowOnSingleSlide:number = 9;
@@ -59,6 +59,14 @@ export class HandymanViewAllPage implements OnInit
 
   async ionViewWillEnter()
   {
+    this.resultDataHandyMan=[];//RESET DATA
+    this.resultDataHandyManPerSlide=[];//RESET DATA
+    this.resultDataHandyManPerSlideTemp=[];//RESET DATA
+    this.HandyManCovered=0;//RESET DATA
+    this.currentSlide=0;//RESET DATA
+    this.tempH=0;//RESET DATA
+    this.queryStringData=[];//RESET DATA
+    
     //LOADER
 		const loadingFeaturedHandyMan = await this.loadingCtrl.create({
 			spinner: null,
@@ -78,7 +86,7 @@ export class HandymanViewAllPage implements OnInit
       }
     });
     this.id=this.queryStringData['id'];
-
+    
     let dataHandyMan = {
       categoryID:(this.id) ? this.id : ''
     }

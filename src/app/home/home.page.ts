@@ -241,9 +241,12 @@ export class HomePage
   
   viewAllHandyMan()
   {
+    this.client.router.navigate(['/tabs/handyman-view-all']);
+    /*
     this.client.router.navigate(['/tabs/handyman-view-all']).then(()=>{
       window.location.reload();
     });
+    */
   }
 
   showHandyManByCategory(id)
@@ -260,9 +263,12 @@ export class HomePage
         special: JSON.stringify(this.queryString)
       }
     };
+    this.client.router.navigate(['/tabs/handyman-view-all'], navigationExtras);
+    /*
     this.client.router.navigate(['/tabs/handyman-view-all'], navigationExtras).then(()=>{
       window.location.reload();
     });
+    */
   }
 
   showHandyMan(id)

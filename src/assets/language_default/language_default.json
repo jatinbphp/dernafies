@@ -49,11 +49,11 @@
                "arabic": [
                   {
                      "screen_title":"تسجيل الدخول",
-                     "remember_me":"تذكرنى",
+                     "remember_me":"تذكرني",
                      "forgot_password":"هل نسيت كلمة السر؟",
                      "dont_have_account":"ليس لديك حساب؟",
                      "sign_up":"اشتراك",
-                     "email_address":"عنوان البريد الالكترونى",
+                     "email_address":"عنوان البريد الالكتروني",
                      "password": "كلمه السر",
                      "login_in_button": "تسجيل الدخول"
                   }
@@ -100,9 +100,9 @@
                   {
                      "screen_title": "اشتراك",
                      "signup_as_handyman":"سجل كعامل بارع؟",
-                     "first_name":"الاسم الاول",
+                     "first_name":"الاسم",
                      "last_name":"اسم العائلة",
-                     "email_address":"بريد الالكتروني",
+                     "email_address":"البريد الالكتروني",
                      "password":"كلمة المرور",
                      "confirm_password":"تأكيد كلمة المرور",
                      "specialized_in": "متخصص في",
@@ -161,9 +161,9 @@
                "arabic": [
                   {
                      "screen_title": "الملف الشخصي",
-                     "first_name":"الاسم الاول",
+                     "first_name":"الاسم",
                      "last_name":"اسم العائلة",
-                     "email_address":"بريد الالكتروني",
+                     "email_address":"البريد الالكتروني",
                      "password":"كلمة المرور",
                      "confirm_password":"تأكيد كلمة المرور",
                      "specialized_in": "متخصص في",
@@ -204,7 +204,7 @@
                      "screen_title":"هل نسيت كلمة السر",
                      "back_to_login":"ارجع الى",
                      "sign_in":"تسجيل الدخول",
-                     "email_address":"عنوان البريد الالكترونى",
+                     "email_address":"عنوان البريد الالكتروني",
                      "forgotpassword_in_button": "إرسال"
                   }
                ],
@@ -245,10 +245,10 @@
                      "cancelled_text": "ألغيت",
                      "request_review":"طلب مراجعة",
                      "featured_text": "متميز",
-                     "location_map":"خريطة الموقع",
+                     "location_map":"الموقع في الخريطة",
                      "accept_text":"قبول",
                      "reject_text":"يرفض",
-                     "handyman_text":"عامل يدوي"
+                     "handyman_text":"عامل "
                   }
                ],
                "kurdish": [
@@ -281,7 +281,7 @@
                "arabic": [
                   {
                      "completed_services":"الخدمات المكتملة",
-                     "featured_handyman":"بارع مميز",
+                     "featured_handyman":"عامل مميز",
                      "search_for_services":"ابحث عن الخدمات",
                      "recent_service_request":"طلبات الخدمة الأخيرة"
                   }
@@ -395,7 +395,7 @@
                      "screen_title":"إعدادات",
                      "account":"الحساب",
                      "change_password":"تغيير كلمة المرور",
-                     "notifications":"جاري التنفيذ",
+                     "notifications":"الاشعارات",
                      "privacy_settings":"إعدادات الخصوصية",
                      "signout":"خروج",
                      "other":"آخر",
