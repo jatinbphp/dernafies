@@ -15,55 +15,66 @@
         <form [formGroup]="profileForm" (ngSubmit)="updateProfile(profileForm.value)">
 		<ion-grid>
 			<ion-row>
-			<ion-col size="12">
-				<ion-label position="stacked">{{default_language_data['translation'][0]['profile'][0][language_selected][0]['first_name']}}</ion-label>
-				<ion-input type="text" formControlName="first_name"></ion-input>
-				<!--VALIDATION-->
-				<div class="validation-errors">
-				<ng-container *ngFor="let validation of validation_messages.first_name">
-					<div class="error-message"
-					*ngIf="profileForm.get('first_name').hasError(validation.type) && (profileForm.get('first_name').dirty || profileForm.get('first_name').touched)">
-					<ion-icon name="information-circle-outline"></ion-icon>
-					<p>{{ validation.message }}</p>
+				<ion-col size="12">
+					<div class="profile-pic">
+						<img src="../../assets/images/person-img1.png">
+						<ion-button>
+							<!-- <ion-icon name="add-circle-sharp"></ion-icon> -->
+							<img src="../../assets/images/plus-icon1.png">
+						</ion-button>
 					</div>
-				</ng-container>
-				</div>
-				<!--VALIDATION-->          
-			</ion-col>
+				</ion-col>
 			</ion-row>
 			<ion-row>
-			<ion-col size="12">
-				<ion-label position="stacked">{{default_language_data['translation'][0]['profile'][0][language_selected][0]['last_name']}}</ion-label>
-				<ion-input type="text" formControlName="last_name"></ion-input>
-				<!--VALIDATION-->
-				<div class="validation-errors">
-				<ng-container *ngFor="let validation of validation_messages.last_name">
-					<div class="error-message"
-					*ngIf="profileForm.get('last_name').hasError(validation.type) && (profileForm.get('last_name').dirty || profileForm.get('last_name').touched)">
-					<ion-icon name="information-circle-outline"></ion-icon>
-					<p>{{ validation.message }}</p>
+				<ion-col size="12">
+					<ion-label position="stacked">{{default_language_data['translation'][0]['profile'][0][language_selected][0]['first_name']}}</ion-label>
+					<ion-input type="text" formControlName="first_name"></ion-input>
+					<!--VALIDATION-->
+					<div class="validation-errors">
+					<ng-container *ngFor="let validation of validation_messages.first_name">
+						<div class="error-message"
+						*ngIf="profileForm.get('first_name').hasError(validation.type) && (profileForm.get('first_name').dirty || profileForm.get('first_name').touched)">
+						<ion-icon name="information-circle-outline"></ion-icon>
+						<p>{{ validation.message }}</p>
+						</div>
+					</ng-container>
 					</div>
-				</ng-container>
-				</div>
-				<!--VALIDATION-->          
-			</ion-col>
+					<!--VALIDATION-->          
+				</ion-col>
 			</ion-row>
 			<ion-row>
-			<ion-col size="12">
-				<ion-label position="stacked">{{default_language_data['translation'][0]['profile'][0][language_selected][0]['email_address']}}</ion-label>
-				<ion-input type="email" formControlName="email"></ion-input>
-				<!--VALIDATION-->
-				<div class="validation-errors">
-				<ng-container *ngFor="let validation of validation_messages.email">
-					<div class="error-message"
-					*ngIf="profileForm.get('email').hasError(validation.type) && (profileForm.get('email').dirty || profileForm.get('email').touched)">
-					<ion-icon name="information-circle-outline"></ion-icon>
-					<p>{{ validation.message }}</p>
+				<ion-col size="12">
+					<ion-label position="stacked">{{default_language_data['translation'][0]['profile'][0][language_selected][0]['last_name']}}</ion-label>
+					<ion-input type="text" formControlName="last_name"></ion-input>
+					<!--VALIDATION-->
+					<div class="validation-errors">
+					<ng-container *ngFor="let validation of validation_messages.last_name">
+						<div class="error-message"
+						*ngIf="profileForm.get('last_name').hasError(validation.type) && (profileForm.get('last_name').dirty || profileForm.get('last_name').touched)">
+						<ion-icon name="information-circle-outline"></ion-icon>
+						<p>{{ validation.message }}</p>
+						</div>
+					</ng-container>
 					</div>
-				</ng-container>
-				</div>
-				<!--VALIDATION-->          
-			</ion-col>
+					<!--VALIDATION-->          
+				</ion-col>
+			</ion-row>
+			<ion-row>
+				<ion-col size="12">
+					<ion-label position="stacked">{{default_language_data['translation'][0]['profile'][0][language_selected][0]['email_address']}}</ion-label>
+					<ion-input type="email" formControlName="email"></ion-input>
+					<!--VALIDATION-->
+					<div class="validation-errors">
+					<ng-container *ngFor="let validation of validation_messages.email">
+						<div class="error-message"
+						*ngIf="profileForm.get('email').hasError(validation.type) && (profileForm.get('email').dirty || profileForm.get('email').touched)">
+						<ion-icon name="information-circle-outline"></ion-icon>
+						<p>{{ validation.message }}</p>
+						</div>
+					</ng-container>
+					</div>
+					<!--VALIDATION-->          
+				</ion-col>
 			</ion-row>			 
 			<!--<ion-row>
 			<ion-col size="12">
