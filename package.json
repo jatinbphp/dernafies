@@ -80,9 +80,7 @@
       },
       "cordova-plugin-ionic-keyboard": {},
       "cordova-plugin-inappbrowser": {},
-      "cordova-plugin-geolocation": {
-        "GPS_REQUIRED": "true"
-      }
+      "cordova-plugin-geolocation": {}
     },
     "platforms": [
       "android"

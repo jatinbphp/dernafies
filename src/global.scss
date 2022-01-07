@@ -515,7 +515,8 @@ ion-header ion-toolbar ion-title {
         min-height: 100%;
     }
 }
-.ios app-handyman-send-location ion-content .main-div .loc-con-box {
+.ios app-handyman-send-location ion-content .main-div .loc-con-box,
+.ios app-handyman-send-location ion-content .loc-con-box {
     bottom: 80px;
 }
 .ios .header-ios ion-buttons ion-menu-button {
