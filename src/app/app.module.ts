@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
 import { InAppBrowser } from '@awesome-cordova-plugins/in-app-browser/ngx';
 import { ReactiveFormsModule } from '@angular/forms';
+import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,6 +23,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   ],
   providers: [
     HttpClient,
+    Geolocation,
     InAppBrowser,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
