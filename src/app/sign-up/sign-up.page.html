@@ -10,6 +10,8 @@
 <ion-content>
   <div class="main-div">
     <form [formGroup]="registerForm" (ngSubmit)="makeMeRegistered(registerForm.value)">
+      <ion-input type="hidden" formControlName="latitude"></ion-input>
+      <ion-input type="hidden" formControlName="longitude"></ion-input>
       <ion-grid>
         <ion-row>
           <ion-col size="12">
@@ -183,8 +185,14 @@
             </div>
             <!--VALIDATION-->          
           </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <ion-label position="stacked">You are currently located at mentioned position, if you wish to make it more perfect please dragg the marker at your desegired place.</ion-label>
+            <div #gooeleMap id="gooeleMap" style="height: 300px;"></div>
+          </ion-col>
         </ion-row>                      
-      </ion-grid>
+      </ion-grid>      
       <ion-grid class="terms-options">
         <ion-row>
           <ion-col size="1">

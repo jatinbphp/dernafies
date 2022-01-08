@@ -9,6 +9,7 @@ import { HttpClient } from '@angular/common/http';
 import { InAppBrowser } from '@awesome-cordova-plugins/in-app-browser/ngx';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
+import { NativeGeocoder, NativeGeocoderResult, NativeGeocoderOptions } from '@awesome-cordova-plugins/native-geocoder/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,6 +25,7 @@ import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
   providers: [
     HttpClient,
     Geolocation,
+    NativeGeocoder,
     InAppBrowser,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],

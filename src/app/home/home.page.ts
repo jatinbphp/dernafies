@@ -34,6 +34,8 @@ export class HomePage
     speed: 600,
   };  
 
+  public jobRequestsHandyMan: any=[];
+
   constructor(public fb: FormBuilder, public client: ClientService, public menu: MenuController, public loadingCtrl: LoadingController, public modalCtrl: ModalController) 
   {
     this.client.getObservableOnLanguageChange().subscribe((data) => {
@@ -49,55 +51,6 @@ export class HomePage
     this.language_key_exchange_array['english']='categoryName';
     this.language_key_exchange_array['arabic']='categoryNameArabic';
     this.language_key_exchange_array['kurdish']='categoryNameKurdi';
-
-    //LOADER
-		const loading = await this.loadingCtrl.create({
-			spinner: null,
-			//duration: 5000,
-			message: 'Please wait...',
-			translucent: true,
-			cssClass: 'custom-class custom-loading'
-		});
-		await loading.present();
-		//LOADER
-    await this.client.getCategories().then(result => 
-    {	
-      loading.dismiss();//DISMISS LOADER			
-      this.resultDataCategories=result;
-      console.log(this.resultDataCategories);
-            
-    },
-    error => 
-    {
-      loading.dismiss();//DISMISS LOADER
-      console.log();
-    });//CATEGORIES
-
-    //LOADER
-		const loadingFeaturedHandyMan = await this.loadingCtrl.create({
-			spinner: null,
-			//duration: 5000,
-			message: 'Please wait...',
-			translucent: true,
-			cssClass: 'custom-class custom-loading'
-		});
-		await loadingFeaturedHandyMan.present();
-		//LOADER
-    let dataHandyMan = {
-      categoryID:''
-    }
-    await this.client.getActivehandyman(dataHandyMan).then(result => 
-    {	
-      loadingFeaturedHandyMan.dismiss();//DISMISS LOADER			
-      this.resultDataFeaturedHandyMan=result; 
-      console.log(this.resultDataFeaturedHandyMan);
-            
-    },
-    error => 
-    {
-      loadingFeaturedHandyMan.dismiss();//DISMISS LOADER
-      console.log();
-    });//FEATURED HANDYMAN
   }
 
   async ionViewWillEnter()
@@ -162,6 +115,86 @@ export class HomePage
       let firstName = (localStorage.getItem('firstName')) ? localStorage.getItem('firstName') : "";
       let lastName = (localStorage.getItem('lastName')) ? localStorage.getItem('lastName') : "";
       this.welcome_text = 'Hi, '+firstName+' '+lastName;      
+    }
+    if(this.role == 'customer')
+    {
+      //LOADER
+      const loading = await this.loadingCtrl.create({
+        spinner: null,
+        //duration: 5000,
+        message: 'Please wait...',
+        translucent: true,
+        cssClass: 'custom-class custom-loading'
+      });
+      await loading.present();
+      //LOADER
+      await this.client.getCategories().then(result => 
+      {	
+        loading.dismiss();//DISMISS LOADER			
+        this.resultDataCategories=result;
+        console.log(this.resultDataCategories);
+              
+      },
+      error => 
+      {
+        loading.dismiss();//DISMISS LOADER
+        console.log();
+      });//CATEGORIES
+
+      //LOADER
+      const loadingFeaturedHandyMan = await this.loadingCtrl.create({
+        spinner: null,
+        //duration: 5000,
+        message: 'Please wait...',
+        translucent: true,
+        cssClass: 'custom-class custom-loading'
+      });
+      await loadingFeaturedHandyMan.present();
+      //LOADER
+      let dataHandyMan = {
+        categoryID:''
+      }
+      await this.client.getActivehandyman(dataHandyMan).then(result => 
+      {	
+        loadingFeaturedHandyMan.dismiss();//DISMISS LOADER			
+        this.resultDataFeaturedHandyMan=result; 
+        console.log(this.resultDataFeaturedHandyMan);
+              
+      },
+      error => 
+      {
+        loadingFeaturedHandyMan.dismiss();//DISMISS LOADER
+        console.log();
+      });//FEATURED HANDYMAN
+    }
+    if(this.role == 'handyman')
+    {
+      //LOADER
+      const loadingHandyManRequests = await this.loadingCtrl.create({
+        spinner: null,
+        //duration: 5000,
+        message: 'Please wait...',
+        translucent: true,
+        cssClass: 'custom-class custom-loading'
+      });
+      await loadingHandyManRequests.present();
+      //LOADER
+      let dataHandyManJobRequest = {
+        //user_id:this.id
+        user_id:18
+      }
+      await this.client.getJobRequestsForHandyMan(dataHandyManJobRequest).then(result => 
+      {	
+        loadingHandyManRequests.dismiss();//DISMISS LOADER			
+        this.jobRequestsHandyMan=result; 
+        console.log("JOBS",this.jobRequestsHandyMan);
+              
+      },
+      error => 
+      {
+        loadingHandyManRequests.dismiss();//DISMISS LOADER
+        console.log();
+      });//JOB REQUESTS FOR HANDYMAN
     }
   }
 

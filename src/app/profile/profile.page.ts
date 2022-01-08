@@ -14,7 +14,7 @@ export class ProfilePage implements OnInit
 {
 	public language_selected = '';
 	public default_language_data: any = [];
-	public resultData:any;
+	public resultData:any = [];
 	public id:any='';
 	public profileForm = this.fb.group({
 		first_name: ['', Validators.required],

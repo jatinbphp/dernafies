@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { ClientService } from '../providers/client.service';
-import { LoadingController } from '@ionic/angular';
+import { Platform, LoadingController } from '@ionic/angular';
 import { InAppBrowser, InAppBrowserOptions } from '@awesome-cordova-plugins/in-app-browser/ngx';
+import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
+
+declare var google;
 
 @Component({
   selector: 'app-sign-up',
@@ -12,6 +15,7 @@ import { InAppBrowser, InAppBrowserOptions } from '@awesome-cordova-plugins/in-a
 
 export class SignUpPage implements OnInit 
 {
+  @ViewChild('gooeleMap')  mapElement: ElementRef;
   public language_selected = '';
 	public default_language_data: any = [];
   public resultData:any;
@@ -23,6 +27,12 @@ export class SignUpPage implements OnInit
   public language_key_exchange_district_array: any = [];
   public language_key_exchange_city_array: any = [];
 
+  public gooeleMap: any;
+  public latitude:any='';
+  public longitude:any='';
+  public latitudeCenter:any='';
+  public longitudeCenter:any='';
+  
   public passwordType: string = 'password';
   public passwordIcon: string = 'eye-off';
 	public ConfirmPasswordType: string = 'password';
@@ -41,6 +51,8 @@ export class SignUpPage implements OnInit
     service_district: [''],
     service_city: [''],
     service_in_km: [''],
+    latitude: [''],
+    longitude: [''],
     },{validator: this.checkIfMatchingPasswords('password', 'cpassword')
   });
 
@@ -87,8 +99,7 @@ export class SignUpPage implements OnInit
     ]
     
   };
-
-  constructor(public client: ClientService, public fb: FormBuilder, public loadingCtrl: LoadingController, private inAppBrowser: InAppBrowser)
+  constructor(public client: ClientService, public fb: FormBuilder, public loadingCtrl: LoadingController, private inAppBrowser: InAppBrowser, private geolocation: Geolocation, private platform: Platform)
   { 
     this.default_language_data = this.client.default_language_data;
 		this.language_selected = this.client.language_selected;
@@ -157,6 +168,72 @@ export class SignUpPage implements OnInit
       loadingDestrict.dismiss();//DISMISS LOADER
       console.log();
     });//DISTRICTS
+  }
+
+  async ionViewWillEnter()
+  {
+    this.platform.ready().then(async () => 
+    {
+      const coordinates = await this.geolocation.getCurrentPosition();
+      this.latitude=Number(coordinates.coords.latitude);
+      this.longitude=Number(coordinates.coords.longitude);
+      this.JustAssignLatLonAsGlobal();
+      
+      //LOAD THE MAP WITH LATITUDE,LONGITUDE
+      let latLng = new google.maps.LatLng(this.latitude, this.longitude);
+      let mapOptions = 
+      {
+        center: latLng,
+        zoom: 12,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        draggable: true,//THIS WILL NOW ALLOW MAP TO DRAG
+        disableDefaultUI: true,//THIS WILL REMOVE THE ZOOM OPTION +/-
+      } 
+      this.gooeleMap = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+      this.gooeleMap.addListener('tilesloaded', () => 
+      {
+        this.latitudeCenter = this.gooeleMap.center.lat();
+        this.longitudeCenter = this.gooeleMap.center.lng();
+      });
+
+      const myLatLng = { lat: this.latitude, lng: this.longitude };
+      let image = 
+      {
+        url: './assets/images/marker-home1.png', // image is 512 x 512
+        scaledSize: new google.maps.Size(60, 60),
+      };
+      
+      let markerToReturn = new google.maps.Marker({
+        draggable: true,
+        position: myLatLng,
+        map: this.gooeleMap,
+        animation: 'DROP',
+        title: '',
+        icon: image
+      });
+      
+      //THIS PORTION ALLOW TO DRAG MARKER AND GET THE POSITION
+      let classObj = this;//This is the class object we can say "SignUpPage"
+      google.maps.event.addListener(markerToReturn, 'dragend', function(this)//here "this" means "SignUpPage"
+      {
+        this.markerlatlong = markerToReturn.getPosition();        
+        classObj.latitude=markerToReturn.getPosition().lat();
+        classObj.longitude=markerToReturn.getPosition().lng();
+        classObj.JustAssignLatLonAsGlobal();
+        //console.log("latlong"+this.markerlatlong);
+        //console.log("lat"+markerToReturn.getPosition().lat());
+        //console.log("long"+markerToReturn.getPosition().lng());
+      });//THIS PORTION ALLOW TO DRAG MARKER AND GET THE POSITION
+      //LOAD THE MAP WITH LATITUDE,LONGITUDE
+    });
+  }
+
+  JustAssignLatLonAsGlobal()
+  {
+    console.log(this.latitude);
+    console.log(this.longitude);
+    this.registerForm.controls['latitude'].setValue(this.latitude);
+    this.registerForm.controls['longitude'].setValue(this.longitude);
   }
 
   checkIfMatchingPasswords(passwordKey: string, passwordConfirmationKey: string)

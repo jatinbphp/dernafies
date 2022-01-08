@@ -16,9 +16,10 @@ export class HandymanSelectedPage implements OnInit
   public language_selected = '';
 	public default_language_data: any = [];
   public language_key_exchange_array: any = [];
-  public queryStringData: any=[];
   public resultDataHandyMan: any=[];
   public is_handy_man_selected:boolean = false;
+  public queryString: any=[];
+  public queryStringData: any=[];
 
   constructor(public client: ClientService, public loadingCtrl: LoadingController, private route: ActivatedRoute)
   { 
@@ -82,9 +83,25 @@ export class HandymanSelectedPage implements OnInit
   {
     this.client.router.navigate(['/tabs/handyman-view-all']);
   }
+
   showLocation()
   {
-    this.client.router.navigate(['/tabs/handyman-send-location']);
+    this.queryString = 
+    {
+      handyman_id:this.resultDataHandyMan['id'],
+      handyman_category_id:this.resultDataHandyMan['categoryID'],
+      handyman_phone_number:'+1 123-456-7890',
+    };
+
+    let navigationExtras: NavigationExtras = 
+    {
+      queryParams: 
+      {
+        special: JSON.stringify(this.queryString)
+      }
+    };
+    this.client.router.navigate(['/tabs/handyman-send-location'], navigationExtras);
+    //this.client.router.navigate(['/tabs/handyman-send-location']);
   }
 
   selectHandyMan()
