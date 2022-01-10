@@ -4,6 +4,7 @@ import { ClientService } from '../providers/client.service';
 import { Platform, LoadingController } from '@ionic/angular';
 import { InAppBrowser, InAppBrowserOptions } from '@awesome-cordova-plugins/in-app-browser/ngx';
 import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
+import { NativeGeocoder, NativeGeocoderResult, NativeGeocoderOptions } from '@awesome-cordova-plugins/native-geocoder/ngx';
 
 declare var google;
 
@@ -23,16 +24,19 @@ export class SignUpPage implements OnInit
   public resultDataCategories: any = [];
   public resultDataDistricts: any = [];
   public resultDataCities: any = [];
+  public resultDataProvince: any = [];
   public language_key_exchange_array: any = [];
   public language_key_exchange_district_array: any = [];
   public language_key_exchange_city_array: any = [];
+  public language_key_exchange_province_array: any = [];
 
   public gooeleMap: any;
   public latitude:any='';
   public longitude:any='';
   public latitudeCenter:any='';
   public longitudeCenter:any='';
-  
+  public address:any='';
+
   public passwordType: string = 'password';
   public passwordIcon: string = 'eye-off';
 	public ConfirmPasswordType: string = 'password';
@@ -47,9 +51,10 @@ export class SignUpPage implements OnInit
 			Validators.required,
 			Validators.minLength(8)
 		])],
-    specialized_in: [''],
+    specialized_in: ['', Validators.required],
     service_district: [''],
     service_city: [''],
+    service_province: ['', Validators.required],
     service_in_km: [''],
     latitude: [''],
     longitude: [''],
@@ -93,13 +98,16 @@ export class SignUpPage implements OnInit
     [
       { type: 'required', message: 'Selecting city is required.' }
     ],
+    'service_province': [
+      { type: 'required', message: 'Selecting province is required.' }
+    ],
     'service_in_km': 
     [
       { type: 'required', message: 'Range service is required.' }
     ]
     
   };
-  constructor(public client: ClientService, public fb: FormBuilder, public loadingCtrl: LoadingController, private inAppBrowser: InAppBrowser, private geolocation: Geolocation, private platform: Platform)
+  constructor(public client: ClientService, public fb: FormBuilder, public loadingCtrl: LoadingController, private inAppBrowser: InAppBrowser, private geolocation: Geolocation, private platform: Platform, private nativeGeocoder: NativeGeocoder)
   { 
     this.default_language_data = this.client.default_language_data;
 		this.language_selected = this.client.language_selected;
@@ -119,9 +127,11 @@ export class SignUpPage implements OnInit
 
     this.language_key_exchange_city_array['english']='cityName';
     this.language_key_exchange_city_array['arabic']='cityNameArabic';
-    this.language_key_exchange_city_array['kurdish']='cityNameKurdi';
-
+    this.language_key_exchange_city_array['kurdish']='cityNameKurdi'; 
     
+    this.language_key_exchange_province_array['english']='provinceName';
+    this.language_key_exchange_province_array['arabic']='provinceNameArabic';
+    this.language_key_exchange_province_array['kurdish']='provinceNameKurdi'; 
 
     //LOADER
 		const loading = await this.loadingCtrl.create({
@@ -168,6 +178,29 @@ export class SignUpPage implements OnInit
       loadingDestrict.dismiss();//DISMISS LOADER
       console.log();
     });//DISTRICTS
+
+    //LOADER
+		const loadingProvince = await this.loadingCtrl.create({
+			spinner: null,
+			//duration: 5000,
+			message: 'Please wait...',
+			translucent: true,
+			cssClass: 'custom-class custom-loading'
+		});
+		await loadingProvince.present();
+		//LOADER
+    await this.client.getProvinces().then(resultProvinces => 
+    {	
+      loadingProvince.dismiss();//DISMISS LOADER			
+      this.resultDataProvince=resultProvinces;
+      console.log("Provinces",this.resultDataProvince);
+            
+    },
+    error => 
+    {
+      loadingProvince.dismiss();//DISMISS LOADER
+      console.log();
+    });//Province
   }
 
   async ionViewWillEnter()
@@ -207,14 +240,14 @@ export class SignUpPage implements OnInit
         draggable: true,
         position: myLatLng,
         map: this.gooeleMap,
-        animation: 'DROP',
+        //animation: 'DROP',
         title: '',
         icon: image
       });
       
       //THIS PORTION ALLOW TO DRAG MARKER AND GET THE POSITION
       let classObj = this;//This is the class object we can say "SignUpPage"
-      google.maps.event.addListener(markerToReturn, 'dragend', function(this)//here "this" means "SignUpPage"
+      await google.maps.event.addListener(markerToReturn, 'dragend', function(this)//here "this" means "SignUpPage"
       {
         this.markerlatlong = markerToReturn.getPosition();        
         classObj.latitude=markerToReturn.getPosition().lat();
@@ -234,6 +267,7 @@ export class SignUpPage implements OnInit
     console.log(this.longitude);
     this.registerForm.controls['latitude'].setValue(this.latitude);
     this.registerForm.controls['longitude'].setValue(this.longitude);
+    this.getAddressFromLatitudeAndLongitude(this.latitude, this.longitude);//THIS WILL GET ADDRESS ON BASES OF LATITUDE AND LONGITUDE
   }
 
   checkIfMatchingPasswords(passwordKey: string, passwordConfirmationKey: string)
@@ -297,9 +331,10 @@ export class SignUpPage implements OnInit
     let email = (form.email) ? form.email : "";
     let password = (form.password) ? form.password : "";
     
-    let specialized_in = (form.specialized_in) ? form.specialized_in : "";
+    let specialized_in = (form.specialized_in) ? form.specialized_in.join(",") : "";
     let service_district = (form.service_district) ? form.service_district : "";
     let service_city = (form.service_city) ? form.service_city : "";
+    let service_province = (form.service_province) ? form.service_province : "";
     let service_in_km = (form.service_in_km) ? form.service_in_km : 0;
 
 		let data=
@@ -312,7 +347,11 @@ export class SignUpPage implements OnInit
       specialized_in:specialized_in,
       service_district:service_district,
       service_city:service_city,
+      service_province:service_province,
       service_in_km:service_in_km,
+      latitude:this.latitude,
+      longitude:this.longitude,
+      address:this.address
 		}
     
 		await this.client.makeMeRegistered(data).then(result => 
@@ -370,6 +409,9 @@ export class SignUpPage implements OnInit
       this.registerForm.get('service_city').setValidators([Validators.required]);     
       this.registerForm.get('service_city').updateValueAndValidity();
 
+      //this.registerForm.get('service_province').setValidators([Validators.required]);     
+      //this.registerForm.get('service_province').updateValueAndValidity();
+
       this.registerForm.get('service_in_km').setValidators([Validators.required]);     
       this.registerForm.get('service_in_km').updateValueAndValidity();
     }
@@ -378,6 +420,7 @@ export class SignUpPage implements OnInit
       this.registerForm.controls['specialized_in'].setValue("");
       this.registerForm.controls['service_district'].setValue("");
       this.registerForm.controls['service_city'].setValue("");
+      //this.registerForm.controls['service_province'].setValue("");
       this.registerForm.controls['service_in_km'].setValue("");
 
       this.registerForm.get('specialized_in').clearValidators();     
@@ -388,6 +431,9 @@ export class SignUpPage implements OnInit
 
       this.registerForm.get('service_city').clearValidators();     
       this.registerForm.get('service_city').updateValueAndValidity();
+
+      //this.registerForm.get('service_province').clearValidators();     
+      //this.registerForm.get('service_province').updateValueAndValidity();
 
       this.registerForm.get('service_in_km').clearValidators();     
       this.registerForm.get('service_in_km').updateValueAndValidity();
@@ -425,5 +471,38 @@ export class SignUpPage implements OnInit
         console.log();
       });//DISTRICTS
     }
+  }
+
+  async getAddressFromLatitudeAndLongitude(latitude_for_geocoder,longitude_for_geocoder)
+  {
+    //GET ADDRESS FROM LAT,LON
+    //console.log("getAddressFromCoords "+latitude_for_geocoder+" "+longitude_for_geocoder);
+    let options: NativeGeocoderOptions = 
+    {
+      useLocale: true,
+      maxResults: 1    
+    }; 
+    await this.nativeGeocoder.reverseGeocode(latitude_for_geocoder, longitude_for_geocoder, options).then((result: NativeGeocoderResult[]) => 
+    {
+      console.log("Result",result);
+      this.address = "";
+      let responseAddress = [];      
+      for (let [key, value] of Object.entries(result[0])) 
+      {
+        if(value.length>0)
+        responseAddress.push(value); 
+      }
+      responseAddress.reverse();
+      for (let value of responseAddress) 
+      {
+        this.address += value+", ";
+      }
+      this.address = this.address.slice(0, -2);
+      console.log(this.address);
+    }).catch((error: any) =>
+    { 
+      this.address = "Address Not Available!";
+    });
+    //GET ADDRESS FROM LAT,LON
   }
 }

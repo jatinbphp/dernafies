@@ -15,11 +15,13 @@
 			<h2 class="title">{{resultData['firstName']}} {{resultData['lastName']}}</h2>
 			<div class="person-contact">
 				<p><ion-icon name="call"></ion-icon>+1 123-456-7890</p>
-				<p><ion-icon name="location-sharp"></ion-icon>{{address}}</p>
+				<p><ion-icon name="location-sharp"></ion-icon><!--{{latitude}} {{longitude}}-->{{address}}</p>
 			</div>
 		</div>
 		<div class="review-box-btns">
-			<ion-button color="secondary"><ion-icon name="location-sharp"></ion-icon>Send Location Pin</ion-button>
+			<ion-button color="secondary" (click)="SendLocationPin()">
+				<ion-icon name="location-sharp"></ion-icon>Send Location Pin
+			</ion-button>
 		</div>
 	</div>
 	<!-- <div class="main-div">

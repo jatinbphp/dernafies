@@ -101,6 +101,27 @@
           </ion-col>
         </ion-row>
         <ion-row>
+          <ion-col size="12">
+            <ion-item lines="none" class="ion-no-padding">
+              <ion-label position="stacked">{{default_language_data['translation'][0]['register'][0][language_selected][0]['province']}}</ion-label>
+              <ion-select formControlName="service_province">
+                <ion-select-option *ngFor="let province of resultDataProvince;let p = index;" value="{{province.id}}">{{province[language_key_exchange_province_array[language_selected]]}}</ion-select-option>  
+              </ion-select>
+            </ion-item>
+            <!--VALIDATION-->
+            <div class="validation-errors">
+              <ng-container *ngFor="let validation of validation_messages.service_province">
+                <div class="error-message"
+                  *ngIf="registerForm.get('service_province').hasError(validation.type) && (registerForm.get('service_province').dirty || registerForm.get('service_province').touched)">
+                  <ion-icon name="information-circle-outline"></ion-icon>
+                  <p>{{ validation.message }}</p>
+                </div>
+              </ng-container>
+            </div>
+            <!--VALIDATION-->
+          </ion-col>
+        </ion-row>
+        <ion-row>
           <ion-col size="1">
             <ion-checkbox (ionChange)="signupAsHandyman($event)" [(ngModel)]="signup_as_handyman" [ngModelOptions]="{standalone: true}"></ion-checkbox>
           </ion-col>        
@@ -110,7 +131,7 @@
           <ion-col size="12">
             <ion-item lines="none" class="ion-no-padding">
               <ion-label position="stacked">{{default_language_data['translation'][0]['register'][0][language_selected][0]['specialized_in']}}</ion-label>
-              <ion-select formControlName="specialized_in">
+              <ion-select formControlName="specialized_in" multiple="true">
                 <ion-select-option *ngFor="let categories of resultDataCategories;let s = index;" value="{{categories.id}}">{{categories[language_key_exchange_array[language_selected]]}}</ion-select-option>  
               </ion-select>
             </ion-item>

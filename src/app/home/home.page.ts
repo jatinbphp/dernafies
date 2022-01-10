@@ -286,7 +286,7 @@ export class HomePage
   {
     this.queryString = 
     {
-      id:id
+      handyman_category_id:id
     };
 
     let navigationExtras: NavigationExtras = 

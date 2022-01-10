@@ -12,6 +12,7 @@ import { ActivatedRoute, Router, NavigationExtras } from "@angular/router";
 export class HandymanSelectedPage implements OnInit 
 {
   public id:any='';
+  public handyman_category_id:any=0;
   public rtl_or_ltr = '';
   public language_selected = '';
 	public default_language_data: any = [];
@@ -51,6 +52,7 @@ export class HandymanSelectedPage implements OnInit
       }
     });
     this.id=this.queryStringData['id'];
+    this.handyman_category_id=this.queryStringData['handyman_category_id'];
 
     //LOADER
 		const loadingFeaturedHandyMan = await this.loadingCtrl.create({
@@ -89,8 +91,7 @@ export class HandymanSelectedPage implements OnInit
     this.queryString = 
     {
       handyman_id:this.resultDataHandyMan['id'],
-      handyman_category_id:this.resultDataHandyMan['categoryID'],
-      handyman_phone_number:'+1 123-456-7890',
+      handyman_category_id:(this.handyman_category_id) ? this.handyman_category_id : 0
     };
 
     let navigationExtras: NavigationExtras = 

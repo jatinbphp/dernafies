@@ -83,6 +83,7 @@
                      "email_address":"Email",
                      "password":"Password",
                      "confirm_password":"Confirm Password",
+                     "province":"Province",
                      "specialized_in": "Specialized In",
                      "service_location": "Service Location",
                      "service_district": "Service District",
@@ -105,6 +106,7 @@
                      "email_address":"البريد الالكتروني",
                      "password":"كلمة المرور",
                      "confirm_password":"تأكيد كلمة المرور",
+                     "province":"المحافظة",
                      "specialized_in": "متخصص في",
                      "service_location": "موقع الخدمة",
                      "service_district": "منطقة الخدمة",
@@ -127,6 +129,7 @@
                      "email_address":"Email",
                      "password":"Şîfre",
                      "confirm_password":"di pêşîyê da em sipas dikin",
+                     "province":"Herêm",
                      "specialized_in": "Specialized In",
                      "service_location": "Cihê Xizmetê",
                      "service_district": "Navçeya Xizmetê",
@@ -370,6 +373,31 @@
                      "text_3":"Clients",
                      "select_handy_man_button":"Handyman hilbijêre",
                      "send_location_pin_button":"Pîneya Cihê bişînin"
+                  }
+               ]
+            }
+         ],
+         "book_a_job": [
+            {
+               "english": [
+                  {
+                     "screen_title":"Book",
+                     "job_description":"Job Description",
+                     "book_a_button":"Book Now"
+                  }
+               ],
+               "arabic": [
+                  {
+                     "screen_title":"الكتاب",
+                     "job_description":"المسمى الوظيفي",
+                     "book_a_button":"احجز الآن"
+                  }
+               ],
+               "kurdish": [
+                  {
+                     "screen_title":"Pirtûk",
+                     "job_description":"Danasîna Kar",
+                     "book_a_button":"Book Now"
                   }
                ]
             }

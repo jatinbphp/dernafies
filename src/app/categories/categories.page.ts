@@ -66,7 +66,7 @@ export class CategoriesPage
   {
     this.queryString = 
     {
-      id:id
+      handyman_category_id:id
     };
 
     let navigationExtras: NavigationExtras = 
@@ -76,9 +76,12 @@ export class CategoriesPage
         special: JSON.stringify(this.queryString)
       }
     };
+    this.client.router.navigate(['/tabs/handyman-view-all'], navigationExtras);
+    /*
     this.client.router.navigate(['/tabs/handyman-view-all'], navigationExtras).then(()=>{
       window.location.reload();
     });
+    */
   }
 
   backToHome()

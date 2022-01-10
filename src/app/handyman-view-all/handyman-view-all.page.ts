@@ -18,7 +18,7 @@ export class HandymanViewAllPage implements OnInit
 	public default_language_data: any = [];
   public language_key_exchange_array: any = [];
 
-  public id:any='';
+  public handyman_category_id:any=0;
   public resultDataHandyMan: any = [];  
   public resultDataHandyManPerSlide: any = [];
   public resultDataHandyManPerSlideTemp: any = [];
@@ -85,10 +85,10 @@ export class HandymanViewAllPage implements OnInit
         this.queryStringData = JSON.parse(params.special);        
       }
     });
-    this.id=this.queryStringData['id'];
+    this.handyman_category_id=this.queryStringData['handyman_category_id'];
     
     let dataHandyMan = {
-      categoryID:(this.id) ? this.id : ''
+      categoryID:(this.handyman_category_id) ? this.handyman_category_id : 0
     }
     await this.client.getActivehandyman(dataHandyMan).then(result => 
     {	
@@ -151,7 +151,8 @@ export class HandymanViewAllPage implements OnInit
   {
     this.queryString = 
     {
-      id:id
+      id:id,
+      handyman_category_id:(this.handyman_category_id) ? this.handyman_category_id : 0
     };
 
     let navigationExtras: NavigationExtras = 

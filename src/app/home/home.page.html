@@ -15,20 +15,21 @@
   </ion-header>
   <div class="main-div">
     <div class="rsr-sec" *ngIf="role == 'handyman'">
-      <h2>{{default_language_data['translation'][0]['home'][0][language_selected][0]['recent_service_request']}}<span>(124)</span></h2>
+      <h2>{{default_language_data['translation'][0]['home'][0][language_selected][0]['recent_service_request']}}<span>({{jobRequestsHandyMan.length}})</span></h2>
+      <p *ngIf="jobRequestsHandyMan.length == 0" class="no-records">No records found.</p>
       <ion-row class="rsr-list">
-        <ion-col class="rsr-item">
+        <ion-col class="rsr-item" *ngFor="let job of jobRequestsHandyMan; let j = index;">
           <div class="icon-details">
             <div class="rsr-icon">
-              <img src="../../assets/images/home-icon1.png">
+              <img src="{{job.categoryImage}}">
             </div>
             <div class="rsr-details">
-              <h3>Home Repair</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipig elitsed do eiusmod tempor incididunt</p>
+              <h3>{{job[language_key_exchange_array[language_selected]]}}</h3>
+              <p>{{job.description}}</p>
               <ion-row>
                 <ion-col class="loc-icon"><ion-icon name="location-sharp"></ion-icon></ion-col>
                 <ion-col class="loc-text">
-                  <h5><strong>Street:</strong> 4304 boulevard des Laurentides</h5>
+                  <h5><strong>Street:</strong> {{job.jobAddress}}</h5>
                   <h5><strong>City:</strong> Shawinigan</h5>
                   <h5><strong>Province:</strong> Quebec</h5>
                 </ion-col>
@@ -42,137 +43,7 @@
               <ion-item><ion-button color="danger"><ion-icon name="close-outline"></ion-icon>{{default_language_data['translation'][0]['general'][0][language_selected][0]['reject_text']}}</ion-button></ion-item>
             </ion-list>
           </div>
-        </ion-col>
-        <ion-col class="rsr-item">
-          <div class="icon-details">
-            <div class="rsr-icon">
-              <img src="../../assets/images/home-icon1.png">
-            </div>
-            <div class="rsr-details">
-              <h3>Home Repair</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipig elitsed do eiusmod tempor incididunt</p>
-              <ion-row>
-                <ion-col class="loc-icon"><ion-icon name="location-sharp"></ion-icon></ion-col>
-                <ion-col class="loc-text">
-                  <h5><strong>Street:</strong> 4304 boulevard des Laurentides</h5>
-                  <h5><strong>City:</strong> Shawinigan</h5>
-                  <h5><strong>Province:</strong> Quebec</h5>
-                </ion-col>
-              </ion-row>
-            </div>
-          </div>
-          <div class="rsr-buttons">
-            <ion-list>
-              <ion-item><ion-button color="primary">{{default_language_data['translation'][0]['general'][0][language_selected][0]['location_map']}}</ion-button></ion-item>
-              <ion-item><ion-button color="success"><ion-icon name="checkmark-outline"></ion-icon>{{default_language_data['translation'][0]['general'][0][language_selected][0]['accept_text']}}</ion-button></ion-item>
-              <ion-item><ion-button color="danger"><ion-icon name="close-outline"></ion-icon>{{default_language_data['translation'][0]['general'][0][language_selected][0]['reject_text']}}</ion-button></ion-item>
-            </ion-list>
-          </div>
-        </ion-col>
-        <ion-col class="rsr-item">
-          <div class="icon-details">
-            <div class="rsr-icon">
-              <img src="../../assets/images/home-icon1.png">
-            </div>
-            <div class="rsr-details">
-              <h3>Home Repair</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipig elitsed do eiusmod tempor incididunt</p>
-              <ion-row>
-                <ion-col class="loc-icon"><ion-icon name="location-sharp"></ion-icon></ion-col>
-                <ion-col class="loc-text">
-                  <h5><strong>Street:</strong> 4304 boulevard des Laurentides</h5>
-                  <h5><strong>City:</strong> Shawinigan</h5>
-                  <h5><strong>Province:</strong> Quebec</h5>
-                </ion-col>
-              </ion-row>
-            </div>
-          </div>
-          <div class="rsr-buttons">
-            <ion-list>
-              <ion-item><ion-button color="primary">{{default_language_data['translation'][0]['general'][0][language_selected][0]['location_map']}}</ion-button></ion-item>
-              <ion-item><ion-button color="success"><ion-icon name="checkmark-outline"></ion-icon>{{default_language_data['translation'][0]['general'][0][language_selected][0]['accept_text']}}</ion-button></ion-item>
-              <ion-item><ion-button color="danger"><ion-icon name="close-outline"></ion-icon>{{default_language_data['translation'][0]['general'][0][language_selected][0]['reject_text']}}</ion-button></ion-item>
-            </ion-list>
-          </div>
-        </ion-col>
-        <ion-col class="rsr-item">
-          <div class="icon-details">
-            <div class="rsr-icon">
-              <img src="../../assets/images/home-icon1.png">
-            </div>
-            <div class="rsr-details">
-              <h3>Home Repair</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipig elitsed do eiusmod tempor incididunt</p>
-              <ion-row>
-                <ion-col class="loc-icon"><ion-icon name="location-sharp"></ion-icon></ion-col>
-                <ion-col class="loc-text">
-                  <h5><strong>Street:</strong> 4304 boulevard des Laurentides</h5>
-                  <h5><strong>City:</strong> Shawinigan</h5>
-                  <h5><strong>Province:</strong> Quebec</h5>
-                </ion-col>
-              </ion-row>
-            </div>
-          </div>
-          <div class="rsr-buttons">
-            <ion-list>
-              <ion-item><ion-button color="primary">{{default_language_data['translation'][0]['general'][0][language_selected][0]['location_map']}}</ion-button></ion-item>
-              <ion-item><ion-button color="success"><ion-icon name="checkmark-outline"></ion-icon>{{default_language_data['translation'][0]['general'][0][language_selected][0]['accept_text']}}</ion-button></ion-item>
-              <ion-item><ion-button color="danger"><ion-icon name="close-outline"></ion-icon>{{default_language_data['translation'][0]['general'][0][language_selected][0]['reject_text']}}</ion-button></ion-item>
-            </ion-list>
-          </div>
-        </ion-col>
-        <ion-col class="rsr-item">
-          <div class="icon-details">
-            <div class="rsr-icon">
-              <img src="../../assets/images/home-icon1.png">
-            </div>
-            <div class="rsr-details">
-              <h3>Home Repair</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipig elitsed do eiusmod tempor incididunt</p>
-              <ion-row>
-                <ion-col class="loc-icon"><ion-icon name="location-sharp"></ion-icon></ion-col>
-                <ion-col class="loc-text">
-                  <h5><strong>Street:</strong> 4304 boulevard des Laurentides</h5>
-                  <h5><strong>City:</strong> Shawinigan</h5>
-                  <h5><strong>Province:</strong> Quebec</h5>
-                </ion-col>
-              </ion-row>
-            </div>
-          </div>
-          <div class="rsr-buttons">
-            <ion-list>
-              <ion-item><ion-button color="primary">{{default_language_data['translation'][0]['general'][0][language_selected][0]['location_map']}}</ion-button></ion-item>
-              <ion-item><ion-button color="success"><ion-icon name="checkmark-outline"></ion-icon>{{default_language_data['translation'][0]['general'][0][language_selected][0]['accept_text']}}</ion-button></ion-item>
-              <ion-item><ion-button color="danger"><ion-icon name="close-outline"></ion-icon>{{default_language_data['translation'][0]['general'][0][language_selected][0]['reject_text']}}</ion-button></ion-item>
-            </ion-list>
-          </div>
-        </ion-col>
-        <ion-col class="rsr-item">
-          <div class="icon-details">
-            <div class="rsr-icon">
-              <img src="../../assets/images/home-icon1.png">
-            </div>
-            <div class="rsr-details">
-              <h3>Home Repair</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipig elitsed do eiusmod tempor incididunt</p>
-              <ion-row>
-                <ion-col class="loc-icon"><ion-icon name="location-sharp"></ion-icon></ion-col>
-                <ion-col class="loc-text">
-                  <h5><strong>Street:</strong> 4304 boulevard des Laurentides</h5>
-                  <h5><strong>City:</strong> Shawinigan</h5>
-                  <h5><strong>Province:</strong> Quebec</h5>
-                </ion-col>
-              </ion-row>
-            </div>
-          </div>
-          <div class="rsr-buttons">
-            <ion-list>
-              <ion-item><ion-button color="primary">{{default_language_data['translation'][0]['general'][0][language_selected][0]['location_map']}}</ion-button></ion-item>
-              <ion-item><ion-button color="success"><ion-icon name="checkmark-outline"></ion-icon>{{default_language_data['translation'][0]['general'][0][language_selected][0]['accept_text']}}</ion-button></ion-item>
-              <ion-item><ion-button color="danger"><ion-icon name="close-outline"></ion-icon>{{default_language_data['translation'][0]['general'][0][language_selected][0]['reject_text']}}</ion-button></ion-item>
-            </ion-list>
-          </div>
-        </ion-col>
+        </ion-col>        
       </ion-row>
     </div>
     <div class="src-box-main" *ngIf="role == 'customer'">

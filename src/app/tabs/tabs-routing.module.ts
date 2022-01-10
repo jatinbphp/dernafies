@@ -52,6 +52,10 @@ const routes: Routes = [
         loadChildren: () => import('../handyman-send-location/handyman-send-location.module').then(m => m.HandymanSendLocationPageModule)
       },
       {
+        path: 'add-job',
+        loadChildren: () => import('../add-job/add-job.module').then(m => m.AddJobPageModule)
+      },
+      {
         path: '',
         //redirectTo: '/tabs/home',
         redirectTo: '/sign-in',

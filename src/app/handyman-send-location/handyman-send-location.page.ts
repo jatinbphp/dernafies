@@ -18,7 +18,6 @@ export class HandymanSendLocationPage implements OnInit
   @ViewChild('gooeleMap')  mapElement: ElementRef;
   public handyman_id:any='';
   public handyman_category_id:any='';
-  public handyman_phone_number:any='';
 
   public resultData:any = [];
   public id:any='';
@@ -49,9 +48,9 @@ export class HandymanSendLocationPage implements OnInit
       let mapOptions = 
       {
         center: latLng,
-        zoom: 10,
+        zoom: 12,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
-        draggable: false,//THIS WILL NOW ALLOW MAP TO DRAG
+        draggable: true,//THIS WILL NOW ALLOW MAP TO DRAG
         disableDefaultUI: true,//THIS WILL REMOVE THE ZOOM OPTION +/-
       } 
 
@@ -70,14 +69,28 @@ export class HandymanSendLocationPage implements OnInit
         scaledSize: new google.maps.Size(60, 60),
       };
       let markerToReturn = new google.maps.Marker({
-        draggable: false,
+        draggable: true,
         position: myLatLng,
         map: this.gooeleMap,
+        animation: 'DROP',
         title: '',
         icon: image
       });
 
-      this.getAddressFromLatitudeAndLongitude(this.latitude_for_geocoder, this.longitude_for_geocoder);
+      //THIS PORTION ALLOW TO DRAG MARKER AND GET THE POSITION
+      let classObj = this;//This is the class object we can say "HandymanSendLocationPage"
+      await google.maps.event.addListener(markerToReturn, 'dragend', function(this)//here "this" means "HandymanSendLocationPage"
+      {
+        this.markerlatlong = markerToReturn.getPosition();        
+        classObj.latitude=markerToReturn.getPosition().lat();
+        classObj.longitude=markerToReturn.getPosition().lng();
+        classObj.getAddressFromLatitudeAndLongitude(classObj.latitude, classObj.longitude);//THIS WILL GET ADDRESS ON BASES OF LATITUDE AND LONGITUDE
+        //console.log("latlong"+this.markerlatlong);
+        //console.log("lat"+markerToReturn.getPosition().lat());
+        //console.log("long"+markerToReturn.getPosition().lng());
+      });//THIS PORTION ALLOW TO DRAG MARKER AND GET THE POSITION
+
+      this.getAddressFromLatitudeAndLongitude(this.latitude_for_geocoder, this.longitude_for_geocoder);//THIS WILL GET ADDRESS ON BASES OF LATITUDE AND LONGITUDE
     });
     console.log("LAT",this.latitude);
     console.log("LON",this.longitude);
@@ -96,7 +109,6 @@ export class HandymanSendLocationPage implements OnInit
     });
     this.handyman_id=this.queryStringData['handyman_id'];
     this.handyman_category_id=this.queryStringData['handyman_category_id'];
-    this.handyman_phone_number=this.queryStringData['handyman_phone_number'];
 
     //USER INFORMATION
     //LOADER
@@ -130,7 +142,7 @@ export class HandymanSendLocationPage implements OnInit
   async getAddressFromLatitudeAndLongitude(latitude_for_geocoder,longitude_for_geocoder)
   {
     //GET ADDRESS FROM LAT,LON
-    console.log("getAddressFromCoords "+latitude_for_geocoder+" "+longitude_for_geocoder);
+    //console.log("getAddressFromCoords "+latitude_for_geocoder+" "+longitude_for_geocoder);
     let options: NativeGeocoderOptions = 
     {
       useLocale: true,
@@ -158,5 +170,26 @@ export class HandymanSendLocationPage implements OnInit
       this.address = "Address Not Available!";
     });
     //GET ADDRESS FROM LAT,LON
+  }
+
+  SendLocationPin()
+  {
+    let latitude = (this.latitude) ? this.latitude : "";
+    let longitude = (this.longitude) ? this.longitude : "";
+    let address = (this.address) ? this.address : "";
+    let handyman_id = (this.handyman_id) ? this.handyman_id : 0;
+    let handyman_category_id = (this.handyman_category_id) ? this.handyman_category_id : 0;
+    let user_id = (this.id) ? this.id : 0;
+
+    let jobObject ={
+      latitude:latitude,
+      longitude:longitude,
+      address:address,
+      handyman_id:handyman_id,
+      handyman_category_id:handyman_category_id,
+      user_id:user_id
+    }
+    localStorage.setItem('job',JSON.stringify(jobObject));
+    this.client.router.navigate(['/tabs/add-job']);
   }
 }
