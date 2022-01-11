@@ -123,6 +123,8 @@ export class HandymanViewAllPage implements OnInit
           profilePic:this.resultDataHandyMan[h].profilePic,
           pwd:this.resultDataHandyMan[h].pwd,
           userTypeID:this.resultDataHandyMan[h].userTypeID,
+          no_of_experience:this.resultDataHandyMan[h].no_of_experience,
+          price:this.resultDataHandyMan[h].price,
         }
         this.resultDataHandyManPerSlideTemp.push(objHandyMan);
         if(this.tempH % this.handyManToBeShowOnSingleSlide == 0)

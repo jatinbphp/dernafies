@@ -13,136 +13,274 @@
 <ion-content>
     <div class="main-div">
         <form [formGroup]="profileForm" (ngSubmit)="updateProfile(profileForm.value)">
-		<ion-grid>
-			<ion-row>
+			<ion-input type="hidden" formControlName="latitude"></ion-input>
+      		<ion-input type="hidden" formControlName="longitude"></ion-input>
+			<ion-grid>
+				<ion-row>
+					<ion-col size="12">
+						<div class="profile-pic">
+							<img src="../../assets/images/person-img1.png" *ngIf="resultData.profilePic==''">
+							<img src="{{resultData.profilePic}}" *ngIf="resultData.profilePic!=''">
+							<ion-button>
+								<!-- <ion-icon name="add-circle-sharp"></ion-icon> -->
+								<img src="../../assets/images/plus-icon1.png">
+							</ion-button>
+						</div>
+					</ion-col>
+				</ion-row>
+				<ion-row>
+					<ion-col size="12">
+						<ion-label position="stacked">{{default_language_data['translation'][0]['profile'][0][language_selected][0]['first_name']}}</ion-label>
+						<ion-input type="text" formControlName="first_name"></ion-input>
+						<!--VALIDATION-->
+						<div class="validation-errors">
+						<ng-container *ngFor="let validation of validation_messages.first_name">
+							<div class="error-message"
+							*ngIf="profileForm.get('first_name').hasError(validation.type) && (profileForm.get('first_name').dirty || profileForm.get('first_name').touched)">
+							<ion-icon name="information-circle-outline"></ion-icon>
+							<p>{{ validation.message }}</p>
+							</div>
+						</ng-container>
+						</div>
+						<!--VALIDATION-->          
+					</ion-col>
+				</ion-row>
+				<ion-row>
+					<ion-col size="12">
+						<ion-label position="stacked">{{default_language_data['translation'][0]['profile'][0][language_selected][0]['last_name']}}</ion-label>
+						<ion-input type="text" formControlName="last_name"></ion-input>
+						<!--VALIDATION-->
+						<div class="validation-errors">
+						<ng-container *ngFor="let validation of validation_messages.last_name">
+							<div class="error-message"
+							*ngIf="profileForm.get('last_name').hasError(validation.type) && (profileForm.get('last_name').dirty || profileForm.get('last_name').touched)">
+							<ion-icon name="information-circle-outline"></ion-icon>
+							<p>{{ validation.message }}</p>
+							</div>
+						</ng-container>
+						</div>
+						<!--VALIDATION-->          
+					</ion-col>
+				</ion-row>
+				<ion-row>
+					<ion-col size="12">
+						<ion-label position="stacked">{{default_language_data['translation'][0]['profile'][0][language_selected][0]['email_address']}}</ion-label>
+						<ion-input type="email" formControlName="email"></ion-input>
+						<!--VALIDATION-->
+						<div class="validation-errors">
+						<ng-container *ngFor="let validation of validation_messages.email">
+							<div class="error-message"
+							*ngIf="profileForm.get('email').hasError(validation.type) && (profileForm.get('email').dirty || profileForm.get('email').touched)">
+							<ion-icon name="information-circle-outline"></ion-icon>
+							<p>{{ validation.message }}</p>
+							</div>
+						</ng-container>
+						</div>
+						<!--VALIDATION-->          
+					</ion-col>
+				</ion-row>
+				<ion-row>
+					<ion-col size="12">				  
+						<ion-label position="stacked">{{default_language_data['translation'][0]['profile'][0][language_selected][0]['province']}}</ion-label>
+						<ion-select formControlName="service_province">
+							<ion-select-option *ngFor="let province of resultDataProvince;let p = index;" value="{{province.id}}">{{province[language_key_exchange_province_array[language_selected]]}}</ion-select-option>  
+						</ion-select>				  
+						<!--VALIDATION-->
+						<div class="validation-errors">
+						<ng-container *ngFor="let validation of validation_messages.service_province">
+							<div class="error-message"
+							*ngIf="profileForm.get('service_province').hasError(validation.type) && (profileForm.get('service_province').dirty || profileForm.get('service_province').touched)">
+							<ion-icon name="information-circle-outline"></ion-icon>
+							<p>{{ validation.message }}</p>
+							</div>
+						</ng-container>
+						</div>
+						<!--VALIDATION-->
+					</ion-col>
+				</ion-row>
+				<!--HANDYMAN-->
+				<ion-row *ngIf="role == 'handyman'">
+					<ion-col size="12">					
+						<ion-label position="stacked">{{default_language_data['translation'][0]['profile'][0][language_selected][0]['specialized_in']}}</ion-label>
+						<ion-select formControlName="specialized_in" multiple="true">
+							<ion-select-option *ngFor="let categories of resultDataCategories;let s = index;" value="{{categories.id}}">{{categories[language_key_exchange_array[language_selected]]}}</ion-select-option>  
+						</ion-select>					
+						<!--VALIDATION-->
+						<div class="validation-errors">
+						<ng-container *ngFor="let validation of validation_messages.specialized_in">
+							<div class="error-message"
+							*ngIf="profileForm.get('specialized_in').hasError(validation.type) && (profileForm.get('specialized_in').dirty || profileForm.get('specialized_in').touched)">
+							<ion-icon name="information-circle-outline"></ion-icon>
+							<p>{{ validation.message }}</p>
+							</div>
+						</ng-container>
+						</div>
+						<!--VALIDATION-->
+					</ion-col>       
+				</ion-row>
+				<ion-row *ngIf="role == 'handyman'">
+					<ion-col size="12">					
+						<ion-label position="stacked">{{default_language_data['translation'][0]['profile'][0][language_selected][0]['pricing']}}</ion-label>
+						<ion-input type="number" formControlName="price_per_hour"></ion-input>					
+						<!--VALIDATION-->
+						<div class="validation-errors">
+						<ng-container *ngFor="let validation of validation_messages.price_per_hour">
+							<div class="error-message"
+							*ngIf="profileForm.get('price_per_hour').hasError(validation.type) && (profileForm.get('price_per_hour').dirty || profileForm.get('price_per_hour').touched)">
+							<ion-icon name="information-circle-outline"></ion-icon>
+							<p>{{ validation.message }}</p>
+							</div>
+						</ng-container>
+						</div>
+						<!--VALIDATION-->
+					</ion-col>       
+				</ion-row>
+				<ion-row *ngIf="role == 'handyman'">
+					<ion-col size="12">					
+						<ion-label position="stacked">{{default_language_data['translation'][0]['profile'][0][language_selected][0]['experience_in_year']}}</ion-label>
+						<ion-input type="number" formControlName="experience_in_year"></ion-input>					
+						<!--VALIDATION-->
+						<div class="validation-errors">
+						<ng-container *ngFor="let validation of validation_messages.experience_in_year">
+							<div class="error-message"
+							*ngIf="profileForm.get('experience_in_year').hasError(validation.type) && (profileForm.get('experience_in_year').dirty || profileForm.get('experience_in_year').touched)">
+							<ion-icon name="information-circle-outline"></ion-icon>
+							<p>{{ validation.message }}</p>
+							</div>
+						</ng-container>
+						</div>
+						<!--VALIDATION-->
+					</ion-col>       
+				</ion-row>
+				<!--<ion-row *ngIf="role == 'handyman'">
+					<ion-col size="12">
+						<ion-label position="stacked">{{default_language_data['translation'][0]['profile'][0][language_selected][0]['service_district']}}</ion-label>
+						<ion-select formControlName="service_district" (ionChange)="showCitiesBasedOnDistrict($event)">
+							<ion-select-option *ngFor="let districts of resultDataDistricts;let s = index;" value="{{districts.id}}">{{districts[language_key_exchange_district_array[language_selected]]}}</ion-select-option>  
+						</ion-select>
+						VALIDATION
+						<div class="validation-errors">
+						<ng-container *ngFor="let validation of validation_messages.service_district">
+							<div class="error-message"
+							*ngIf="profileForm.get('service_district').hasError(validation.type) && (profileForm.get('service_district').dirty || profileForm.get('service_district').touched)">
+							<ion-icon name="information-circle-outline"></ion-icon>
+							<p>{{ validation.message }}</p>
+							</div>
+						</ng-container>
+						</div>
+						VALIDATION
+					</ion-col>
+				</ion-row>
+				<ion-row *ngIf="role == 'handyman'">
+					<ion-col size="12">
+						<ion-label position="stacked">{{default_language_data['translation'][0]['profile'][0][language_selected][0]['service_city']}}</ion-label>
+						<ion-select formControlName="service_city">
+							<ion-select-option *ngFor="let cities of resultDataCities;let s = index;" value="{{cities.id}}">{{cities[language_key_exchange_city_array[language_selected]]}}</ion-select-option>  
+						</ion-select>
+						VALIDATION
+						<div class="validation-errors">
+						<ng-container *ngFor="let validation of validation_messages.service_city">
+							<div class="error-message"
+							*ngIf="profileForm.get('service_city').hasError(validation.type) && (profileForm.get('service_city').dirty || profileForm.get('service_city').touched)">
+							<ion-icon name="information-circle-outline"></ion-icon>
+							<p>{{ validation.message }}</p>
+							</div>
+						</ng-container>
+						</div>
+						VALIDATION
+					</ion-col>
+				</ion-row>-->
+				<ion-row *ngIf="role == 'handyman'">
+					<ion-col size="12">
+						<ion-label position="stacked">{{default_language_data['translation'][0]['profile'][0][language_selected][0]['service_in_km']}}</ion-label>
+						<ion-input type="number" formControlName="service_in_km"></ion-input>
+						<!--VALIDATION-->
+						<div class="validation-errors">
+						<ng-container *ngFor="let validation of validation_messages.service_in_km">
+							<div class="error-message"
+							*ngIf="profileForm.get('service_in_km').hasError(validation.type) && (profileForm.get('service_in_km').dirty || profileForm.get('service_in_km').touched)">
+							<ion-icon name="information-circle-outline"></ion-icon>
+							<p>{{ validation.message }}</p>
+							</div>
+						</ng-container>
+						</div>
+						<!--VALIDATION-->          
+					</ion-col>
+				</ion-row>
+				<!--HANDYMAN-->			 
+				<!--<ion-row>
 				<ion-col size="12">
-					<div class="profile-pic">
-						<img src="../../assets/images/person-img1.png">
-						<ion-button>
-							<!-- <ion-icon name="add-circle-sharp"></ion-icon> -->
-							<img src="../../assets/images/plus-icon1.png">
-						</ion-button>
-					</div>
-				</ion-col>
-			</ion-row>
-			<ion-row>
-				<ion-col size="12">
-					<ion-label position="stacked">{{default_language_data['translation'][0]['profile'][0][language_selected][0]['first_name']}}</ion-label>
-					<ion-input type="text" formControlName="first_name"></ion-input>
-					<!--VALIDATION-->
+					<ion-item lines="none" class="ion-no-padding">
+					<ion-label position="stacked">{{default_language_data['translation'][0]['profile'][0][language_selected][0]['specialized_in']}}</ion-label>
+					<ion-select formControlName="specialized_in">
+						<ion-select-option>Information Technology</ion-select-option>  
+					</ion-select>
+					</ion-item>
+					VALIDATION
 					<div class="validation-errors">
-					<ng-container *ngFor="let validation of validation_messages.first_name">
+					<ng-container *ngFor="let validation of validation_messages.specialized_in">
 						<div class="error-message"
-						*ngIf="profileForm.get('first_name').hasError(validation.type) && (profileForm.get('first_name').dirty || profileForm.get('first_name').touched)">
+						*ngIf="profileForm.get('specialized_in').hasError(validation.type) && (profileForm.get('specialized_in').dirty || profileForm.get('specialized_in').touched)">
 						<ion-icon name="information-circle-outline"></ion-icon>
 						<p>{{ validation.message }}</p>
 						</div>
 					</ng-container>
 					</div>
-					<!--VALIDATION-->          
-				</ion-col>
-			</ion-row>
-			<ion-row>
+					VALIDATION
+				</ion-col>       
+				</ion-row>-->
+				<!--<ion-row>
 				<ion-col size="12">
-					<ion-label position="stacked">{{default_language_data['translation'][0]['profile'][0][language_selected][0]['last_name']}}</ion-label>
-					<ion-input type="text" formControlName="last_name"></ion-input>
-					<!--VALIDATION-->
+					<ion-item lines="none" class="ion-no-padding">
+					<ion-label position="stacked">{{default_language_data['translation'][0]['profile'][0][language_selected][0]['service_location']}}</ion-label>
+					<ion-select formControlName="service_location">
+						<ion-select-option>Caneda</ion-select-option>  
+					</ion-select>
+					</ion-item>
+					VALIDATION
 					<div class="validation-errors">
-					<ng-container *ngFor="let validation of validation_messages.last_name">
+					<ng-container *ngFor="let validation of validation_messages.service_location">
 						<div class="error-message"
-						*ngIf="profileForm.get('last_name').hasError(validation.type) && (profileForm.get('last_name').dirty || profileForm.get('last_name').touched)">
+						*ngIf="profileForm.get('service_location').hasError(validation.type) && (profileForm.get('service_location').dirty || profileForm.get('service_location').touched)">
 						<ion-icon name="information-circle-outline"></ion-icon>
 						<p>{{ validation.message }}</p>
 						</div>
 					</ng-container>
 					</div>
-					<!--VALIDATION-->          
+					VALIDATION
 				</ion-col>
-			</ion-row>
-			<ion-row>
+				</ion-row>-->
+				<!--<ion-row>
 				<ion-col size="12">
-					<ion-label position="stacked">{{default_language_data['translation'][0]['profile'][0][language_selected][0]['email_address']}}</ion-label>
-					<ion-input type="email" formControlName="email"></ion-input>
-					<!--VALIDATION-->
+					<ion-item lines="none" class="ion-no-padding">
+					<ion-label position="stacked">{{default_language_data['translation'][0]['profile'][0][language_selected][0]['pricing']}}</ion-label>
+					<ion-select formControlName="pricing">
+						<ion-select-option>1000</ion-select-option>  
+					</ion-select>
+					</ion-item>
+					VALIDATION
 					<div class="validation-errors">
-					<ng-container *ngFor="let validation of validation_messages.email">
+					<ng-container *ngFor="let validation of validation_messages.pricing">
 						<div class="error-message"
-						*ngIf="profileForm.get('email').hasError(validation.type) && (profileForm.get('email').dirty || profileForm.get('email').touched)">
+						*ngIf="profileForm.get('pricing').hasError(validation.type) && (profileForm.get('pricing').dirty || profileForm.get('pricing').touched)">
 						<ion-icon name="information-circle-outline"></ion-icon>
 						<p>{{ validation.message }}</p>
 						</div>
 					</ng-container>
 					</div>
-					<!--VALIDATION-->          
+					VALIDATION
 				</ion-col>
-			</ion-row>			 
-			<!--<ion-row>
-			<ion-col size="12">
-				<ion-item lines="none" class="ion-no-padding">
-				<ion-label position="stacked">{{default_language_data['translation'][0]['profile'][0][language_selected][0]['specialized_in']}}</ion-label>
-				<ion-select formControlName="specialized_in">
-					<ion-select-option>Information Technology</ion-select-option>  
-				</ion-select>
-				</ion-item>
-				VALIDATION
-				<div class="validation-errors">
-				<ng-container *ngFor="let validation of validation_messages.specialized_in">
-					<div class="error-message"
-					*ngIf="profileForm.get('specialized_in').hasError(validation.type) && (profileForm.get('specialized_in').dirty || profileForm.get('specialized_in').touched)">
-					<ion-icon name="information-circle-outline"></ion-icon>
-					<p>{{ validation.message }}</p>
-					</div>
-				</ng-container>
-				</div>
-				VALIDATION
-			</ion-col>       
-			</ion-row>-->
-			<!--<ion-row>
-			<ion-col size="12">
-				<ion-item lines="none" class="ion-no-padding">
-				<ion-label position="stacked">{{default_language_data['translation'][0]['profile'][0][language_selected][0]['service_location']}}</ion-label>
-				<ion-select formControlName="service_location">
-					<ion-select-option>Caneda</ion-select-option>  
-				</ion-select>
-				</ion-item>
-				VALIDATION
-				<div class="validation-errors">
-				<ng-container *ngFor="let validation of validation_messages.service_location">
-					<div class="error-message"
-					*ngIf="profileForm.get('service_location').hasError(validation.type) && (profileForm.get('service_location').dirty || profileForm.get('service_location').touched)">
-					<ion-icon name="information-circle-outline"></ion-icon>
-					<p>{{ validation.message }}</p>
-					</div>
-				</ng-container>
-				</div>
-				VALIDATION
-			</ion-col>
-			</ion-row>-->
-			<!--<ion-row>
-			<ion-col size="12">
-				<ion-item lines="none" class="ion-no-padding">
-				<ion-label position="stacked">{{default_language_data['translation'][0]['profile'][0][language_selected][0]['pricing']}}</ion-label>
-				<ion-select formControlName="pricing">
-					<ion-select-option>1000</ion-select-option>  
-				</ion-select>
-				</ion-item>
-				VALIDATION
-				<div class="validation-errors">
-				<ng-container *ngFor="let validation of validation_messages.pricing">
-					<div class="error-message"
-					*ngIf="profileForm.get('pricing').hasError(validation.type) && (profileForm.get('pricing').dirty || profileForm.get('pricing').touched)">
-					<ion-icon name="information-circle-outline"></ion-icon>
-					<p>{{ validation.message }}</p>
-					</div>
-				</ng-container>
-				</div>
-				VALIDATION
-			</ion-col>
-			</ion-row>-->              
-		</ion-grid>		
-		<ion-item lines="none">
-			<ion-button type="submit" color="" [disabled]="!profileForm.valid">{{default_language_data['translation'][0]['profile'][0][language_selected][0]['profile_button']}}</ion-button>
-		</ion-item>
+				</ion-row>-->
+				<ion-row>
+					<ion-col size="12">
+						<ion-label position="stacked">You are currently located at mentioned position, if you wish to make it more perfect please dragg the marker at your desegired place.</ion-label>
+						<div #gooeleMap id="gooeleMap" style="height: 300px;"></div>
+					</ion-col>
+				</ion-row>              
+			</ion-grid>		
+			<ion-item lines="none">
+				<ion-button type="submit" color="" [disabled]="!profileForm.valid">{{default_language_data['translation'][0]['profile'][0][language_selected][0]['profile_button']}}</ion-button>
+			</ion-item>
 		</form>
         <ion-row class="plan-boxes">
         	<ion-col class="plan-box-main">

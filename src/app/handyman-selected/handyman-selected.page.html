@@ -16,25 +16,25 @@
 			<ion-col class="review-box-item" *ngIf="is_handy_man_selected == false">
 				<div class="review-box-inner">
 					<div class="review-box-img">
-						<img src="../assets/images/person-img1.png">
+						<img src="{{resultDataHandyMan.profilePic}}">
 					</div>
 					<div class="review-box-txt">
 						<h2 class="title">{{resultDataHandyMan.firstName}} {{resultDataHandyMan.lastName}}</h2>
-						<h3 class="sub-title">8 {{default_language_data['translation'][0]['handyman-selected'][0][language_selected][0]['text_experience']}}</h3>
+						<h3 class="sub-title">{{resultDataHandyMan.no_of_experience}} {{default_language_data['translation'][0]['handyman-selected'][0][language_selected][0]['text_experience']}}</h3>
 						<p class="rating-stars"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon></p>
-						<h4 class="hr-txt">$20<span>/</span>Hr</h4>
+						<h4 class="hr-txt">${{resultDataHandyMan.price}}<span>/</span>Hr</h4>
 					</div>
 					<div class="review-counte-list">
 						<div class="review-counte-item">
-							<h2>100</h2>
+							<h2>{{resultDataHandyMan.total_reviews}}</h2>
 							<h6>{{default_language_data['translation'][0]['handyman-selected'][0][language_selected][0]['text_1']}}</h6>
 						</div>
 						<div class="review-counte-item">
-							<h2>500</h2>
+							<h2>{{totalAssignedJobs}}</h2>
 							<h6>{{default_language_data['translation'][0]['handyman-selected'][0][language_selected][0]['text_2']}}</h6>
 						</div>
 						<div class="review-counte-item">
-							<h2>700</h2>
+							<h2>{{resultDataHandyMan.total_client}}</h2>
 							<h6>{{default_language_data['translation'][0]['handyman-selected'][0][language_selected][0]['text_3']}}</h6>
 						</div>
 					</div>
@@ -46,27 +46,27 @@
 			<ion-col class="review-box-item" *ngIf="is_handy_man_selected == true">
 				<div class="review-box-inner">
 					<div class="review-box-img">
-						<img src="../assets/images/person-img1.png">
+						<img src="{{resultDataHandyMan.profilePic}}">
 						<!-- <ion-icon name="checkmark-circle"></ion-icon> -->
 						<img class="check-mark" src="../assets/images/check-mark-icon1.png">
 					</div>
 					<div class="review-box-txt">
 						<h2 class="title">{{resultDataHandyMan.firstName}} {{resultDataHandyMan.lastName}}</h2>
-						<h3 class="sub-title">8 {{default_language_data['translation'][0]['handyman-selected'][0][language_selected][0]['text_experience']}}</h3>
+						<h3 class="sub-title">{{resultDataHandyMan.no_of_experience}} {{default_language_data['translation'][0]['handyman-selected'][0][language_selected][0]['text_experience']}}</h3>
 						<p class="rating-stars"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon></p>
-						<h4 class="hr-txt">$20<span>/</span>Hr</h4>
+						<h4 class="hr-txt">${{resultDataHandyMan.price}}<span>/</span>Hr</h4>
 					</div>
 					<div class="review-counte-list">
 						<div class="review-counte-item">
-							<h2>100</h2>
+							<h2>{{resultDataHandyMan.total_reviews}}</h2>
 							<h6>{{default_language_data['translation'][0]['handyman-selected'][0][language_selected][0]['text_1']}}</h6>
 						</div>
 						<div class="review-counte-item">
-							<h2>500</h2>
+							<h2>{{totalAssignedJobs}}</h2>
 							<h6>{{default_language_data['translation'][0]['handyman-selected'][0][language_selected][0]['text_2']}}</h6>
 						</div>
 						<div class="review-counte-item">
-							<h2>700</h2>
+							<h2>{{resultDataHandyMan.total_client}}</h2>
 							<h6>{{default_language_data['translation'][0]['handyman-selected'][0][language_selected][0]['text_3']}}</h6>
 						</div>
 					</div>

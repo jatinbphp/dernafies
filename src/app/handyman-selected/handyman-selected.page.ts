@@ -21,6 +21,7 @@ export class HandymanSelectedPage implements OnInit
   public is_handy_man_selected:boolean = false;
   public queryString: any=[];
   public queryStringData: any=[];
+  public totalAssignedJobs: number = 0;
 
   constructor(public client: ClientService, public loadingCtrl: LoadingController, private route: ActivatedRoute)
   { 
@@ -70,7 +71,8 @@ export class HandymanSelectedPage implements OnInit
     await this.client.getHandymanDetailById(dataHandyMan).then(result => 
     {	
       loadingFeaturedHandyMan.dismiss();//DISMISS LOADER			
-      this.resultDataHandyMan=result; 
+      this.resultDataHandyMan=result;
+      this.totalAssignedJobs=this.resultDataHandyMan['assignedJobs'].length; 
       console.log(this.resultDataHandyMan);
             
     },

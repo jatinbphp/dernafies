@@ -51,11 +51,13 @@ export class SignUpPage implements OnInit
 			Validators.required,
 			Validators.minLength(8)
 		])],
-    specialized_in: ['', Validators.required],
-    service_district: [''],
-    service_city: [''],
+    specialized_in: [''],
+    //service_district: [''],
+    //service_city: [''],
     service_province: ['', Validators.required],
     service_in_km: [''],
+    price_per_hour: [''],
+    experience_in_year: [''],
     latitude: [''],
     longitude: [''],
     },{validator: this.checkIfMatchingPasswords('password', 'cpassword')
@@ -89,7 +91,7 @@ export class SignUpPage implements OnInit
     'specialized_in': 
     [
       { type: 'required', message: 'Specialized In is required.' }
-    ],
+    ]/*,
     'service_district': 
     [
       { type: 'required', message: 'Selecting district is required.' }
@@ -97,7 +99,13 @@ export class SignUpPage implements OnInit
     'service_city': 
     [
       { type: 'required', message: 'Selecting city is required.' }
-    ],
+    ]*/,
+		'experience_in_year': [
+			{ type: 'required', message: 'Experience in year is required.' }
+		],
+		'price_per_hour': [
+			{ type: 'required', message: 'Hourly price is required.' }
+		],
     'service_province': [
       { type: 'required', message: 'Selecting province is required.' }
     ],
@@ -205,6 +213,30 @@ export class SignUpPage implements OnInit
 
   async ionViewWillEnter()
   {
+    this.signup_as_handyman = false;
+    if(this.signup_as_handyman == false)
+    {
+      this.registerForm.controls['specialized_in'].setValue("");
+      //this.registerForm.controls['service_district'].setValue("");
+      //this.registerForm.controls['service_city'].setValue("");
+      this.registerForm.controls['service_in_km'].setValue("");
+      this.registerForm.controls['price_per_hour'].setValue("");
+      this.registerForm.controls['experience_in_year'].setValue("");
+      this.registerForm.get('specialized_in').clearValidators();     
+      this.registerForm.get('specialized_in').updateValueAndValidity();
+      //this.registerForm.get('service_district').clearValidators();     
+      //this.registerForm.get('service_district').updateValueAndValidity();
+      //this.registerForm.get('service_city').clearValidators();     
+      //this.registerForm.get('service_city').updateValueAndValidity();      
+      this.registerForm.get('experience_in_year').clearValidators();     
+			this.registerForm.get('experience_in_year').updateValueAndValidity();
+      this.registerForm.get('price_per_hour').clearValidators();     
+			this.registerForm.get('price_per_hour').updateValueAndValidity();
+      this.registerForm.get('service_province').clearValidators();     
+      this.registerForm.get('service_province').updateValueAndValidity();
+      this.registerForm.get('service_in_km').clearValidators();     
+      this.registerForm.get('service_in_km').updateValueAndValidity();
+    }//DEFAULT CONFIGURATIN FOR CUSTOMER
     this.platform.ready().then(async () => 
     {
       const coordinates = await this.geolocation.getCurrentPosition();
@@ -336,7 +368,8 @@ export class SignUpPage implements OnInit
     let service_city = (form.service_city) ? form.service_city : "";
     let service_province = (form.service_province) ? form.service_province : "";
     let service_in_km = (form.service_in_km) ? form.service_in_km : 0;
-
+    let price_per_hour = (form.price_per_hour) ? form.price_per_hour : 0;
+    let experience_in_year = (form.experience_in_year) ? form.experience_in_year : 0;
 		let data=
 		{
       user_type:user_type,
@@ -349,6 +382,8 @@ export class SignUpPage implements OnInit
       service_city:service_city,
       service_province:service_province,
       service_in_km:service_in_km,
+      price_per_hour:price_per_hour,
+      experience_in_year:experience_in_year,
       latitude:this.latitude,
       longitude:this.longitude,
       address:this.address
@@ -403,14 +438,20 @@ export class SignUpPage implements OnInit
       this.registerForm.get('specialized_in').setValidators([Validators.required]);     
       this.registerForm.get('specialized_in').updateValueAndValidity();
 
-      this.registerForm.get('service_district').setValidators([Validators.required]);     
-      this.registerForm.get('service_district').updateValueAndValidity();
+      //this.registerForm.get('service_district').setValidators([Validators.required]);     
+      //this.registerForm.get('service_district').updateValueAndValidity();
 
-      this.registerForm.get('service_city').setValidators([Validators.required]);     
-      this.registerForm.get('service_city').updateValueAndValidity();
+      //this.registerForm.get('service_city').setValidators([Validators.required]);     
+      //this.registerForm.get('service_city').updateValueAndValidity();
 
-      //this.registerForm.get('service_province').setValidators([Validators.required]);     
-      //this.registerForm.get('service_province').updateValueAndValidity();
+      this.registerForm.get('experience_in_year').setValidators([Validators.required]);     
+			this.registerForm.get('experience_in_year').updateValueAndValidity();
+      
+      this.registerForm.get('price_per_hour').setValidators([Validators.required]);     
+			this.registerForm.get('price_per_hour').updateValueAndValidity();
+      
+      this.registerForm.get('service_province').setValidators([Validators.required]);     
+      this.registerForm.get('service_province').updateValueAndValidity();
 
       this.registerForm.get('service_in_km').setValidators([Validators.required]);     
       this.registerForm.get('service_in_km').updateValueAndValidity();
@@ -418,23 +459,23 @@ export class SignUpPage implements OnInit
     if(this.signup_as_handyman == false)
     {
       this.registerForm.controls['specialized_in'].setValue("");
-      this.registerForm.controls['service_district'].setValue("");
-      this.registerForm.controls['service_city'].setValue("");
-      //this.registerForm.controls['service_province'].setValue("");
+      //this.registerForm.controls['service_district'].setValue("");
+      //this.registerForm.controls['service_city'].setValue("");
       this.registerForm.controls['service_in_km'].setValue("");
-
+      this.registerForm.controls['price_per_hour'].setValue("");
+      this.registerForm.controls['experience_in_year'].setValue("");
       this.registerForm.get('specialized_in').clearValidators();     
       this.registerForm.get('specialized_in').updateValueAndValidity();
-
-      this.registerForm.get('service_district').clearValidators();     
-      this.registerForm.get('service_district').updateValueAndValidity();
-
-      this.registerForm.get('service_city').clearValidators();     
-      this.registerForm.get('service_city').updateValueAndValidity();
-
-      //this.registerForm.get('service_province').clearValidators();     
-      //this.registerForm.get('service_province').updateValueAndValidity();
-
+      //this.registerForm.get('service_district').clearValidators();     
+      //this.registerForm.get('service_district').updateValueAndValidity();
+      //this.registerForm.get('service_city').clearValidators();     
+      //this.registerForm.get('service_city').updateValueAndValidity();      
+      this.registerForm.get('experience_in_year').clearValidators();     
+			this.registerForm.get('experience_in_year').updateValueAndValidity();
+      this.registerForm.get('price_per_hour').clearValidators();     
+			this.registerForm.get('price_per_hour').updateValueAndValidity();
+      this.registerForm.get('service_province').clearValidators();     
+      this.registerForm.get('service_province').updateValueAndValidity();
       this.registerForm.get('service_in_km').clearValidators();     
       this.registerForm.get('service_in_km').updateValueAndValidity();
     }

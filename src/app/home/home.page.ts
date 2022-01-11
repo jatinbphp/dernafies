@@ -3,6 +3,7 @@ import { MenuController, LoadingController, ModalController } from '@ionic/angul
 import { ClientService } from '../providers/client.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ProfilePage } from '../profile/profile.page';
+import { JobLocationOnMapPage } from '../job-location-on-map/job-location-on-map.page';
 import { NavigationExtras } from '@angular/router';
 
 @Component({
@@ -19,6 +20,7 @@ export class HomePage
   
   public id:any = '';
   public role:any = '';
+  public user_type:any = '';
   public welcome_text:any = '';
   public greetings:any = '';
 
@@ -26,6 +28,7 @@ export class HomePage
   public resultDataFeaturedHandyMan: any = [];
   public resultDataCategories: any = [];
   public language_key_exchange_array: any = [];
+  public province_language_key_exchange_array: any = [];
   public categorieSlide = 
   {
     //slidesPerView: 1.3,
@@ -51,6 +54,10 @@ export class HomePage
     this.language_key_exchange_array['english']='categoryName';
     this.language_key_exchange_array['arabic']='categoryNameArabic';
     this.language_key_exchange_array['kurdish']='categoryNameKurdi';
+
+    this.province_language_key_exchange_array['english']='provinceName';
+    this.province_language_key_exchange_array['arabic']='provinceNameArabic';
+    this.province_language_key_exchange_array['kurdish']='provinceNameKurdi';
   }
 
   async ionViewWillEnter()
@@ -61,8 +68,8 @@ export class HomePage
     console.log(this.rtl_or_ltr);
     
     this.id=localStorage.getItem('id');
-    this.role=localStorage.getItem('role');
-    
+    this.role = localStorage.getItem('role');
+    this.user_type = (this.role == 'handyman') ? 2 : 3;
     if(this.id!='' && this.id!=null && this.id!=undefined && this.id!='null' && this.id!='undefined')
     {
       let today = new Date()
@@ -158,7 +165,7 @@ export class HomePage
       {	
         loadingFeaturedHandyMan.dismiss();//DISMISS LOADER			
         this.resultDataFeaturedHandyMan=result; 
-        console.log(this.resultDataFeaturedHandyMan);
+        console.log("Featured",this.resultDataFeaturedHandyMan);
               
       },
       error => 
@@ -180,13 +187,13 @@ export class HomePage
       await loadingHandyManRequests.present();
       //LOADER
       let dataHandyManJobRequest = {
-        //user_id:this.id
-        user_id:18
+        user_id:this.id,        
+        user_type:this.user_type
       }
       await this.client.getJobRequestsForHandyMan(dataHandyManJobRequest).then(result => 
       {	
         loadingHandyManRequests.dismiss();//DISMISS LOADER			
-        this.jobRequestsHandyMan=result; 
+        this.jobRequestsHandyMan=result['requested']; 
         console.log("JOBS",this.jobRequestsHandyMan);
               
       },
@@ -319,5 +326,21 @@ export class HomePage
       }
     };
     this.client.router.navigate(['/tabs/handyman-selected'], navigationExtras);
+  }
+
+  async showMapWithLocations(job_id,handyman_id,job_latitude,job_longitude)
+  {
+    const modal = await this.modalCtrl.create({
+      component: JobLocationOnMapPage,
+      componentProps: 
+			{ 
+				job_id: job_id,
+				handyman_id: handyman_id,
+				job_latitude: job_latitude,
+				job_longitude: job_longitude
+			}
+    });
+
+    return await modal.present();
   }
 }

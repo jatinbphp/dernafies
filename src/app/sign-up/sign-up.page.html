@@ -148,15 +148,53 @@
             <!--VALIDATION-->
           </ion-col>       
         </ion-row>
-        <ion-row>
-          <ion-col size="12" *ngIf="signup_as_handyman == true">
+        <ion-row *ngIf="signup_as_handyman == true">
+          <ion-col size="12">
+            <ion-item lines="none" class="ion-no-padding">
+              <ion-label position="stacked">{{default_language_data['translation'][0]['register'][0][language_selected][0]['pricing']}}</ion-label>
+              <ion-input type="number" formControlName="price_per_hour"></ion-input>
+            </ion-item>
+            <!--VALIDATION-->
+            <div class="validation-errors">
+              <ng-container *ngFor="let validation of validation_messages.price_per_hour">
+                <div class="error-message"
+                  *ngIf="registerForm.get('price_per_hour').hasError(validation.type) && (registerForm.get('price_per_hour').dirty || registerForm.get('price_per_hour').touched)">
+                  <ion-icon name="information-circle-outline"></ion-icon>
+                  <p>{{ validation.message }}</p>
+                </div>
+              </ng-container>
+            </div>
+            <!--VALIDATION-->
+          </ion-col>       
+        </ion-row>
+        <ion-row *ngIf="signup_as_handyman == true">
+          <ion-col size="12">
+            <ion-item lines="none" class="ion-no-padding">
+              <ion-label position="stacked">{{default_language_data['translation'][0]['register'][0][language_selected][0]['experience_in_year']}}</ion-label>
+              <ion-input type="number" formControlName="experience_in_year"></ion-input>
+            </ion-item>
+            <!--VALIDATION-->
+            <div class="validation-errors">
+              <ng-container *ngFor="let validation of validation_messages.experience_in_year">
+                <div class="error-message"
+                  *ngIf="registerForm.get('experience_in_year').hasError(validation.type) && (registerForm.get('experience_in_year').dirty || registerForm.get('experience_in_year').touched)">
+                  <ion-icon name="information-circle-outline"></ion-icon>
+                  <p>{{ validation.message }}</p>
+                </div>
+              </ng-container>
+            </div>
+            <!--VALIDATION-->
+          </ion-col>       
+        </ion-row>
+        <!--<ion-row *ngIf="signup_as_handyman == true">
+          <ion-col size="12">
             <ion-item lines="none" class="ion-no-padding">
               <ion-label position="stacked">{{default_language_data['translation'][0]['register'][0][language_selected][0]['service_district']}}</ion-label>
               <ion-select formControlName="service_district" (ionChange)="showCitiesBasedOnDistrict($event)">
                 <ion-select-option *ngFor="let districts of resultDataDistricts;let s = index;" value="{{districts.id}}">{{districts[language_key_exchange_district_array[language_selected]]}}</ion-select-option>  
               </ion-select>
             </ion-item>
-            <!--VALIDATION-->
+            VALIDATION
             <div class="validation-errors">
               <ng-container *ngFor="let validation of validation_messages.service_district">
                 <div class="error-message"
@@ -166,18 +204,18 @@
                 </div>
               </ng-container>
             </div>
-            <!--VALIDATION-->
+            VALIDATION
           </ion-col>
         </ion-row>
-        <ion-row>
-          <ion-col size="12" *ngIf="signup_as_handyman == true">
+        <ion-row *ngIf="signup_as_handyman == true">
+          <ion-col size="12">
             <ion-item lines="none" class="ion-no-padding">
               <ion-label position="stacked">{{default_language_data['translation'][0]['register'][0][language_selected][0]['service_city']}}</ion-label>
               <ion-select formControlName="service_city">
                 <ion-select-option *ngFor="let cities of resultDataCities;let s = index;" value="{{cities.id}}">{{cities[language_key_exchange_city_array[language_selected]]}}</ion-select-option>  
               </ion-select>
             </ion-item>
-            <!--VALIDATION-->
+            VALIDATION
             <div class="validation-errors">
               <ng-container *ngFor="let validation of validation_messages.service_city">
                 <div class="error-message"
@@ -187,11 +225,11 @@
                 </div>
               </ng-container>
             </div>
-            <!--VALIDATION-->
+            VALIDATION
           </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col size="12" *ngIf="signup_as_handyman == true">
+        </ion-row>-->
+        <ion-row *ngIf="signup_as_handyman == true">
+          <ion-col size="12">
             <ion-label position="stacked">{{default_language_data['translation'][0]['register'][0][language_selected][0]['service_in_km']}}</ion-label>
             <ion-input type="number" formControlName="service_in_km"></ion-input>
             <!--VALIDATION-->

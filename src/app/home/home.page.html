@@ -30,15 +30,15 @@
                 <ion-col class="loc-icon"><ion-icon name="location-sharp"></ion-icon></ion-col>
                 <ion-col class="loc-text">
                   <h5><strong>Street:</strong> {{job.jobAddress}}</h5>
-                  <h5><strong>City:</strong> Shawinigan</h5>
-                  <h5><strong>Province:</strong> Quebec</h5>
+                  <!--<h5><strong>City:</strong> Shawinigan</h5>-->
+                  <h5><strong>Province:</strong> {{job[province_language_key_exchange_array[language_selected]]}}</h5>
                 </ion-col>
               </ion-row>
             </div>
           </div>
           <div class="rsr-buttons">
             <ion-list>
-              <ion-item><ion-button color="primary">{{default_language_data['translation'][0]['general'][0][language_selected][0]['location_map']}}</ion-button></ion-item>
+              <ion-item><ion-button color="primary" (click)="showMapWithLocations(job.id,job.assignedTrademan,job.latitude,job.longitude)">{{default_language_data['translation'][0]['general'][0][language_selected][0]['location_map']}}</ion-button></ion-item>
               <ion-item><ion-button color="success"><ion-icon name="checkmark-outline"></ion-icon>{{default_language_data['translation'][0]['general'][0][language_selected][0]['accept_text']}}</ion-button></ion-item>
               <ion-item><ion-button color="danger"><ion-icon name="close-outline"></ion-icon>{{default_language_data['translation'][0]['general'][0][language_selected][0]['reject_text']}}</ion-button></ion-item>
             </ion-list>
@@ -151,8 +151,8 @@
               <div class="featured-box-txt">
                 <p class="rating"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon></p>
                 <h2 class="name">{{handyMan.firstName}} {{handyMan.lastName}}</h2>
-                <h4 class="experience">10 years experience</h4>
-                <h3 class="hr-txt">$20<span>/</span>Hr</h3>
+                <h4 class="experience">{{handyMan.no_of_experience}} years experience</h4>
+                <h3 class="hr-txt">${{handyMan.price}}<span>/</span>Hr</h3>
               </div>
             </div>
           </ion-slide>
@@ -166,8 +166,8 @@
               <div class="featured-box-txt">
                 <p class="rating"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon></p>
                 <h2 class="name">{{handyMan.firstName}} {{handyMan.lastName}}</h2>
-                <h4 class="experience">10 years experience</h4>
-                <h3 class="hr-txt">$20<span>/</span>Hr</h3>
+                <h4 class="experience">{{handyMan.no_of_experience}} years experience</h4>
+                <h3 class="hr-txt">${{handyMan.price}}<span>/</span>Hr</h3>
               </div>
             </div>
           </ion-slide>          

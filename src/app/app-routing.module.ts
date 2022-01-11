@@ -57,6 +57,10 @@ const routes: Routes = [
   {
     path: 'add-job',
     loadChildren: () => import('./add-job/add-job.module').then( m => m.AddJobPageModule)
+  },
+  {
+    path: 'job-location-on-map',
+    loadChildren: () => import('./job-location-on-map/job-location-on-map.module').then( m => m.JobLocationOnMapPageModule)
   }
 ];
 @NgModule({

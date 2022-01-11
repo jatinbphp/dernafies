@@ -19,13 +19,13 @@
 					<ion-col *ngFor="let handyMan of resultDataHandyManPerSlide[s]; let h = index;" class="handyman-item" (click)="showHandyMan(handyMan.id)">
 						<div class="featured-box-main">
 				            <div class="featured-box-img">
-				              <img src="../../assets/images/person-img1.png">
+				              <img src="{{handyMan.profilePic}}">
 				            </div>
 				            <div class="featured-box-txt">
 				              <p class="rating"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon></p>
 				              <h2 class="name">{{handyMan.firstName}} {{handyMan.lastName}}</h2>
-				              <h4 class="experience">10 years experience</h4>
-				              <h3 class="hr-txt">$20<span>/</span>Hr</h3>
+				              <h4 class="experience">{{handyMan.no_of_experience}} years experience</h4>
+				              <h3 class="hr-txt">${{handyMan.price}}<span>/</span>Hr</h3>
 				            </div>
 				        </div>
 				    </ion-col>

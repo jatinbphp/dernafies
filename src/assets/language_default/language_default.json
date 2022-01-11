@@ -90,6 +90,7 @@
                      "service_city": "Service City",
                      "service_in_km":"Range Serving",
                      "pricing": "Pricing",
+                     "experience_in_year": "Experience",
                      "terms_of_service":"I agree to the",
                      "terms_of_service_link_text":"Terms of service",
                      "have_an_account":"Have an account?",
@@ -113,6 +114,7 @@
                      "service_city": "مدينة الخدمة",
                      "service_in_km":"خدمة الميدان",
                      "pricing": "التسعير",
+                     "experience_in_year": "خبرة",
                      "terms_of_service":"أنا أوافق على",
                      "terms_of_service_link_text":"شروط الخدمة",
                      "have_an_account":"هل لديك حساب؟",
@@ -136,6 +138,7 @@
                      "service_city": "City Service",
                      "service_in_km":"Range Serving",
                      "pricing": "Pricing",
+                     "experience_in_year": "Tecribe",
                      "terms_of_service":"Ez qebûl dikim",
                      "terms_of_service_link_text":"Mercên xizmetê",
                      "have_an_account":"Hesabek heye?",
@@ -155,9 +158,14 @@
                      "email_address":"Email",
                      "password":"Password",
                      "confirm_password":"Confirm Password",
+                     "province":"Province",
                      "specialized_in": "Specialized In",
                      "service_location": "Service Location",
+                     "service_district": "Service District",
+                     "service_city": "Service City",
+                     "service_in_km":"Range Serving",
                      "pricing": "Pricing",
+                     "experience_in_year": "Experience",
                      "profile_button": "Update"
                   }
                ],
@@ -169,9 +177,14 @@
                      "email_address":"البريد الالكتروني",
                      "password":"كلمة المرور",
                      "confirm_password":"تأكيد كلمة المرور",
+                     "province":"المحافظة",
                      "specialized_in": "متخصص في",
                      "service_location": "موقع الخدمة",
+                     "service_district": "منطقة الخدمة",
+                     "service_city": "مدينة الخدمة",
+                     "service_in_km":"خدمة الميدان",
                      "pricing": "التسعير",
+                     "experience_in_year": "خبرة",
                      "profile_button": "تحديث"
                   }
                ],
@@ -183,9 +196,14 @@
                      "email_address":"Email",
                      "password":"Şîfre",
                      "confirm_password":"di pêşîyê da em sipas dikin",
+                     "province":"Herêm",
                      "specialized_in": "Specialized In",
                      "service_location": "Cihê Xizmetê",
+                     "service_district": "Navçeya Xizmetê",
+                     "service_city": "City Service",
+                     "service_in_km":"Range Serving",
                      "pricing": "Pricing",
+                     "experience_in_year": "Tecribe",
                      "profile_button": "Nûvekirin"
                   }
                ]
