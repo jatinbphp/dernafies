@@ -3,7 +3,7 @@
     <!-- <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>      
     </ion-buttons> -->
-    <ion-title slot="start">current-requests</ion-title>
+    <ion-title slot="start">My Current Requests</ion-title>
     <ion-button slot="end"><ion-icon name="arrow-back-outline"></ion-icon></ion-button>
   </ion-toolbar>
 </ion-header>
@@ -17,17 +17,19 @@
       </ion-segment>
   </ion-header>
   <div class="main-div">
-    <div class="current-request-list" [ngSwitch]="CurrentRequestList">      
+    <div class="current-request-list" [ngSwitch]="CurrentRequestList">
+      <!--<p *ngIf="jobRequestsHandyMan.length == 0" class="no-records">No records found.</p>
+      <p *ngIf="completedJobRequestsHandyMan.length == 0" class="no-records">No records found.</p>-->
       <ion-row class="requ-box-list" *ngSwitchCase="'AcceptRequest'">
-        <ion-col class="requ-box-item">
+        <ion-col class="requ-box-item" *ngFor="let jobToAccept of jobRequestsHandyMan; let j=index;">
           <div class="requ-box-inner">
             <div class="requ-box-img">
-              <img src="../assets/images/person-img1.png">
+              <img src="{{jobToAccept.customer.profilePic}}">
             </div>
             <div class="requ-box-txt">
-              <h2 class="title">Johny Depp</h2>
-              <h6 class="sub-title">Plumbing Repairs</h6>
-              <p>20 Sep 21<span></span>2Hrs<span></span>$200</p>
+              <h2 class="title">{{jobToAccept.customer.firstName}} {{jobToAccept.customer.lastName}}</h2>
+              <h6 class="sub-title">{{jobToAccept[language_key_exchange_array[language_selected]]}}</h6>
+              <p>20 Sep 21<span></span>2Hrs<span></span>${{jobToAccept.jobPrice}}</p>
             </div>
             <div class="requ-box-btns">
               <ion-button color="success">Completed</ion-button>
@@ -35,7 +37,7 @@
             </div>
           </div>
         </ion-col>
-        <ion-col class="requ-box-item">
+        <!--<ion-col class="requ-box-item">
           <div class="requ-box-inner">
             <div class="requ-box-img">
               <img src="../assets/images/person-img1.png">
@@ -114,18 +116,18 @@
               <ion-button color="primary">Request Review</ion-button>
             </div>
           </div>
-        </ion-col>
+        </ion-col>-->
       </ion-row>
       <ion-row class="requ-box-list" *ngSwitchCase="'Completed'">
-        <ion-col class="requ-box-item">
+        <ion-col class="requ-box-item" *ngFor="let completedJob of completedJobRequestsHandyMan; let c=index;">
           <div class="requ-box-inner">
             <div class="requ-box-img">
-              <img src="../assets/images/person-img1.png">
+              <img src="{{completedJob.customer.profilePic}}">
             </div>
             <div class="requ-box-txt">
-              <h2 class="title">Johny Depp</h2>
-              <h6 class="sub-title">Plumbing Repairs</h6>
-              <p>20 Sep 21<span></span>2Hrs<span></span>$200</p>
+              <h2 class="title">{{completedJob.customer.firstName}} {{completedJob.customer.lastName}}</h2>
+              <h6 class="sub-title">{{completedJob[language_key_exchange_array[language_selected]]}}</h6>
+              <p>20 Sep 21<span></span>2Hrs<span></span>${{completedJob.jobPrice}}</p>
             </div>
             <div class="requ-box-btns">
               <ion-button color="success">Completed</ion-button>
@@ -133,7 +135,7 @@
             </div>
           </div>
         </ion-col>
-        <ion-col class="requ-box-item">
+        <!--<ion-col class="requ-box-item">
           <div class="requ-box-inner">
             <div class="requ-box-img">
               <img src="../assets/images/person-img1.png">
@@ -212,7 +214,7 @@
               <ion-button color="primary">Request Review</ion-button>
             </div>
           </div>
-        </ion-col>
+        </ion-col>-->
       </ion-row>
       <ion-row class="requ-box-list" *ngSwitchCase="'ScheduledTime'">
         <ion-col class="requ-box-item">

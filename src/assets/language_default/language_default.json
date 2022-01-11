@@ -321,6 +321,7 @@
             {
                "english": [
                   {
+                     "screen_title":"My Current Requests",
                      "accept_request":"Accept Request",
                      "completed":"Completed",
                      "scheduled_time":"Scheduled Time"
@@ -328,6 +329,7 @@
                ],
                "arabic": [
                   {
+                     "screen_title":"طلباتي الحالية",
                      "accept_request":"قبول الطلب",
                      "completed":"مكتمل",
                      "scheduled_time":"جدول زمني"
@@ -335,6 +337,7 @@
                ],
                "kurdish": [
                   {
+                     "screen_title":"Daxwazên Min ên Niha",
                      "accept_request":"Daxwazê qebûl bikin",
                      "completed":"Temam kirin",
                      "scheduled_time":"Demjimêra plankirî"
