@@ -74,15 +74,16 @@
       <div class="title-main">
         <h2>{{default_language_data['translation'][0]['home'][0][language_selected][0]['completed_services']}}<ion-router-link href="Javascript:;" >{{default_language_data['translation'][0]['general'][0][language_selected][0]['view_all']}}</ion-router-link></h2>
       </div>
-      <ion-row class="requ-box-list">
-        <ion-col class="requ-box-item">
+      <p *ngIf="completedJobRequestsHandyMan.length == 0" class="no-records">No records found.</p>
+      <ion-row class="requ-box-list" *ngIf="completedJobRequestsHandyMan.length > 0">
+        <ion-col class="requ-box-item" *ngFor="let jobCompleted of completedJobRequestsHandyMan; let jc = index;">
           <div class="requ-box-inner">
             <div class="requ-box-img">
-              <img src="../assets/images/person-img1.png">
+              <img src="{{jobCompleted.handyman.profilePic}}">
             </div>
             <div class="requ-box-txt">
-              <h2 class="title">Johny Depp</h2>
-              <h6 class="sub-title">Plumbing Repairs</h6>
+              <h2 class="title">{{jobCompleted.handyman.firstName}} {{jobCompleted.handyman.lastName}}</h2>
+              <h6 class="sub-title">{{jobCompleted[language_key_exchange_array[language_selected]]}}</h6>
               <p><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><strong>4.9</strong></p>
             </div>
             <div class="requ-box-btns">
@@ -90,51 +91,11 @@
               <div class="requ-details">
                 <p><span></span>20 Sep 21</p>
                 <p><span></span>2Hrs</p>
-                <p><span></span>$200</p>
+                <p><span></span>${{jobCompleted.jobPrice}}</p>
               </div>
             </div>
           </div>
-        </ion-col>
-        <ion-col class="requ-box-item">
-          <div class="requ-box-inner">
-            <div class="requ-box-img">
-              <img src="../assets/images/person-img1.png">
-            </div>
-            <div class="requ-box-txt">
-              <h2 class="title">Johny Depp</h2>
-              <h6 class="sub-title">Plumbing Repairs</h6>
-              <p><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><strong>4.9</strong></p>
-            </div>
-            <div class="requ-box-btns">
-              <ion-button color="success">{{default_language_data['translation'][0]['general'][0][language_selected][0]['completed_text']}}</ion-button>
-              <div class="requ-details">
-                <p><span></span>20 Sep 21</p>
-                <p><span></span>2Hrs</p>
-                <p><span></span>$200</p>
-              </div>
-            </div>
-          </div>
-        </ion-col>
-        <ion-col class="requ-box-item">
-          <div class="requ-box-inner">
-            <div class="requ-box-img">
-              <img src="../assets/images/person-img1.png">
-            </div>
-            <div class="requ-box-txt">
-              <h2 class="title">Johny Depp</h2>
-              <h6 class="sub-title">Plumbing Repairs</h6>
-              <p><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><strong>4.9</strong></p>
-            </div>
-            <div class="requ-box-btns">
-              <ion-button color="success">{{default_language_data['translation'][0]['general'][0][language_selected][0]['completed_text']}}</ion-button>
-              <div class="requ-details">
-                <p><span></span>20 Sep 21</p>
-                <p><span></span>2Hrs</p>
-                <p><span></span>$200</p>
-              </div>
-            </div>
-          </div>
-        </ion-col>
+        </ion-col>        
       </ion-row>
     </div>
     <div class="featured-slider-main" *ngIf="role == 'customer'">

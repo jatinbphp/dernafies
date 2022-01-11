@@ -38,6 +38,7 @@ export class HomePage
   };  
 
   public jobRequestsHandyMan: any=[];
+  public completedJobRequestsHandyMan: any=[];
 
   constructor(public fb: FormBuilder, public client: ClientService, public menu: MenuController, public loadingCtrl: LoadingController, public modalCtrl: ModalController) 
   {
@@ -173,6 +174,33 @@ export class HomePage
         loadingFeaturedHandyMan.dismiss();//DISMISS LOADER
         console.log();
       });//FEATURED HANDYMAN
+
+      //LOADER
+      const loadingHandyManCompletedJobRequests = await this.loadingCtrl.create({
+        spinner: null,
+        //duration: 5000,
+        message: 'Please wait...',
+        translucent: true,
+        cssClass: 'custom-class custom-loading'
+      });
+      await loadingHandyManCompletedJobRequests.present();
+      //LOADER
+      let dataHandyManJobRequest = {
+        user_id:this.id,        
+        user_type:this.user_type
+      }
+      await this.client.getJobRequestsForHandyMan(dataHandyManJobRequest).then(result => 
+      {	
+        loadingHandyManCompletedJobRequests.dismiss();//DISMISS LOADER			
+        this.completedJobRequestsHandyMan=result['completed']; 
+        console.log("COMPLETED JOBS",this.completedJobRequestsHandyMan);
+              
+      },
+      error => 
+      {
+        loadingHandyManCompletedJobRequests.dismiss();//DISMISS LOADER
+        console.log();
+      });//COMPLETED JOB REQUESTS FOR HANDYMAN
     }
     if(this.role == 'handyman')
     {

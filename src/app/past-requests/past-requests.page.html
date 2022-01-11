@@ -25,19 +25,33 @@
                 </div>
 	    	</div>
 		</div>
-        <ion-row class="requ-box-list" [ngClass]="{'grid-view' : show_in_view == 'grid'}">
+        <p *ngIf="jobRequestsHandyMan.length == 0" class="no-records">No records found.</p>
+        <ion-row class="requ-box-list" [ngClass]="{'grid-view' : show_in_view == 'grid'}" *ngIf="jobRequestsHandyMan.length > 0">
             <ion-col class="requ-box-item" *ngFor="let jobs of jobRequestsHandyMan; let j = index;">
-                <div class="requ-box-inner">
+                <div class="requ-box-inner" *ngIf="role == 'handyman'">
                     <div class="requ-box-img">
-                        <img src="../assets/images/person-img1.png">
+                        <img src="{{jobs.customer.profilePic}}">
                     </div>
                     <div class="requ-box-txt">
-                        <h2 class="title">Johny Depp</h2>
+                        <h2 class="title">{{jobs.customer.firstName}} {{jobs.customer.lastName}}</h2>
+                        <h6 class="sub-title">{{jobs[language_key_exchange_array[language_selected]]}}</h6>
+                        <p>Comleted by 10 May 2021</p>
+                    </div>
+                    <div class="requ-box-btns">                        
+                        <ion-badge color="success">${{jobs.jobPrice}}<span>Received</span></ion-badge>
+                        
+                    </div>
+                </div>
+                <div class="requ-box-inner" *ngIf="role == 'customer'">
+                    <div class="requ-box-img">
+                        <img src="{{jobs.handyman.profilePic}}">
+                    </div>
+                    <div class="requ-box-txt">
+                        <h2 class="title">{{jobs.handyman.firstName}} {{jobs.handyman.lastName}}</h2>
                         <h6 class="sub-title">{{jobs[language_key_exchange_array[language_selected]]}}</h6>
                         <p>Comleted by 10 May 2021</p>
                     </div>
                     <div class="requ-box-btns">
-                        <!-- <ion-badge color="success">$200.00<span>Received</span></ion-badge> -->
                         <ion-button color="primary">Book again</ion-button>
                     </div>
                 </div>
