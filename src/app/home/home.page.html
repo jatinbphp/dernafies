@@ -39,8 +39,8 @@
           <div class="rsr-buttons">
             <ion-list>
               <ion-item><ion-button color="primary" (click)="showMapWithLocations(job.id,job.assignedTrademan,job.latitude,job.longitude)">{{default_language_data['translation'][0]['general'][0][language_selected][0]['location_map']}}</ion-button></ion-item>
-              <ion-item><ion-button color="success"><ion-icon name="checkmark-outline"></ion-icon>{{default_language_data['translation'][0]['general'][0][language_selected][0]['accept_text']}}</ion-button></ion-item>
-              <ion-item><ion-button color="danger"><ion-icon name="close-outline"></ion-icon>{{default_language_data['translation'][0]['general'][0][language_selected][0]['reject_text']}}</ion-button></ion-item>
+              <ion-item><ion-button color="success" (click)="confirmUpdateJobStatus(job.id,2)"><ion-icon name="checkmark-outline"></ion-icon>{{default_language_data['translation'][0]['general'][0][language_selected][0]['accept_text']}}</ion-button></ion-item>
+              <ion-item><ion-button color="danger" (click)="confirmUpdateJobStatus(job.id,4)"><ion-icon name="close-outline"></ion-icon>{{default_language_data['translation'][0]['general'][0][language_selected][0]['reject_text']}}</ion-button></ion-item>
             </ion-list>
           </div>
         </ion-col>        
@@ -51,7 +51,7 @@
     </div>
     <div class="category-slider-main" *ngIf="role == 'customer'">
       <div class="title-main">
-        <h2>{{default_language_data['translation'][0]['general'][0][language_selected][0]['categories']}}<ion-router-link routerDirection="root" routerLink="/tabs/categories" >{{default_language_data['translation'][0]['general'][0][language_selected][0]['view_all']}}</ion-router-link></h2>
+        <h2>{{default_language_data['translation'][0]['general'][0][language_selected][0]['categories']}}<ion-router-link routerDirection="forward" routerLink="/tabs/categories" >{{default_language_data['translation'][0]['general'][0][language_selected][0]['view_all']}}</ion-router-link></h2>
       </div>
       <ion-slides pager [options]="categorieSlide" dir="rtl" *ngIf="rtl_or_ltr == 'rtl'">
         <ion-slide *ngFor="let categories of resultDataCategories;let s = index;">
@@ -72,7 +72,7 @@
     </div>
     <div class="completed-service-main" *ngIf="role == 'customer'">
       <div class="title-main">
-        <h2>{{default_language_data['translation'][0]['home'][0][language_selected][0]['completed_services']}}<ion-router-link href="Javascript:;" >{{default_language_data['translation'][0]['general'][0][language_selected][0]['view_all']}}</ion-router-link></h2>
+        <h2>{{default_language_data['translation'][0]['home'][0][language_selected][0]['completed_services']}}<ion-router-link routerDirection="forward" routerLink="/tabs/past-requests" >{{default_language_data['translation'][0]['general'][0][language_selected][0]['view_all']}}</ion-router-link></h2>
       </div>
       <p *ngIf="completedJobRequestsHandyMan.length == 0" class="no-records">No records found.</p>
       <ion-row class="requ-box-list" *ngIf="completedJobRequestsHandyMan.length > 0">
@@ -100,7 +100,7 @@
     </div>
     <div class="featured-slider-main" *ngIf="role == 'customer'">
       <div class="title-main">
-        <h2 (click)="viewAllHandyMan()">{{default_language_data['translation'][0]['home'][0][language_selected][0]['featured_handyman']}}<!--<ion-router-link routerDirection="root" routerLink="/tabs/handyman-view-all">{{default_language_data['translation'][0]['general'][0][language_selected][0]['view_all']}}</ion-router-link>--> <ion-router-link>{{default_language_data['translation'][0]['general'][0][language_selected][0]['view_all']}}</ion-router-link></h2>
+        <h2>{{default_language_data['translation'][0]['home'][0][language_selected][0]['featured_handyman']}}<ion-router-link routerDirection="forward" routerLink="/tabs/handyman-view-all">{{default_language_data['translation'][0]['general'][0][language_selected][0]['view_all']}}</ion-router-link></h2>
       </div>
       <div *ngIf="resultDataFeaturedHandyMan.length > 0">
         <ion-slides [options]="featuredSlide" dir="rtl" *ngIf="rtl_or_ltr == 'rtl'">

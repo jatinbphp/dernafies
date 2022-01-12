@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MenuController, LoadingController, ModalController } from '@ionic/angular';
+import { MenuController, LoadingController, ModalController, AlertController } from '@ionic/angular';
 import { ClientService } from '../providers/client.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ProfilePage } from '../profile/profile.page';
@@ -27,6 +27,7 @@ export class HomePage
   public queryString: any=[];
   public resultDataFeaturedHandyMan: any = [];
   public resultDataCategories: any = [];
+  public resultJobUpdatedStatus: any = [];
   public language_key_exchange_array: any = [];
   public province_language_key_exchange_array: any = [];
   public categorieSlide = 
@@ -40,7 +41,7 @@ export class HomePage
   public jobRequestsHandyMan: any=[];
   public completedJobRequestsHandyMan: any=[];
 
-  constructor(public fb: FormBuilder, public client: ClientService, public menu: MenuController, public loadingCtrl: LoadingController, public modalCtrl: ModalController) 
+  constructor(public fb: FormBuilder, public client: ClientService, public menu: MenuController, public loadingCtrl: LoadingController, public modalCtrl: ModalController, public alertController: AlertController) 
   {
     this.client.getObservableOnLanguageChange().subscribe((data) => {
 			this.language_selected = data.language_selected;
@@ -306,16 +307,6 @@ export class HomePage
       this.client.router.navigate(['sign-in']);  
     }
   }
-  
-  viewAllHandyMan()
-  {
-    this.client.router.navigate(['/tabs/handyman-view-all']);
-    /*
-    this.client.router.navigate(['/tabs/handyman-view-all']).then(()=>{
-      window.location.reload();
-    });
-    */
-  }
 
   showHandyManByCategory(id)
   {
@@ -370,5 +361,65 @@ export class HomePage
     });
 
     return await modal.present();
+  }
+
+  async confirmUpdateJobStatus(job_id,status_to_update)
+  {
+    let status = (status_to_update == 2) ? "Accept" : "Reject";
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Dernafies',
+      message: 'Please confirm:<br />\nAre you sure to <strong>'+status+'</strong> this service request?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => 
+          {
+            console.log('Confirm Cancel: blah');
+          }
+        }, 
+        {
+          text: 'Okay',
+          handler: () => 
+          {
+            this.UpdateJobStatus(job_id,status_to_update);
+            console.log('Confirm Okay');
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
+  async UpdateJobStatus(job_id,status_to_update)
+  {
+    //LOADER
+    const loading = await this.loadingCtrl.create({
+      spinner: null,
+      //duration: 5000,
+      message: 'Please wait...',
+      translucent: true,
+      cssClass: 'custom-class custom-loading'
+    });
+    await loading.present();
+    //LOADER
+    let dataJobStatus = {
+      job_id:job_id,        
+      status_to_update:status_to_update
+    }
+    await this.client.UpdateJobStatus(dataJobStatus).then(result => 
+    {	
+      loading.dismiss();//DISMISS LOADER			
+      this.resultJobUpdatedStatus=result; 
+      this.client.showMessage(this.resultJobUpdatedStatus['message']);
+      this.ionViewWillEnter();
+    },
+    error => 
+    {
+      loading.dismiss();//DISMISS LOADER
+      console.log();
+    });//JOB REQUESTS FOR HANDYMAN    
   }
 }

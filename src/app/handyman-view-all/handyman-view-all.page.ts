@@ -143,11 +143,6 @@ export class HandymanViewAllPage implements OnInit
       console.log(this.resultDataHandyManPerSlide);
     }
   }
-
-  backToHome()
-  {
-    this.client.router.navigate(['/tabs/home']);
-  }
   
   showHandyMan(id)
   {

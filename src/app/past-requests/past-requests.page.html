@@ -3,8 +3,8 @@
         <!-- <ion-buttons slot="start">
             <ion-menu-button></ion-menu-button>      
             </ion-buttons> -->
-        <ion-title slot="start">past-requests</ion-title>
-        <ion-button slot="end">
+        <ion-title slot="start">{{default_language_data['translation'][0]['past-requests'][0][language_selected][0]['screen_title']}}</ion-title>
+        <ion-button slot="end" routerDirection="back" routerLink="/tabs/home">
             <ion-icon name="arrow-back-outline"></ion-icon>
         </ion-button>
     </ion-toolbar>
@@ -14,7 +14,7 @@
     	<div class="filter-main-sec">
 	    	<div class="filter-txt-sec">
 	    		<img class="grid-icon1" src="../assets/images/filter-icon1.png" (click)="showGridView()">
-	    		<p>Filter</p>
+	    		<p>{{default_language_data['translation'][0]['past-requests'][0][language_selected][0]['filter_text']}}</p>
 	    	</div>
 	    	<div class="filter-img-sec">
                 <div class="filter-img">
@@ -52,7 +52,7 @@
                         <p>Comleted by 10 May 2021</p>
                     </div>
                     <div class="requ-box-btns">
-                        <ion-button color="primary">Book again</ion-button>
+                        <ion-button color="primary">{{default_language_data['translation'][0]['past-requests'][0][language_selected][0]['book_again_button']}}</ion-button>
                     </div>
                 </div>
             </ion-col>            

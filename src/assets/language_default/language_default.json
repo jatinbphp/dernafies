@@ -354,6 +354,31 @@
                ]
             }
          ],
+         "past-requests": [
+            {
+               "english": [
+                  {
+                     "screen_title":"Past Requests",
+                     "filter_text":"Filter",
+                     "book_again_button":"Book Again"
+                  }
+               ],
+               "arabic": [
+                  {
+                     "screen_title":"الطلبات السابقة",
+                     "filter_text":"منقي",
+                     "book_again_button":"احجز مرة أخرى"
+                  }
+               ],
+               "kurdish": [
+                  {
+                     "screen_title":"Daxwazên berê",
+                     "filter_text":"Parzûn",
+                     "book_again_button":"Pirtûka Dîsa"
+                  }
+               ]
+            }
+         ],
          "handyman-view-all": [
             {
                "english": [

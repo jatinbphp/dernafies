@@ -83,9 +83,5 @@ export class CategoriesPage
     });
     */
   }
-
-  backToHome()
-  {
-    this.client.router.navigate(['/tabs/home']);
-  }
+  
 }

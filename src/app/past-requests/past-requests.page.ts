@@ -23,12 +23,8 @@ export class PastRequestsPage implements OnInit
 
 	constructor(public client: ClientService, public loadingCtrl: LoadingController)
 	{ 
-		this.client.getObservableOnLanguageChange().subscribe((data) => {
-			this.language_selected = data.language_selected;
-			this.rtl_or_ltr = (this.language_selected == 'arabic') ? 'rtl' : 'ltr';
-			console.log('Data received', data);
-		});//THIS OBSERVABLE IS USED TO SET DEFAULT OR SELECTED LANGUAGE
-		this.rtl_or_ltr = (this.language_selected == 'arabic') ? 'rtl' : 'ltr';
+		this.default_language_data = this.client.default_language_data;
+		this.language_selected = this.client.language_selected;
 	}
 
 	ngOnInit()
@@ -85,5 +81,5 @@ export class PastRequestsPage implements OnInit
 	{
 		this.show_in_view='list';
 	}
-
+	
 }

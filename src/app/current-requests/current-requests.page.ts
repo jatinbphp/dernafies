@@ -76,5 +76,5 @@ export class CurrentRequestsPage implements OnInit
       console.log();
     });//JOB REQUESTED,ACCEPTED,COMPLETED
   }
-
+  
 }

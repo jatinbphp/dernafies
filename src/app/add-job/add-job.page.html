@@ -24,7 +24,7 @@
           <ion-col size="12">
             <ion-item lines="none" class="ion-no-padding">
               <ion-label position="stacked">{{default_language_data['translation'][0]['register'][0][language_selected][0]['specialized_in']}}</ion-label>
-              <ion-select formControlName="handyman_category_id" multiple="true">
+              <ion-select formControlName="handyman_category_id" multiple="false">
                 <ion-select-option *ngFor="let categories of resultDataHandyMan.categories;let s = index;" value="{{categories.id}}">{{categories[language_key_exchange_array[language_selected]]}}</ion-select-option>  
               </ion-select>
             </ion-item>

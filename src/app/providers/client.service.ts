@@ -438,6 +438,26 @@ export class ClientService
 		});
 	}
 
+	UpdateJobStatus(data)
+	{
+		let headers = this.getHeaderOptions();
+		return new Promise((resolve, reject) => 
+		{
+			let dataToPost = new HttpParams().set("jobID",data.job_id).set("jobStatusID",data.status_to_update);
+			this.http.post(this.api_url + "updateJobStatus",  dataToPost , headers).subscribe((res: any) =>       
+			{
+				resolve(res);
+			},
+			err => 
+			{
+				console.log(err);
+				let errorMessage=this.getErrorMessage(err);
+				//this.showMessage(errorMessage);
+				reject(errorMessage);
+			});
+		});
+	}
+
   	getErrorMessage(err)
 	{	
 		if(err.error == null)
