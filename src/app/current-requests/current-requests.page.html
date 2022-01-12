@@ -3,7 +3,7 @@
     <!-- <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>      
     </ion-buttons> -->
-    <ion-title slot="start">My Current Requests</ion-title>
+    <ion-title slot="start"><!--My Current Requests-->{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['screen_title']}}</ion-title>
     <ion-button slot="end"><ion-icon name="arrow-back-outline"></ion-icon></ion-button>
   </ion-toolbar>
 </ion-header>
@@ -11,17 +11,17 @@
 <ion-content>
   <ion-header>
     <ion-segment [(ngModel)]="CurrentRequestList">
-        <ion-segment-button value="AcceptRequest">Accept Request</ion-segment-button>
-        <ion-segment-button value="Completed">Completed</ion-segment-button>
-        <ion-segment-button value="ScheduledTime">Scheduled Time</ion-segment-button>
+        <ion-segment-button value="AcceptRequest">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['accept_request']}}</ion-segment-button>
+        <ion-segment-button value="Completed">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['completed']}}</ion-segment-button>
+        <ion-segment-button value="ScheduledTime">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['scheduled_time']}}</ion-segment-button>
       </ion-segment>
   </ion-header>
   <div class="main-div">
-    <div class="current-request-list" [ngSwitch]="CurrentRequestList">
-      <!--<p *ngIf="jobRequestsHandyMan.length == 0" class="no-records">No records found.</p>
+    <div *ngIf="role == 'handyman'" class="current-request-list" [ngSwitch]="CurrentRequestList">
+      <!--<p *ngIf="acceptedjobRequestsHandyMan.length == 0" class="no-records">No records found.</p>
       <p *ngIf="completedJobRequestsHandyMan.length == 0" class="no-records">No records found.</p>-->
       <ion-row class="requ-box-list" *ngSwitchCase="'AcceptRequest'">
-        <ion-col class="requ-box-item" *ngFor="let jobToAccept of jobRequestsHandyMan; let j=index;">
+        <ion-col class="requ-box-item" *ngFor="let jobToAccept of acceptedjobRequestsHandyMan; let j=index;">
           <div class="requ-box-inner">
             <div class="requ-box-img">
               <img src="{{jobToAccept.customer.profilePic}}">
@@ -32,91 +32,11 @@
               <p>20 Sep 21<span></span>2Hrs<span></span>${{jobToAccept.jobPrice}}</p>
             </div>
             <div class="requ-box-btns">
-              <ion-button color="success">Completed</ion-button>
-              <ion-button color="primary">Request Review</ion-button>
+              <ion-button color="success">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['button_completed']}}</ion-button>
+              <ion-button color="primary">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['button_request_review']}}</ion-button>
             </div>
           </div>
-        </ion-col>
-        <!--<ion-col class="requ-box-item">
-          <div class="requ-box-inner">
-            <div class="requ-box-img">
-              <img src="../assets/images/person-img1.png">
-            </div>
-            <div class="requ-box-txt">
-              <h2 class="title">Johny Depp</h2>
-              <h6 class="sub-title">Plumbing Repairs</h6>
-              <p>20 Sep 21<span></span>2Hrs<span></span>$200</p>
-            </div>
-            <div class="requ-box-btns">
-              <ion-button color="success">Completed</ion-button>
-              <ion-button disabled color="primary">Request Review</ion-button>
-            </div>
-          </div>
-        </ion-col>
-        <ion-col class="requ-box-item">
-          <div class="requ-box-inner">
-            <div class="requ-box-img">
-              <img src="../assets/images/person-img1.png">
-            </div>
-            <div class="requ-box-txt">
-              <h2 class="title">Johny Depp</h2>
-              <h6 class="sub-title">Plumbing Repairs</h6>
-              <p>20 Sep 21<span></span>2Hrs<span></span>$200</p>
-            </div>
-            <div class="requ-box-btns">
-              <ion-button color="success">Completed</ion-button>
-              <ion-button color="primary">Request Review</ion-button>
-            </div>
-          </div>
-        </ion-col>
-        <ion-col class="requ-box-item">
-          <div class="requ-box-inner">
-            <div class="requ-box-img">
-              <img src="../assets/images/person-img1.png">
-            </div>
-            <div class="requ-box-txt">
-              <h2 class="title">Johny Depp</h2>
-              <h6 class="sub-title">Plumbing Repairs</h6>
-              <p>20 Sep 21<span></span>2Hrs<span></span>$200</p>
-            </div>
-            <div class="requ-box-btns">
-              <ion-button color="success">Completed</ion-button>
-              <ion-button color="primary">Request Review</ion-button>
-            </div>
-          </div>
-        </ion-col>
-        <ion-col class="requ-box-item">
-          <div class="requ-box-inner">
-            <div class="requ-box-img">
-              <img src="../assets/images/person-img1.png">
-            </div>
-            <div class="requ-box-txt">
-              <h2 class="title">Johny Depp</h2>
-              <h6 class="sub-title">Plumbing Repairs</h6>
-              <p>20 Sep 21<span></span>2Hrs<span></span>$200</p>
-            </div>
-            <div class="requ-box-btns">
-              <ion-button color="success">Completed</ion-button>
-              <ion-button color="primary">Request Review</ion-button>
-            </div>
-          </div>
-        </ion-col>
-        <ion-col class="requ-box-item">
-          <div class="requ-box-inner">
-            <div class="requ-box-img">
-              <img src="../assets/images/person-img1.png">
-            </div>
-            <div class="requ-box-txt">
-              <h2 class="title">Johny Depp</h2>
-              <h6 class="sub-title">Plumbing Repairs</h6>
-              <p>20 Sep 21<span></span>2Hrs<span></span>$200</p>
-            </div>
-            <div class="requ-box-btns">
-              <ion-button color="success">Completed</ion-button>
-              <ion-button color="primary">Request Review</ion-button>
-            </div>
-          </div>
-        </ion-col>-->
+        </ion-col>        
       </ion-row>
       <ion-row class="requ-box-list" *ngSwitchCase="'Completed'">
         <ion-col class="requ-box-item" *ngFor="let completedJob of completedJobRequestsHandyMan; let c=index;">
@@ -130,189 +50,87 @@
               <p>20 Sep 21<span></span>2Hrs<span></span>${{completedJob.jobPrice}}</p>
             </div>
             <div class="requ-box-btns">
-              <ion-button color="success">Completed</ion-button>
-              <ion-button color="primary">Request Review</ion-button>
+              <ion-button color="success">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['completed']}}</ion-button>
+              <ion-button color="primary">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['button_request_review']}}</ion-button>
             </div>
           </div>
-        </ion-col>
-        <!--<ion-col class="requ-box-item">
-          <div class="requ-box-inner">
-            <div class="requ-box-img">
-              <img src="../assets/images/person-img1.png">
-            </div>
-            <div class="requ-box-txt">
-              <h2 class="title">Johny Depp</h2>
-              <h6 class="sub-title">Plumbing Repairs</h6>
-              <p>20 Sep 21<span></span>2Hrs<span></span>$200</p>
-            </div>
-            <div class="requ-box-btns">
-              <ion-button color="success">Completed</ion-button>
-              <ion-button color="primary">Request Review</ion-button>
-            </div>
-          </div>
-        </ion-col>
-        <ion-col class="requ-box-item">
-          <div class="requ-box-inner">
-            <div class="requ-box-img">
-              <img src="../assets/images/person-img1.png">
-            </div>
-            <div class="requ-box-txt">
-              <h2 class="title">Johny Depp</h2>
-              <h6 class="sub-title">Plumbing Repairs</h6>
-              <p>20 Sep 21<span></span>2Hrs<span></span>$200</p>
-            </div>
-            <div class="requ-box-btns">
-              <ion-button color="success">Completed</ion-button>
-              <ion-button disabled color="primary">Request Review</ion-button>
-            </div>
-          </div>
-        </ion-col>
-        <ion-col class="requ-box-item">
-          <div class="requ-box-inner">
-            <div class="requ-box-img">
-              <img src="../assets/images/person-img1.png">
-            </div>
-            <div class="requ-box-txt">
-              <h2 class="title">Johny Depp</h2>
-              <h6 class="sub-title">Plumbing Repairs</h6>
-              <p>20 Sep 21<span></span>2Hrs<span></span>$200</p>
-            </div>
-            <div class="requ-box-btns">
-              <ion-button color="success">Completed</ion-button>
-              <ion-button color="primary">Request Review</ion-button>
-            </div>
-          </div>
-        </ion-col>
-        <ion-col class="requ-box-item">
-          <div class="requ-box-inner">
-            <div class="requ-box-img">
-              <img src="../assets/images/person-img1.png">
-            </div>
-            <div class="requ-box-txt">
-              <h2 class="title">Johny Depp</h2>
-              <h6 class="sub-title">Plumbing Repairs</h6>
-              <p>20 Sep 21<span></span>2Hrs<span></span>$200</p>
-            </div>
-            <div class="requ-box-btns">
-              <ion-button color="success">Completed</ion-button>
-              <ion-button color="primary">Request Review</ion-button>
-            </div>
-          </div>
-        </ion-col>
-        <ion-col class="requ-box-item">
-          <div class="requ-box-inner">
-            <div class="requ-box-img">
-              <img src="../assets/images/person-img1.png">
-            </div>
-            <div class="requ-box-txt">
-              <h2 class="title">Johny Depp</h2>
-              <h6 class="sub-title">Plumbing Repairs</h6>
-              <p>20 Sep 21<span></span>2Hrs<span></span>$200</p>
-            </div>
-            <div class="requ-box-btns">
-              <ion-button color="success">Completed</ion-button>
-              <ion-button color="primary">Request Review</ion-button>
-            </div>
-          </div>
-        </ion-col>-->
+        </ion-col>        
       </ion-row>
       <ion-row class="requ-box-list" *ngSwitchCase="'ScheduledTime'">
-        <ion-col class="requ-box-item">
+        <ion-col class="requ-box-item" *ngFor="let requestedJob of requestedjobRequestsHandyMan; let c=index;">
           <div class="requ-box-inner">
             <div class="requ-box-img">
-              <img src="../assets/images/person-img1.png">
+              <img src="{{requestedJob.customer.profilePic}}">
             </div>
             <div class="requ-box-txt">
-              <h2 class="title">Johny Depp</h2>
-              <h6 class="sub-title">Plumbing Repairs</h6>
-              <p>20 Sep 21<span></span>2Hrs<span></span>$200</p>
+              <h2 class="title">{{requestedJob.customer.firstName}} {{requestedJob.customer.lastName}}</h2>
+              <h6 class="sub-title">{{requestedJob[language_key_exchange_array[language_selected]]}}</h6>
+              <p>20 Sep 21<span></span>2Hrs<span></span>${{requestedJob.jobPrice}}</p>
             </div>
             <div class="requ-box-btns">
-              <ion-button color="success">Completed</ion-button>
-              <ion-button color="primary">Request Review</ion-button>
+              <ion-button color="success">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['button_completed']}}</ion-button>
+              <ion-button color="primary">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['button_request_review']}}</ion-button>
             </div>
           </div>
         </ion-col>
-        <ion-col class="requ-box-item">
+      </ion-row>
+    </div>
+    <div *ngIf="role == 'customer'" class="current-request-list" [ngSwitch]="CurrentRequestList">
+      <!--<p *ngIf="acceptedjobRequestsHandyMan.length == 0" class="no-records">No records found.</p>
+      <p *ngIf="completedJobRequestsHandyMan.length == 0" class="no-records">No records found.</p>-->
+      <ion-row class="requ-box-list" *ngSwitchCase="'AcceptRequest'">
+        <ion-col class="requ-box-item" *ngFor="let jobToAccept of acceptedjobRequestsHandyMan; let j=index;">
           <div class="requ-box-inner">
             <div class="requ-box-img">
-              <img src="../assets/images/person-img1.png">
+              <img src="{{jobToAccept.handyman.profilePic}}">
             </div>
             <div class="requ-box-txt">
-              <h2 class="title">Johny Depp</h2>
-              <h6 class="sub-title">Plumbing Repairs</h6>
-              <p>20 Sep 21<span></span>2Hrs<span></span>$200</p>
+              <h2 class="title">{{jobToAccept.handyman.firstName}} {{jobToAccept.handyman.lastName}}</h2>
+              <h6 class="sub-title">{{jobToAccept[language_key_exchange_array[language_selected]]}}</h6>
+              <p>20 Sep 21<span></span>2Hrs<span></span>${{jobToAccept.jobPrice}}</p>
             </div>
             <div class="requ-box-btns">
-              <ion-button color="success">Completed</ion-button>
-              <ion-button color="primary">Request Review</ion-button>
+              <ion-button color="success">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['button_completed']}}</ion-button>
+              <ion-button color="primary">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['button_rate_and_review']}}</ion-button>
             </div>
           </div>
-        </ion-col>
-        <ion-col class="requ-box-item">
+        </ion-col>        
+      </ion-row>
+      <ion-row class="requ-box-list" *ngSwitchCase="'Completed'">
+        <ion-col class="requ-box-item" *ngFor="let completedJob of completedJobRequestsHandyMan; let c=index;">
           <div class="requ-box-inner">
             <div class="requ-box-img">
-              <img src="../assets/images/person-img1.png">
+              <img src="{{completedJob.handyman.profilePic}}">
             </div>
             <div class="requ-box-txt">
-              <h2 class="title">Johny Depp</h2>
-              <h6 class="sub-title">Plumbing Repairs</h6>
-              <p>20 Sep 21<span></span>2Hrs<span></span>$200</p>
+              <h2 class="title">{{completedJob.handyman.firstName}} {{completedJob.handyman.lastName}}</h2>
+              <h6 class="sub-title">{{completedJob[language_key_exchange_array[language_selected]]}}</h6>
+              <p>20 Sep 21<span></span>2Hrs<span></span>${{completedJob.jobPrice}}</p>
             </div>
             <div class="requ-box-btns">
-              <ion-button color="success">Completed</ion-button>
-              <ion-button color="primary">Request Review</ion-button>
+              <ion-button color="success">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['completed']}}</ion-button>
+              <ion-button color="primary">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['button_rate_and_review']}}</ion-button>
             </div>
           </div>
-        </ion-col>
-        <ion-col class="requ-box-item">
+        </ion-col>        
+      </ion-row>
+      <ion-row class="requ-box-list" *ngSwitchCase="'ScheduledTime'">
+        <ion-col class="requ-box-item" *ngFor="let requestedJob of requestedjobRequestsHandyMan; let r=index;">
           <div class="requ-box-inner">
             <div class="requ-box-img">
-              <img src="../assets/images/person-img1.png">
+              <img src="{{requestedJob.handyman.profilePic}}">
             </div>
             <div class="requ-box-txt">
-              <h2 class="title">Johny Depp</h2>
-              <h6 class="sub-title">Plumbing Repairs</h6>
-              <p>20 Sep 21<span></span>2Hrs<span></span>$200</p>
+              <h2 class="title">{{requestedJob.handyman.firstName}} {{requestedJob.handyman.lastName}}</h2>
+              <h6 class="sub-title">{{requestedJob[language_key_exchange_array[language_selected]]}}</h6>
+              <p>20 Sep 21<span></span>2Hrs<span></span>${{requestedJob.jobPrice}}</p>
             </div>
             <div class="requ-box-btns">
-              <ion-button color="success">Completed</ion-button>
-              <ion-button color="primary">Request Review</ion-button>
+              <ion-button color="success">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['button_completed']}}</ion-button>
+              <ion-button color="primary">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['button_rate_and_review']}}</ion-button>
             </div>
           </div>
-        </ion-col>
-        <ion-col class="requ-box-item">
-          <div class="requ-box-inner">
-            <div class="requ-box-img">
-              <img src="../assets/images/person-img1.png">
-            </div>
-            <div class="requ-box-txt">
-              <h2 class="title">Johny Depp</h2>
-              <h6 class="sub-title">Plumbing Repairs</h6>
-              <p>20 Sep 21<span></span>2Hrs<span></span>$200</p>
-            </div>
-            <div class="requ-box-btns">
-              <ion-button color="success">Completed</ion-button>
-              <ion-button color="primary">Request Review</ion-button>
-            </div>
-          </div>
-        </ion-col>
-        <ion-col class="requ-box-item">
-          <div class="requ-box-inner">
-            <div class="requ-box-img">
-              <img src="../assets/images/person-img1.png">
-            </div>
-            <div class="requ-box-txt">
-              <h2 class="title">Johny Depp</h2>
-              <h6 class="sub-title">Plumbing Repairs</h6>
-              <p>20 Sep 21<span></span>2Hrs<span></span>$200</p>
-            </div>
-            <div class="requ-box-btns">
-              <ion-button color="success">Completed</ion-button>
-              <ion-button disabled color="primary">Request Review</ion-button>
-            </div>
-          </div>
-        </ion-col>
+        </ion-col>        
       </ion-row>
     </div>
   </div>

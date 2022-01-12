@@ -324,7 +324,10 @@
                      "screen_title":"My Current Requests",
                      "accept_request":"Accept Request",
                      "completed":"Completed",
-                     "scheduled_time":"Scheduled Time"
+                     "scheduled_time":"Scheduled Time",
+                     "button_completed":"Completed",
+                     "button_request_review":"Request Review",
+                     "button_rate_and_review":"Rate & Review"
                   }
                ],
                "arabic": [
@@ -332,7 +335,10 @@
                      "screen_title":"طلباتي الحالية",
                      "accept_request":"قبول الطلب",
                      "completed":"مكتمل",
-                     "scheduled_time":"جدول زمني"
+                     "scheduled_time":"جدول زمني",
+                     "button_completed":"مكتمل",
+                     "button_request_review":"طلب مراجعة",
+                     "button_rate_and_review":"مراجعة معدل"
                   }
                ],
                "kurdish": [
@@ -340,7 +346,10 @@
                      "screen_title":"Daxwazên Min ên Niha",
                      "accept_request":"Daxwazê qebûl bikin",
                      "completed":"Temam kirin",
-                     "scheduled_time":"Demjimêra plankirî"
+                     "scheduled_time":"Demjimêra plankirî",
+                     "button_completed":"Temam kirin",
+                     "button_request_review":"Daxwaza Review",
+                     "button_rate_and_review":"Binirxînin & Binirxînin"
                   }
                ]
             }
