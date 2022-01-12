@@ -80,7 +80,12 @@ ion-content {
                                 width: 80px;
                                 height: 80px;
                                 border-radius: 100%;
+                                overflow: hidden;
                                 border: 3px solid #fff;
+                                background-color: var(--White);
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
                                 position: absolute;
                                 left: 0;
                                 right: 0;

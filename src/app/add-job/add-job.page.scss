@@ -16,6 +16,23 @@ ion-content {
         border-radius: 0px 0px 35px 35px;
         background: #f8f8f8;
         padding: 45px 16px 60px;
+        height: fit-content;
+        height: -webkit-fit-content;
+        height: -moz-fit-content;
+        height: -ms-fit-content;
+        height: -o-fit-content;
+        max-height: fit-content;
+        max-height: -webkit-fit-content;
+        max-height: -moz-fit-content;
+        max-height: -ms-fit-content;
+        max-height: -o-fit-content;
+        min-height: -webkit-fill-available;
+        min-height: -moz-fill-available;
+        min-height: -ms-fill-available;
+        min-height: -o-fill-available;
+        // @media (min-height:726px) and (max-height:1000px) {
+        //     height: 100%;
+        // }
         form {
         	width: 100%;
         	padding: 0px 0px 20px;
