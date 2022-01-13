@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { LoadingController } from '@ionic/angular';
+import { Platform, LoadingController } from '@ionic/angular';
 import { ClientService } from '../providers/client.service';
 import { NavigationExtras } from '@angular/router';
+import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
+import { NativeGeocoder, NativeGeocoderResult, NativeGeocoderOptions } from '@awesome-cordova-plugins/native-geocoder/ngx';
 
 @Component({
   selector: 'app-categories',
@@ -14,11 +16,13 @@ export class CategoriesPage
   public rtl_or_ltr = '';
   public language_selected = '';
 	public default_language_data: any = [];
-  
+  public current_latitude:any = '';
+  public current_longitude:any = '';
+
   public resultDataCategories: any = [];
   public language_key_exchange_array: any = [];
   public queryString: any=[];
-  constructor(public client: ClientService, public loadingCtrl: LoadingController) 
+  constructor(public client: ClientService, public loadingCtrl: LoadingController, private geolocation: Geolocation, private platform: Platform, private nativeGeocoder: NativeGeocoder) 
   {
     this.client.getObservableOnLanguageChange().subscribe((data) => {
 			this.language_selected = data.language_selected;
@@ -38,6 +42,13 @@ export class CategoriesPage
     this.language_key_exchange_array['arabic']='categoryNameArabic';
     this.language_key_exchange_array['kurdish']='categoryNameKurdi';
 
+    this.platform.ready().then(async () => 
+    {
+      const coordinates = await this.geolocation.getCurrentPosition();
+      this.current_latitude=Number(coordinates.coords.latitude);
+      this.current_longitude=Number(coordinates.coords.longitude);
+    });
+    
     //LOADER
 		const loading = await this.loadingCtrl.create({
 			spinner: null,
@@ -66,7 +77,9 @@ export class CategoriesPage
   {
     this.queryString = 
     {
-      handyman_category_id:id
+      handyman_category_id:id,
+      latitude:this.current_latitude,
+      longitude:this.current_longitude
     };
 
     let navigationExtras: NavigationExtras = 
