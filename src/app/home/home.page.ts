@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
-import { MenuController, LoadingController, ModalController, AlertController } from '@ionic/angular';
+import { Platform, MenuController, LoadingController, ModalController, AlertController } from '@ionic/angular';
 import { ClientService } from '../providers/client.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ProfilePage } from '../profile/profile.page';
 import { JobLocationOnMapPage } from '../job-location-on-map/job-location-on-map.page';
 import { NavigationExtras } from '@angular/router';
+import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
+import { NativeGeocoder, NativeGeocoderResult, NativeGeocoderOptions } from '@awesome-cordova-plugins/native-geocoder/ngx';
 
 @Component({
   selector: 'app-home',
@@ -23,6 +25,8 @@ export class HomePage
   public user_type:any = '';
   public welcome_text:any = '';
   public greetings:any = '';
+  public current_latitude:any = '';
+  public current_longitude:any = '';
 
   public queryString: any=[];
   public resultDataFeaturedHandyMan: any = [];
@@ -41,7 +45,7 @@ export class HomePage
   public jobRequestsHandyMan: any=[];
   public completedJobRequestsHandyMan: any=[];
 
-  constructor(public fb: FormBuilder, public client: ClientService, public menu: MenuController, public loadingCtrl: LoadingController, public modalCtrl: ModalController, public alertController: AlertController) 
+  constructor(public fb: FormBuilder, public client: ClientService, public menu: MenuController, public loadingCtrl: LoadingController, public modalCtrl: ModalController, public alertController: AlertController, private geolocation: Geolocation, private platform: Platform, private nativeGeocoder: NativeGeocoder) 
   {
     this.client.getObservableOnLanguageChange().subscribe((data) => {
 			this.language_selected = data.language_selected;
@@ -68,7 +72,6 @@ export class HomePage
 		this.language_selected = this.client.language_selected;
     //this.rtl_or_ltr = this.client.rtl_or_ltr;
     console.log(this.rtl_or_ltr);
-    
     this.id=localStorage.getItem('id');
     this.role = localStorage.getItem('role');
     this.user_type = (this.role == 'handyman') ? 2 : 3;
@@ -127,6 +130,12 @@ export class HomePage
     }
     if(this.role == 'customer')
     {
+      this.platform.ready().then(async () => 
+      {
+        const coordinates = await this.geolocation.getCurrentPosition();
+        this.current_latitude=Number(coordinates.coords.latitude);
+        this.current_longitude=Number(coordinates.coords.longitude);
+      });
       //LOADER
       const loading = await this.loadingCtrl.create({
         spinner: null,
@@ -161,7 +170,9 @@ export class HomePage
       await loadingFeaturedHandyMan.present();
       //LOADER
       let dataHandyMan = {
-        categoryID:''
+        categoryID:'',
+        latitude:this.current_latitude,
+        longitude:this.current_longitude
       }
       await this.client.getActivehandyman(dataHandyMan).then(result => 
       {	
@@ -312,7 +323,9 @@ export class HomePage
   {
     this.queryString = 
     {
-      handyman_category_id:id
+      handyman_category_id:id,
+      latitude:this.current_latitude,
+      longitude:this.current_longitude
     };
 
     let navigationExtras: NavigationExtras = 
@@ -328,6 +341,25 @@ export class HomePage
       window.location.reload();
     });
     */
+  }
+
+  showAllHandyMan()
+  {
+    this.queryString = 
+    {
+      handyman_category_id:'',
+      latitude:this.current_latitude,
+      longitude:this.current_longitude
+    };
+
+    let navigationExtras: NavigationExtras = 
+    {
+      queryParams: 
+      {
+        special: JSON.stringify(this.queryString)
+      }
+    };
+    this.client.router.navigate(['/tabs/handyman-view-all'], navigationExtras);
   }
 
   showHandyMan(id)

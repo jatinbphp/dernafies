@@ -356,7 +356,7 @@ export class ClientService
 		let headers = this.getHeaderOptions();
 		return new Promise((resolve, reject) => 
 		{
-			let dataToPost = new HttpParams().set("categoryID",data.categoryID);
+			let dataToPost = new HttpParams().set("categoryID",data.categoryID).set("latitude",data.latitude).set("longitude",data.longitude);
 			this.http.post(this.api_url + "getActivehandyman",  dataToPost , headers).subscribe((res: any) =>       
 			{
 				if(res.status == true)

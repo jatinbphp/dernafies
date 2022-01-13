@@ -19,6 +19,9 @@ export class HandymanViewAllPage implements OnInit
   public language_key_exchange_array: any = [];
 
   public handyman_category_id:any=0;
+  public current_latitude:any='';
+  public current_longitude:any='';
+
   public resultDataHandyMan: any = [];  
   public resultDataHandyManPerSlide: any = [];
   public resultDataHandyManPerSlideTemp: any = [];
@@ -86,9 +89,13 @@ export class HandymanViewAllPage implements OnInit
       }
     });
     this.handyman_category_id=this.queryStringData['handyman_category_id'];
+    this.current_latitude=this.queryStringData['latitude'];
+    this.current_longitude=this.queryStringData['longitude'];
     
     let dataHandyMan = {
-      categoryID:(this.handyman_category_id) ? this.handyman_category_id : 0
+      categoryID:(this.handyman_category_id) ? this.handyman_category_id : 0,
+      latitude:this.current_latitude,
+      longitude:this.current_longitude
     }
     await this.client.getActivehandyman(dataHandyMan).then(result => 
     {	
