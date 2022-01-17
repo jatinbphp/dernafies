@@ -458,6 +458,26 @@ export class ClientService
 		});
 	}
 
+	addReviewAndRating(data)
+	{
+		let headers = this.getHeaderOptions();
+		return new Promise((resolve, reject) => 
+		{
+			let dataToPost = new HttpParams().set("jobID",data.job_id).set("review",data.handyman_rating).set("reviewText",data.handyman_review);
+			this.http.post(this.api_url + "insertJobReview",  dataToPost , headers).subscribe((res: any) =>       
+			{
+				resolve(res);
+			},
+			err => 
+			{
+				console.log(err);
+				let errorMessage=this.getErrorMessage(err);
+				//this.showMessage(errorMessage);
+				reject(errorMessage);
+			});
+		});
+	}
+
   	getErrorMessage(err)
 	{	
 		if(err.error == null)

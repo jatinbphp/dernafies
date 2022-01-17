@@ -23,7 +23,7 @@ export class ReviewAndRatingPage implements OnInit
   public handyman_category_nm:any = '';
   public handyman_id:any = '';
   public resultDataHandyMan: any=[];
-  
+  public resultDataHandyManRatingAndReview: any=[];
   public ReviewAndRatingForm = this.fb.group({
 		job_id: ['', Validators.required],
     handyman_rating: ['', Validators.required],
@@ -97,8 +97,42 @@ export class ReviewAndRatingPage implements OnInit
     console.log(ev);
   }
 
-  addReviewAndRating(form)
+  async addReviewAndRating(form)
   {
-    console.log(form);
+    let job_id = (form.job_id) ? form.job_id : 0;
+    let handyman_rating = (form.handyman_rating) ? form.handyman_rating : 0;
+    let handyman_review = (form.handyman_review) ? form.handyman_review : "";
+
+    //LOADER
+		const loading = await this.loadingCtrl.create({
+			spinner: null,
+			//duration: 5000,
+			message: 'Please wait...',
+			translucent: true,
+			cssClass: 'custom-class custom-loading'
+		});
+		await loading.present();
+		//LOADER
+    let data = {
+      job_id:job_id,
+      handyman_rating:handyman_rating,
+      handyman_review:handyman_review,
+    }
+    await this.client.addReviewAndRating(data).then(result => 
+    {
+      loading.dismiss();//DISMISS LOADER			
+			this.resultDataHandyManRatingAndReview=result;
+      if(this.resultDataHandyManRatingAndReview['status']==true)
+      {
+        this.client.showMessage(this.resultDataHandyManRatingAndReview['message']);
+      }
+      this.ReviewAndRatingForm.reset();
+      this.client.router.navigate(['/tabs/current-requests']);
+    },
+    error => 
+    {
+      loading.dismiss();//DISMISS LOADER
+      console.log();
+    });
   }
 }
