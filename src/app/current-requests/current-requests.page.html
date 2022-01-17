@@ -92,7 +92,7 @@
               <p>20 Sep 21<span></span>2Hrs<span></span>${{jobToAccept.jobPrice}}</p>
             </div>
             <div class="requ-box-btns">
-              <ion-button color="success">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['button_completed']}}</ion-button>
+              <ion-button color="success" (click)="confirmUpdateJobStatus(jobToAccept.id,3)">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['button_completed']}}</ion-button>
               <ion-button color="primary" disabled="true">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['button_rate_and_review']}}</ion-button>
             </div>
           </div>
@@ -111,7 +111,7 @@
             </div>
             <div class="requ-box-btns">
               <ion-button color="success" disabled="true">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['completed']}}</ion-button>
-              <ion-button color="primary">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['button_rate_and_review']}}</ion-button>
+              <ion-button color="primary" (click)="addReviewAndRating(completedJob.id,completedJob[language_key_exchange_array[language_selected]],completedJob.assignedTrademan)">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['button_rate_and_review']}}</ion-button>
             </div>
           </div>
         </ion-col>        

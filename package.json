@@ -24,6 +24,7 @@
     "@awesome-cordova-plugins/in-app-browser": "^5.37.3",
     "@awesome-cordova-plugins/native-geocoder": "^5.37.3",
     "@ionic/angular": "^6.0.0",
+    "ionic-rating-component": "^1.2.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"

@@ -56,6 +56,10 @@ const routes: Routes = [
         loadChildren: () => import('../add-job/add-job.module').then(m => m.AddJobPageModule)
       },
       {
+        path: 'review-and-rating',
+        loadChildren: () => import('../review-and-rating/review-and-rating.module').then(m => m.ReviewAndRatingPageModule)
+      },
+      {
         path: '',
         //redirectTo: '/tabs/home',
         redirectTo: '/sign-in',

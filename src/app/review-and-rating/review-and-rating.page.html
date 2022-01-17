@@ -1,0 +1,74 @@
+<ion-header no-border class="ion-no-border" [translucent]="true">
+  <ion-toolbar>
+    <!-- <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>      
+    </ion-buttons> -->
+    <ion-title slot="start">Rate & Review</ion-title>
+    <ion-button slot="end" routerDirection="root" routerLink="/tabs/current-requests">
+		<ion-icon name="arrow-back-outline"></ion-icon>
+	</ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<div class="main-div">
+		<ion-row class="review-boxes-list">
+			<ion-col class="review-box-item">
+				<form [formGroup]="ReviewAndRatingForm" (ngSubmit)="addReviewAndRating(ReviewAndRatingForm.value)">
+					<ion-input type="hidden" placeholder="" formControlName="handyman_rating"></ion-input>
+					<ion-input type="hidden" placeholder="" formControlName="job_id"></ion-input>
+					<div class="review-box-inner">
+						<div class="review-box-img">
+							<img src="{{resultDataHandyMan.profilePic}}">
+						</div>
+						<div class="review-box-txt">
+							<h2 class="title">{{resultDataHandyMan.firstName}} {{resultDataHandyMan.lastName}}</h2>
+							<h3 class="sub-title">{{handyman_category_nm}}</h3>
+						</div>
+						<ion-grid>
+							<ion-row>
+								<ion-col size="12">
+									<ion-label>Rate this Handyman</ion-label>
+									<ionic-rating-component #rating activeIcon = "star" defaultIcon = "star" activeColor = "#ffcd3c" defaultColor = "#f4f4f4" readonly="false" rating="0" fontSize = "50px" (ratingChanged)="onRatingChange($event)"></ionic-rating-component>
+								</ion-col>
+							</ion-row>
+							<ion-row>
+								<ion-col size="12">									
+									<ion-textarea placeholder="Write a review" formControlName="handyman_review" rows="10"></ion-textarea>									
+									<!--VALIDATION-->
+									<div class="validation-errors">
+									<ng-container *ngFor="let validation of validation_messages.handyman_review">
+										<div class="error-message"
+										*ngIf="ReviewAndRatingForm.get('handyman_review').hasError(validation.type) && (ReviewAndRatingForm.get('handyman_review').dirty || ReviewAndRatingForm.get('handyman_review').touched)">
+										<ion-icon name="information-circle-outline"></ion-icon>
+										<p>{{ validation.message }}</p>
+										</div>
+									</ng-container>
+									</div>
+									<!--VALIDATION-->
+								</ion-col>       
+							</ion-row>
+						</ion-grid>
+						<!--<div class="review-counte-list">
+							<div class="review-counte-item">
+								<h2>{{resultDataHandyMan.total_reviews}}</h2>
+								<h6>{{default_language_data['translation'][0]['handyman-selected'][0][language_selected][0]['text_1']}}</h6>
+							</div>
+							<div class="review-counte-item">
+								<h2>{{totalAssignedJobs}}</h2>
+								<h6>{{default_language_data['translation'][0]['handyman-selected'][0][language_selected][0]['text_2']}}</h6>
+							</div>
+							<div class="review-counte-item">
+								<h2>{{resultDataHandyMan.total_client}}</h2>
+								<h6>{{default_language_data['translation'][0]['handyman-selected'][0][language_selected][0]['text_3']}}</h6>
+							</div>
+						</div>-->
+						<div class="review-box-btns">
+							<ion-button type="submit" color="primary" [disabled]="!ReviewAndRatingForm.valid">Submit</ion-button>
+						</div>
+					</div>
+				</form>
+			</ion-col>			
+		</ion-row>
+	</div>
+</ion-content>

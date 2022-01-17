@@ -61,6 +61,10 @@ const routes: Routes = [
   {
     path: 'job-location-on-map',
     loadChildren: () => import('./job-location-on-map/job-location-on-map.module').then( m => m.JobLocationOnMapPageModule)
+  },
+  {
+    path: 'review-and-rating',
+    loadChildren: () => import('./review-and-rating/review-and-rating.module').then( m => m.ReviewAndRatingPageModule)
   }
 ];
 @NgModule({
