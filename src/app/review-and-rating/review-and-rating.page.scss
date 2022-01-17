@@ -63,7 +63,7 @@ ion-content {
                     flex-wrap: wrap;
                     background-color: var(--White);
                     border-radius: 30px;
-                    padding: 0px 0px 30px;
+                    padding: 0px 20px 30px;
                     margin: 40px 0px 0px;
                     .review-box-img {
                         width: 125px;
@@ -74,6 +74,7 @@ ion-content {
                         padding: 0px;
                         margin: -40px auto 0px;
                         text-align: var(--text-center);
+                        overflow: hidden;
                         img {
                             width: 100%;
                             height: 100%;
@@ -256,7 +257,7 @@ ion-content {
                         width: 100%;
                         display: flex;
                         flex-wrap: wrap;
-                        padding: 0px 20px;
+                        padding: 0px;
                         margin: 0px;
                         ion-button {
                             width: 100%;
@@ -304,39 +305,75 @@ ion-content {
                                 --padding-end: 13px;
                             }
                         }
-                    }
-                        
+                    }   
                     ion-grid {
                         ion-row {
                             ion-col {
-                                /*margin: 0px 0px 16px;
-                                text-align: center;*/
+                                margin: 0px 0px 20px;
+                                padding: 0px;
+                                .validation-errors {
+                                    .error-message {
+                                        color: var(--White);
+                                        display: flex;
+                                        flex-wrap: wrap;
+                                        align-items: center;
+                                        margin: 10px 0px 0px;
+                                        ion-icon {
+                                            position: unset;
+                                            color: var(--White);
+                                            margin-right: 5px;
+                                        }
+                                        p {
+                                            font-size: 15px;
+                                            width: calc(100% - 30px - 5px);
+                                            color: var(--White);
+                                        }
+                                    }
+                                }
+                                ion-label {
+                                    width: 100%;
+                                    text-align: var(--text-center);
+                                    font-size: 15px;
+                                    line-height: 23px;
+                                    font-family: var(--font-NeueHaasUnicaPro-Regular);
+                                    color: var(--Black);
+                                    text-transform: capitalize;
+                                    letter-spacing: normal;
+                                    margin: 2px 0px 0px;
+                                    padding: 0px;
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    @media(max-width:374px) {
+                                        font-size: 13px;
+                                        line-height: 21px;
+                                    }
+                                }
+                                ionic-rating-component {}
                                 ion-textarea {
-                                    width: 98%;
+                                    width: 100%;
                                     border-radius: 10px;
                                     box-shadow: 2.046px 2.194px 25.5px rgba(4,7,7,0.06);
                                     background-color: #ffffff;
-                                    --padding-start: 10px;
                                     font-size: 18px;
                                     color: var(--Black);
-                                    font-family: var(--font-NeueHaasUnicaPro-Bold);
-                                    --padding-top: 0;
-                                    --padding-bottom: 0;
+                                    font-family: var(--font-NeueHaasUnicaPro-Regular);
+                                    --padding-start: 20px;
+                                    --padding-top: 16px;
+                                    --padding-bottom: 10px;
+                                    --padding-end: 10px;
+                                    border: 2px solid rgba(101,100,101,0.21);
+                                    line-height: normal;
+                                    margin: 8px 0px 5px;
                                     @media(max-width:374px) {
                                         font-size: 15px;
-                                        height: 44px;
-                                        line-height: 44px;
                                     }
                                 }
                             }
                         }
                     }
-                    
                 }
-                
             }
-            
         }
-        
     }
 }
