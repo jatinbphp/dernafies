@@ -12,16 +12,17 @@
 
 <ion-content>
   <ion-header>
-    <ion-segment [(ngModel)]="CurrentRequestList">
+    <ion-segment [(ngModel)]="CurrentRequestList" (ionChange)="segmentSelected($event)">
         <ion-segment-button value="AcceptRequest">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['accept_request']}}</ion-segment-button>
         <ion-segment-button value="Completed">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['completed']}}</ion-segment-button>
         <ion-segment-button value="ScheduledTime">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['scheduled_time']}}</ion-segment-button>
       </ion-segment>
   </ion-header>
   <div class="main-div">
-    <div *ngIf="role == 'handyman'" class="current-request-list" [ngSwitch]="CurrentRequestList">
-      <!--<p *ngIf="acceptedjobRequestsHandyMan.length == 0" class="no-records">No records found.</p>
-      <p *ngIf="completedJobRequestsHandyMan.length == 0" class="no-records">No records found.</p>-->
+    <div *ngIf="role == 'handyman'" class="current-request-list" [ngSwitch]="CurrentRequestList">      
+      <p *ngIf="acceptedjobRequestsHandyMan.length == 0 && CurrentRequestList=='AcceptRequest'" class="no-records">No records found.</p>
+      <p *ngIf="completedJobRequestsHandyMan.length == 0 && CurrentRequestList=='Completed'" class="no-records">No records found.</p>
+      <p *ngIf="completedJobRequestsHandyMan.length == 0 && requestedjobRequestsHandyMan=='ScheduledTime'" class="no-records">No records found.</p>
       <ion-row class="requ-box-list" *ngSwitchCase="'AcceptRequest'">
         <ion-col class="requ-box-item" *ngFor="let jobToAccept of acceptedjobRequestsHandyMan; let j=index;">
           <div class="requ-box-inner">
@@ -78,8 +79,9 @@
       </ion-row>
     </div>
     <div *ngIf="role == 'customer'" class="current-request-list" [ngSwitch]="CurrentRequestList">
-      <!--<p *ngIf="acceptedjobRequestsHandyMan.length == 0" class="no-records">No records found.</p>
-      <p *ngIf="completedJobRequestsHandyMan.length == 0" class="no-records">No records found.</p>-->
+      <p *ngIf="acceptedjobRequestsHandyMan.length == 0 && CurrentRequestList=='AcceptRequest'" class="no-records">No records found.</p>
+      <p *ngIf="completedJobRequestsHandyMan.length == 0 && CurrentRequestList=='Completed'" class="no-records">No records found.</p>
+      <p *ngIf="completedJobRequestsHandyMan.length == 0 && requestedjobRequestsHandyMan=='ScheduledTime'" class="no-records">No records found.</p>
       <ion-row class="requ-box-list" *ngSwitchCase="'AcceptRequest'">
         <ion-col class="requ-box-item" *ngFor="let jobToAccept of acceptedjobRequestsHandyMan; let j=index;">
           <div class="requ-box-inner">

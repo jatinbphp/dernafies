@@ -313,20 +313,20 @@ ion-content {
                                 padding: 0px;
                                 .validation-errors {
                                     .error-message {
-                                        color: var(--White);
+                                        color: #ff0000;
                                         display: flex;
                                         flex-wrap: wrap;
                                         align-items: center;
-                                        margin: 10px 0px 0px;
+                                        /*margin: 10px 0px 0px;*/
                                         ion-icon {
                                             position: unset;
-                                            color: var(--White);
+                                            color: #ff0000;
                                             margin-right: 5px;
                                         }
                                         p {
                                             font-size: 15px;
                                             width: calc(100% - 30px - 5px);
-                                            color: var(--White);
+                                            color: #ff0000;
                                         }
                                     }
                                 }

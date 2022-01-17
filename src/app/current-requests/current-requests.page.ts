@@ -159,4 +159,10 @@ export class CurrentRequestsPage implements OnInit
     };
     this.client.router.navigate(['/tabs/review-and-rating'], navigationExtras);
   }
+
+  segmentSelected(ev)
+  {
+    this.CurrentRequestList=ev.detail.value;
+    console.log(this.CurrentRequestList);
+  }
 }
