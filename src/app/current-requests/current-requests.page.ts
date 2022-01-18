@@ -23,6 +23,7 @@ export class CurrentRequestsPage implements OnInit
   public acceptedjobRequestsHandyMan: any=[];
   public completedJobRequestsHandyMan: any=[];
   public resultJobUpdatedStatus: any = [];
+  public resultJobReviewAndRatingRequest: any = [];
   public queryString: any=[];
   public CurrentRequestList:string='AcceptRequest';
   
@@ -164,5 +165,34 @@ export class CurrentRequestsPage implements OnInit
   {
     this.CurrentRequestList=ev.detail.value;
     console.log(this.CurrentRequestList);
+  }
+
+  async requestCustomerForReview(job_id)
+  {
+    //LOADER
+    const loading = await this.loadingCtrl.create({
+      spinner: null,
+      //duration: 5000,
+      message: 'Please wait...',
+      translucent: true,
+      cssClass: 'custom-class custom-loading'
+    });
+    await loading.present();
+    //LOADER
+    let dataJobForReviewAndRating = {
+      job_id:job_id
+    }
+    await this.client.reviewEmailNotification(dataJobForReviewAndRating).then(result => 
+    {	
+      loading.dismiss();//DISMISS LOADER			
+      this.resultJobReviewAndRatingRequest=result; 
+      this.client.showMessage(this.resultJobReviewAndRatingRequest['message']);
+      this.ionViewWillEnter();
+    },
+    error => 
+    {
+      loading.dismiss();//DISMISS LOADER
+      console.log();
+    });
   }
 }

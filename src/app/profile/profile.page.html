@@ -98,6 +98,23 @@
 						<!--VALIDATION-->
 					</ion-col>
 				</ion-row>
+				<ion-row>
+					<ion-col size="12">				  
+						<ion-label position="stacked">{{default_language_data['translation'][0]['profile'][0][language_selected][0]['phone_number']}}</ion-label>
+						<ion-input type="number" formControlName="phone_number"></ion-input>				  
+						<!--VALIDATION-->
+						<div class="validation-errors">
+						<ng-container *ngFor="let validation of validation_messages.phone_number">
+							<div class="error-message"
+							*ngIf="profileForm.get('phone_number').hasError(validation.type) && (profileForm.get('phone_number').dirty || profileForm.get('phone_number').touched)">
+							<ion-icon name="information-circle-outline"></ion-icon>
+							<p>{{ validation.message }}</p>
+							</div>
+						</ng-container>
+						</div>
+						<!--VALIDATION-->
+					</ion-col>
+				</ion-row>
 				<!--HANDYMAN-->
 				<ion-row *ngIf="role == 'handyman'">
 					<ion-col size="12">					

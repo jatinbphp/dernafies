@@ -70,11 +70,54 @@ export class SettingsPage implements OnInit
     this.client.router.navigate(['sign-in']);
   }
 
-  changeDefaultLanguage(language)
+  async changeDefaultLanguage(language)
   {
     localStorage.setItem('default_language',language);
     this.client.publishSomeDataOnLanguageChange({
       language_selected: language
     });//THIS OBSERVABLE IS USED TO SET DEFAULT OR SELECTED LANGUAGE
+
+    //update language option
+    //LOADER
+		const loading = await this.loadingCtrl.create({
+			spinner: null,
+			//duration: 5000,
+			message: 'Please wait...',
+			translucent: true,
+			cssClass: 'custom-class custom-loading'
+		});
+		await loading.present();
+		//LOADER
+    let user_id = (localStorage.getItem('id')) ? localStorage.getItem('id') : 0;
+    let language_to_update = "";
+    if(language == 'arabic')
+    {
+      language_to_update='Arabic';
+    }
+    if(language == 'kurdish')
+    {
+      language_to_update='Kurdi';
+    }
+    if(language == 'english')
+    {
+      language_to_update='English';
+    }
+
+    let data=
+		{
+      user_id:user_id,
+      language:language_to_update
+    }
+    await this.client.updateLanguage(data).then(result => 
+    {	
+      loading.dismiss();//DISMISS LOADER			
+      this.ngOnInit();
+            
+    },
+    error => 
+    {
+      loading.dismiss();//DISMISS LOADER
+      console.log();
+    });
   }
 }

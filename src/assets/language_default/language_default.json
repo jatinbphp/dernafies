@@ -84,6 +84,7 @@
                      "password":"Password",
                      "confirm_password":"Confirm Password",
                      "province":"Province",
+                     "phone_number":"Phone Number",
                      "specialized_in": "Specialized In",
                      "service_location": "Service Location",
                      "service_district": "Service District",
@@ -108,6 +109,7 @@
                      "password":"كلمة المرور",
                      "confirm_password":"تأكيد كلمة المرور",
                      "province":"المحافظة",
+                     "phone_number":"رقم التليفون",
                      "specialized_in": "متخصص في",
                      "service_location": "موقع الخدمة",
                      "service_district": "منطقة الخدمة",
@@ -132,6 +134,7 @@
                      "password":"Şîfre",
                      "confirm_password":"di pêşîyê da em sipas dikin",
                      "province":"Herêm",
+                     "phone_number":"Jimare telefon",
                      "specialized_in": "Specialized In",
                      "service_location": "Cihê Xizmetê",
                      "service_district": "Navçeya Xizmetê",
@@ -159,6 +162,7 @@
                      "password":"Password",
                      "confirm_password":"Confirm Password",
                      "province":"Province",
+                     "phone_number":"Phone Number",
                      "specialized_in": "Specialized In",
                      "service_location": "Service Location",
                      "service_district": "Service District",
@@ -178,6 +182,7 @@
                      "password":"كلمة المرور",
                      "confirm_password":"تأكيد كلمة المرور",
                      "province":"المحافظة",
+                     "phone_number":"رقم التليفون",
                      "specialized_in": "متخصص في",
                      "service_location": "موقع الخدمة",
                      "service_district": "منطقة الخدمة",
@@ -197,6 +202,7 @@
                      "password":"Şîfre",
                      "confirm_password":"di pêşîyê da em sipas dikin",
                      "province":"Herêm",
+                     "phone_number":"Jimare telefon",
                      "specialized_in": "Specialized In",
                      "service_location": "Cihê Xizmetê",
                      "service_district": "Navçeya Xizmetê",
@@ -254,7 +260,8 @@
                      "location_map":"Location Map",
                      "accept_text":"Accept",
                      "reject_text":"Reject",
-                     "handyman_text":"Handyman"
+                     "handyman_text":"Handyman",
+                     "button_rate_and_review":"Rate & Review"
                   }
                ],
                "arabic": [
@@ -269,7 +276,8 @@
                      "location_map":"الموقع في الخريطة",
                      "accept_text":"قبول",
                      "reject_text":"يرفض",
-                     "handyman_text":"عامل "
+                     "handyman_text":"عامل ",
+                     "button_rate_and_review":"مراجعة معدل"
                   }
                ],
                "kurdish": [
@@ -284,7 +292,8 @@
                      "location_map":"Nexşeya cihan",
                      "accept_text":"Baweranîn",
                      "reject_text":"Refzkirin",
-                     "handyman_text":"Handyman"
+                     "handyman_text":"Handyman",
+                     "button_rate_and_review":"Binirxînin & Binirxînin"
                   }
                ]
             }

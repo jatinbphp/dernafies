@@ -55,6 +55,7 @@ export class SignUpPage implements OnInit
     //service_district: [''],
     //service_city: [''],
     service_province: ['', Validators.required],
+    phone_number: ['', Validators.required],
     service_in_km: [''],
     price_per_hour: [''],
     experience_in_year: [''],
@@ -109,6 +110,9 @@ export class SignUpPage implements OnInit
     'service_province': [
       { type: 'required', message: 'Selecting province is required.' }
     ],
+    'phone_number': [
+      { type: 'required', message: 'Phone number is required.' }
+    ],    
     'service_in_km': 
     [
       { type: 'required', message: 'Range service is required.' }
@@ -234,6 +238,8 @@ export class SignUpPage implements OnInit
 			this.registerForm.get('price_per_hour').updateValueAndValidity();
       this.registerForm.get('service_province').clearValidators();     
       this.registerForm.get('service_province').updateValueAndValidity();
+      this.registerForm.get('phone_number').clearValidators();     
+      this.registerForm.get('phone_number').updateValueAndValidity();      
       this.registerForm.get('service_in_km').clearValidators();     
       this.registerForm.get('service_in_km').updateValueAndValidity();
     }//DEFAULT CONFIGURATIN FOR CUSTOMER
@@ -367,6 +373,7 @@ export class SignUpPage implements OnInit
     let service_district = (form.service_district) ? form.service_district : "";
     let service_city = (form.service_city) ? form.service_city : "";
     let service_province = (form.service_province) ? form.service_province : "";
+    let phone_number = (form.phone_number) ? form.phone_number : "";    
     let service_in_km = (form.service_in_km) ? form.service_in_km : 0;
     let price_per_hour = (form.price_per_hour) ? form.price_per_hour : 0;
     let experience_in_year = (form.experience_in_year) ? form.experience_in_year : 0;
@@ -381,6 +388,7 @@ export class SignUpPage implements OnInit
       service_district:service_district,
       service_city:service_city,
       service_province:service_province,
+      phone_number:phone_number,
       service_in_km:service_in_km,
       price_per_hour:price_per_hour,
       experience_in_year:experience_in_year,
@@ -453,6 +461,9 @@ export class SignUpPage implements OnInit
       this.registerForm.get('service_province').setValidators([Validators.required]);     
       this.registerForm.get('service_province').updateValueAndValidity();
 
+      this.registerForm.get('phone_number').setValidators([Validators.required]);     
+      this.registerForm.get('phone_number').updateValueAndValidity();
+
       this.registerForm.get('service_in_km').setValidators([Validators.required]);     
       this.registerForm.get('service_in_km').updateValueAndValidity();
     }
@@ -476,6 +487,8 @@ export class SignUpPage implements OnInit
 			this.registerForm.get('price_per_hour').updateValueAndValidity();
       this.registerForm.get('service_province').clearValidators();     
       this.registerForm.get('service_province').updateValueAndValidity();
+      this.registerForm.get('phone_number').clearValidators();     
+      this.registerForm.get('phone_number').updateValueAndValidity();
       this.registerForm.get('service_in_km').clearValidators();     
       this.registerForm.get('service_in_km').updateValueAndValidity();
     }

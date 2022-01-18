@@ -46,6 +46,7 @@ export class ProfilePage implements OnInit
 		//service_district: [''],
 		//service_city: [''],
 		service_province: ['', Validators.required],
+		phone_number: ['', Validators.required],
 		service_in_km: [''],
 		price_per_hour: [''],
 		experience_in_year: [''],
@@ -88,6 +89,9 @@ export class ProfilePage implements OnInit
 		],
 		'service_province': [
 		  { type: 'required', message: 'Selecting province is required.' }
+		],
+		'phone_number': [
+		  { type: 'required', message: 'Phone number is required.' }
 		],
 		'service_in_km': 
 		[
@@ -223,6 +227,8 @@ export class ProfilePage implements OnInit
 			this.profileForm.get('price_per_hour').updateValueAndValidity();
 			this.profileForm.get('service_province').clearValidators();     
 			this.profileForm.get('service_province').updateValueAndValidity();
+			this.profileForm.get('phone_number').clearValidators();     
+			this.profileForm.get('phone_number').updateValueAndValidity();
 			this.profileForm.get('service_in_km').clearValidators();     
 			this.profileForm.get('service_in_km').updateValueAndValidity();
 
@@ -238,11 +244,13 @@ export class ProfilePage implements OnInit
 				let last_name = (this.resultData.lastName) ? this.resultData.lastName : "";
 				let email = (this.resultData.email) ? this.resultData.email : "";
 				let service_province = (this.resultData.provinceID) ? this.resultData.provinceID : "";
+				let phone_number = (this.resultData.phoneNumber) ? this.resultData.phoneNumber : "";
 
 				this.profileForm.controls['first_name'].setValue(firstName);
 				this.profileForm.controls['last_name'].setValue(last_name);
 				this.profileForm.controls['email'].setValue(email);
 				this.profileForm.controls['service_province'].setValue(service_province);
+				this.profileForm.controls['phone_number'].setValue(phone_number);
 							
 			},
 			error => 
@@ -265,6 +273,8 @@ export class ProfilePage implements OnInit
 			this.profileForm.get('price_per_hour').updateValueAndValidity();			
 			this.profileForm.get('service_province').setValidators([Validators.required]);     
 			this.profileForm.get('service_province').updateValueAndValidity();
+			this.profileForm.get('phone_number').setValidators([Validators.required]);     
+			this.profileForm.get('phone_number').updateValueAndValidity();
 			this.profileForm.get('service_in_km').setValidators([Validators.required]);     
 			this.profileForm.get('service_in_km').updateValueAndValidity();
 
@@ -280,6 +290,7 @@ export class ProfilePage implements OnInit
 				let last_name = (this.resultData.lastName) ? this.resultData.lastName : "";
 				let email = (this.resultData.email) ? this.resultData.email : "";
 				let province = (this.resultData.provinceID) ? this.resultData.provinceID : "";
+				let phone_number = (this.resultData.phoneNumber) ? this.resultData.phoneNumber : "";
 				let price_per_hour = (this.resultData.price) ? this.resultData.price : "";
 				let service_in_km = (this.resultData.rangeServing) ? this.resultData.rangeServing : 0;
 				let experience_in_year = (this.resultData.no_of_experience) ? this.resultData.no_of_experience : 0;
@@ -298,6 +309,7 @@ export class ProfilePage implements OnInit
 				this.profileForm.controls['email'].setValue(email);
 				this.profileForm.controls['specialized_in'].setValue(specialized_in);
 				this.profileForm.controls['service_province'].setValue(province);
+				this.profileForm.controls['phone_number'].setValue(phone_number);
 				this.profileForm.controls['price_per_hour'].setValue(price_per_hour);
 				this.profileForm.controls['service_in_km'].setValue(service_in_km);
 				this.profileForm.controls['experience_in_year'].setValue(experience_in_year);
@@ -448,6 +460,7 @@ export class ProfilePage implements OnInit
 		let service_district = (form.service_district) ? form.service_district : "";
 		let service_city = (form.service_city) ? form.service_city : "";
 		let service_province = (form.service_province) ? form.service_province : "";
+		let phone_number = (form.phone_number) ? form.phone_number : "";
 		let service_in_km = (form.service_in_km) ? form.service_in_km : 0;
 		let price_per_hour = (form.price_per_hour) ? form.price_per_hour : 0;
 		let experience_in_year = (form.experience_in_year) ? form.experience_in_year : 0;
@@ -464,6 +477,7 @@ export class ProfilePage implements OnInit
 			service_district:service_district,
 			service_city:service_city,
 			service_province:service_province,
+			phone_number:phone_number,
 			service_in_km:service_in_km,
 			price_per_hour:price_per_hour,
 			experience_in_year:experience_in_year,

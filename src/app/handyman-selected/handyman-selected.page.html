@@ -21,7 +21,14 @@
 					<div class="review-box-txt">
 						<h2 class="title">{{resultDataHandyMan.firstName}} {{resultDataHandyMan.lastName}}</h2>
 						<h3 class="sub-title">{{resultDataHandyMan.no_of_experience}} {{default_language_data['translation'][0]['handyman-selected'][0][language_selected][0]['text_experience']}}</h3>
-						<p class="rating-stars"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon></p>
+						<p class="rating-stars">
+							<ionic-rating-component #Rating activeIcon = "star" defaultIcon = "star" activeColor = "#ffcd3c" defaultColor = "#f4f4f4" readonly = "true" rating = "{{resultDataHandyMan.total_ratings}}" fontSize = "17px"></ionic-rating-component>
+							<!--<ion-icon name="star"></ion-icon>
+							<ion-icon name="star"></ion-icon>
+							<ion-icon name="star"></ion-icon>
+							<ion-icon name="star"></ion-icon>
+							<ion-icon name="star"></ion-icon>-->
+						</p>
 						<h4 class="hr-txt">${{resultDataHandyMan.price}}<span>/</span>Hr</h4>
 					</div>
 					<div class="review-counte-list">
@@ -53,7 +60,14 @@
 					<div class="review-box-txt">
 						<h2 class="title">{{resultDataHandyMan.firstName}} {{resultDataHandyMan.lastName}}</h2>
 						<h3 class="sub-title">{{resultDataHandyMan.no_of_experience}} {{default_language_data['translation'][0]['handyman-selected'][0][language_selected][0]['text_experience']}}</h3>
-						<p class="rating-stars"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon></p>
+						<p class="rating-stars">
+							<ionic-rating-component #Rating activeIcon = "star" defaultIcon = "star" activeColor = "#ffcd3c" defaultColor = "#f4f4f4" readonly = "true" rating = "{{resultDataHandyMan.total_ratings}}" fontSize = "17px"></ionic-rating-component>
+							<!--<ion-icon name="star"></ion-icon>
+							<ion-icon name="star"></ion-icon>
+							<ion-icon name="star"></ion-icon>
+							<ion-icon name="star"></ion-icon>
+							<ion-icon name="star"></ion-icon>-->
+						</p>
 						<h4 class="hr-txt">${{resultDataHandyMan.price}}<span>/</span>Hr</h4>
 					</div>
 					<div class="review-counte-list">

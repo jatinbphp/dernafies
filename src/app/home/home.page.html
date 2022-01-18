@@ -3,16 +3,16 @@
     <ion-buttons slot="start">
       <ion-menu-button auto-hide="false"><img src="../../assets/images/menu-icon1.png"></ion-menu-button>     
     </ion-buttons>
-    <!-- <ion-title>Home</ion-title> -->
+    <ion-title>{{welcome_text}}</ion-title>
     <ion-button slot="end" (click)="showMyProfile()"><img src="../../assets/images/user-icon1.png"></ion-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-header>
+  <!--<ion-header>
     <h2>{{welcome_text}}</h2>
     <h1>{{greetings}}</h1>
-  </ion-header>
+  </ion-header>-->
   <div class="main-div">
     <div class="rsr-sec" *ngIf="role == 'handyman'">
       <h2>{{default_language_data['translation'][0]['home'][0][language_selected][0]['recent_service_request']}}<span>({{jobRequestsHandyMan.length}})</span></h2>
@@ -39,8 +39,8 @@
           <div class="rsr-buttons">
             <ion-list>
               <ion-item><ion-button color="primary" (click)="showMapWithLocations(job.id,job.assignedTrademan,job.latitude,job.longitude)">{{default_language_data['translation'][0]['general'][0][language_selected][0]['location_map']}}</ion-button></ion-item>
-              <ion-item><ion-button color="success" (click)="confirmUpdateJobStatus(job.id,2)"><ion-icon name="checkmark-outline"></ion-icon>{{default_language_data['translation'][0]['general'][0][language_selected][0]['accept_text']}}</ion-button></ion-item>
-              <ion-item><ion-button color="danger" (click)="confirmUpdateJobStatus(job.id,4)"><ion-icon name="close-outline"></ion-icon>{{default_language_data['translation'][0]['general'][0][language_selected][0]['reject_text']}}</ion-button></ion-item>
+              <ion-item><ion-button color="success" (click)="confirmUpdateJobStatusHandyMan(job.id,2)"><ion-icon name="checkmark-outline"></ion-icon>{{default_language_data['translation'][0]['general'][0][language_selected][0]['accept_text']}}</ion-button></ion-item>
+              <ion-item><ion-button color="danger" (click)="confirmUpdateJobStatusHandyMan(job.id,4)"><ion-icon name="close-outline"></ion-icon>{{default_language_data['translation'][0]['general'][0][language_selected][0]['reject_text']}}</ion-button></ion-item>
             </ion-list>
           </div>
         </ion-col>        
@@ -84,10 +84,19 @@
             <div class="requ-box-txt">
               <h2 class="title">{{jobCompleted.handyman.firstName}} {{jobCompleted.handyman.lastName}}</h2>
               <h6 class="sub-title">{{jobCompleted[language_key_exchange_array[language_selected]]}}</h6>
-              <p><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><strong>4.9</strong></p>
+              <p>
+                <ionic-rating-component #completedRating{{jc+1}} activeIcon = "star" defaultIcon = "star" activeColor = "#ffcd3c" defaultColor = "#f4f4f4" readonly = "true" rating = "{{jobCompleted.handyman.total_ratings}}" fontSize = "17px"></ionic-rating-component>
+                <!--<ion-icon name="star"></ion-icon>
+                <ion-icon name="star"></ion-icon>
+                <ion-icon name="star"></ion-icon>
+                <ion-icon name="star"></ion-icon>
+                <ion-icon name="star"></ion-icon>-->
+                <strong>{{jobCompleted.handyman.total_ratings}}</strong>
+              </p>
             </div>
             <div class="requ-box-btns">
-              <ion-button color="success">{{default_language_data['translation'][0]['general'][0][language_selected][0]['completed_text']}}</ion-button>
+              <ion-button color="primary" *ngIf="jobCompleted.paid == 1 && jobCompleted.handyman.total_ratings == 0" (click)="addReviewAndRating(jobCompleted.id,jobCompleted[language_key_exchange_array[language_selected]],jobCompleted.assignedTrademan)">{{default_language_data['translation'][0]['general'][0][language_selected][0]['button_rate_and_review']}}</ion-button>
+              <ion-button color="primary" *ngIf="jobCompleted.paid == 0 && jobCompleted.handyman.total_ratings > 0" disabled="true">{{default_language_data['translation'][0]['general'][0][language_selected][0]['button_rate_and_review']}}</ion-button>
               <div class="requ-details">
                 <p><span></span>20 Sep 21</p>
                 <p><span></span>2Hrs</p>
@@ -110,7 +119,14 @@
                 <img src="{{handyMan.profilePic}}">
               </div>
               <div class="featured-box-txt">
-                <p class="rating"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon></p>
+                <p class="rating">
+                  <ionic-rating-component #featuredRating{{h+1}} activeIcon = "star" defaultIcon = "star" activeColor = "#ffcd3c" defaultColor = "#f4f4f4" readonly = "true" rating = "{{handyMan.total_ratings}}" fontSize = "17px"></ionic-rating-component>
+                  <!--<ion-icon name="star"></ion-icon>
+                  <ion-icon name="star"></ion-icon>
+                  <ion-icon name="star"></ion-icon>
+                  <ion-icon name="star"></ion-icon>
+                  <ion-icon name="star"></ion-icon>-->
+                </p>
                 <h2 class="name">{{handyMan.firstName}} {{handyMan.lastName}}</h2>
                 <h4 class="experience">{{handyMan.no_of_experience}} years experience</h4>
                 <h3 class="hr-txt">${{handyMan.price}}<span>/</span>Hr</h3>
@@ -125,7 +141,14 @@
                 <img src="{{handyMan.profilePic}}">
               </div>
               <div class="featured-box-txt">
-                <p class="rating"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon></p>
+                <p class="rating">
+                  <ionic-rating-component #featuredRating{{h+1}} activeIcon = "star" defaultIcon = "star" activeColor = "#ffcd3c" defaultColor = "#f4f4f4" readonly = "true" rating = "{{handyMan.total_ratings}}" fontSize = "17px"></ionic-rating-component>
+                  <!--<ion-icon name="star"></ion-icon>
+                  <ion-icon name="star"></ion-icon>
+                  <ion-icon name="star"></ion-icon>
+                  <ion-icon name="star"></ion-icon>
+                  <ion-icon name="star"></ion-icon>-->
+                </p>
                 <h2 class="name">{{handyMan.firstName}} {{handyMan.lastName}}</h2>
                 <h4 class="experience">{{handyMan.no_of_experience}} years experience</h4>
                 <h3 class="hr-txt">${{handyMan.price}}<span>/</span>Hr</h3>

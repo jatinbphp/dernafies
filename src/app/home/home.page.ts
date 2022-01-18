@@ -395,7 +395,7 @@ export class HomePage
     return await modal.present();
   }
 
-  async confirmUpdateJobStatus(job_id,status_to_update)
+  async confirmUpdateJobStatusHandyMan(job_id,status_to_update)
   {
     let status = (status_to_update == 2) ? "Accept" : "Reject";
     const alert = await this.alertController.create({
@@ -453,5 +453,25 @@ export class HomePage
       loading.dismiss();//DISMISS LOADER
       console.log();
     });//JOB REQUESTS FOR HANDYMAN    
+  }
+  
+  addReviewAndRating(job_id,handyman_category_nm,handyman_id)
+  {
+    
+    this.queryString = 
+    {
+      job_id:job_id,
+      handyman_category_nm:handyman_category_nm,
+      handyman_id:handyman_id
+    };
+
+    let navigationExtras: NavigationExtras = 
+    {
+      queryParams: 
+      {
+        special: JSON.stringify(this.queryString)
+      }
+    };
+    this.client.router.navigate(['/tabs/review-and-rating'], navigationExtras);
   }
 }
