@@ -1,6 +1,9 @@
 ion-header {
 	ion-toolbar {
 		--background: transparent;
+        ion-title {
+            padding: 0px;
+        }
 	}
 }
 ion-content {

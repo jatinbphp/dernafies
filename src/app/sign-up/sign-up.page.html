@@ -1,13 +1,18 @@
-<ion-header no-border class="ion-no-border" [translucent]="true">
+<!-- <ion-header no-border class="ion-no-border" [translucent]="true">
   <ion-toolbar>
-    <!--<ion-buttons slot="start">
-      <ion-menu-button><img src="../../assets/images/menu-icon1.png"></ion-menu-button>
-    </ion-buttons>-->
     <ion-title>{{default_language_data['translation'][0]['register'][0][language_selected][0]['screen_title']}}</ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
 <ion-content [fullscreen]="true">
+  <ion-header no-border class="ion-no-border" [translucent]="true">
+    <ion-toolbar>
+      <!--<ion-buttons slot="start">
+        <ion-menu-button><img src="../../assets/images/menu-icon1.png"></ion-menu-button>
+      </ion-buttons>-->
+      <ion-title>{{default_language_data['translation'][0]['register'][0][language_selected][0]['screen_title']}}</ion-title>
+    </ion-toolbar>
+  </ion-header>
   <div class="main-div">
     <form [formGroup]="registerForm" (ngSubmit)="makeMeRegistered(registerForm.value)">
       <ion-input type="hidden" formControlName="latitude"></ion-input>
