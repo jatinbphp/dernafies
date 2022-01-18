@@ -10,7 +10,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]="true">
 	<div class="main-div">
 		<p *ngIf="resultDataHandyManPerSlide.length == 0" class="no-records">No records found.</p>
 		<ion-slides pager [options]="handymanSlide" *ngIf="resultDataHandyManPerSlide.length > 0">
