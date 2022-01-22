@@ -411,6 +411,7 @@
             {
                "english": [
                   {
+                     "screen_title":"Selected Handyman",
                      "text_experience":"Years Experience",
                      "text_1":"Reviews",
                      "text_2":"Ongoing",
@@ -421,6 +422,7 @@
                ],
                "arabic": [
                   {
+                     "screen_title":"في القلب المختار",
                      "text_experience":"سنوات خبرة",
                      "text_1":"المراجعات",
                      "text_2":"جاري التنفيذ",
@@ -431,6 +433,7 @@
                ],
                "kurdish": [
                   {
+                     "screen_title":"Di dilê hilbijartî de",
                      "text_experience":"Tecrûbeya Salan",
                      "text_1":"Reviews",
                      "text_2":"Berdewam",
@@ -508,6 +511,34 @@
                      "text_messages":"Peyamên Nivîsar",
                      "currency":"Diravcins",
                      "languages":"Languages"
+                  }
+               ]
+            }
+         ],
+         "complete-the-job": [
+            {
+               "english": [
+                  {
+                     "screen_title":"Payment Details",
+                     "payment_note":"Payment Note",
+                     "job_time_taken_to_complete":"Time taken to complete the job",
+                     "button_text":"Complete"
+                  }
+               ],
+               "arabic": [
+                  {
+                     "screen_title":"بيانات الدفع",
+                     "payment_note":"مذكرة الدفع",
+                     "job_time_taken_to_complete":"إذا لم يكمل الفريق المهمة",
+                     "button_text":"إكمال"
+                  }
+               ],
+               "kurdish": [
+                  {
+                     "screen_title":"Details Payment",
+                     "payment_note":"Têbînî Payment",
+                     "job_time_taken_to_complete":"Ger tîm kar temam neke",
+                     "button_text":"Tevî"
                   }
                ]
             }

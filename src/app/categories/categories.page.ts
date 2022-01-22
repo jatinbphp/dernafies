@@ -79,9 +79,10 @@ export class CategoriesPage
     {
       handyman_category_id:id,
       latitude:this.current_latitude,
-      longitude:this.current_longitude
+      longitude:this.current_longitude,
+      to_be_show_featured_handyman:"no"
     };
-
+    localStorage.setItem("way_to_select_handyman",JSON.stringify(this.queryString));
     let navigationExtras: NavigationExtras = 
     {
       queryParams: 

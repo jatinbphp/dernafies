@@ -83,9 +83,24 @@ export class HandymanSelectedPage implements OnInit
     });//FEATURED HANDYMAN
   }
 
-  backToAllHandyMan()
+  GoBack()
   {
-    this.client.router.navigate(['/tabs/handyman-view-all']);
+    let way_to_select_handyman = JSON.parse(localStorage.getItem('way_to_select_handyman'));
+    this.queryString = 
+    {
+      handyman_category_id:way_to_select_handyman.handyman_category_id,
+      latitude:way_to_select_handyman.latitude,
+      longitude:way_to_select_handyman.longitude,
+      to_be_show_featured_handyman:way_to_select_handyman.to_be_show_featured_handyman
+    };
+    let navigationExtras: NavigationExtras = 
+    {
+      queryParams: 
+      {
+        special: JSON.stringify(this.queryString)
+      }
+    };
+    this.client.router.navigate(['/tabs/handyman-view-all'], navigationExtras);
   }
 
   showLocation()
@@ -95,7 +110,9 @@ export class HandymanSelectedPage implements OnInit
       handyman_id:this.resultDataHandyMan['id'],
       handyman_category_id:(this.handyman_category_id) ? this.handyman_category_id : 0
     };
-
+    let way_to_select_handyman = JSON.parse(localStorage.getItem('way_to_select_handyman'));
+    way_to_select_handyman['handyman_id']=this.resultDataHandyMan['id'];
+    localStorage.setItem("way_to_select_handyman",JSON.stringify(way_to_select_handyman));
     let navigationExtras: NavigationExtras = 
     {
       queryParams: 

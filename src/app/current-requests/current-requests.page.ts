@@ -195,4 +195,21 @@ export class CurrentRequestsPage implements OnInit
       console.log();
     });
   }
+
+  async completeTheJob(job_id)
+  {
+    this.queryString = 
+    {
+      job_id:job_id,
+    };
+
+    let navigationExtras: NavigationExtras = 
+    {
+      queryParams: 
+      {
+        special: JSON.stringify(this.queryString)
+      }
+    };
+    this.client.router.navigate(['/tabs/complete-the-job'], navigationExtras);
+  }
 }

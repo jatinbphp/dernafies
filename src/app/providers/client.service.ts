@@ -411,6 +411,35 @@ export class ClientService
 		});
 	}
 
+	getFeaturedHandyman(data)
+	{
+		let headers = this.getHeaderOptions();
+		return new Promise((resolve, reject) => 
+		{
+			let dataToPost = new HttpParams().set("categoryID",data.categoryID).set("latitude",data.latitude).set("longitude",data.longitude);
+			this.http.post(this.api_url + "getFeaturedHandyman",  dataToPost , headers).subscribe((res: any) =>       
+			{
+				if(res.status == true)
+				{
+					this.serverResponse=res.data;
+					resolve(this.serverResponse);					
+				}
+				else
+				{
+					let messageDisplay=this.showMessage(res.message);
+					reject(messageDisplay);
+				}
+			},
+			err => 
+			{
+				console.log(err);
+				let errorMessage=this.getErrorMessage(err);
+				//this.showMessage(errorMessage);
+				reject(errorMessage);
+			});
+		});
+	}
+
 	getJobRequestsForHandyMan(data)
 	{
 		let headers = this.getHeaderOptions();
@@ -516,6 +545,55 @@ export class ClientService
 		{
 			let dataToPost = new HttpParams().set("jobID",data.job_id);
 			this.http.post(this.api_url + "reviewEmailNotification",  dataToPost , headers).subscribe((res: any) =>       
+			{
+				resolve(res);
+			},
+			err => 
+			{
+				console.log(err);
+				let errorMessage=this.getErrorMessage(err);
+				//this.showMessage(errorMessage);
+				reject(errorMessage);
+			});
+		});
+	}
+
+	getJobDetailById(data)
+	{
+		let headers = this.getHeaderOptions();
+		return new Promise((resolve, reject) => 
+		{
+			let dataToPost = new HttpParams().set("jobID",data.job_id);
+			this.http.post(this.api_url + "getJobDetailById",  dataToPost , headers).subscribe((res: any) =>       
+			{
+				if(res.status == true)
+				{
+					this.serverResponse=res.data;
+					resolve(this.serverResponse);					
+				}
+				else
+				{
+					let messageDisplay=this.showMessage(res.message);
+					reject(messageDisplay);
+				}
+			},
+			err => 
+			{
+				console.log(err);
+				let errorMessage=this.getErrorMessage(err);
+				//this.showMessage(errorMessage);
+				reject(errorMessage);
+			});
+		});
+	}
+
+	updateJobCompleted(data)
+	{
+		let headers = this.getHeaderOptions();
+		return new Promise((resolve, reject) => 
+		{
+			let dataToPost = new HttpParams().set("jobID",data.job_id).set("paid",data.payment_status).set("paymentNote",data.payment_note).set("hours",data.job_time_taken_to_complete);
+			this.http.post(this.api_url + "updateJobCompleted",  dataToPost , headers).subscribe((res: any) =>       
 			{
 				resolve(res);
 			},

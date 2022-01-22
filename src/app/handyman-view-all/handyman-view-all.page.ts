@@ -21,6 +21,7 @@ export class HandymanViewAllPage implements OnInit
   public handyman_category_id:any=0;
   public current_latitude:any='';
   public current_longitude:any='';
+  public to_be_show_featured_handyman:any='';
 
   public resultDataHandyMan: any = [];  
   public resultDataHandyManPerSlide: any = [];
@@ -91,25 +92,48 @@ export class HandymanViewAllPage implements OnInit
     this.handyman_category_id=this.queryStringData['handyman_category_id'];
     this.current_latitude=this.queryStringData['latitude'];
     this.current_longitude=this.queryStringData['longitude'];
-    
-    let dataHandyMan = {
-      categoryID:(this.handyman_category_id) ? this.handyman_category_id : 0,
-      latitude:this.current_latitude,
-      longitude:this.current_longitude
-    }
-    await this.client.getActivehandyman(dataHandyMan).then(result => 
-    {	
-      loadingFeaturedHandyMan.dismiss();//DISMISS LOADER			
-      this.resultDataHandyMan=result; 
-      console.log(this.resultDataHandyMan);
-            
-    },
-    error => 
+    this.to_be_show_featured_handyman=this.queryStringData['to_be_show_featured_handyman'];
+    if(this.to_be_show_featured_handyman=="no")
     {
-      loadingFeaturedHandyMan.dismiss();//DISMISS LOADER
-      console.log();
-    });//FEATURED HANDYMAN
-
+      let dataHandyMan = {
+        categoryID:(this.handyman_category_id) ? this.handyman_category_id : 0,
+        latitude:this.current_latitude,
+        longitude:this.current_longitude
+      }
+      await this.client.getActivehandyman(dataHandyMan).then(result => 
+      {	
+        loadingFeaturedHandyMan.dismiss();//DISMISS LOADER			
+        this.resultDataHandyMan=result; 
+        console.log(this.resultDataHandyMan);
+              
+      },
+      error => 
+      {
+        loadingFeaturedHandyMan.dismiss();//DISMISS LOADER
+        console.log();
+      });//FEATURED HANDYMAN
+    }
+    if(this.to_be_show_featured_handyman=="yes")
+    {
+      let dataHandyMan = {
+        categoryID:(this.handyman_category_id) ? this.handyman_category_id : 0,
+        latitude:this.current_latitude,
+        longitude:this.current_longitude,
+        limit:0
+      }
+      await this.client.getFeaturedHandyman(dataHandyMan).then(result => 
+      {	
+        loadingFeaturedHandyMan.dismiss();//DISMISS LOADER			
+        this.resultDataHandyMan=result; 
+        console.log(this.resultDataHandyMan);
+              
+      },
+      error => 
+      {
+        loadingFeaturedHandyMan.dismiss();//DISMISS LOADER
+        console.log();
+      });//FEATURED HANDYMAN
+    }
     if(this.resultDataHandyMan.length > 0)
     { 
       for(let h=this.HandyManCovered; h < this.resultDataHandyMan.length; h++)

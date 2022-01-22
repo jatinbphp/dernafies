@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ClientService } from '../providers/client.service';
 import { LoadingController } from '@ionic/angular';
 import { InAppBrowser, InAppBrowserOptions } from '@awesome-cordova-plugins/in-app-browser/ngx';
+import { NavigationExtras } from "@angular/router";
 
 @Component({
   selector: 'app-add-job',
@@ -18,6 +19,8 @@ export class AddJobPage implements OnInit
 	public handyManCategories: any = [];
 	public selected_category_name:any='';
 	public selected_category_image:any='';
+
+	public queryString: any=[];
 
 	public accept_tems:boolean=false;
 	public resultData:any=[];
@@ -200,4 +203,22 @@ export class AddJobPage implements OnInit
 			console.log();
 		});
 	}
+
+	GoBack()
+  	{
+		let way_to_select_handyman = JSON.parse(localStorage.getItem('way_to_select_handyman'));
+		this.queryString = 
+		{
+			handyman_category_id:way_to_select_handyman.handyman_category_id,
+			handyman_id:way_to_select_handyman.handyman_id
+		};
+		let navigationExtras: NavigationExtras = 
+		{
+		queryParams: 
+		{
+			special: JSON.stringify(this.queryString)
+		}
+		};
+		this.client.router.navigate(['/tabs/handyman-send-location'], navigationExtras);
+  	}
 }

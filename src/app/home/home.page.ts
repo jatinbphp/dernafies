@@ -170,11 +170,12 @@ export class HomePage
       await loadingFeaturedHandyMan.present();
       //LOADER
       let dataHandyMan = {
-        categoryID:'',
+        categoryID:0,
         latitude:this.current_latitude,
-        longitude:this.current_longitude
+        longitude:this.current_longitude,
+        limit:3
       }
-      await this.client.getActivehandyman(dataHandyMan).then(result => 
+      await this.client.getFeaturedHandyman(dataHandyMan).then(result => 
       {	
         loadingFeaturedHandyMan.dismiss();//DISMISS LOADER			
         this.resultDataFeaturedHandyMan=result; 
@@ -325,9 +326,10 @@ export class HomePage
     {
       handyman_category_id:id,
       latitude:this.current_latitude,
-      longitude:this.current_longitude
+      longitude:this.current_longitude,
+      to_be_show_featured_handyman:"no"
     };
-
+    localStorage.setItem("way_to_select_handyman",JSON.stringify(this.queryString));
     let navigationExtras: NavigationExtras = 
     {
       queryParams: 
@@ -347,11 +349,12 @@ export class HomePage
   {
     this.queryString = 
     {
-      handyman_category_id:'',
+      handyman_category_id:0,
       latitude:this.current_latitude,
-      longitude:this.current_longitude
+      longitude:this.current_longitude,
+      to_be_show_featured_handyman:"yes"
     };
-
+    localStorage.setItem("way_to_select_handyman",JSON.stringify(this.queryString));
     let navigationExtras: NavigationExtras = 
     {
       queryParams: 
@@ -376,6 +379,14 @@ export class HomePage
         special: JSON.stringify(this.queryString)
       }
     };
+    let obj_way_to_select_handyman = 
+    {
+        handyman_category_id:0,
+        latitude:this.current_latitude,
+        longitude:this.current_longitude,
+        to_be_show_featured_handyman:"yes"
+    };
+    localStorage.setItem("way_to_select_handyman",JSON.stringify(obj_way_to_select_handyman));
     this.client.router.navigate(['/tabs/handyman-selected'], navigationExtras);
   }
 

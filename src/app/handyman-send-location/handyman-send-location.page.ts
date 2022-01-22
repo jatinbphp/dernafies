@@ -19,6 +19,7 @@ export class HandymanSendLocationPage implements OnInit
   public handyman_id:any='';
   public handyman_category_id:any='';
 
+  public queryString: any=[];
   public resultData:any = [];
   public id:any='';
   public latitude:any='';
@@ -191,5 +192,23 @@ export class HandymanSendLocationPage implements OnInit
     }
     localStorage.setItem('job',JSON.stringify(jobObject));
     this.client.router.navigate(['/tabs/add-job']);
+  }
+
+  GoBack()
+  {
+    let way_to_select_handyman = JSON.parse(localStorage.getItem('way_to_select_handyman'));
+    this.queryString = 
+    {
+      handyman_category_id:way_to_select_handyman.handyman_category_id,
+      id:way_to_select_handyman.handyman_id
+    };
+    let navigationExtras: NavigationExtras = 
+    {
+      queryParams: 
+      {
+        special: JSON.stringify(this.queryString)
+      }
+    };
+    this.client.router.navigate(['/tabs/handyman-selected'], navigationExtras);
   }
 }
