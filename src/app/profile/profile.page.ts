@@ -1,9 +1,14 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { ClientService } from '../providers/client.service';
-import { ModalController, Platform, LoadingController } from '@ionic/angular';
+import { ModalController, Platform, LoadingController, ActionSheetController } from '@ionic/angular';
 import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
 import { NativeGeocoder, NativeGeocoderResult, NativeGeocoderOptions } from '@awesome-cordova-plugins/native-geocoder/ngx';
+import { Camera, CameraOptions } from '@awesome-cordova-plugins/camera/ngx';
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@awesome-cordova-plugins/file-transfer/ngx';
+import { File } from '@awesome-cordova-plugins/file/ngx';
+import { FilePath } from '@awesome-cordova-plugins/file-path/ngx';
+import { Chooser } from '@awesome-cordova-plugins/chooser/ngx';
 
 declare var google;
 
@@ -35,9 +40,19 @@ export class ProfilePage implements OnInit
 	public longitudeCenter:any='';
 	public address:any='';
 
+	
 	public resultData:any = [];
 	public id:any='';
 	public role:any='';
+
+	private fileTransfer: FileTransferObject;
+	public file_uri_camera: string;//IMAGE CAPTURED FROM CAMERA
+	public selected_file_camera: string;//IMAGE CAPTURED FROM CAMERA
+  	public sourse_file_path_camera: string;//IMAGE CAPTURED FROM CAMERA
+  	public file_uri_gallery: string;//IMAGE CAPTURED FROM GALLERY
+	public selected_file_gallery: string;//IMAGE CAPTURED FROM GALLERY
+  	public sourse_file_path_gallery: string;//IMAGE CAPTURED FROM GALLERY
+
 	public profileForm = this.fb.group({
 		first_name: ['', Validators.required],
 		last_name: ['', Validators.required],
@@ -52,6 +67,12 @@ export class ProfilePage implements OnInit
 		experience_in_year: [''],
 		latitude: [''],
 		longitude: [''],
+		file_uri_camera: [''],
+		selected_file_camera: [''],
+		sourse_file_path_camera: [''],
+		file_uri_gallery: [''],
+		selected_file_gallery: [''],
+		sourse_file_path_gallery: [''],
 	});
 
 	validation_messages = 
@@ -99,7 +120,7 @@ export class ProfilePage implements OnInit
 		]
 	};
   
-  	constructor(public client: ClientService, public fb: FormBuilder, public loadingCtrl: LoadingController, public modalCtrl: ModalController, private geolocation: Geolocation, private platform: Platform, private nativeGeocoder: NativeGeocoder)
+  	constructor(public client: ClientService, public fb: FormBuilder, public loadingCtrl: LoadingController, public modalCtrl: ModalController, private geolocation: Geolocation, private platform: Platform, private nativeGeocoder: NativeGeocoder, private camera: Camera, private file: File, private filePath: FilePath, private chooser: Chooser, private transfer: FileTransfer, private actionSheetController: ActionSheetController)
 	{ 
 		this.default_language_data = this.client.default_language_data;
 		this.language_selected = this.client.language_selected;
@@ -160,15 +181,14 @@ export class ProfilePage implements OnInit
 		//LOADER
 		await this.client.getDistricts().then(resultDistricts => 
 		{	
-		loadingDestrict.dismiss();//DISMISS LOADER			
-		this.resultDataDistricts=resultDistricts;
-		console.log(this.resultDataDistricts);
-				
+			loadingDestrict.dismiss();//DISMISS LOADER			
+			this.resultDataDistricts=resultDistricts;
+			console.log(this.resultDataDistricts);
 		},
 		error => 
 		{
-		loadingDestrict.dismiss();//DISMISS LOADER
-		console.log();
+			loadingDestrict.dismiss();//DISMISS LOADER
+			console.log();
 		});//DISTRICTS
 
 		//LOADER
@@ -183,15 +203,14 @@ export class ProfilePage implements OnInit
 		//LOADER
 		await this.client.getProvinces().then(resultProvinces => 
 		{	
-		loadingProvince.dismiss();//DISMISS LOADER			
-		this.resultDataProvince=resultProvinces;
-		console.log("Provinces",this.resultDataProvince);
-				
+			loadingProvince.dismiss();//DISMISS LOADER			
+			this.resultDataProvince=resultProvinces;
+			console.log("Provinces",this.resultDataProvince);
 		},
 		error => 
 		{
-		loadingProvince.dismiss();//DISMISS LOADER
-		console.log();
+			loadingProvince.dismiss();//DISMISS LOADER
+			console.log();
 		});//Province
 
 		//LOADER
@@ -402,29 +421,29 @@ export class ProfilePage implements OnInit
 		//console.log("getAddressFromCoords "+latitude_for_geocoder+" "+longitude_for_geocoder);
 		let options: NativeGeocoderOptions = 
 		{
-		useLocale: true,
-		maxResults: 1    
+			useLocale: true,
+			maxResults: 1    
 		}; 
 		await this.nativeGeocoder.reverseGeocode(latitude_for_geocoder, longitude_for_geocoder, options).then((result: NativeGeocoderResult[]) => 
 		{
-		console.log("Result",result);
-		this.address = "";
-		let responseAddress = [];      
-		for (let [key, value] of Object.entries(result[0])) 
-		{
-			if(value.length>0)
-			responseAddress.push(value); 
-		}
-		responseAddress.reverse();
-		for (let value of responseAddress) 
-		{
-			this.address += value+", ";
-		}
-		this.address = this.address.slice(0, -2);
-		console.log(this.address);
+			console.log("Result",result);
+			this.address = "";
+			let responseAddress = [];      
+			for (let [key, value] of Object.entries(result[0])) 
+			{
+				if(value.length>0)
+				responseAddress.push(value); 
+			}
+			responseAddress.reverse();
+			for (let value of responseAddress) 
+			{
+				this.address += value+", ";
+			}
+			this.address = this.address.slice(0, -2);
+			console.log(this.address);
 		}).catch((error: any) =>
 		{ 
-		this.address = "Address Not Available!";
+			this.address = "Address Not Available!";
 		});
 		//GET ADDRESS FROM LAT,LON
 	}
@@ -497,4 +516,380 @@ export class ProfilePage implements OnInit
 			console.log();
 		});
 	}
+
+	async chooseFromOption()
+	{
+		const actionSheet = await this.actionSheetController.create({
+		header: 'Choose Option',
+		cssClass: 'my-action-sheet',
+		buttons: 
+		[
+			{
+				text:"Camera",
+				icon:"camera",
+				cssClass:"",
+				handler: () => 
+				{
+					this.pickFromCamera();
+				}
+			},
+			{
+				text: 'Gallery',
+				icon: 'image',
+				handler: () => 
+				{
+					this.pickFromGallery();
+				}
+			}
+		]
+		});
+		await actionSheet.present();
+	}
+
+	async pickFromCamera()
+	{
+		const options: CameraOptions = 
+		{
+			quality: 100,      
+			destinationType: this.camera.DestinationType.FILE_URI,
+			encodingType: this.camera.EncodingType.JPEG,
+			mediaType: this.camera.MediaType.PICTURE
+		};
+		const tempImage = await this.camera.getPicture(options);
+		const tempFilename = tempImage.substr(tempImage.lastIndexOf('/') + 1);
+		const tempBaseFilesystemPath = tempImage.substr(0, tempImage.lastIndexOf('/') + 1);
+		const newBaseFilesystemPath = this.file.dataDirectory;
+		await this.file.copyFile(tempBaseFilesystemPath, tempFilename, newBaseFilesystemPath, tempFilename);
+		const storedPhoto = newBaseFilesystemPath + tempFilename;
+		console.log("StoredPhoto",storedPhoto);
+		if(this.platform.is('android')) 
+		{
+			//LOADER
+			const loading = await this.loadingCtrl.create({
+				spinner: null,
+				//duration: 5000,
+				message: 'Please wait...',
+				translucent: true,
+				cssClass: 'custom-class custom-loading'
+			});
+			await loading.present();
+			//LOADER
+			this.filePath.resolveNativePath(storedPhoto).then(url => 
+			{        
+				// url is path of selected file
+				var file_name = url.substring(url.lastIndexOf("/") + 1);			
+				this.profileForm.controls['file_uri_camera'].setValue(storedPhoto);
+				this.profileForm.controls['selected_file_camera'].setValue(file_name);
+				this.profileForm.controls['sourse_file_path_camera'].setValue(url); 
+				
+				this.fileTransfer = this.transfer.create();
+				let upload_options: FileUploadOptions = 
+				{
+					headers: { 'Authorization': localStorage.getItem('token') },
+					fileKey: 'profilePic',
+					chunkedMode: false,
+					fileName: file_name,
+				} 
+				//OTHER PROFILE INFORMATION
+				let specialized_in : any = [];
+				if(this.role == 'handyman')
+				{
+					if(this.resultData.categories.length > 0)
+					{
+						for(let c = 0 ; c < this.resultData.categories.length; c ++)
+						{
+							specialized_in.push(this.resultData.categories[c]['id']);
+						}
+					}
+				}
+				let other_required_parameters = 
+				{
+					user_id:this.id,
+					userTypeID:(this.role == 'handyman') ? 2 : 3,
+					firstName:(this.resultData.firstName) ? this.resultData.firstName : "",
+					lastName:(this.resultData.lastName) ? this.resultData.lastName : "",
+					email:(this.resultData.email) ? this.resultData.email : "", 
+					categoryID:specialized_in,
+					districtID:"",
+					cityID:"",
+					provinceID:(this.resultData.provinceID) ? this.resultData.provinceID : "",
+					phoneNumber:(this.resultData.phoneNumber) ? this.resultData.phoneNumber : "",
+					rangeServing:(this.resultData.rangeServing) ? this.resultData.rangeServing : 0,
+					price:(this.resultData.price) ? this.resultData.price : "",
+					no_of_experience:(this.resultData.no_of_experience) ? this.resultData.no_of_experience : 0,
+					latitude:this.latitude,
+					longitude:this.longitude,
+					location:this.address
+				}
+				upload_options.params = other_required_parameters;
+				//OTHER PROFILE INFORMATION
+				this.fileTransfer.upload(url,this.client.api_url+"updateProfile", upload_options, true).then((res) => 
+				{
+					loading.dismiss();//DISMISS LOADER
+					this.client.showMessage('Profile picture is updated!');
+					this.ionViewWillEnter();						
+				}).catch((error) => 
+				{
+					loading.dismiss();//DISMISS LOADER
+					this.client.showMessage("Error occured!!");
+					//here logging an error. 
+					console.log('upload failed: ' + JSON.stringify(error));
+				})
+			});
+		}
+		else
+		{
+			this.profileForm.controls['file_uri_camera'].setValue(tempFilename);
+			this.profileForm.controls['selected_file_camera'].setValue(tempImage);
+			this.profileForm.controls['sourse_file_path_camera'].setValue(tempImage);
+			
+			//LOADER
+			const loading = await this.loadingCtrl.create({
+				spinner: null,
+				//duration: 5000,
+				message: 'Please wait...',
+				translucent: true,
+				cssClass: 'custom-class custom-loading'
+			});
+			await loading.present();
+			//LOADER
+			
+			this.fileTransfer = this.transfer.create();
+			let upload_options: FileUploadOptions = 
+			{
+				headers: { 'Authorization': localStorage.getItem('token') },
+				fileKey: 'profilePic',
+				chunkedMode: false,
+				fileName: tempImage,
+			}        
+			//OTHER PROFILE INFORMATION
+			let specialized_in : any = [];
+			if(this.role == 'handyman')
+			{
+				if(this.resultData.categories.length > 0)
+				{
+					for(let c = 0 ; c < this.resultData.categories.length; c ++)
+					{
+						specialized_in.push(this.resultData.categories[c]['id']);
+					}
+				}
+			}
+			let other_required_parameters = 
+			{
+				user_id:this.id,
+				userTypeID:(this.role == 'handyman') ? 2 : 3,
+				firstName:(this.resultData.firstName) ? this.resultData.firstName : "",
+				lastName:(this.resultData.lastName) ? this.resultData.lastName : "",
+				email:(this.resultData.email) ? this.resultData.email : "", 
+				categoryID:specialized_in,
+				districtID:"",
+				cityID:"",
+				provinceID:(this.resultData.provinceID) ? this.resultData.provinceID : "",
+				phoneNumber:(this.resultData.phoneNumber) ? this.resultData.phoneNumber : "",
+				rangeServing:(this.resultData.rangeServing) ? this.resultData.rangeServing : 0,
+				price:(this.resultData.price) ? this.resultData.price : "",
+				no_of_experience:(this.resultData.no_of_experience) ? this.resultData.no_of_experience : 0,
+				latitude:this.latitude,
+				longitude:this.longitude,
+				location:this.address
+			}
+			upload_options.params = other_required_parameters;
+			//OTHER PROFILE INFORMATION
+			this.fileTransfer.upload(tempImage,this.client.api_url+"updateProfile", upload_options, true).then((res) => 
+			{
+				loading.dismiss();//DISMISS LOADER
+				this.client.showMessage('Profile picture is updated!');
+				this.ionViewWillEnter();						
+			}).catch((error) => 
+			{
+				loading.dismiss();//DISMISS LOADER
+				this.client.showMessage("Error occured!!");
+				//here logging an error. 
+				console.log('upload failed: ' + JSON.stringify(error));
+			})
+		}
+	}
+
+	pickFromGallery()
+	{
+		(async () => {
+			const file = await this.chooser.getFile();
+			console.log(file ? file.name : 'canceled');
+			console.log(file ? file.dataURI : 'canceled');
+			console.log(file ? file.uri : 'canceled');
+			//console.log('File chosen: ', file);
+			this.uploadHandler(file.uri);
+		})();
+		/*
+		this.chooser.getFile().then(file =>
+		{	
+			console.log(file ? file.name : 'canceled');
+			console.log(file ? file.dataURI : 'canceled');
+			console.log(file ? file.uri : 'canceled');
+			//console.log('File chosen: ', file);
+			this.uploadHandler(file.uri);
+		})
+		.catch(e => 
+		{
+			console.log('Error choosing file: ', e);
+		});
+		*/
+	}
+
+	async uploadHandler(uri) 
+	{
+		if(this.platform.is('android'))
+		{
+			//LOADER
+			const loading = await this.loadingCtrl.create({
+				spinner: null,
+				//duration: 5000,
+				message: 'Please wait...',
+				translucent: true,
+				cssClass: 'custom-class custom-loading'
+			});
+			await loading.present();
+			//LOADER
+
+			this.filePath.resolveNativePath(uri).then(url => 
+			{
+				// url is path of selected file
+				var file_name = url.substring(url.lastIndexOf("/") + 1)
+				
+				this.profileForm.controls['file_uri_gallery'].setValue(uri);
+				this.profileForm.controls['selected_file_gallery'].setValue(file_name);
+        		this.profileForm.controls['sourse_file_path_gallery'].setValue(url);
+        
+				this.fileTransfer = this.transfer.create();
+				let upload_options: FileUploadOptions = 
+				{
+					headers: { 'Authorization': localStorage.getItem('token') },
+					fileKey: 'profilePic',
+					chunkedMode: false,
+					fileName: file_name,
+				}        
+				//OTHER PROFILE INFORMATION
+				let specialized_in : any = [];
+				if(this.role == 'handyman')
+				{
+					if(this.resultData.categories.length > 0)
+					{
+						for(let c = 0 ; c < this.resultData.categories.length; c ++)
+						{
+							specialized_in.push(this.resultData.categories[c]['id']);
+						}
+					}
+				}
+				let other_required_parameters = 
+				{
+					user_id:this.id,
+					userTypeID:(this.role == 'handyman') ? 2 : 3,
+					firstName:(this.resultData.firstName) ? this.resultData.firstName : "",
+					lastName:(this.resultData.lastName) ? this.resultData.lastName : "",
+					email:(this.resultData.email) ? this.resultData.email : "", 
+					categoryID:specialized_in,
+					districtID:"",
+					cityID:"",
+					provinceID:(this.resultData.provinceID) ? this.resultData.provinceID : "",
+					phoneNumber:(this.resultData.phoneNumber) ? this.resultData.phoneNumber : "",
+					rangeServing:(this.resultData.rangeServing) ? this.resultData.rangeServing : 0,
+					price:(this.resultData.price) ? this.resultData.price : "",
+					no_of_experience:(this.resultData.no_of_experience) ? this.resultData.no_of_experience : 0,
+					latitude:this.latitude,
+					longitude:this.longitude,
+					location:this.address
+				}
+				upload_options.params = other_required_parameters;
+				//OTHER PROFILE INFORMATION
+				this.fileTransfer.upload(uri,this.client.api_url+"updateProfile", upload_options, true).then((res) => 
+				{
+					loading.dismiss();//DISMISS LOADER
+					this.client.showMessage('Profile picture is updated!');
+					this.ionViewWillEnter();			
+				}).catch((error) => 
+				{
+					loading.dismiss();//DISMISS LOADER
+					this.client.showMessage("Error occured!!");
+					//here logging an error. 
+					console.log('upload failed: ' + JSON.stringify(error));
+				})
+        
+				loading.dismiss();//DISMISS LOADER								
+				// fileName is selected file name
+			}).catch(err => console.log(err));
+		}
+		else
+		{
+			//LOADER
+			const loading = await this.loadingCtrl.create({
+				spinner: null,
+				//duration: 5000,
+				message: 'Please wait...',
+				translucent: true,
+				cssClass: 'custom-class custom-loading'
+			});
+			await loading.present();
+			//LOADER
+
+			var file_name = uri.substring(uri.lastIndexOf("/") + 1);
+			this.profileForm.controls['file_uri_gallery'].setValue(uri);
+			this.profileForm.controls['selected_file_gallery'].setValue(file_name);
+      		this.profileForm.controls['sourse_file_path_gallery'].setValue(uri);
+      
+			this.fileTransfer = this.transfer.create();
+			let upload_options: FileUploadOptions = 
+			{
+				headers: { 'Authorization': localStorage.getItem('token') },
+				fileKey: 'profilePic',
+				chunkedMode: false,
+				fileName: file_name,
+			}        
+			//OTHER PROFILE INFORMATION
+			let specialized_in : any = [];
+			if(this.role == 'handyman')
+			{
+				if(this.resultData.categories.length > 0)
+				{
+					for(let c = 0 ; c < this.resultData.categories.length; c ++)
+					{
+						specialized_in.push(this.resultData.categories[c]['id']);
+					}
+				}
+			}
+			let other_required_parameters = 
+			{
+				user_id:this.id,
+				userTypeID:(this.role == 'handyman') ? 2 : 3,
+				firstName:(this.resultData.firstName) ? this.resultData.firstName : "",
+				lastName:(this.resultData.lastName) ? this.resultData.lastName : "",
+				email:(this.resultData.email) ? this.resultData.email : "", 
+				categoryID:specialized_in,
+				districtID:"",
+				cityID:"",
+				provinceID:(this.resultData.provinceID) ? this.resultData.provinceID : "",
+				phoneNumber:(this.resultData.phoneNumber) ? this.resultData.phoneNumber : "",
+				rangeServing:(this.resultData.rangeServing) ? this.resultData.rangeServing : 0,
+				price:(this.resultData.price) ? this.resultData.price : "",
+				no_of_experience:(this.resultData.no_of_experience) ? this.resultData.no_of_experience : 0,
+				latitude:this.latitude,
+				longitude:this.longitude,
+				location:this.address
+			}
+			upload_options.params = other_required_parameters;
+			//OTHER PROFILE INFORMATION
+			this.fileTransfer.upload(uri,this.client.api_url+"updateProfile", upload_options, true).then((res) => 
+			{
+				loading.dismiss();//DISMISS LOADER
+				this.client.showMessage('Profile picture is updated!');	
+				this.ionViewWillEnter();					
+			}).catch((error) => 
+			{
+				loading.dismiss();//DISMISS LOADER
+				this.client.showMessage("Error occured!!");
+				//here logging an error. 
+				console.log('upload failed: ' + JSON.stringify(error));
+			})
+			loading.dismiss();//DISMISS LOADER
+		}	
+  	}
 }

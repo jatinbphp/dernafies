@@ -15,13 +15,19 @@
         <form [formGroup]="profileForm" (ngSubmit)="updateProfile(profileForm.value)">
 			<ion-input type="hidden" formControlName="latitude"></ion-input>
       		<ion-input type="hidden" formControlName="longitude"></ion-input>
+			<ion-input type="hidden" formControlName="file_uri_gallery"></ion-input>
+			<ion-input type="hidden" formControlName="selected_file_gallery"></ion-input>
+			<ion-input type="hidden" formControlName="sourse_file_path_gallery"></ion-input>
+			<ion-input type="hidden" formControlName="file_uri_camera"></ion-input>
+			<ion-input type="hidden" formControlName="selected_file_camera"></ion-input>
+			<ion-input type="hidden" formControlName="sourse_file_path_camera"></ion-input>
 			<ion-grid>
 				<ion-row>
 					<ion-col size="12">
 						<div class="profile-pic">
 							<img src="../../assets/images/person-img1.png" *ngIf="resultData.profilePic==''">
 							<img src="{{resultData.profilePic}}" *ngIf="resultData.profilePic!=''">
-							<ion-button>
+							<ion-button (click)="chooseFromOption()">
 								<!-- <ion-icon name="add-circle-sharp"></ion-icon> -->
 								<img src="../../assets/images/plus-icon1.png">
 							</ion-button>

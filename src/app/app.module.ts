@@ -10,6 +10,11 @@ import { InAppBrowser } from '@awesome-cordova-plugins/in-app-browser/ngx';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
 import { NativeGeocoder, NativeGeocoderResult, NativeGeocoderOptions } from '@awesome-cordova-plugins/native-geocoder/ngx';
+import { Camera } from '@awesome-cordova-plugins/camera/ngx';
+import { File } from '@awesome-cordova-plugins/file/ngx';
+import { FilePath } from '@awesome-cordova-plugins/file-path/ngx';
+import { Chooser } from '@awesome-cordova-plugins/chooser/ngx';
+import { FileTransfer } from '@awesome-cordova-plugins/file-transfer/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,6 +32,11 @@ import { NativeGeocoder, NativeGeocoderResult, NativeGeocoderOptions } from '@aw
     Geolocation,
     NativeGeocoder,
     InAppBrowser,
+    Camera,
+    File,
+    FilePath,
+    Chooser,
+    FileTransfer,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent],
