@@ -518,6 +518,26 @@ export class ClientService
 		});
 	}
 
+	updateFirebaseMessageId(data)
+	{
+		let headers = this.getHeaderOptions();
+		return new Promise((resolve, reject) => 
+		{
+			let dataToPost = new HttpParams().set("jobID",data.job_id).set("firebase_id",data.firebase_id);
+			this.http.post(this.api_url + "updateFirebaseMessageId",  dataToPost , headers).subscribe((res: any) =>       
+			{
+				resolve(res);
+			},
+			err => 
+			{
+				console.log(err);
+				let errorMessage=this.getErrorMessage(err);
+				//this.showMessage(errorMessage);
+				reject(errorMessage);
+			});
+		});
+	}
+
 	addReviewAndRating(data)
 	{
 		let headers = this.getHeaderOptions();
@@ -594,6 +614,26 @@ export class ClientService
 		{
 			let dataToPost = new HttpParams().set("jobID",data.job_id).set("paid",data.payment_status).set("paymentNote",data.payment_note).set("hours",data.job_time_taken_to_complete);
 			this.http.post(this.api_url + "updateJobCompleted",  dataToPost , headers).subscribe((res: any) =>       
+			{
+				resolve(res);
+			},
+			err => 
+			{
+				console.log(err);
+				let errorMessage=this.getErrorMessage(err);
+				//this.showMessage(errorMessage);
+				reject(errorMessage);
+			});
+		});
+	}
+
+	scheduleJob(data)
+	{
+		let headers = this.getHeaderOptions();
+		return new Promise((resolve, reject) => 
+		{
+			let dataToPost = new HttpParams().set("jobID",data.job_id).set("scheduledDate",data.schedule_to_date).set("scheduledBy",data.schedule_by);
+			this.http.post(this.api_url + "scheduleJob",  dataToPost , headers).subscribe((res: any) =>       
 			{
 				resolve(res);
 			},

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController, LoadingController } from '@ionic/angular';
+import { AlertController, LoadingController, ModalController } from '@ionic/angular';
 import { ClientService } from '../providers/client.service';
 import { NavigationExtras } from '@angular/router';
+import { RescheduleJobPage } from '../reschedule-job/reschedule-job.page';
+import { MessagesCustomerHandymanPage } from '../messages-customer-handyman/messages-customer-handyman.page';
 
 @Component({
   selector: 'app-current-requests',
@@ -27,7 +29,7 @@ export class CurrentRequestsPage implements OnInit
   public queryString: any=[];
   public CurrentRequestList:string='AcceptRequest';
   
-  constructor(public client: ClientService, public loadingCtrl: LoadingController, public alertController: AlertController)
+  constructor(public client: ClientService, public loadingCtrl: LoadingController, public alertController: AlertController, public modalCtrl: ModalController)
   { 
     this.default_language_data = this.client.default_language_data;
 		this.language_selected = this.client.language_selected;
@@ -211,5 +213,32 @@ export class CurrentRequestsPage implements OnInit
       }
     };
     this.client.router.navigate(['/tabs/complete-the-job'], navigationExtras);
+  }
+
+  async JobResechedule(job_id)
+  {
+    const modal = await this.modalCtrl.create({
+      component: RescheduleJobPage,
+      componentProps: {
+        'job_id': job_id
+      }
+    });
+
+    return await modal.present();
+  }
+
+  async messageBetweenCustomerAndHandyman(job_id,user_id,handyman_id,firebase_message_id_for_job)
+  {
+    const modal = await this.modalCtrl.create({
+      component: MessagesCustomerHandymanPage,
+      componentProps: {
+        'job_id': job_id,
+        'user_id': user_id,
+        'handyman_id': handyman_id,
+        'firebase_message_id_for_job': firebase_message_id_for_job
+      }
+    });
+
+    return await modal.present();
   }
 }

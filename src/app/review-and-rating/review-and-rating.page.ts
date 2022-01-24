@@ -53,6 +53,9 @@ export class ReviewAndRatingPage implements OnInit
 
   async ionViewWillEnter()
   {
+    this.default_language_data = this.client.default_language_data;
+		this.language_selected = this.client.language_selected;
+    
     this.route.queryParams.subscribe(params => 
     {
       if(params && params.special)

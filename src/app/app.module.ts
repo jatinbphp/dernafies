@@ -15,7 +15,11 @@ import { File } from '@awesome-cordova-plugins/file/ngx';
 import { FilePath } from '@awesome-cordova-plugins/file-path/ngx';
 import { Chooser } from '@awesome-cordova-plugins/chooser/ngx';
 import { FileTransfer } from '@awesome-cordova-plugins/file-transfer/ngx';
-
+//::FIREBASE:://
+import { environment } from '../environments/environment';
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
+import { AngularFireModule } from '@angular/fire/compat';
+//::FIREBASE:://
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -23,7 +27,9 @@ import { FileTransfer } from '@awesome-cordova-plugins/file-transfer/ngx';
   [
     BrowserModule,
     ReactiveFormsModule,
-    HttpClientModule, 
+    HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),//imports firebase/app needed for everything
+    AngularFireDatabaseModule, 
     IonicModule.forRoot(), 
     AppRoutingModule
   ],

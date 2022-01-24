@@ -1,0 +1,61 @@
+<ion-header no-border class="ion-no-border" [translucent]="true">
+  <ion-toolbar>
+    <!-- <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>      
+    </ion-buttons> -->
+    <ion-title slot="start" [innerHTML]="resultDataJobDetail[language_key_exchange_array[language_selected]]"></ion-title>
+    <ion-button slot="end" (click)="dismissModal()">
+			<ion-icon name="close-sharp"></ion-icon>
+		</ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="message-wrap">
+    <p *ngIf="resultDataCommunications.length == 0" class="no-data">No communications</p>
+    <div *ngFor="let msg of resultDataCommunications" class="message">
+      <div class="message-left" *ngIf="msg.message_added_by == 'customer'">
+          <img class="user-img" alt="" src="../../assets/images/logo-small.png" *ngIf="msg.user_image==''">
+          <img class="user-img" alt="" src="{{msg.user_image}}" *ngIf="msg.user_image!=''">
+          <div class="msg-detail">
+            <div class="msg-info">
+              <p>{{msg.user_name}}&nbsp;&nbsp;&nbsp;{{msg.message_added_date | date: 'MMM,dd YYYY hh:mm a'}}</p>
+            </div>
+            <div class="msg-content">
+              <span class="triangle"></span>
+              <p class="line-breaker ">{{msg.message}}</p>
+            </div>
+          </div>          
+      </div>
+      <div class="message-right" *ngIf="msg.message_added_by == 'handyman'">
+        <img class="user-img" alt="" src="../../assets/images/logo-small.png" *ngIf="msg.handyman_image==''">
+        <img class="user-img" alt="" src="{{msg.handyman_image}}" *ngIf="msg.handyman_image!=''">
+        <div class="msg-detail">
+          <div class="msg-info" *ngIf="msg.message != null">
+            <p>{{msg.handyman_name}}&nbsp;&nbsp;&nbsp;{{msg.message_added_date | date: 'MMM,dd YYYY hh:mm a'}}</p>
+          </div>
+          <div class="msg-content" *ngIf="msg.message != null">
+            <span class="triangle"></span>
+            <p class="line-breaker ">{{msg.message}}</p>
+          </div>
+        </div>  
+      </div>
+    </div>    
+  </div>  
+</ion-content>
+<ion-footer>
+  <ion-toolbar color="light">
+    <form [formGroup]="MessageBetweenCustomerAndHandyManForm" (ngSubmit)="sendMessage(MessageBetweenCustomerAndHandyManForm.value)">            
+      <ion-row class="ion-align-items-center">
+        <ion-col size="10">
+          <ion-textarea autoGrow="true" class="message-input" rows="1" maxLength="500" formControlName="message"></ion-textarea>
+        </ion-col>
+        <ion-col size="2">
+          <ion-button expand="block" color="primary" type="submit" [disabled]="!MessageBetweenCustomerAndHandyManForm.valid">
+            <ion-icon name="send" slot="icon-only"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </form>
+  </ion-toolbar>
+</ion-footer>

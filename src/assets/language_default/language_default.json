@@ -334,6 +334,7 @@
                      "accept_request":"Accept Request",
                      "completed":"Completed",
                      "scheduled_time":"Scheduled Time",
+                     "button_message":"Message",
                      "button_completed":"Completed",
                      "button_request_review":"Request Review",
                      "button_rate_and_review":"Rate & Review"
@@ -345,6 +346,7 @@
                      "accept_request":"قبول الطلب",
                      "completed":"مكتمل",
                      "scheduled_time":"جدول زمني",
+                     "button_message":"تعبث",
                      "button_completed":"مكتمل",
                      "button_request_review":"طلب مراجعة",
                      "button_rate_and_review":"مراجعة معدل"
@@ -356,6 +358,7 @@
                      "accept_request":"Daxwazê qebûl bikin",
                      "completed":"Temam kirin",
                      "scheduled_time":"Demjimêra plankirî",
+                     "button_message":"Mess",
                      "button_completed":"Temam kirin",
                      "button_request_review":"Daxwaza Review",
                      "button_rate_and_review":"Binirxînin & Binirxînin"
@@ -539,6 +542,78 @@
                      "payment_note":"Têbînî Payment",
                      "job_time_taken_to_complete":"Ger tîm kar temam neke",
                      "button_text":"Tevî"
+                  }
+               ]
+            }
+         ],
+         "reschedule-job": [
+            {
+               "english": [
+                  {
+                     "screen_title":"Reschedule",
+                     "schedule_to_date":"Reschedule To Date",
+                     "button_text":"Reschedule"
+                  }
+               ],
+               "arabic": [
+                  {
+                     "screen_title":"إعادة الجدولة",
+                     "schedule_to_date":"إعادة الجدولة حتى الآن",
+                     "button_text":"إعادة الجدولة"
+                  }
+               ],
+               "kurdish": [
+                  {
+                     "screen_title":"Demanî tarloqkirin",
+                     "schedule_to_date":"Demjimêra ji nû ve",
+                     "button_text":"Demanî tarloqkirin"
+                  }
+               ]
+            }
+         ],
+         "review-and-rating": [
+            {
+               "english": [
+                  {
+                     "screen_title":"Rate & Review",
+                     "rate_this_handyman":"Rate this handyman",
+                     "write_a_review":"Write a review",
+                     "button_text":"Submit"
+                  }
+               ],
+               "arabic": [
+                  {
+                     "screen_title":"ليلة ومراجعة",
+                     "rate_this_handyman":"في الليل في القلب",
+                     "write_a_review":"اكتب هذا الاستعراض",
+                     "button_text":"مقدم"
+                  }
+               ],
+               "kurdish": [
+                  {
+                     "screen_title":"Şev & Review",
+                     "rate_this_handyman":"Bi şev di dil de",
+                     "write_a_review":"Vê nirxandinê binivîse",
+                     "button_text":"Pêşkêş kirin"
+                  }
+               ]
+            }
+         ],
+         "messages-customer-handyman": [
+            {
+               "english": [
+                  {
+                     "message_placeholder":"Type your message"
+                  }
+               ],
+               "arabic": [
+                  {
+                     "message_placeholder":"اقلب الفوضى"
+                  }
+               ],
+               "kurdish": [
+                  {
+                     "message_placeholder":"Serê xwe bidin"
                   }
                ]
             }

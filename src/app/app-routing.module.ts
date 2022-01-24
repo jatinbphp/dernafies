@@ -69,6 +69,14 @@ const routes: Routes = [
   {
     path: 'complete-the-job',
     loadChildren: () => import('./complete-the-job/complete-the-job.module').then( m => m.CompleteTheJobPageModule)
+  },
+  {
+    path: 'reschedule-job',
+    loadChildren: () => import('./reschedule-job/reschedule-job.module').then( m => m.RescheduleJobPageModule)
+  },
+  {
+    path: 'messages-customer-handyman',
+    loadChildren: () => import('./messages-customer-handyman/messages-customer-handyman.module').then( m => m.MessagesCustomerHandymanPageModule)
   }
 ];
 @NgModule({

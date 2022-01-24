@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ClientService } from '../providers/client.service';
+import { FirebaseClientService } from '../providers/firebase-client.service';
 import { LoadingController } from '@ionic/angular';
 import { InAppBrowser, InAppBrowserOptions } from '@awesome-cordova-plugins/in-app-browser/ngx';
 import { NavigationExtras } from "@angular/router";
@@ -24,9 +25,12 @@ export class AddJobPage implements OnInit
 
 	public accept_tems:boolean=false;
 	public resultData:any=[];
+	public resultDataFireBase:any=[];
 	public resultDataJob:any=[];
 	public resultDataHandyMan:any=[];
 	
+	public firebase_job_id:any='';
+
 	public BooKAJobForm = this.fb.group({
 		handyman_category_id: ['', Validators.required],
 		handyman_id: ['', Validators.required],
@@ -49,7 +53,7 @@ export class AddJobPage implements OnInit
 		]
 	};
   
-	constructor(public client: ClientService, public fb: FormBuilder, public loadingCtrl: LoadingController, private inAppBrowser: InAppBrowser)
+	constructor(public client: ClientService, private fireClient: FirebaseClientService, public fb: FormBuilder, public loadingCtrl: LoadingController, private inAppBrowser: InAppBrowser)
 	{ 
 		this.default_language_data = this.client.default_language_data;
 		this.language_selected = this.client.language_selected;
@@ -64,6 +68,9 @@ export class AddJobPage implements OnInit
 
 	async ionViewWillEnter()
 	{
+		this.default_language_data = this.client.default_language_data;
+		this.language_selected = this.client.language_selected;
+		
 		this.resultDataJob = localStorage.getItem('job');
 		this.resultDataJob = JSON.parse(this.resultDataJob);
 		
@@ -188,21 +195,60 @@ export class AddJobPage implements OnInit
 		}
 		await this.client.BookMyJob(data).then(resultBook => 
 		{	
-			loading.dismiss();//DISMISS LOADER			
+			//loading.dismiss();//DISMISS LOADER			
 			this.resultData=resultBook;
 			localStorage.removeItem('job');
-			if(this.resultData['id'] > true)
+			if(this.resultData['id'] > 0)
 			{
 				this.client.showMessage("Job is added successfully!");
 			}
-			this.client.router.navigate(['/tabs/current-requests']);
+			//this.client.router.navigate(['/tabs/current-requests']);
 		},
 		error => 
 		{
 			loading.dismiss();//DISMISS LOADER
 			console.log();
 		});
+
+		//ADD JOB TO FIREBASE, SO MESSAGING BETWEEN CUSTOMER AND HANDYMAN CAN BE INITITATE
+		let dataMessage = {
+			job_id:this.resultData['id']
+		}
+		await this.fireClient.addMessageEntryToFirebase(dataMessage).then(result => 
+		{	      
+			this.resultDataFireBase=result;
+			this.firebase_job_id = this.resultDataFireBase['id'];
+			console.log(this.firebase_job_id);
+			//this.client.router.navigate(['/tabs/current-requests']);
+		},
+		error => 
+		{
+			loading.dismiss();//DISMISS LOADER
+			console.log(error);
+		});
+		//ADD JOB TO FIREBASE, SO MESSAGING BETWEEN CUSTOMER AND HANDYMAN CAN BE INITITATE
+
+		//UPDATE FIREBASE AUTOINC ID TO JOB TABLE
+		let dataMessageID = {
+			job_id:this.resultData['id'],
+			firebase_id:this.firebase_job_id
+		}
+		await this.client.updateFirebaseMessageId(dataMessageID).then(result => 
+		{	      
+			loading.dismiss();//DISMISS LOADER
+			console.log(result);
+			this.client.router.navigate(['/tabs/current-requests']);
+		},
+		error => 
+		{
+			loading.dismiss();//DISMISS LOADER
+			console.log(error);
+		});
+		//UPDATE FIREBASE AUTOINC ID TO JOB TABLE
 	}
+
+	updateFireBaseMessageID()
+	{}
 
 	GoBack()
   	{

@@ -36,7 +36,8 @@
             </div>
             <div class="requ-box-btns">
               <ion-button color="success" (click)="completeTheJob(jobToAccept.id)">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['button_completed']}}</ion-button>
-              <ion-button color="primary" disabled="true">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['button_request_review']}}</ion-button>
+              <!--<ion-button color="primary" disabled="true">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['button_request_review']}}</ion-button>-->
+              <ion-button color="primary" (click)="messageBetweenCustomerAndHandyman(jobToAccept.id,jobToAccept.userID,jobToAccept.assignedTrademan,jobToAccept.firebase_message_id_for_job)">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['button_message']}}</ion-button>
             </div>
           </div>
         </ion-col>        
@@ -70,9 +71,10 @@
               <h6 class="sub-title">{{requestedJob[language_key_exchange_array[language_selected]]}}</h6>
               <p>{{requestedJob.dateRequested | date: 'dd MMM yyyy'}}<!--<span></span>2Hrs--><span></span>${{requestedJob.jobPrice}}</p>
             </div>
-            <div class="requ-box-btns">
+            <div class="requ-box-btns">              
+              <ion-button color="primary" (click)="JobResechedule(requestedJob.id)">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['scheduled_time']}}</ion-button>
               <ion-button color="success" disabled="true">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['button_completed']}}</ion-button>
-              <ion-button color="primary" disabled="true">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['button_request_review']}}</ion-button>
+              <!--<ion-button color="primary" disabled="true">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['button_request_review']}}</ion-button>-->
             </div>
           </div>
         </ion-col>
@@ -95,7 +97,8 @@
             </div>
             <div class="requ-box-btns">
               <!--<ion-button color="success" (click)="confirmUpdateJobStatus(jobToAccept.id,3)">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['button_completed']}}</ion-button>-->
-              <ion-button color="success" disabled="true">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['button_completed']}}</ion-button>
+              <!--<ion-button color="success" disabled="true">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['button_completed']}}</ion-button>-->
+              <ion-button color="primary" (click)="messageBetweenCustomerAndHandyman(jobToAccept.id,jobToAccept.userID,jobToAccept.assignedTrademan,jobToAccept.firebase_message_id_for_job)">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['button_message']}}</ion-button>
               <ion-button color="primary" disabled="true">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['button_rate_and_review']}}</ion-button>
             </div>
           </div>
@@ -131,8 +134,9 @@
               <p>{{requestedJob.dateRequested | date: 'dd MMM yyyy'}}<!--<span></span>2Hrs--><span></span>${{requestedJob.jobPrice}}</p>
             </div>
             <div class="requ-box-btns">
+              <ion-button color="primary" (click)="JobResechedule(requestedJob.id)">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['scheduled_time']}}</ion-button>
               <ion-button color="success" disabled="true">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['button_completed']}}</ion-button>
-              <ion-button color="primary" disabled="true">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['button_rate_and_review']}}</ion-button>
+              <!--<ion-button color="primary" disabled="true">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['button_rate_and_review']}}</ion-button>-->
             </div>
           </div>
         </ion-col>        

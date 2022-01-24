@@ -1,0 +1,54 @@
+<ion-header no-border class="ion-no-border" [translucent]="true">
+  <ion-toolbar>
+    <!-- <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>      
+    </ion-buttons> -->
+    <ion-title slot="start">{{default_language_data['translation'][0]['reschedule-job'][0][language_selected][0]['screen_title']}}</ion-title>
+    <ion-button slot="end" (click)="dismissModal()">
+			<ion-icon name="close-sharp"></ion-icon>
+		</ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="main-div">
+    <form [formGroup]="jobToRescheduleForm" (ngSubmit)="MakeReschedule(jobToRescheduleForm.value)">
+      <ion-input type="hidden" formControlName="job_id"></ion-input>
+      <ion-grid>        
+        <ion-row>
+          <ion-col size="12">
+            <ion-item lines="none" class="ion-no-padding">
+              <ion-label position="stacked">{{default_language_data['translation'][0]['reschedule-job'][0][language_selected][0]['schedule_to_date']}}</ion-label>
+              <ion-datetime #IonDatetime formControlName="schedule_to_date" [min]="current_date" presentation="date"></ion-datetime>
+            </ion-item>
+            <!--VALIDATION-->
+            <div class="validation-errors">
+              <ng-container *ngFor="let validation of validation_messages.schedule_to_date">
+                <div class="error-message"
+                  *ngIf="jobToRescheduleForm.get('schedule_to_date').hasError(validation.type) && (jobToRescheduleForm.get('schedule_to_date').dirty || jobToRescheduleForm.get('schedule_to_date').touched)">
+                  <ion-icon name="information-circle-outline"></ion-icon>
+                  <p>{{ validation.message }}</p>
+                </div>
+              </ng-container>
+            </div>
+            <!--VALIDATION-->
+          </ion-col>       
+        </ion-row>               
+      </ion-grid>      
+      <ion-item lines="none">
+        <ion-button type="submit" color="" [disabled]="!jobToRescheduleForm.valid">{{default_language_data['translation'][0]['reschedule-job'][0][language_selected][0]['button_text']}}</ion-button>
+      </ion-item>
+    </form>
+  </div>
+  <div class="loc-con-box">
+		<div class="review-box-txt">
+      <h2 class="title">{{resultDataHandyManForJob.firstName}} {{resultDataHandyManForJob.lastName}}</h2>
+      <h3 class="sub-title" [innerHTML]="resultDataJobDetail[language_key_exchange_array[language_selected]]"></h3>
+      <h3 class="sub-title" [innerHTML]="resultDataJobDetail.description"></h3>
+			<div class="person-contact">
+				<p><ion-icon name="call"></ion-icon>{{resultDataHandyManForJob.phoneNumber}}</p>
+				<p><ion-icon name="mail"></ion-icon>{{resultDataHandyManForJob.email}}</p>
+			</div>
+		</div>		
+	</div>
+</ion-content>
