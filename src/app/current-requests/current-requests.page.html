@@ -35,7 +35,7 @@
             <div class="requ-box-txt">
               <h2 class="title">{{jobToAccept.customer.firstName}} {{jobToAccept.customer.lastName}}</h2>
               <h6 class="sub-title">{{jobToAccept[language_key_exchange_array[language_selected]]}}</h6>
-              <p>{{jobToAccept.dateRequested | date: 'dd MMM yyyy'}}<!--<span></span>2Hrs--><span></span>${{jobToAccept.jobPrice}}</p>
+              <p>{{jobToAccept.dateRequested | amDateFormat: 'DD MMM yyyy'}}<!--<span></span>2Hrs--><span></span>${{jobToAccept.jobPrice}}</p>
             </div>
             <div class="requ-box-btns">
               <ion-button color="success" (click)="completeTheJob(jobToAccept.id)">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['button_completed']}}</ion-button>
@@ -54,7 +54,7 @@
             <div class="requ-box-txt">
               <h2 class="title">{{completedJob.customer.firstName}} {{completedJob.customer.lastName}}</h2>
               <h6 class="sub-title">{{completedJob[language_key_exchange_array[language_selected]]}}</h6>
-              <p>{{completedJob.dateCompleted | date: 'dd MMM yyyy'}}<span></span>{{completedJob.jobHours}}Hrs<span></span>${{completedJob.jobPrice}}</p>
+              <p>{{completedJob.dateCompleted | amDateFormat: 'DD MMM yyyy'}}<span></span>{{completedJob.jobHours}}Hrs<span></span>${{completedJob.jobPrice}}</p>
             </div>
             <div class="requ-box-btns">
               <ion-button color="success" disabled="true">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['completed']}}</ion-button>
@@ -72,7 +72,7 @@
             <div class="requ-box-txt">
               <h2 class="title">{{requestedJob.customer.firstName}} {{requestedJob.customer.lastName}}</h2>
               <h6 class="sub-title">{{requestedJob[language_key_exchange_array[language_selected]]}}</h6>
-              <p>{{requestedJob.dateRequested | date: 'dd MMM yyyy'}}<!--<span></span>2Hrs--><span></span>${{requestedJob.jobPrice}}</p>
+              <p>{{requestedJob.dateRequested | amDateFormat: 'DD MMM yyyy'}}<!--<span></span>2Hrs--><span></span>${{requestedJob.jobPrice}}</p>
             </div>
             <div class="requ-box-btns">              
               <ion-button color="primary" (click)="JobResechedule(requestedJob.id)">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['scheduled_time']}}</ion-button>
@@ -96,7 +96,7 @@
             <div class="requ-box-txt">
               <h2 class="title">{{jobToAccept.handyman.firstName}} {{jobToAccept.handyman.lastName}}</h2>
               <h6 class="sub-title">{{jobToAccept[language_key_exchange_array[language_selected]]}}</h6>
-              <p>{{jobToAccept.dateRequested | date: 'dd MMM yyyy'}}<!--<span></span>2Hrs--><span></span>${{jobToAccept.jobPrice}}</p>
+              <p>{{jobToAccept.dateRequested | amDateFormat: 'DD MMM yyyy'}}<!--<span></span>2Hrs--><span></span>${{jobToAccept.jobPrice}}</p>
             </div>
             <div class="requ-box-btns">
               <!--<ion-button color="success" (click)="confirmUpdateJobStatus(jobToAccept.id,3)">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['button_completed']}}</ion-button>-->
@@ -116,7 +116,7 @@
             <div class="requ-box-txt">
               <h2 class="title">{{completedJob.handyman.firstName}} {{completedJob.handyman.lastName}}</h2>
               <h6 class="sub-title">{{completedJob[language_key_exchange_array[language_selected]]}}</h6>
-              <p>{{completedJob.dateCompleted | date: 'dd MMM yyyy'}}<span></span>{{completedJob.jobHours}}Hrs<span></span>${{completedJob.jobPrice}}</p>
+              <p>{{completedJob.dateCompleted | amDateFormat: 'DD MMM yyyy'}}<span></span>{{completedJob.jobHours}}Hrs<span></span>${{completedJob.jobPrice}}</p>
             </div>
             <div class="requ-box-btns">
               <ion-button color="success" disabled="true">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['completed']}}</ion-button>
@@ -134,7 +134,7 @@
             <div class="requ-box-txt">
               <h2 class="title">{{requestedJob.handyman.firstName}} {{requestedJob.handyman.lastName}}</h2>
               <h6 class="sub-title">{{requestedJob[language_key_exchange_array[language_selected]]}}</h6>
-              <p>{{requestedJob.dateRequested | date: 'dd MMM yyyy'}}<!--<span></span>2Hrs--><span></span>${{requestedJob.jobPrice}}</p>
+              <p>{{requestedJob.dateRequested | amDateFormat: 'DD MMM yyyy'}}<!--<span></span>2Hrs--><span></span>${{requestedJob.jobPrice}}</p>
             </div>
             <div class="requ-box-btns">
               <ion-button color="primary" (click)="JobResechedule(requestedJob.id)">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['scheduled_time']}}</ion-button>

@@ -119,7 +119,7 @@ export class MessagesCustomerHandymanPage implements OnInit
     //let currentDate = new Date().toISOString();
     //this.currentDate=format(parseISO(currentDate), 'yyyy-MM-dd hh:mm:ss');
     //let message_added_date = this.currentDate;
-    let message_added_date = moment().format('YYYY-MM-DD hh:mm:ss');
+    let message_added_date = moment().format('YYYY-MM-DD hh:mm:ss');    
     this.currentDate=message_added_date;
     let sendMessageObj = {
       job_id: job_id,

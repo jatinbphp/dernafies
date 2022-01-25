@@ -105,7 +105,7 @@
               <ion-button color="primary" *ngIf="jobCompleted.paid == 1 && jobCompleted.handyman.total_ratings == 0" (click)="addReviewAndRating(jobCompleted.id,jobCompleted[language_key_exchange_array[language_selected]],jobCompleted.assignedTrademan)">{{default_language_data['translation'][0]['general'][0][language_selected][0]['button_rate_and_review']}}</ion-button>
               <ion-button color="primary" *ngIf="jobCompleted.paid == 0 && jobCompleted.handyman.total_ratings > 0" disabled="true">{{default_language_data['translation'][0]['general'][0][language_selected][0]['button_rate_and_review']}}</ion-button>
               <div class="requ-details">
-                <p><span></span>{{jobCompleted.dateCompleted | date: 'dd MMM yyyy'}}<!--20 Sep 21--></p>
+                <p><span></span>{{jobCompleted.dateCompleted | amDateFormat: 'DD MMM yyyy'}}<!--20 Sep 21--></p>
                 <p><span></span>{{jobCompleted.jobHours}}Hrs</p>
                 <p><span></span>${{jobCompleted.jobPrice}}</p>
               </div>

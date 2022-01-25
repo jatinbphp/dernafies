@@ -41,7 +41,7 @@
           <img class="user-img" alt="" src="{{msg.user_image}}" *ngIf="msg.user_image!=''">
           <div class="msg-detail">
             <div class="msg-info">
-              <p>{{msg.user_name}}&nbsp;&nbsp;&nbsp;{{msg.message_added_date | date: 'MMM,dd YYYY hh:mm a'}}</p>
+              <p>{{msg.user_name}}&nbsp;&nbsp;&nbsp;{{msg.message_added_date | amLocale:'en' | amDateFormat: 'MMM,DD YYYY hh:mm a'}}</p>
             </div>
             <div class="msg-content">
               <span class="triangle"></span>
@@ -54,7 +54,7 @@
         <img class="user-img" alt="" src="{{msg.handyman_image}}" *ngIf="msg.handyman_image!=''">
         <div class="msg-detail">
           <div class="msg-info" *ngIf="msg.message != null">
-            <p>{{msg.handyman_name}}&nbsp;&nbsp;&nbsp;{{msg.message_added_date | date: 'MMM,dd YYYY hh:mm a'}}</p>
+            <p>{{msg.handyman_name}}&nbsp;&nbsp;&nbsp;{{msg.message_added_date | amLocale:'en' | amDateFormat: 'MMM,DD YYYY hh:mm a'}}</p>
           </div>
           <div class="msg-content" *ngIf="msg.message != null">
             <span class="triangle"></span>

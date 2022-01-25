@@ -6,6 +6,7 @@ import { HomePage } from './home.page';
 import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
 import { HomePageRoutingModule } from './home-routing.module';
 import { IonicRatingComponentModule } from 'ionic-rating-component';
+import { MomentModule } from 'angular2-moment';
 
 @NgModule({
   imports: [
@@ -14,6 +15,7 @@ import { IonicRatingComponentModule } from 'ionic-rating-component';
     FormsModule,
     ReactiveFormsModule,
     IonicRatingComponentModule,
+    MomentModule,
     ExploreContainerComponentModule,
     HomePageRoutingModule
   ],
