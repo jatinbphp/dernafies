@@ -4,6 +4,7 @@ import { ClientService } from '../providers/client.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { format, parseISO } from 'date-fns';
 import { IonDatetime } from '@ionic/angular';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-reschedule-job',
@@ -59,9 +60,10 @@ export class RescheduleJobPage implements OnInit
   {
     this.default_language_data = this.client.default_language_data;
 		this.language_selected = this.client.language_selected;    
-    let currentDate = new Date().toISOString();
-    this.currentDate=format(parseISO(currentDate), 'yyyy-MM-dd');
-    
+    //let currentDate = new Date().toISOString();
+    //this.currentDate=format(parseISO(currentDate), 'yyyy-MM-dd');
+    let currentDate = moment().format('YYYY-MM-DD hh:mm:ss');
+    this.currentDate = currentDate;
     this.id=localStorage.getItem('id');
     this.role = localStorage.getItem('role');
     this.user_type = (this.role == 'handyman') ? 2 : 3;

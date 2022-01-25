@@ -4,6 +4,7 @@ import { ClientService } from '../providers/client.service';
 import { FirebaseClientService } from '../providers/firebase-client.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { format, parseISO } from 'date-fns';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-messages-customer-handyman',
@@ -115,9 +116,11 @@ export class MessagesCustomerHandymanPage implements OnInit
     let handyman_has_readed = (this.role == 'handyman') ? 1 : 0;
     let message_added_by = (this.role) ? this.role : "";
     let firebase_message_id_for_job = (this.firebase_message_id_for_job) ? this.firebase_message_id_for_job : "";
-    let currentDate = new Date().toISOString();
-    this.currentDate=format(parseISO(currentDate), 'yyyy-MM-dd hh:mm:ss');
-    let message_added_date = this.currentDate;
+    //let currentDate = new Date().toISOString();
+    //this.currentDate=format(parseISO(currentDate), 'yyyy-MM-dd hh:mm:ss');
+    //let message_added_date = this.currentDate;
+    let message_added_date = moment().format('YYYY-MM-DD hh:mm:ss');
+    this.currentDate=message_added_date;
     let sendMessageObj = {
       job_id: job_id,
       user_id: user_id,
