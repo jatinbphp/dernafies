@@ -40,6 +40,7 @@ export class CurrentRequestsPage implements OnInit
     this.language_key_exchange_array['english']='categoryName';
     this.language_key_exchange_array['arabic']='categoryNameArabic';
     this.language_key_exchange_array['kurdish']='categoryNameKurdi';
+    this.showHomeContent();
   }
 
   async ionViewWillEnter()
@@ -49,7 +50,43 @@ export class CurrentRequestsPage implements OnInit
     this.id=localStorage.getItem('id');
     this.role = localStorage.getItem('role');
     this.user_type = (this.role == 'handyman') ? 2 : 3;
-
+    /*
+    //LOADER
+    const loadingHandyManAcceptedRequests = await this.loadingCtrl.create({
+      spinner: null,
+      //duration: 5000,
+      message: 'Please wait...',
+      translucent: true,
+      cssClass: 'custom-class custom-loading'
+    });
+    await loadingHandyManAcceptedRequests.present();
+    //LOADER
+    let dataHandyManNewJobRequest = {
+      user_id:this.id,        
+      user_type:this.user_type
+    }
+    await this.client.getJobRequestsForHandyMan(dataHandyManNewJobRequest).then(result => 
+    {	
+      console.log("ALL",result);
+      loadingHandyManAcceptedRequests.dismiss();//DISMISS LOADER			
+      this.requestedjobRequestsHandyMan=result['requested']; 
+      this.acceptedjobRequestsHandyMan=result['accepted']; 
+      this.completedJobRequestsHandyMan=result['completed'];
+      console.log("REQUESTED",this.requestedjobRequestsHandyMan);
+      console.log("ACCEPTED",this.acceptedjobRequestsHandyMan);
+      console.log("COMPLETED",this.completedJobRequestsHandyMan);
+            
+    },
+    error => 
+    {
+      loadingHandyManAcceptedRequests.dismiss();//DISMISS LOADER
+      console.log();
+    });//JOB REQUESTED,ACCEPTED,COMPLETED
+    */
+  }
+  
+  async showHomeContent()
+  {
     //LOADER
     const loadingHandyManAcceptedRequests = await this.loadingCtrl.create({
       spinner: null,
@@ -82,7 +119,7 @@ export class CurrentRequestsPage implements OnInit
       console.log();
     });//JOB REQUESTED,ACCEPTED,COMPLETED
   }
-  
+
   async confirmUpdateJobStatus(job_id,status_to_update)
   {
     let status = (status_to_update == 3) ? "Completed" : "";
@@ -240,5 +277,14 @@ export class CurrentRequestsPage implements OnInit
     });
 
     return await modal.present();
+  }
+
+  doRefresh(ev)
+  {
+    setTimeout(() => 
+    {
+        this.showHomeContent();
+        ev.target.complete();
+    }, 2000);
   }
 }

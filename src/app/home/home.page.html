@@ -9,6 +9,11 @@
 </ion-header>
 
 <ion-content>
+  <!--REFRESHER-->	
+	<ion-refresher slot="fixed" pullFactor="0.5" pullMin="100" pullMax="200" (ionRefresh)="doRefresh($event)">
+		<ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Please wait..."></ion-refresher-content>
+	</ion-refresher>
+	<!--REFRESHER-->
   <!--<ion-header>
     <h2>{{welcome_text}}</h2>
     <h1>{{greetings}}</h1>
@@ -47,7 +52,9 @@
       </ion-row>
     </div>
     <div class="src-box-main" *ngIf="role == 'customer'">
-      <ion-searchbar placeholder="{{default_language_data['translation'][0]['home'][0][language_selected][0]['search_for_services']}}" animated></ion-searchbar>
+      <form #searchHandyMan="ngForm" novalidate class="search-form">
+        <ion-searchbar placeholder="{{default_language_data['translation'][0]['home'][0][language_selected][0]['search_for_services']}}" type="search" autocomplete="off" autocorrect="off" spellcheck="false" name="search_text" [(ngModel)]="search_text" [ngModelOptions]="{standalone: false}" (keydown.enter)="searchForHandyMan(searchHandyMan)"></ion-searchbar>
+      </form>
     </div>
     <div class="category-slider-main" *ngIf="role == 'customer'">
       <div class="title-main">

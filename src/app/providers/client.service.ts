@@ -647,6 +647,26 @@ export class ClientService
 		});
 	}
 
+	searchHandyman(data)
+	{
+		let headers = this.getHeaderOptions();
+		return new Promise((resolve, reject) => 
+		{
+			let dataToPost = new HttpParams().set("latitude",data.latitude).set("longitude",data.longitude).set("categoryID",data.category_id).set("keyword",data.keyword).set("experience",data.experience).set("price_range",data.price_range).set("reviews",data.reviews);
+			this.http.post(this.api_url + "searchHandyman",  dataToPost , headers).subscribe((res: any) =>       
+			{
+				resolve(res);
+			},
+			err => 
+			{
+				console.log(err);
+				let errorMessage=this.getErrorMessage(err);
+				//this.showMessage(errorMessage);
+				reject(errorMessage);
+			});
+		});
+	}
+
   	getErrorMessage(err)
 	{	
 		if(err.error == null)

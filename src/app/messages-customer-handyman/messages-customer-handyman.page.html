@@ -11,6 +11,28 @@
 </ion-header>
 
 <ion-content>
+  <div class="loc-con-box" *ngIf="role == 'customer'">
+		<div class="review-box-txt">
+      <h2 class="title">{{resultDataHandyManForJob.firstName}} {{resultDataHandyManForJob.lastName}}</h2>
+      <h3 class="sub-title" [innerHTML]="resultDataJobDetail[language_key_exchange_array[language_selected]]"></h3>
+      <h3 class="sub-title" [innerHTML]="resultDataJobDetail.description"></h3>
+			<!--<div class="person-contact">
+				<p><ion-icon name="call"></ion-icon>{{resultDataHandyManForJob.phoneNumber}}</p>
+				<p><ion-icon name="mail"></ion-icon>{{resultDataHandyManForJob.email}}</p>
+			</div>-->
+		</div>		
+	</div>
+  <div class="loc-con-box" *ngIf="role == 'handyman'">
+		<div class="review-box-txt">
+      <h2 class="title">{{resultDataCustomerForJob.firstName}} {{resultDataCustomerForJob.lastName}}</h2>
+      <h3 class="sub-title" [innerHTML]="resultDataJobDetail[language_key_exchange_array[language_selected]]"></h3>
+      <h3 class="sub-title" [innerHTML]="resultDataJobDetail.description"></h3>
+			<!--<div class="person-contact">
+				<p><ion-icon name="call"></ion-icon>{{resultDataCustomerForJob.phoneNumber}}</p>
+				<p><ion-icon name="mail"></ion-icon>{{resultDataCustomerForJob.email}}</p>
+			</div>-->
+		</div>		
+	</div>
   <div class="message-wrap">
     <p *ngIf="resultDataCommunications.length == 0" class="no-data">No communications</p>
     <div *ngFor="let msg of resultDataCommunications" class="message">
@@ -46,16 +68,18 @@
 <ion-footer>
   <ion-toolbar color="light">
     <form [formGroup]="MessageBetweenCustomerAndHandyManForm" (ngSubmit)="sendMessage(MessageBetweenCustomerAndHandyManForm.value)">            
-      <ion-row class="ion-align-items-center">
-        <ion-col size="10">
-          <ion-textarea autoGrow="true" class="message-input" rows="1" maxLength="500" formControlName="message"></ion-textarea>
-        </ion-col>
-        <ion-col size="2">
-          <ion-button expand="block" color="primary" type="submit" [disabled]="!MessageBetweenCustomerAndHandyManForm.valid">
-            <ion-icon name="send" slot="icon-only"></ion-icon>
-          </ion-button>
-        </ion-col>
-      </ion-row>
+      <ion-grid>
+        <ion-row class="ion-align-items-center">
+          <ion-col size="10">
+            <ion-textarea autoGrow="true" class="message-input" rows="1" maxLength="500" formControlName="message"></ion-textarea>
+          </ion-col>
+          <ion-col size="2">
+            <ion-button expand="block" color="primary" icon-only type="submit" [disabled]="!MessageBetweenCustomerAndHandyManForm.valid">
+              <ion-icon name="send" slot="icon-only"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </form>
   </ion-toolbar>
 </ion-footer>

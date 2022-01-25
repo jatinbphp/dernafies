@@ -10,7 +10,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content>  
   <ion-header>
     <ion-segment [(ngModel)]="CurrentRequestList" (ionChange)="segmentSelected($event)">
         <ion-segment-button value="AcceptRequest">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['accept_request']}}</ion-segment-button>
@@ -18,6 +18,9 @@
         <ion-segment-button value="ScheduledTime">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['scheduled_time']}}</ion-segment-button>
       </ion-segment>
   </ion-header>
+  <ion-refresher slot="fixed" pullFactor="0.5" pullMin="100" pullMax="200" (ionRefresh)="doRefresh($event)">
+		<ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Please wait..."></ion-refresher-content>
+	</ion-refresher>
   <div class="main-div">
     <div *ngIf="role == 'handyman'" class="current-request-list" [ngSwitch]="CurrentRequestList">      
       <p *ngIf="acceptedjobRequestsHandyMan.length == 0 && CurrentRequestList=='AcceptRequest'" class="no-records">No records found.</p>

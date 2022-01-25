@@ -32,6 +32,7 @@ export class PastRequestsPage implements OnInit
 		this.language_key_exchange_array['english']='categoryName';
     	this.language_key_exchange_array['arabic']='categoryNameArabic';
     	this.language_key_exchange_array['kurdish']='categoryNameKurdi';
+		this.showHomeContent();
 	}
 
 	async ionViewWillEnter()
@@ -41,7 +42,40 @@ export class PastRequestsPage implements OnInit
 		this.id=localStorage.getItem('id');
 		this.role = localStorage.getItem('role');
 		this.user_type = (this.role == 'handyman') ? 2 : 3;
+		/*
+		//LOADER
+		const loadingHandyManRequests = await this.loadingCtrl.create({
+			spinner: null,
+			//duration: 5000,
+			message: 'Please wait...',
+			translucent: true,
+			cssClass: 'custom-class custom-loading'
+		});
+		await loadingHandyManRequests.present();
+		//LOADER
+		
+		let dataHandyManJobRequest = {
+			user_id:this.id,        
+			user_type:this.user_type
+		}
+		
+		await this.client.getJobRequestsForHandyMan(dataHandyManJobRequest).then(result => 
+		{	
+			loadingHandyManRequests.dismiss();//DISMISS LOADER			
+			this.jobRequestsHandyMan=result['completed']; 
+			console.log("JOBS",this.jobRequestsHandyMan);
+				
+		},
+		error => 
+		{
+			loadingHandyManRequests.dismiss();//DISMISS LOADER
+			console.log();
+		});//JOB REQUESTS FOR HANDYMAN
+		*/
+	}
 
+	async showHomeContent()
+	{
 		//LOADER
 		const loadingHandyManRequests = await this.loadingCtrl.create({
 			spinner: null,
@@ -82,4 +116,12 @@ export class PastRequestsPage implements OnInit
 		this.show_in_view='list';
 	}
 	
+	doRefresh(ev)
+	{
+		setTimeout(() => 
+		{
+			this.showHomeContent();
+			ev.target.complete();
+		}, 2000);
+	}
 }

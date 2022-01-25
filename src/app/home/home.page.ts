@@ -20,6 +20,8 @@ export class HomePage
   public language_selected = '';
 	public default_language_data: any = [];
   
+  public search_text:any = '';
+  
   public id:any = '';
   public role:any = '';
   public user_type:any = '';
@@ -64,9 +66,193 @@ export class HomePage
     this.province_language_key_exchange_array['english']='provinceName';
     this.province_language_key_exchange_array['arabic']='provinceNameArabic';
     this.province_language_key_exchange_array['kurdish']='provinceNameKurdi';
+
+    this.showHomeContent();
   }
 
   async ionViewWillEnter()
+  {
+    this.default_language_data = this.client.default_language_data;
+		this.language_selected = this.client.language_selected;
+    //this.rtl_or_ltr = this.client.rtl_or_ltr;
+    console.log(this.rtl_or_ltr);
+    this.id=localStorage.getItem('id');
+    this.role = localStorage.getItem('role');
+    this.user_type = (this.role == 'handyman') ? 2 : 3;
+    if(this.id!='' && this.id!=null && this.id!=undefined && this.id!='null' && this.id!='undefined')
+    {
+      let today = new Date()
+      let curHr = today.getHours()
+      if(curHr < 12)
+      {
+        if(this.language_selected == "english")
+        {
+          this.greetings='Good Morning';
+        }
+        if(this.language_selected == "arabic")
+        {
+          this.greetings='صباح الخير';
+        }
+        if(this.language_selected == "kurdish")
+        {
+          this.greetings='Roj baş';
+        }
+      }
+      else if (curHr < 18) 
+      {
+        if(this.language_selected == "english")
+        {
+          this.greetings='Good Afternoon';
+        }
+        if(this.language_selected == "arabic")
+        {
+          this.greetings='طاب مسائك';
+        }
+        if(this.language_selected == "kurdish")
+        {
+          this.greetings='Paş nîvro';
+        }
+      }
+      else
+      {
+        if(this.language_selected == "english")
+        {
+          this.greetings='Good Evening';
+        }
+        if(this.language_selected == "arabic")
+        {
+          this.greetings='مساء الخير';
+        }
+        if(this.language_selected == "kurdish")
+        {
+          this.greetings='Êvar baş';
+        }
+      }
+      let firstName = (localStorage.getItem('firstName')) ? localStorage.getItem('firstName') : "";
+      let lastName = (localStorage.getItem('lastName')) ? localStorage.getItem('lastName') : "";
+      this.welcome_text = 'Hi, '+firstName+' '+lastName;      
+    }
+    /*
+    if(this.role == 'customer')
+    {
+      this.platform.ready().then(async () => 
+      {
+        const coordinates = await this.geolocation.getCurrentPosition();
+        this.current_latitude=Number(coordinates.coords.latitude);
+        this.current_longitude=Number(coordinates.coords.longitude);
+      });
+      //LOADER
+      const loading = await this.loadingCtrl.create({
+        spinner: null,
+        //duration: 5000,
+        message: 'Please wait...',
+        translucent: true,
+        cssClass: 'custom-class custom-loading'
+      });
+      await loading.present();
+      //LOADER
+      await this.client.getCategories().then(result => 
+      {	
+        loading.dismiss();//DISMISS LOADER			
+        this.resultDataCategories=result;
+        console.log(this.resultDataCategories);
+              
+      },
+      error => 
+      {
+        loading.dismiss();//DISMISS LOADER
+        console.log();
+      });//CATEGORIES
+
+      //LOADER
+      const loadingFeaturedHandyMan = await this.loadingCtrl.create({
+        spinner: null,
+        //duration: 5000,
+        message: 'Please wait...',
+        translucent: true,
+        cssClass: 'custom-class custom-loading'
+      });
+      await loadingFeaturedHandyMan.present();
+      //LOADER
+      let dataHandyMan = {
+        categoryID:0,
+        latitude:this.current_latitude,
+        longitude:this.current_longitude,
+        limit:3
+      }
+      await this.client.getFeaturedHandyman(dataHandyMan).then(result => 
+      {	
+        loadingFeaturedHandyMan.dismiss();//DISMISS LOADER			
+        this.resultDataFeaturedHandyMan=result; 
+        console.log("Featured",this.resultDataFeaturedHandyMan);
+              
+      },
+      error => 
+      {
+        loadingFeaturedHandyMan.dismiss();//DISMISS LOADER
+        console.log();
+      });//FEATURED HANDYMAN
+
+      //LOADER
+      const loadingHandyManCompletedJobRequests = await this.loadingCtrl.create({
+        spinner: null,
+        //duration: 5000,
+        message: 'Please wait...',
+        translucent: true,
+        cssClass: 'custom-class custom-loading'
+      });
+      await loadingHandyManCompletedJobRequests.present();
+      //LOADER
+      let dataHandyManJobRequest = {
+        user_id:this.id,        
+        user_type:this.user_type
+      }
+      await this.client.getJobRequestsForHandyMan(dataHandyManJobRequest).then(result => 
+      {	
+        loadingHandyManCompletedJobRequests.dismiss();//DISMISS LOADER			
+        this.completedJobRequestsHandyMan=result['completed']; 
+        console.log("COMPLETED JOBS",this.completedJobRequestsHandyMan);
+              
+      },
+      error => 
+      {
+        loadingHandyManCompletedJobRequests.dismiss();//DISMISS LOADER
+        console.log();
+      });//COMPLETED JOB REQUESTS FOR HANDYMAN
+    }
+    if(this.role == 'handyman')
+    {
+      //LOADER
+      const loadingHandyManRequests = await this.loadingCtrl.create({
+        spinner: null,
+        //duration: 5000,
+        message: 'Please wait...',
+        translucent: true,
+        cssClass: 'custom-class custom-loading'
+      });
+      await loadingHandyManRequests.present();
+      //LOADER
+      let dataHandyManJobRequest = {
+        user_id:this.id,        
+        user_type:this.user_type
+      }
+      await this.client.getJobRequestsForHandyMan(dataHandyManJobRequest).then(result => 
+      {	
+        loadingHandyManRequests.dismiss();//DISMISS LOADER			
+        this.jobRequestsHandyMan=result['requested']; 
+        console.log("JOBS",this.jobRequestsHandyMan);
+              
+      },
+      error => 
+      {
+        loadingHandyManRequests.dismiss();//DISMISS LOADER
+        console.log();
+      });//JOB REQUESTS FOR HANDYMAN
+    }
+    */
+  }
+
+  async showHomeContent()
   {
     this.default_language_data = this.client.default_language_data;
 		this.language_selected = this.client.language_selected;
@@ -245,8 +431,6 @@ export class HomePage
       });//JOB REQUESTS FOR HANDYMAN
     }
   }
-
-  
   
   categoriecheckScreen() {
     let innerWidth = window.innerWidth;
@@ -484,5 +668,31 @@ export class HomePage
       }
     };
     this.client.router.navigate(['/tabs/review-and-rating'], navigationExtras);
+  }
+
+  doRefresh(ev)
+  {
+    setTimeout(() => 
+    {
+        this.showHomeContent();
+        ev.target.complete();
+    }, 2000);
+  }
+
+  searchForHandyMan(form)
+  {
+    let searched_text = form.controls.search_text.value;
+    let objSearch=
+    {
+      keyword:(searched_text) ? searched_text : "",
+      latitude:(this.current_latitude) ? this.current_latitude : "",
+      longitude:(this.current_longitude) ? this.current_longitude : "",
+      category_id:0,
+      experience:0,
+      price_range:0,
+      reviews:0,
+    }
+    localStorage.setItem('search_for_handyman',JSON.stringify(objSearch));
+    this.client.router.navigate(['tabs/search']);
   }
 }

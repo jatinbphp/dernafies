@@ -617,6 +617,25 @@
                   }
                ]
             }
+         ],
+         "search": [
+            {
+               "english": [
+                  {
+                     "page_title":"Search"
+                  }
+               ],
+               "arabic": [
+                  {
+                     "page_title":"بحث"
+                  }
+               ],
+               "kurdish": [
+                  {
+                     "page_title":"Gerr"
+                  }
+               ]
+            }
          ]
       }
    ]
