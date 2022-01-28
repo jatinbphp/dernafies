@@ -10,5 +10,7 @@
 
 <ion-content>
   <ion-header></ion-header>
-  <div class="main-div"></div>
+  <div class="main-div">
+    <p *ngIf="resultDataSearch.length == 0" class="no-records">No records found.</p>
+  </div>
 </ion-content>

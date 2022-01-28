@@ -35,7 +35,7 @@ export class SearchPage
   async ionViewWillEnter()
   {
     this.search_for_handyman=JSON.parse(localStorage.getItem('search_for_handyman'));
-    //if(this.search_for_handyman.length > 0)
+    if(this.search_for_handyman!=null && this.search_for_handyman!=undefined && this.search_for_handyman!='null' && this.search_for_handyman!='undefined')
     {
       //LOADER
       const loading = await this.loadingCtrl.create({
@@ -48,13 +48,13 @@ export class SearchPage
       await loading.present();
       //LOADER
       let objSearch = {
-        keyword:this.search_for_handyman.keyword,
-        latitude:this.search_for_handyman.latitude,
-        longitude:this.search_for_handyman.longitude,
-        category_id:this.search_for_handyman.category_id,
-        experience:this.search_for_handyman.experience,
-        price_range:this.search_for_handyman.price_range,
-        reviews:this.search_for_handyman.reviews,  
+        keyword:(this.search_for_handyman.keyword) ? this.search_for_handyman.keyword : "",
+        latitude:(this.search_for_handyman.latitude) ? this.search_for_handyman.latitude : "",
+        longitude:(this.search_for_handyman.longitude) ? this.search_for_handyman.longitude : "",
+        category_id:(this.search_for_handyman.category_id) ? this.search_for_handyman.category_id : "",
+        experience:(this.search_for_handyman.experience) ? this.search_for_handyman.experience : "",
+        price_range:(this.search_for_handyman.price_range) ? this.search_for_handyman.price_range : "",
+        reviews:(this.search_for_handyman.reviews) ? this.search_for_handyman.reviews : "",  
       }
       await this.client.searchHandyman(objSearch).then(result => 
       {	
