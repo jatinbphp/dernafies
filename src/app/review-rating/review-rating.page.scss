@@ -5,8 +5,12 @@ ion-header {
     	--opacity: 1;
     	--opacity-scale: unset;
 		ion-title {
-            padding: 0px 80px;
-			padding: 0;
+            padding: 0px 10px;
+            width: fit-content;
+            width: -webkit-fit-content;
+            width: -moz-fit-content;
+            width: -ms-fit-content;
+            width: -o-fit-content;
 		}
 	}
 }
