@@ -11,9 +11,9 @@ ion-menu {
 			ion-item {
 				--min-height: fit-content;
 				&.menu-icon {
-					padding: 28px;
+					padding: 30px;
 					@media(max-width:374px) {
-						padding: 23px;
+						padding: 25px;
 					}
 					img {
 						max-width: 100%;
@@ -37,10 +37,10 @@ ion-menu {
 			ion-menu-toggle {
 				ion-item {
 					border-top: 1px solid rgba(255,255,255,0.4);
-					padding: 20px 8px;
+					padding: 24px 8px;
 					--min-height: fit-content;
 					@media(max-width:374px) {
-						padding: 16px 6px;
+						padding: 18px 6px;
 					}
 					ion-icon {
 						color: var(--White);

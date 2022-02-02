@@ -2,6 +2,12 @@ ion-header {
 	ion-toolbar {
 		--background: transparent;
         ion-title {
+            // padding: 0px 10px;
+            // width: fit-content;
+            // width: -webkit-fit-content;
+            // width: -moz-fit-content;
+            // width: -ms-fit-content;
+            // width: -o-fit-content;
             padding: 0px;
         }
         img {
@@ -14,6 +20,7 @@ ion-header {
             margin: 0px auto 12px;
             //filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(96deg) brightness(103%) contrast(101%);
         }
+        ion-button {}
 	}
 }
 ion-content {

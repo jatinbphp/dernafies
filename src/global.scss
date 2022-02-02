@@ -337,6 +337,15 @@ ion-select {
     background-size: 18px !important;
 }
 
+app-sign-in {
+    ion-select {
+        background-image: url(assets/images/down-arw2.png) !important;
+        background-position: 96% 50% !important;
+        background-repeat: no-repeat !important;
+        background-size: 18px !important;
+    }
+}
+
 ion-menu {
     ion-backdrop {
         background-color: transparent !important;
@@ -487,6 +496,10 @@ ion-header ion-toolbar {
 }
 ion-header ion-toolbar.pb-0 {
     --padding-bottom: 0px !important;
+}
+ion-header ion-toolbar.ptb-20 {
+    --padding-bottom: 20px !important;
+    --padding-top: 20px;
 }
 ion-header ion-toolbar.pt-0 {
     --padding-top: 0px !important;
@@ -651,4 +664,45 @@ ion-header ion-toolbar ion-title {
 		padding: 0.3em 0.3em;
 		align-items: center;
 	}
+}
+
+app-handyman-selected, app-review-and-rating {
+    ionic-rating-component {
+        .ionic5-star-rating {
+            ion-button {
+                &.rate-button {
+                    width: 55px !important;
+                    height: 55px !important;
+                    @media(max-width:374px) {
+                        width: 40px !important;
+                        height: 40px !important;
+                    }
+                    ion-icon {
+                        font-size: 55px !important;
+                        @media(max-width:374px) {
+                            font-size: 40px !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+app-home {
+    ionic-rating-component {
+        .ionic5-star-rating {
+            ion-button {
+                &.rate-button {
+                    width: 17px !important;
+                    height: 17px !important;
+                    @media(max-width:374px) {}
+                    ion-icon {
+                        font-size: 17px !important;
+                        @media(max-width:374px) {}
+                    }
+                }
+            }
+        }
+    }
 }

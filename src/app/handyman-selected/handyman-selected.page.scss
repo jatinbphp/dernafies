@@ -79,10 +79,11 @@ ion-content {
                         padding: 0px;
                         margin: -40px auto 0px;
                         text-align: var(--text-center);
+                        background-color: var(--White);
                         img {
                             width: 100%;
                             height: 100%;
-                            object-fit: cover;
+                            object-fit: contain;
                             object-position: center;
                         }
                         ion-icon, img.check-mark {
@@ -220,6 +221,9 @@ ion-content {
                             padding: 12px 6px;
                             margin: 0px;
                             border-right: 1px solid #f8f8f8;
+                            display: flex;
+                            flex-flow: column;
+                            justify-content: space-between;
                             &:last-child {
                                 border-right: 0px;
                             }

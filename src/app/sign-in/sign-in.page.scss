@@ -58,7 +58,7 @@ ion-content {
             	ion-grid {
             		ion-row {
             			ion-col {
-            				margin: 0px 0px 16px;
+            				margin: 0px 0px 20px;
             				position: relative;
                             h3 {
                                 width: 100%;
@@ -124,6 +124,34 @@ ion-content {
                                     top: 40px;
                                 }
             				}
+                            ion-select {
+                                width: 100%;
+                                height: 55px;
+                                line-height: 55px;
+                                // border-radius: 10px;
+                                // box-shadow: 2.046px 2.194px 25.5px rgba(4,7,7,0.06);
+                                background-color: transparent;
+                                --padding-start: 10px;
+                                font-size: 18px;
+                                line-height: normal;
+                                color: var(--White);
+                                font-family: var(--font-NeueHaasUnicaPro-Bold);
+                                border-bottom: 1px solid #fff;
+                                --placeholder-opacity: 1;
+                                --placeholder-color: var(--White);
+                                @media(max-width:374px) {
+                                    font-size: 15px;
+                                }
+                                ion-select-option {
+                                    font-size: 18px;
+                                    line-height: normal;
+                                    color: var(--White);
+                                    font-family: var(--font-NeueHaasUnicaPro-Bold);
+                                    @media(max-width:374px) {
+                                        font-size: 15px;
+                                    }
+                                }
+                            }
                             .validation-errors {
                                 .error-message {
                                     color: var(--White);
