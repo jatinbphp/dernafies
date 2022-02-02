@@ -316,7 +316,7 @@ export class HomePage
     }
     if(this.role == 'customer')
     {
-      this.platform.ready().then(async () => 
+      await this.platform.ready().then(async () => 
       {
         const coordinates = await this.geolocation.getCurrentPosition();
         this.current_latitude=Number(coordinates.coords.latitude);

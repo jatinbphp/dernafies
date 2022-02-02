@@ -97,7 +97,7 @@ export class ClientService
 			{
 				if(res.status == true)
 				{
-					this.showMessage(res.message);
+					//this.showMessage(res.message);
 					this.serverResponse=res;
 					resolve(this.serverResponse);					
 				}

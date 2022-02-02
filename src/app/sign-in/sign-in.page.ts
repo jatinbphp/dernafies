@@ -13,6 +13,7 @@ export class SignInPage implements OnInit
 {
 	public language_selected = '';
 	public default_language_data: any = [];
+	public rtl_or_ltr = '';
 
 	public resultData:any={};
 	public passwordType: string = 'password';
@@ -38,14 +39,25 @@ export class SignInPage implements OnInit
 
 	constructor(public client: ClientService, public fb: FormBuilder, public loadingCtrl: LoadingController)
 	{ 
+		this.client.getObservableOnLanguageChange().subscribe((data) => {
+			this.language_selected = data.language_selected;
+			this.rtl_or_ltr = (this.language_selected == 'arabic') ? 'rtl' : 'ltr';
+			console.log('Data received', data);
+		});//THIS OBSERVABLE IS USED TO SET DEFAULT OR SELECTED LANGUAGE
+		/*
 		this.default_language_data = this.client.default_language_data;
 		this.language_selected = this.client.language_selected;
 		console.log("DATA",this.default_language_data);
 		console.log("LANG",this.language_selected);
+		*/
 	}
 
 	ngOnInit()
-	{ }
+	{ 
+		this.default_language_data = this.client.default_language_data;
+		this.language_selected = this.client.language_selected;
+		this.rtl_or_ltr = (this.language_selected == 'arabic') ? 'rtl' : 'ltr';
+	}
 
 	ionViewWillEnter()
 	{
@@ -105,5 +117,15 @@ export class SignInPage implements OnInit
 			loading.dismiss();//DISMISS LOADER
 			console.log();
 		});
+	}
+
+	changeDefaultLanguage(ev)
+	{
+		let language = ev.detail.value;
+		localStorage.setItem('default_language',language);
+		this.client.publishSomeDataOnLanguageChange({
+			language_selected: language
+		});//THIS OBSERVABLE IS USED TO SET DEFAULT OR SELECTED LANGUAGE
+		//console.log(ev);
 	}
 }

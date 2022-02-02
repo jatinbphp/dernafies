@@ -5,6 +5,7 @@
             {
                "english": [
                   {
+                     "home":"Home",
                      "profile":"Profile",
                      "current_requests":"Current Requests",
                      "past_requests":"Past Requests",
@@ -14,6 +15,7 @@
                ],
                "arabic": [
                   {
+                     "home":"مسكن",
                      "profile":"الملف الشخصي",
                      "current_requests":"الطلبات الحالية",
                      "past_requests":"الطلبات السابقة",
@@ -23,6 +25,7 @@
                ],
                "kurdish": [
                   {
+                     "home":"Xane",
                      "profile":"Tengal",
                      "current_requests":"Daxwazên Niha",
                      "past_requests":"Daxwazên berê",
@@ -43,7 +46,9 @@
                      "sign_up":"Sign up",
                      "email_address": "Email Address",
                      "password": "Password",
-                     "login_in_button": "Log In"
+                     "login_in_button": "Log In",
+                     "language_dropdown_title":"Languages",
+                     "language_dropdown_placeholder":"Select Language"
                   }
                ],
                "arabic": [
@@ -55,7 +60,9 @@
                      "sign_up":"اشتراك",
                      "email_address":"عنوان البريد الالكتروني",
                      "password": "كلمه السر",
-                     "login_in_button": "تسجيل الدخول"
+                     "login_in_button": "تسجيل الدخول",
+                     "language_dropdown_title":"اللغات",
+                     "language_dropdown_placeholder":"اختار اللغة"
                   }
                ],
                "kurdish": [
@@ -67,7 +74,9 @@
                      "sign_up":"Tomar kirin",
                      "email_address": "Navnîşana emailê",
                      "password": "Şîfre",
-                     "login_in_button": "log.in"
+                     "login_in_button": "log.in",
+                     "language_dropdown_title":"Languages",
+                     "language_dropdown_placeholder":"Ziman hilbijêrin"
                   }
                ]
             }
