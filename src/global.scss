@@ -481,8 +481,15 @@ app-handyman-view-all {
 // header-overlap-issue-fix-style-start
 ion-header ion-toolbar {
     --min-height: fit-content;
-    --padding-top: calc(env(safe-area-inset-top) + 20px);
+    //--padding-top: calc(env(safe-area-inset-top) + 20px);
+    --padding-top: calc(env(safe-area-inset-top) + 14px);
     --padding-bottom: 20px;
+}
+ion-header ion-toolbar.pb-0 {
+    --padding-bottom: 0px !important;
+}
+ion-header ion-toolbar.pt-0 {
+    --padding-top: 0px !important;
 }
 ion-menu ion-content {
     --padding-top: calc(env(safe-area-inset-top) + 20px);
