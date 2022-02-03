@@ -622,6 +622,12 @@ ion-header ion-toolbar ion-title {
 [dir=rtl] .filter-img-sec .filter-img {
     margin: 0px 10px 0px 0px !important;
 }
+[dir=rtl] app-sign-in ion-radio-group.radio-list ion-item {
+    margin: 0px 0px 0px 25px !important;
+}
+[dir=rtl] app-sign-in ion-radio-group.radio-list ion-item:last-child {
+    margin: 0px !important;
+}
 // right-to-left-content-issue-fixed-style-end
 .my-action-sheet
 {
