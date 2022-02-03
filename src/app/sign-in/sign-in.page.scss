@@ -152,32 +152,62 @@ ion-content {
                                     }
                                 }
                             }
-                            ion-list {
+                            ion-radio-group {
                                 &.radio-list {
                                     width: 100%;
-                                    display: flex;
-                                    flex-wrap: wrap;
                                     padding: 0px;
                                     margin: 0px;
-                                    ion-item {
-                                        width: fit-content;
-                                        width: -webkit-fit-content;
-                                        width: -moz-fit-content;
-                                        width: -ms-fit-content;
-                                        width: -o-fit-content;
-                                        min-width: fit-content;
-                                        min-width: -webkit-fit-content;
-                                        min-width: -moz-fit-content;
-                                        min-width: -ms-fit-content;
-                                        min-width: -o-fit-content;
-                                        max-width: fit-content;
-                                        max-width: -webkit-fit-content;
-                                        max-width: -moz-fit-content;
-                                        max-width: -ms-fit-content;
-                                        max-width: -o-fit-content;
-                                        margin: 0px 25px 0px 0px;
-                                        &:last-child {
-                                            margin-right: 0px;
+                                    ion-list {
+                                        width: 100%;
+                                        display: flex;
+                                        flex-wrap: wrap;
+                                        padding: 0px;
+                                        margin: 0px;
+                                        ion-item {
+                                            width: fit-content;
+                                            width: -webkit-fit-content;
+                                            width: -moz-fit-content;
+                                            width: -ms-fit-content;
+                                            width: -o-fit-content;
+                                            min-width: fit-content;
+                                            min-width: -webkit-fit-content;
+                                            min-width: -moz-fit-content;
+                                            min-width: -ms-fit-content;
+                                            min-width: -o-fit-content;
+                                            max-width: fit-content;
+                                            max-width: -webkit-fit-content;
+                                            max-width: -moz-fit-content;
+                                            max-width: -ms-fit-content;
+                                            max-width: -o-fit-content;
+                                            margin: 0px 25px 0px 0px;
+                                            &:last-child {
+                                                margin-right: 0px;
+                                            }
+                                            ion-radio {
+                                                margin: 0px 6px;
+                                                width: 22px;
+                                                height: 22px;
+                                                --color: #0d91f3;
+                                                --color-checked: #0d91f3;
+                                                --inner-border-radius: 50%;
+                                                border: 2px solid #fff;
+                                                border-radius: 50%;
+                                                margin-top: -10px;
+                                                background-color: transparent;
+                                                --border-width: 0px;
+                                                &.md {
+                                                    --color-checked: #fff;
+                                                }
+                                                &.radio-checked {
+                                                    background-color: #fff;
+                                                }
+                                                &.md {
+                                                    &.radio-checked {
+                                                        background-color: transparent;
+                                                    }
+                                                }
+                                                @media(max-width:374px) {}
+                                            }
                                         }
                                     }
                                 }
