@@ -152,6 +152,36 @@ ion-content {
                                     }
                                 }
                             }
+                            ion-list {
+                                &.radio-list {
+                                    width: 100%;
+                                    display: flex;
+                                    flex-wrap: wrap;
+                                    padding: 0px;
+                                    margin: 0px;
+                                    ion-item {
+                                        width: fit-content;
+                                        width: -webkit-fit-content;
+                                        width: -moz-fit-content;
+                                        width: -ms-fit-content;
+                                        width: -o-fit-content;
+                                        min-width: fit-content;
+                                        min-width: -webkit-fit-content;
+                                        min-width: -moz-fit-content;
+                                        min-width: -ms-fit-content;
+                                        min-width: -o-fit-content;
+                                        max-width: fit-content;
+                                        max-width: -webkit-fit-content;
+                                        max-width: -moz-fit-content;
+                                        max-width: -ms-fit-content;
+                                        max-width: -o-fit-content;
+                                        margin: 0px 25px 0px 0px;
+                                        &:last-child {
+                                            margin-right: 0px;
+                                        }
+                                    }
+                                }
+                            }
                             .validation-errors {
                                 .error-message {
                                     color: var(--White);

@@ -89,6 +89,12 @@ ion-content {
                         @media(max-width:340px) {
                             transform: translateY(3px);
                         }
+                        &.md {
+                            font-size: 34px;
+                            @media(max-width:374px) {
+                                font-size: 32px;
+                            }
+                        }
                     }
                 }
             }

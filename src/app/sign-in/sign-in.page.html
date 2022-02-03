@@ -21,11 +21,25 @@
             </ion-col> -->
             <ion-col size="12" class="ion-no-padding">
               <ion-label position="stacked">{{default_language_data['translation'][0]['login'][0][language_selected][0]['language_dropdown_title']}}</ion-label>
-              <ion-select placeholder="{{default_language_data['translation'][0]['login'][0][language_selected][0]['language_dropdown_placeholder']}}" (ionChange)="changeDefaultLanguage($event)">
+              <!-- <ion-select placeholder="{{default_language_data['translation'][0]['login'][0][language_selected][0]['language_dropdown_placeholder']}}" (ionChange)="changeDefaultLanguage($event)">
                 <ion-select-option value="arabic">Arabic</ion-select-option>
                 <ion-select-option value="kurdish">Kurdish</ion-select-option>
                 <ion-select-option value="english">English</ion-select-option>
-              </ion-select>
+              </ion-select> -->
+              <ion-list class="radio-list">
+                <ion-item>
+                  <ion-checkbox></ion-checkbox>
+                  <p>Arabic</p>
+                </ion-item>
+                <ion-item>
+                  <ion-checkbox></ion-checkbox>
+                  <p>Kurdish</p>
+                </ion-item>
+                <ion-item>
+                  <ion-checkbox></ion-checkbox>
+                  <p>English</p>
+                </ion-item>
+              </ion-list>
             </ion-col>
             <ion-col size="12" class="ion-no-padding">
               <ion-label position="stacked">{{default_language_data['translation'][0]['login'][0][language_selected][0]['email_address']}}</ion-label>

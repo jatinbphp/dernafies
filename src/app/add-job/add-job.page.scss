@@ -19,7 +19,8 @@ ion-content {
         width: 100%;
         border-radius: 0px 0px 35px 35px;
         background: #f8f8f8;
-        padding: 45px 16px 60px;
+        //padding: 45px 16px 60px;
+        padding: 25px 16px 30px;
         height: fit-content;
         height: -webkit-fit-content;
         height: -moz-fit-content;
@@ -39,7 +40,7 @@ ion-content {
         // }
         form {
         	width: 100%;
-        	padding: 0px 0px 20px;
+        	padding: 0px 0px 40px;
         	ion-grid {
         		ion-row {
         			ion-col {
@@ -207,7 +208,8 @@ ion-content {
         			ion-row {
     	    			justify-content: center;
                         align-items: center;
-    	    			margin: 40px 0px 0px;
+    	    			//margin: 40px 0px 0px;
+                        margin: 16px 0px 10px;
         				ion-col {
         					flex: unset !important;
     					    width: fit-content !important;
@@ -272,14 +274,15 @@ ion-content {
         }
     }
     .loc-con-box {
-        width: calc(100% - 32px);
+        //width: calc(100% - 32px);
+        width: 100%;
         background-color: var(--White);
         border-radius: 30px;
         padding: 23px 26px 27px;
-        position: absolute;
-        bottom: 20px;
-        left: 0;
-        right: 0;
+        // position: absolute;
+        // bottom: 20px;
+        // left: 0;
+        // right: 0;
         margin: 0px auto;
         .review-box-txt {
             width: 100%;
@@ -319,6 +322,12 @@ ion-content {
                         }
                         @media(max-width:340px) {
                             transform: translateY(3px);
+                        }
+                        &.md {
+                            font-size: 34px;
+                            @media(max-width:374px) {
+                                font-size: 32px;
+                            }
                         }
                     }
                 }
