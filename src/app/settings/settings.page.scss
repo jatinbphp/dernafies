@@ -1,14 +1,12 @@
 ion-header {
 	ion-toolbar {
 		--background: transparent;
-        --border-width: 0px;
-        --opacity: 1;
-        --opacity-scale: unset;
-        ion-buttons {}
+        // --border-width: 0px;
+        // --opacity: 1;
+        // --opacity-scale: unset;
         ion-title {
-            padding: 0px 20px;
+            padding: 0px 18px;
         }
-        ion-button {}
 	}
 }
 ion-content {
