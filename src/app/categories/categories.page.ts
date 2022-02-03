@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { Platform, LoadingController } from '@ionic/angular';
+import { Platform, LoadingController, ModalController } from '@ionic/angular';
 import { ClientService } from '../providers/client.service';
 import { NavigationExtras } from '@angular/router';
 import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
 import { NativeGeocoder, NativeGeocoderResult, NativeGeocoderOptions } from '@awesome-cordova-plugins/native-geocoder/ngx';
+import { ProfilePage } from '../profile/profile.page';
 
 @Component({
   selector: 'app-categories',
@@ -22,7 +23,7 @@ export class CategoriesPage
   public resultDataCategories: any = [];
   public language_key_exchange_array: any = [];
   public queryString: any=[];
-  constructor(public client: ClientService, public loadingCtrl: LoadingController, private geolocation: Geolocation, private platform: Platform, private nativeGeocoder: NativeGeocoder) 
+  constructor(public client: ClientService, public modalCtrl: ModalController, public loadingCtrl: LoadingController, private geolocation: Geolocation, private platform: Platform, private nativeGeocoder: NativeGeocoder) 
   {
     this.client.getObservableOnLanguageChange().subscribe((data) => {
 			this.language_selected = data.language_selected;
@@ -98,4 +99,20 @@ export class CategoriesPage
     */
   }
   
+  async showMyProfile()
+  {
+    let id = (localStorage.getItem('id')) ? localStorage.getItem('id') : undefined;
+    if(id!='' && id!='null' && id!=null && id!=undefined && id!='undefined')
+    {
+      const modal = await this.modalCtrl.create({
+        component: ProfilePage,
+      });
+
+      return await modal.present();
+    }
+    else 
+    {
+      this.client.router.navigate(['sign-in']);  
+    }
+  }
 }

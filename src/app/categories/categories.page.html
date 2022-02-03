@@ -4,9 +4,7 @@
       <ion-menu-button auto-hide="false"><img src="../../assets/images/menu-icon1.png"></ion-menu-button>     
     </ion-buttons>
     <ion-title>{{default_language_data['translation'][0]['general'][0][language_selected][0]['categories']}}</ion-title>
-    <ion-button slot="end" routerDirection="back" routerLink="/tabs/home">
-      <ion-icon name="arrow-back-outline"></ion-icon>
-    </ion-button>
+    <ion-button slot="end" (click)="showMyProfile()"><img src="../../assets/images/user-icon1.png"></ion-button>
   </ion-toolbar>
 </ion-header>
 
