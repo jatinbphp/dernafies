@@ -531,8 +531,7 @@ ion-header ion-toolbar ion-title {
 // header-overlap-issue-fix-style-end
 
 // iphone-issue-fixed-style-start
-.ios app-home ion-header.header-ios ion-toolbar,
-.ios app-settings ion-header.header-ios ion-toolbar {
+.ios ion-header.header-ios ion-toolbar {
     padding: 0px !important;
 }
 .ios ion-searchbar.ios .searchbar-input-container ion-icon.searchbar-search-icon {
