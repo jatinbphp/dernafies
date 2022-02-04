@@ -25,10 +25,12 @@ export class SignUpPage implements OnInit
   public resultDataDistricts: any = [];
   public resultDataCities: any = [];
   public resultDataProvince: any = [];
+  public resultDataSubscriptionPlans: any = [];
   public language_key_exchange_array: any = [];
   public language_key_exchange_district_array: any = [];
   public language_key_exchange_city_array: any = [];
   public language_key_exchange_province_array: any = [];
+  public language_key_exchange_subscription_plan: any = [];
 
   public gooeleMap: any;
   public latitude:any='';
@@ -143,7 +145,11 @@ export class SignUpPage implements OnInit
     
     this.language_key_exchange_province_array['english']='provinceName';
     this.language_key_exchange_province_array['arabic']='provinceNameArabic';
-    this.language_key_exchange_province_array['kurdish']='provinceNameKurdi'; 
+    this.language_key_exchange_province_array['kurdish']='provinceNameKurdi';
+    
+    this.language_key_exchange_subscription_plan['english']='planName';
+    this.language_key_exchange_subscription_plan['arabic']='planNameArabic';
+    this.language_key_exchange_subscription_plan['kurdish']='planNameKurdish';
 
     //LOADER
 		const loading = await this.loadingCtrl.create({
@@ -213,6 +219,29 @@ export class SignUpPage implements OnInit
       loadingProvince.dismiss();//DISMISS LOADER
       console.log();
     });//Province
+
+    //LOADER
+		const loadingSubscriptionPlans = await this.loadingCtrl.create({
+			spinner: null,
+			//duration: 5000,
+			message: 'Please wait...',
+			translucent: true,
+			cssClass: 'custom-class custom-loading'
+		});
+		await loadingSubscriptionPlans.present();
+		//LOADER
+    await this.client.getSubscriptionPlan().then(resultSubscription => 
+    {	
+      loadingSubscriptionPlans.dismiss();//DISMISS LOADER			
+      this.resultDataSubscriptionPlans=resultSubscription;
+      console.log("Subscriptions",this.resultDataSubscriptionPlans);
+            
+    },
+    error => 
+    {
+      loadingSubscriptionPlans.dismiss();//DISMISS LOADER
+      console.log();
+    });//Subscriptions plans
   }
 
   async ionViewWillEnter()

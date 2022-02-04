@@ -353,6 +353,25 @@ export class ClientService
 		});
 	}
 
+	getSubscriptionPlan()
+	{
+		let headers = this.getHeaderOptions();
+		return new Promise((resolve, reject) => 
+		{
+			this.http.get(this.api_url + "getSubscriptionPlan",headers).subscribe((res: any) =>       
+			{   
+				resolve(res.data);
+			},
+			err => 
+			{
+				console.log(err);
+				let errorMessage=this.getErrorMessage(err);
+				this.showMessage(errorMessage);
+				reject(errorMessage);
+			});
+		});
+	}
+
 	showCitiesBasedOnDistrict(data)
 	{
 		let headers = this.getHeaderOptions();

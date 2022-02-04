@@ -105,7 +105,9 @@
                      "terms_of_service_link_text":"Terms of service",
                      "have_an_account":"Have an account?",
                      "login_text":"Login",
-                     "register_button": "Sign Up"
+                     "register_button": "Sign Up",
+                     "subscription_plan_title": "Select Plan",
+                     "subscription_plan_button_text": "Select"
                   }
                ],
                "arabic": [
@@ -130,7 +132,9 @@
                      "terms_of_service_link_text":"شروط الخدمة",
                      "have_an_account":"هل لديك حساب؟",
                      "login_text":"تسجيل الدخول",
-                     "register_button": "اشتراك"
+                     "register_button": "اشتراك",
+                     "subscription_plan_title": "اختر خطة",
+                     "subscription_plan_button_text": "يختار"
                   }
                ],
                "kurdish": [
@@ -155,7 +159,9 @@
                      "terms_of_service_link_text":"Mercên xizmetê",
                      "have_an_account":"Hesabek heye?",
                      "login_text":"Login",
-                     "register_button": "Tomar kirin"
+                     "register_button": "Tomar kirin",
+                     "subscription_plan_title": "Plana Hilbijêre",
+                     "subscription_plan_button_text": "Neqandin"
                   }
                ]
             }
