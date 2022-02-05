@@ -57,7 +57,8 @@ export class SettingsPage implements OnInit
   Logout()
   {
     this.client.publishSomeDataOnSignIn({
-      should_menu_enable: false
+      should_menu_enable: false,
+      role:''
     });//THIS OBSERVABLE IS USED TO KNOW IS ANY HAS SIGNIN
     //localStorage.clear();
     localStorage.removeItem('token');

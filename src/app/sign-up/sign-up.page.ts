@@ -63,6 +63,7 @@ export class SignUpPage implements OnInit
     experience_in_year: [''],
     latitude: [''],
     longitude: [''],
+    subscription_plan: [''],
     },{validator: this.checkIfMatchingPasswords('password', 'cpassword')
   });
 
@@ -118,8 +119,11 @@ export class SignUpPage implements OnInit
     'service_in_km': 
     [
       { type: 'required', message: 'Range service is required.' }
+    ],    
+    'subscription_plan': 
+    [
+      { type: 'required', message: 'Selecting service plan is required.' }
     ]
-    
   };
   constructor(public client: ClientService, public fb: FormBuilder, public loadingCtrl: LoadingController, private inAppBrowser: InAppBrowser, private geolocation: Geolocation, private platform: Platform, private nativeGeocoder: NativeGeocoder)
   { 
@@ -406,6 +410,7 @@ export class SignUpPage implements OnInit
     let service_in_km = (form.service_in_km) ? form.service_in_km : 0;
     let price_per_hour = (form.price_per_hour) ? form.price_per_hour : 0;
     let experience_in_year = (form.experience_in_year) ? form.experience_in_year : 0;
+    let subscription_plan = (form.subscription_plan) ? form.subscription_plan : 0;
 		let data=
 		{
       user_type:user_type,
@@ -423,7 +428,8 @@ export class SignUpPage implements OnInit
       experience_in_year:experience_in_year,
       latitude:this.latitude,
       longitude:this.longitude,
-      address:this.address
+      address:this.address,
+      subscription_plan:subscription_plan
 		}
     
 		await this.client.makeMeRegistered(data).then(result => 
@@ -495,6 +501,11 @@ export class SignUpPage implements OnInit
 
       this.registerForm.get('service_in_km').setValidators([Validators.required]);     
       this.registerForm.get('service_in_km').updateValueAndValidity();
+
+      this.registerForm.get('subscription_plan').setValidators([Validators.required]);     
+      this.registerForm.get('subscription_plan').updateValueAndValidity();
+
+      
     }
     if(this.signup_as_handyman == false)
     {
@@ -502,6 +513,7 @@ export class SignUpPage implements OnInit
       //this.registerForm.controls['service_district'].setValue("");
       //this.registerForm.controls['service_city'].setValue("");
       this.registerForm.controls['service_in_km'].setValue("");
+      this.registerForm.controls['subscription_plan'].setValue("");
       this.registerForm.controls['price_per_hour'].setValue("");
       this.registerForm.controls['experience_in_year'].setValue("");
       this.registerForm.get('specialized_in').clearValidators();     
@@ -520,6 +532,8 @@ export class SignUpPage implements OnInit
       this.registerForm.get('phone_number').updateValueAndValidity();
       this.registerForm.get('service_in_km').clearValidators();     
       this.registerForm.get('service_in_km').updateValueAndValidity();
+      this.registerForm.get('subscription_plan').clearValidators();     
+      this.registerForm.get('subscription_plan').updateValueAndValidity();
     }
     console.log(this.signup_as_handyman);
   }

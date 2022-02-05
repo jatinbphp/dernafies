@@ -12,6 +12,10 @@
                 <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
                 <ion-label>{{ p.title }}</ion-label>
               </ion-item>
+              <ion-item *ngIf="p.is_function == 1 && p.title_for_menu=='Post a Job' && role=='customer'" lines="full" lines="none" detail="false" (click)="PostAJob()">
+                <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
+                <ion-label>{{ p.title }}</ion-label>
+              </ion-item>
               <ion-item *ngIf="p.is_function == 1 && p.title_for_menu=='Logout'" lines="full" lines="none" detail="false" (click)="Logout()">
                 <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
                 <ion-label>{{ p.title }}</ion-label>
@@ -30,6 +34,10 @@
           <ion-item class="menu-icon"><img src="../../assets/images/menu-icon1.png"></ion-item>
             <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
               <ion-item *ngIf="p.is_function == 0" lines="full" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
+                <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
+                <ion-label>{{ p.title }}</ion-label>
+              </ion-item>
+              <ion-item *ngIf="p.is_function == 1 && p.title_for_menu=='Post a Job' && role=='customer'" lines="full" lines="none" detail="false" (click)="PostAJob()">
                 <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
                 <ion-label>{{ p.title }}</ion-label>
               </ion-item>

@@ -77,6 +77,10 @@ const routes: Routes = [
   {
     path: 'messages-customer-handyman',
     loadChildren: () => import('./messages-customer-handyman/messages-customer-handyman.module').then( m => m.MessagesCustomerHandymanPageModule)
+  },
+  {
+    path: 'post-a-job',
+    loadChildren: () => import('./post-a-job/post-a-job.module').then( m => m.PostAJobPageModule)
   }
 ];
 @NgModule({

@@ -7,7 +7,7 @@
 <ion-content [fullscreen]="true">
   <ion-header no-border class="ion-no-border" [translucent]="true">
     <ion-toolbar class="pb-0 ion-text-center">
-      <ion-button slot="start" routerDirection="back">
+      <ion-button slot="start" routerDirection="root" routerLink="/sign-in">
         <ion-icon name="arrow-back-outline"></ion-icon>
       </ion-button>
     </ion-toolbar>
@@ -284,7 +284,7 @@
           </ion-col>
         </ion-row>
         <!--SUBSCRIPTIONS PLANS-->
-        <ion-row>
+        <!--<ion-row>
           <ion-col size="12">
             <ion-label position="stacked">{{default_language_data['translation'][0]['register'][0][language_selected][0]['subscription_plan_title']}}</ion-label>
           </ion-col>
@@ -294,12 +294,33 @@
         		<div class="plan-box-inner">
 	        		<div class="plan-txt">
 	        			<h2>{{subscriptions[language_key_exchange_subscription_plan[language_selected]]}}</h2>
-	        			<p>{{subscriptions.planPrice}}</p>
+	        			<p><strong>IQD</strong>&nbsp;{{subscriptions.planPrice}}</p>
 	        		</div>
 	        		<ion-button color="success">{{default_language_data['translation'][0]['register'][0][language_selected][0]['subscription_plan_button_text']}}</ion-button>
 	        	</div>
         	</ion-col>        	
-        </ion-row>
+        </ion-row>-->
+        <ion-radio-group class="radio-list" formControlName="subscription_plan" *ngIf="signup_as_handyman == true">
+          <ion-list>
+            <ion-label>{{default_language_data['translation'][0]['register'][0][language_selected][0]['subscription_plan_title']}}</ion-label>
+            <ion-item *ngFor="let subscriptions of resultDataSubscriptionPlans;">
+              <ion-label>{{subscriptions[language_key_exchange_subscription_plan[language_selected]]}}</ion-label>
+              <p><strong>IQD</strong>&nbsp;{{subscriptions.planPrice}}</p>
+              <ion-radio value="{{subscriptions.id}}"></ion-radio>
+            </ion-item>            
+          </ion-list>
+        </ion-radio-group>
+        <!--VALIDATION-->
+        <div class="validation-errors">
+          <ng-container *ngFor="let validation of validation_messages.subscription_plan">
+            <div class="error-message"
+              *ngIf="registerForm.get('subscription_plan').hasError(validation.type) && (registerForm.get('subscription_plan').dirty || registerForm.get('subscription_plan').touched)">
+              <ion-icon name="information-circle-outline"></ion-icon>
+              <p>{{ validation.message }}</p>
+            </div>
+          </ng-container>
+        </div>
+        <!--VALIDATION-->
         <!--SUBSCRIPTIONS PLANS-->                      
       </ion-grid>      
       <ion-grid class="terms-options">

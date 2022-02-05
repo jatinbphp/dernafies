@@ -1,0 +1,22 @@
+<ion-header no-border class="ion-no-border" [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button auto-hide="false"><img src="../../assets/images/menu-icon1.png"></ion-menu-button>     
+    </ion-buttons>
+    <ion-title>{{default_language_data['translation'][0]['general'][0][language_selected][0]['categories']}}</ion-title>
+    <ion-button slot="end" (click)="showMyProfile()"><img src="../../assets/images/user-icon1.png"></ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="main-div">
+    <ion-row class="category-box-list">
+      <ion-col class="category-box-item" *ngFor="let categories of resultDataCategories;let s = index;" (click)="showHandyManByCategory(categories.id)">
+        <div class="category-box-inner">
+          <img src="{{categories.categoryImage}}">
+          <h6>{{categories[language_key_exchange_array[language_selected]]}}</h6>
+        </div>
+      </ion-col>      
+    </ion-row>
+  </div>
+</ion-content>

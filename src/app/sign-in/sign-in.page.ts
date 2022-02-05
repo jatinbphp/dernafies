@@ -97,7 +97,8 @@ export class SignInPage implements OnInit
 			if(this.resultData.status==true)
 			{
 				this.client.publishSomeDataOnSignIn({
-					should_menu_enable: true
+					should_menu_enable: true,
+					role:this.resultData.role
 				});//THIS OBSERVABLE IS USED TO KNOW IS ANY HAS SIGNIN
 				localStorage.setItem('token',this.resultData.token);
 				localStorage.setItem('id',this.resultData.id);

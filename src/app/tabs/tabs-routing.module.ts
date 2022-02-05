@@ -64,6 +64,10 @@ const routes: Routes = [
         loadChildren: () => import('../complete-the-job/complete-the-job.module').then(m => m.CompleteTheJobPageModule)
       },
       {
+        path: 'post-a-job',
+        loadChildren: () => import('../post-a-job/post-a-job.module').then(m => m.PostAJobPageModule)
+      },
+      {
         path: '',
         //redirectTo: '/tabs/home',
         redirectTo: '/sign-in',
