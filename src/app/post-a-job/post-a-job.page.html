@@ -11,13 +11,16 @@
 <ion-content>
   <div class="main-div">
     <!--NEW-->
-    <ion-list>
-      <ion-item *ngFor="let categories of resultDataCategories;let s = index;">
-        <ion-label>{{categories[language_key_exchange_array[language_selected]]}}</ion-label>
-        <ion-img src="{{categories.categoryImage}}"></ion-img>
-        <ion-checkbox slot="end" (ionChange)="selectedCategories($event)" value="{{categories.id}}"></ion-checkbox>
+    <ion-list class="category-check-box-list">
+      <ion-item class="category-check-box-item" *ngFor="let categories of resultDataCategories;let s = index;">
+        <div class="category-check-box-item-inner">
+          <ion-label>{{categories[language_key_exchange_array[language_selected]]}}</ion-label>
+          <!-- <ion-img src="{{categories.categoryImage}}"></ion-img> -->
+          <img src="{{categories.categoryImage}}">
+          <ion-checkbox slot="end" (ionChange)="selectedCategories($event)" value="{{categories.id}}"></ion-checkbox>
+        </div>
       </ion-item>
-      <ion-item>
+      <ion-item class="btns-sec">
         <ion-button>Post A Job</ion-button>
       </ion-item>
     </ion-list>
