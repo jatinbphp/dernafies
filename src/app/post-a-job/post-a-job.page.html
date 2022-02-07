@@ -10,13 +10,27 @@
 
 <ion-content>
   <div class="main-div">
-    <ion-row class="category-box-list">
-      <ion-col class="category-box-item" *ngFor="let categories of resultDataCategories;let s = index;" (click)="showHandyManByCategory(categories.id)">
+    <!--NEW-->
+    <ion-list>
+      <ion-item *ngFor="let categories of resultDataCategories;let s = index;">
+        <ion-label>{{categories[language_key_exchange_array[language_selected]]}}</ion-label>
+        <ion-img src="{{categories.categoryImage}}"></ion-img>
+        <ion-checkbox slot="end" (ionChange)="selectedCategories($event)" value="{{categories.id}}"></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-button>Post A Job</ion-button>
+      </ion-item>
+    </ion-list>
+    <!--NEW-->
+    <!--BEFORE-->
+    <!--<ion-row class="category-box-list">
+      <ion-col class="category-box-item" *ngFor="let categories of resultDataCategories;let s = index;" (click)="postJobForCategory(categories.id,categories[language_key_exchange_array[language_selected]],categories.categoryImage)">
         <div class="category-box-inner">
           <img src="{{categories.categoryImage}}">
           <h6>{{categories[language_key_exchange_array[language_selected]]}}</h6>
         </div>
       </ion-col>      
-    </ion-row>
+    </ion-row>-->
+    <!--BEFORE-->
   </div>
 </ion-content>

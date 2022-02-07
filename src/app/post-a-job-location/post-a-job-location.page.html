@@ -1,0 +1,29 @@
+<ion-header no-border class="ion-no-border" [translucent]="true">
+  <ion-toolbar>
+    <!-- <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>      
+    </ion-buttons> -->
+    <ion-button slot="start" (click)="GoBack()">
+		<ion-icon name="arrow-back-outline"></ion-icon>
+	</ion-button>
+    <ion-title>Send Location</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<div #gooeleMap id="gooeleMap" style="height: 100%;"></div>
+	<div class="loc-con-box">
+		<div class="review-box-txt">
+			<h2 class="title">{{resultData['firstName']}} {{resultData['lastName']}}</h2>
+			<div class="person-contact">
+				<p><ion-icon name="call"></ion-icon>{{resultData['phoneNumber']}}</p>
+				<p><ion-icon name="location-sharp"></ion-icon><!--{{latitude}} {{longitude}}-->{{address}}</p>
+			</div>
+		</div>
+		<div class="review-box-btns">
+			<ion-button color="secondary" (click)="SendLocationPin()">
+				<ion-icon name="location-sharp"></ion-icon>Send Location Pin
+			</ion-button>
+		</div>
+	</div>	
+</ion-content>

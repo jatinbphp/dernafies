@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
-import { Platform, LoadingController, ModalController } from '@ionic/angular';
+import { LoadingController, ModalController } from '@ionic/angular';
 import { ClientService } from '../providers/client.service';
 import { NavigationExtras } from '@angular/router';
-import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
-import { NativeGeocoder, NativeGeocoderResult, NativeGeocoderOptions } from '@awesome-cordova-plugins/native-geocoder/ngx';
 import { ProfilePage } from '../profile/profile.page';
 
 @Component({
@@ -17,14 +15,15 @@ export class PostAJobPage
 
   public rtl_or_ltr = '';
   public language_selected = '';
-	public default_language_data: any = [];
-  public current_latitude:any = '';
-  public current_longitude:any = '';
+	public default_language_data: any = [];  
 
   public resultDataCategories: any = [];
   public language_key_exchange_array: any = [];
   public queryString: any=[];
-  constructor(public client: ClientService, public modalCtrl: ModalController, public loadingCtrl: LoadingController, private geolocation: Geolocation, private platform: Platform, private nativeGeocoder: NativeGeocoder) 
+  public resultDataSelectedCategories: any = [];
+  public joinResultDataSelectedCategories:any = '';
+
+  constructor(public client: ClientService, public modalCtrl: ModalController, public loadingCtrl: LoadingController) 
   {
     this.client.getObservableOnLanguageChange().subscribe((data) => {
 			this.language_selected = data.language_selected;
@@ -44,12 +43,7 @@ export class PostAJobPage
     this.language_key_exchange_array['arabic']='categoryNameArabic';
     this.language_key_exchange_array['kurdish']='categoryNameKurdi';
 
-    this.platform.ready().then(async () => 
-    {
-      const coordinates = await this.geolocation.getCurrentPosition();
-      this.current_latitude=Number(coordinates.coords.latitude);
-      this.current_longitude=Number(coordinates.coords.longitude);
-    });
+    
     
     //LOADER
 		const loading = await this.loadingCtrl.create({
@@ -75,16 +69,44 @@ export class PostAJobPage
     });//CATEGORIES
   }
 
-  showHandyManByCategory(id)
+
+  removeUnCheckedCategories(arr,what) 
+  {
+    var what, a = arguments, L = a.length, ax;
+    while (L > 1 && arr.length) 
+    {
+        what = a[--L];
+        while ((ax= arr.indexOf(what)) !== -1) 
+        {
+            arr.splice(ax, 1);
+        }
+    }
+    return arr;
+  }
+
+  selectedCategories(ev)
+  {
+    if(ev.detail.checked == true)
+    {
+      this.resultDataSelectedCategories.push(ev.detail.value);
+    }
+    if(ev.detail.checked == false)
+    {
+      this.resultDataSelectedCategories=this.removeUnCheckedCategories(this.resultDataSelectedCategories,ev.detail.value);      
+    }
+    this.joinResultDataSelectedCategories=this.resultDataSelectedCategories.join(",");
+    
+  }
+
+  postJobForCategory(id,name,image)
   {
     this.queryString = 
     {
-      handyman_category_id:id,
-      latitude:this.current_latitude,
-      longitude:this.current_longitude,
+      handyman_category_id:this.joinResultDataSelectedCategories,
+      handyman_category_name:name,
+      handyman_category_image:image,
       to_be_show_featured_handyman:"no"
     };
-    localStorage.setItem("way_to_select_handyman",JSON.stringify(this.queryString));
     let navigationExtras: NavigationExtras = 
     {
       queryParams: 
@@ -92,12 +114,7 @@ export class PostAJobPage
         special: JSON.stringify(this.queryString)
       }
     };
-    this.client.router.navigate(['/tabs/handyman-view-all'], navigationExtras);
-    /*
-    this.client.router.navigate(['/tabs/handyman-view-all'], navigationExtras).then(()=>{
-      window.location.reload();
-    });
-    */
+    this.client.router.navigate(['/tabs/post-a-job-location'], navigationExtras);
   }
   
   async showMyProfile()

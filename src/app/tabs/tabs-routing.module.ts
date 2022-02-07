@@ -68,6 +68,14 @@ const routes: Routes = [
         loadChildren: () => import('../post-a-job/post-a-job.module').then(m => m.PostAJobPageModule)
       },
       {
+        path: 'post-a-job-add',
+        loadChildren: () => import('../post-a-job-add/post-a-job-add.module').then(m => m.PostAJobAddPageModule)
+      },
+      {
+        path: 'post-a-job-location',
+        loadChildren: () => import('../post-a-job-location/post-a-job-location.module').then(m => m.PostAJobLocationPageModule)
+      },
+      {
         path: '',
         //redirectTo: '/tabs/home',
         redirectTo: '/sign-in',

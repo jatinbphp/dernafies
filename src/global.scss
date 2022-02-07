@@ -286,13 +286,13 @@ ion-header {
 
 app-sign-up, app-home, app-categories, app-search, app-settings, 
 app-profile, app-job-location-on-map, app-current-requests, app-past-requests, app-review-rating,
-app-handyman-view-all, app-handyman-selected, app-handyman-send-location, app-add-job, app-review-and-rating, app-complete-the-job, app-reschedule-job, app-messages-customer-handyman, app-post-a-job {
+app-handyman-view-all, app-handyman-selected, app-handyman-send-location, app-add-job, app-review-and-rating, app-complete-the-job, app-reschedule-job, app-messages-customer-handyman, app-post-a-job, app-post-a-job-add, app-post-a-job-location {
     // background: var(--background-gradient);
     background: var(--White);
 }
 app-sign-up:before, app-home:before, app-categories:before, app-search:before, app-settings:before, 
 app-profile:before, app-job-location-on-map:before, app-current-requests:before, app-past-requests:before, app-review-rating:before,
-app-handyman-view-all:before, app-handyman-selected:before, app-handyman-send-location:before, app-add-job::before, app-review-and-rating::before, app-complete-the-job::before, app-reschedule-job::before, app-messages-customer-handyman::before, app-post-a-job:before {
+app-handyman-view-all:before, app-handyman-selected:before, app-handyman-send-location:before, app-add-job::before, app-review-and-rating::before, app-complete-the-job::before, app-reschedule-job::before, app-messages-customer-handyman::before, app-post-a-job:before, app-post-a-job-add:before, app-post-a-job-location:before {
     position: absolute;
     content: '';
     top: 0px;

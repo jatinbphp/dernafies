@@ -471,21 +471,24 @@
                   {
                      "screen_title":"Book",
                      "job_description":"Job Description",
-                     "book_a_button":"Book Now"
+                     "book_a_button":"Book Now",
+                     "post_a_job":"Post Job"
                   }
                ],
                "arabic": [
                   {
                      "screen_title":"الكتاب",
                      "job_description":"المسمى الوظيفي",
-                     "book_a_button":"احجز الآن"
+                     "book_a_button":"احجز الآن",
+                     "post_a_job":"وظيفة بعد"
                   }
                ],
                "kurdish": [
                   {
                      "screen_title":"Pirtûk",
                      "job_description":"Danasîna Kar",
-                     "book_a_button":"Book Now"
+                     "book_a_button":"Book Now",
+                     "post_a_job":"Post Job"
                   }
                ]
             }

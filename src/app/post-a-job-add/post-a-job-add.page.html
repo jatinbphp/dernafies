@@ -1,0 +1,58 @@
+<ion-header no-border class="ion-no-border" [translucent]="true">
+  <ion-toolbar>
+    <!-- <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>      
+    </ion-buttons> -->
+    <ion-button slot="start" (click)="GoBack()">
+      <ion-icon name="arrow-back-outline"></ion-icon>
+    </ion-button>
+    <ion-title>Job Description</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="main-div">
+    <form [formGroup]="BooKAJobForm" (ngSubmit)="BookMyJob(BooKAJobForm.value)">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="1" class="category-image">
+            <ion-img src="{{resultDataJob.handyman_category_image}}"></ion-img>
+          </ion-col>
+          <ion-col size="11" class="category-name">
+            <ion-label position="stacked">{{resultDataJob.handyman_category_name}}</ion-label>
+          </ion-col>       
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <ion-item lines="none" class="ion-no-padding">
+              <ion-label position="stacked">{{default_language_data['translation'][0]['book_a_job'][0][language_selected][0]['job_description']}}</ion-label>
+              <ion-textarea formControlName="job_description"></ion-textarea>
+            </ion-item>
+            <!--VALIDATION-->
+            <div class="validation-errors">
+              <ng-container *ngFor="let validation of validation_messages.job_description">
+                <div class="error-message"
+                  *ngIf="BooKAJobForm.get('job_description').hasError(validation.type) && (BooKAJobForm.get('job_description').dirty || BooKAJobForm.get('job_description').touched)">
+                  <ion-icon name="information-circle-outline"></ion-icon>
+                  <p>{{ validation.message }}</p>
+                </div>
+              </ng-container>
+            </div>
+            <!--VALIDATION-->
+          </ion-col>       
+        </ion-row>        
+      </ion-grid>
+      <ion-grid class="terms-options">
+        <ion-row>
+          <ion-col size="1">
+            <ion-checkbox (ionChange)="acceptTerms($event)" [(ngModel)]="accept_tems" [ngModelOptions]="{standalone: true}"></ion-checkbox>
+          </ion-col>        
+          <ion-col size="11">{{default_language_data['translation'][0]['register'][0][language_selected][0]['terms_of_service']}} <strong (click)="openActionRequested('https://dernafies.ecnetsolutions.dev/terms-and-conditions')">{{default_language_data['translation'][0]['register'][0][language_selected][0]['terms_of_service_link_text']}}</strong></ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-item lines="none">
+        <ion-button type="submit" color="" [disabled]="!BooKAJobForm.valid || accept_tems != true">{{default_language_data['translation'][0]['book_a_job'][0][language_selected][0]['post_a_job']}}</ion-button>
+      </ion-item>
+    </form>    
+  </div>
+</ion-content>
