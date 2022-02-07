@@ -302,11 +302,13 @@
         </ion-row>-->
         <ion-radio-group class="radio-list" formControlName="subscription_plan" *ngIf="signup_as_handyman == true">
           <ion-list>
-            <ion-label>{{default_language_data['translation'][0]['register'][0][language_selected][0]['subscription_plan_title']}}</ion-label>
+            <ion-label class="main-title">{{default_language_data['translation'][0]['register'][0][language_selected][0]['subscription_plan_title']}}</ion-label>
             <ion-item *ngFor="let subscriptions of resultDataSubscriptionPlans;">
-              <ion-label>{{subscriptions[language_key_exchange_subscription_plan[language_selected]]}}</ion-label>
-              <p><strong>IQD</strong>&nbsp;{{subscriptions.planPrice}}</p>
-              <ion-radio value="{{subscriptions.id}}"></ion-radio>
+              <div class="plan-box-inner">
+                <ion-label>{{subscriptions[language_key_exchange_subscription_plan[language_selected]]}}</ion-label>
+                <p><strong>IQD</strong>&nbsp;{{subscriptions.planPrice}}</p>
+                <ion-radio value="{{subscriptions.id}}"></ion-radio>
+              </div>
             </ion-item>            
           </ion-list>
         </ion-radio-group>
