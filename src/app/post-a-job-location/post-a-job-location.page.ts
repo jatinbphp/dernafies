@@ -16,11 +16,6 @@ declare var google;
 export class PostAJobLocationPage implements OnInit 
 {
   @ViewChild('gooeleMap')  mapElement: ElementRef;
-  public handyman_category_id:any='';
-  public handyman_category_name:any='';
-  public handyman_category_image:any='';
-  public to_be_show_featured_handyman:any='';
-
 
   public queryString: any=[];
   public resultData:any = [];
@@ -34,6 +29,7 @@ export class PostAJobLocationPage implements OnInit
   public latitudeCenter:any='';
   public longitudeCenter:any='';
   public queryStringData: any=[];
+  public postAJobData: any=[];
   constructor(private client: ClientService, private loadingCtrl: LoadingController, private platform: Platform, private geolocation: Geolocation, private nativeGeocoder: NativeGeocoder, private route: ActivatedRoute)
   { }
 
@@ -103,19 +99,11 @@ export class PostAJobLocationPage implements OnInit
 
   async ionViewWillEnter()
   {
-    this.id = localStorage.getItem('id');    
-    this.route.queryParams.subscribe(params => 
-    {
-      if(params && params.special)
-      {
-        this.queryStringData = JSON.parse(params.special);        
-      }
-    });
-    this.handyman_category_id=this.queryStringData['handyman_category_id'];
-    this.handyman_category_name=this.queryStringData['handyman_category_name'];
-    this.handyman_category_image=this.queryStringData['handyman_category_image'];
-    this.to_be_show_featured_handyman=this.queryStringData['to_be_show_featured_handyman'];
-
+    this.id = localStorage.getItem('id');
+    this.postAJobData = [];
+    let postAJobData = localStorage.getItem('post-a-job');
+    this.postAJobData=JSON.parse(postAJobData);
+    
     //USER INFORMATION
     //LOADER
 		const loading = await this.loadingCtrl.create({
@@ -183,17 +171,16 @@ export class PostAJobLocationPage implements OnInit
     let latitude = (this.latitude) ? this.latitude : "";
     let longitude = (this.longitude) ? this.longitude : "";
     let address = (this.address) ? this.address : "";
-    let handyman_category_id = (this.handyman_category_id) ? this.handyman_category_id : 0;
     let user_id = (this.id) ? this.id : 0;
 
     let jobObject ={
       latitude:latitude,
       longitude:longitude,
       address:address,
-      handyman_category_id:handyman_category_id,
-      handyman_category_name:this.handyman_category_name,
-      handyman_category_image:this.handyman_category_image,
-      user_id:user_id
+      user_id:user_id,
+      handyman_category_data:this.postAJobData['handyman_category_data'],
+      handyman_category_id:this.postAJobData['handyman_category_id'],
+      to_be_show_featured_handyman:this.postAJobData['to_be_show_featured_handyman'],
     }
     localStorage.setItem('post-a-job',JSON.stringify(jobObject));
     this.client.router.navigate(['/tabs/post-a-job-add']);

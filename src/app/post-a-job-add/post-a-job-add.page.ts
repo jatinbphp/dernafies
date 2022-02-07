@@ -14,13 +14,15 @@ import { NavigationExtras } from '@angular/router';
 export class PostAJobAddPage implements OnInit 
 {
 
-  public language_selected = '';
+  	public language_selected = '';
 	public default_language_data: any = [];
 	public accept_tems:boolean=false;
 	
 	public queryString: any=[];
 	public resultDataJob:any=[];
-  public address:any='';
+  	public address:any='';
+	public postAJobData: any=[];
+	public handymanSelectedCategoryData: any=[];
 
 	public BooKAJobForm = this.fb.group({
 		handyman_category_id: ['', Validators.required],
@@ -49,57 +51,62 @@ export class PostAJobAddPage implements OnInit
 		this.language_selected = this.client.language_selected;
 	}
 
-  ngOnInit()
+  	ngOnInit()
 	{ }
 
-  async ionViewWillEnter()
+ 	async ionViewWillEnter()
 	{
 		this.default_language_data = this.client.default_language_data;
 		this.language_selected = this.client.language_selected;
-
-    this.resultDataJob = localStorage.getItem('post-a-job');
+		
+		this.postAJobData = [];
+		this.handymanSelectedCategoryData = [];
+		let postAJobData = localStorage.getItem('post-a-job');
+		this.postAJobData=JSON.parse(postAJobData);
+		this.handymanSelectedCategoryData=JSON.parse(this.postAJobData['handyman_category_data']);		
+    	this.resultDataJob = localStorage.getItem('post-a-job');
 		this.resultDataJob = JSON.parse(this.resultDataJob);
 		this.BooKAJobForm.controls['handyman_category_id'].setValue(this.resultDataJob.handyman_category_id);
-    this.BooKAJobForm.controls['user_id'].setValue(this.resultDataJob.user_id);
+    	this.BooKAJobForm.controls['user_id'].setValue(this.resultDataJob.user_id);
 		this.BooKAJobForm.controls['latitude'].setValue(this.resultDataJob.latitude);
 		this.BooKAJobForm.controls['longitude'].setValue(this.resultDataJob.longitude);
 		this.BooKAJobForm.controls['address'].setValue(this.resultDataJob.address);
-  }
+  	}
 
-  acceptTerms(ev)
+  	acceptTerms(ev)
 	{
 		let haveStatus = ev.detail.checked;
 		if(haveStatus == true)
 		{
-		this.accept_tems = true;
+			this.accept_tems = true;
 		}
 		else 
 		{
-		this.accept_tems = false;
+			this.accept_tems = false;
 		}
 	}
 
-  GoBack()
-  {
-    this.queryString = 
-    {
-      handyman_category_id:this.resultDataJob.handyman_category_id,
-      handyman_category_name:this.resultDataJob.handyman_category_name,
-      handyman_category_image:this.resultDataJob.handyman_category_image,
-      to_be_show_featured_handyman:"no"
-    };
-    let navigationExtras: NavigationExtras = 
-    {
-      queryParams: 
-      {
-        special: JSON.stringify(this.queryString)
-      }
-    };
-    this.client.router.navigate(['/tabs/post-a-job-location'], navigationExtras);
-  }
+	GoBack()
+	{
+		this.queryString = 
+		{
+		handyman_category_id:this.resultDataJob.handyman_category_id,
+		handyman_category_name:this.resultDataJob.handyman_category_name,
+		handyman_category_image:this.resultDataJob.handyman_category_image,
+		to_be_show_featured_handyman:"no"
+		};
+		let navigationExtras: NavigationExtras = 
+		{
+		queryParams: 
+		{
+			special: JSON.stringify(this.queryString)
+		}
+		};
+		this.client.router.navigate(['/tabs/post-a-job-location'], navigationExtras);
+	}
 
-  BookMyJob(form)
-  {
-    console.log(form);
-  }
+	BookMyJob(form)
+	{
+		console.log(form);
+	}
 }

@@ -14,12 +14,12 @@
   <div class="main-div">
     <form [formGroup]="BooKAJobForm" (ngSubmit)="BookMyJob(BooKAJobForm.value)">
       <ion-grid>
-        <ion-row>
+        <ion-row *ngFor="let selectedCategory of handymanSelectedCategoryData; let c = index;">
           <ion-col size="1" class="category-image">
-            <ion-img src="{{resultDataJob.handyman_category_image}}"></ion-img>
+            <ion-img src="{{selectedCategory.handyman_category_image}}"></ion-img>
           </ion-col>
           <ion-col size="11" class="category-name">
-            <ion-label position="stacked">{{resultDataJob.handyman_category_name}}</ion-label>
+            <ion-label position="stacked">{{selectedCategory.handyman_category_name}}</ion-label>
           </ion-col>       
         </ion-row>
         <ion-row>

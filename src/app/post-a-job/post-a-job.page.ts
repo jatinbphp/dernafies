@@ -21,6 +21,7 @@ export class PostAJobPage
   public language_key_exchange_array: any = [];
   public queryString: any=[];
   public resultDataSelectedCategories: any = [];
+  public resultSelectedCategoriesData: any = [];
   public joinResultDataSelectedCategories:any = '';
 
   constructor(public client: ClientService, public modalCtrl: ModalController, public loadingCtrl: LoadingController) 
@@ -42,8 +43,6 @@ export class PostAJobPage
     this.language_key_exchange_array['english']='categoryName';
     this.language_key_exchange_array['arabic']='categoryNameArabic';
     this.language_key_exchange_array['kurdish']='categoryNameKurdi';
-
-    
     
     //LOADER
 		const loading = await this.loadingCtrl.create({
@@ -69,6 +68,12 @@ export class PostAJobPage
     });//CATEGORIES
   }
 
+  async ionViewWillEnter()
+  {
+    this.resultDataSelectedCategories=[];
+    this.resultSelectedCategoriesData=[];
+    this.joinResultDataSelectedCategories='';
+  }
 
   removeUnCheckedCategories(arr,what) 
   {
@@ -98,15 +103,36 @@ export class PostAJobPage
     
   }
 
-  postJobForCategory(id,name,image)
+  postJobForCategory()
   {
+    //DATA OF SELECTED CATEGORY
+    if(this.resultDataSelectedCategories.length > 0)
+    {
+      for(let c = 0; c < this.resultDataCategories.length; c ++)
+      {
+        for(let ci = 0; ci < this.resultDataSelectedCategories.length; ci ++)
+        {
+          if(this.resultDataSelectedCategories[ci] == this.resultDataCategories[c].id)
+          {
+            
+            let categoryDataObject = 
+            {
+              handyman_category_name:this.resultDataCategories[c][this.language_key_exchange_array[this.language_selected]],
+              handyman_category_image:this.resultDataCategories[c]['categoryImage']
+            }
+            this.resultSelectedCategoriesData.push(categoryDataObject);
+          }
+        }
+      }
+    }
+    //DATA OF SELECTED CATEGORY
     this.queryString = 
     {
       handyman_category_id:this.joinResultDataSelectedCategories,
-      handyman_category_name:name,
-      handyman_category_image:image,
+      handyman_category_data:JSON.stringify(this.resultSelectedCategoriesData),
       to_be_show_featured_handyman:"no"
     };
+    localStorage.setItem('post-a-job',JSON.stringify(this.queryString));
     let navigationExtras: NavigationExtras = 
     {
       queryParams: 
