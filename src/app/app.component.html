@@ -16,6 +16,10 @@
                 <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
                 <ion-label>{{ p.title }}</ion-label>
               </ion-item>
+              <ion-item *ngIf="p.is_function == 1 && p.title_for_menu=='View Jobs' && role=='handyman'" lines="full" lines="none" detail="false" (click)="ViewAJob()">
+                <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
+                <ion-label>{{ p.title }}</ion-label>
+              </ion-item>
               <ion-item *ngIf="p.is_function == 1 && p.title_for_menu=='Logout'" lines="full" lines="none" detail="false" (click)="Logout()">
                 <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
                 <ion-label>{{ p.title }}</ion-label>
@@ -38,6 +42,10 @@
                 <ion-label>{{ p.title }}</ion-label>
               </ion-item>
               <ion-item *ngIf="p.is_function == 1 && p.title_for_menu=='Post a Job' && role=='customer'" lines="full" lines="none" detail="false" (click)="PostAJob()">
+                <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
+                <ion-label>{{ p.title }}</ion-label>
+              </ion-item>
+              <ion-item *ngIf="p.is_function == 1 && p.title_for_menu=='View Jobs' && role=='handyman'" lines="full" lines="none" detail="false" (click)="ViewAJob()">
                 <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
                 <ion-label>{{ p.title }}</ion-label>
               </ion-item>

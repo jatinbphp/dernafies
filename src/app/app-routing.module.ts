@@ -89,6 +89,10 @@ const routes: Routes = [
   {
     path: 'post-a-job-location',
     loadChildren: () => import('./post-a-job-location/post-a-job-location.module').then( m => m.PostAJobLocationPageModule)
+  },
+  {
+    path: 'view-a-jobs',
+    loadChildren: () => import('./view-a-jobs/view-a-jobs.module').then( m => m.ViewAJobsPageModule)
   }
 ];
 @NgModule({

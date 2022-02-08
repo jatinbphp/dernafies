@@ -12,7 +12,7 @@
 
 <ion-content>
   <div class="main-div">
-    <form [formGroup]="BooKAJobForm" (ngSubmit)="BookMyJob(BooKAJobForm.value)">
+    <form [formGroup]="BooKAJobForm" (ngSubmit)="PostAJob(BooKAJobForm.value)">
       <ion-grid>
         <ion-row *ngFor="let selectedCategory of handymanSelectedCategoryData; let c = index;">
           <ion-col size="1" class="category-image">

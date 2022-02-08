@@ -8,6 +8,7 @@
                      "home":"Home",
                      "profile":"Profile",
                      "post_a_job":"Post a Job",
+                     "view_a_job":"View Jobs",
                      "current_requests":"Current Requests",
                      "past_requests":"Past Requests",
                      "settings":"Settings",
@@ -19,6 +20,7 @@
                      "home":"مسكن",
                      "profile":"الملف الشخصي",
                      "post_a_job":"انشر وظيفة",
+                     "view_a_job":"مشاهدة الوظائف",
                      "current_requests":"الطلبات الحالية",
                      "past_requests":"الطلبات السابقة",
                      "settings":"إعدادات",
@@ -30,6 +32,7 @@
                      "home":"Xane",
                      "profile":"Tengal",
                      "post_a_job":"Karek bişînin",
+                     "view_a_job":"Karûbaran bibînin",
                      "current_requests":"Daxwazên Niha",
                      "past_requests":"Daxwazên berê",
                      "settings":"Settings",
@@ -489,6 +492,25 @@
                      "job_description":"Danasîna Kar",
                      "book_a_button":"Book Now",
                      "post_a_job":"Post Job"
+                  }
+               ]
+            }
+         ],
+         "view-a-jobs": [
+            {
+               "english": [
+                  {
+                     "screen_title":"View Jobs"
+                  }
+               ],
+               "arabic": [
+                  {
+                     "screen_title":"مشاهدة الوظائف"
+                  }
+               ],
+               "kurdish": [
+                  {
+                     "screen_title":"Karûbaran bibînin"
                   }
                ]
             }

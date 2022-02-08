@@ -517,6 +517,35 @@ export class ClientService
 		});
 	}
 
+	PostAJob(data)
+	{
+		let headers = this.getHeaderOptions();
+		return new Promise((resolve, reject) => 
+		{
+			let dataToPost = new HttpParams().set("userID",data.user_id).set("categoryID",data.handyman_category_id).set("description",data.job_description).set("latitude",data.latitude).set("longitude",data.longitude).set("jobAddress",data.address);
+			this.http.post(this.api_url + "addJobTemp",  dataToPost , headers).subscribe((res: any) =>       
+			{
+				if(res.status == true)
+				{
+					this.serverResponse=res.data;
+					resolve(this.serverResponse);					
+				}
+				else
+				{
+					let messageDisplay=this.showMessage(res.message);
+					reject(messageDisplay);
+				}
+			},
+			err => 
+			{
+				console.log(err);
+				let errorMessage=this.getErrorMessage(err);
+				this.showMessage(errorMessage);
+				reject(errorMessage);
+			});
+		});
+	}
+
 	UpdateJobStatus(data)
 	{
 		let headers = this.getHeaderOptions();
@@ -675,6 +704,35 @@ export class ClientService
 			this.http.post(this.api_url + "searchHandyman",  dataToPost , headers).subscribe((res: any) =>       
 			{
 				resolve(res);
+			},
+			err => 
+			{
+				console.log(err);
+				let errorMessage=this.getErrorMessage(err);
+				//this.showMessage(errorMessage);
+				reject(errorMessage);
+			});
+		});
+	}
+
+	getRequestedJobsOffers(data)
+	{
+		let headers = this.getHeaderOptions();
+		return new Promise((resolve, reject) => 
+		{
+			let dataToPost = new HttpParams().set("userID",data.user_id).set("userTypeID",data.user_type);
+			this.http.post(this.api_url + "getRequestedJobsOffers",  dataToPost , headers).subscribe((res: any) =>       
+			{
+				if(res.status == true)
+				{
+					this.serverResponse=res.data;
+					resolve(this.serverResponse);					
+				}
+				else
+				{
+					let messageDisplay=this.showMessage(res.message);
+					reject(messageDisplay);
+				}
 			},
 			err => 
 			{

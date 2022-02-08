@@ -22,10 +22,11 @@ export class AppComponent
     { title: 'Home', title_for_menu:'Home', url: '/tabs/home', icon: 'home', is_function:0},//[0]
     { title: 'Profile', title_for_menu:'Profile', url: '#', icon: 'person', is_function:1},//[1]
     { title: 'Post a Job', title_for_menu:'Post a Job', url: '#', icon: 'construct', is_function:1},//[2]
-    { title: 'Current Requests', title_for_menu:'Current Requests', url: '/tabs/current-requests', icon: 'reorder-four', is_function:0},//[3]    
-    { title: 'Past Requests', title_for_menu:'Past Requests', url: '/tabs/past-requests', icon: 'time', is_function:0},//[4]    
-    { title: 'Settings', title_for_menu:'Settings', url: '/tabs/settings', icon: 'settings', is_function:0},//[5]    
-    { title: 'Logout', title_for_menu:'Logout', url: '#', icon: 'power', is_function:1},//[6]    
+    { title: 'View Jobs', title_for_menu:'View Jobs', url: '#', icon: 'construct', is_function:1},//[3]
+    { title: 'Current Requests', title_for_menu:'Current Requests', url: '/tabs/current-requests', icon: 'reorder-four', is_function:0},//[4]    
+    { title: 'Past Requests', title_for_menu:'Past Requests', url: '/tabs/past-requests', icon: 'time', is_function:0},//[5]    
+    { title: 'Settings', title_for_menu:'Settings', url: '/tabs/settings', icon: 'settings', is_function:0},//[6]    
+    { title: 'Logout', title_for_menu:'Logout', url: '#', icon: 'power', is_function:1},//[7]    
   ];
   constructor(public client: ClientService, public modalCtrl: ModalController, public menu: MenuController) 
   {
@@ -78,10 +79,11 @@ export class AppComponent
     this.appPages[0].title = this.default_language_data['translation'][0]['menu'][0][this.language_selected][0]['home'];
     this.appPages[1].title = this.default_language_data['translation'][0]['menu'][0][this.language_selected][0]['profile'];
     this.appPages[2].title = this.default_language_data['translation'][0]['menu'][0][this.language_selected][0]['post_a_job'];
-    this.appPages[3].title = this.default_language_data['translation'][0]['menu'][0][this.language_selected][0]['current_requests'];
-    this.appPages[4].title = this.default_language_data['translation'][0]['menu'][0][this.language_selected][0]['past_requests'];
-    this.appPages[5].title = this.default_language_data['translation'][0]['menu'][0][this.language_selected][0]['settings'];
-    this.appPages[6].title = this.default_language_data['translation'][0]['menu'][0][this.language_selected][0]['logout'];
+    this.appPages[3].title = this.default_language_data['translation'][0]['menu'][0][this.language_selected][0]['view_a_job'];
+    this.appPages[4].title = this.default_language_data['translation'][0]['menu'][0][this.language_selected][0]['current_requests'];
+    this.appPages[5].title = this.default_language_data['translation'][0]['menu'][0][this.language_selected][0]['past_requests'];
+    this.appPages[6].title = this.default_language_data['translation'][0]['menu'][0][this.language_selected][0]['settings'];
+    this.appPages[7].title = this.default_language_data['translation'][0]['menu'][0][this.language_selected][0]['logout'];
   }
 
   async showMyProfile()
@@ -104,6 +106,11 @@ export class AppComponent
   PostAJob()
   {
     this.client.router.navigate(['/tabs/post-a-job']);
+  }
+
+  ViewAJob()
+  {
+    this.client.router.navigate(['/tabs/view-a-jobs']);
   }
 
   Logout()

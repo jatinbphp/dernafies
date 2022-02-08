@@ -19,6 +19,7 @@ export class PostAJobAddPage implements OnInit
 	public accept_tems:boolean=false;
 	
 	public queryString: any=[];
+	public resultData:any=[];
 	public resultDataJob:any=[];
   	public address:any='';
 	public postAJobData: any=[];
@@ -113,23 +114,65 @@ export class PostAJobAddPage implements OnInit
 	{
 		this.queryString = 
 		{
-		handyman_category_id:this.resultDataJob.handyman_category_id,
-		handyman_category_name:this.resultDataJob.handyman_category_name,
-		handyman_category_image:this.resultDataJob.handyman_category_image,
-		to_be_show_featured_handyman:"no"
+			handyman_category_id:this.resultDataJob.handyman_category_id,
+			handyman_category_name:this.resultDataJob.handyman_category_name,
+			handyman_category_image:this.resultDataJob.handyman_category_image,
+			to_be_show_featured_handyman:"no"
 		};
 		let navigationExtras: NavigationExtras = 
 		{
-		queryParams: 
-		{
-			special: JSON.stringify(this.queryString)
-		}
+			queryParams: 
+			{
+				special: JSON.stringify(this.queryString)
+			}
 		};
 		this.client.router.navigate(['/tabs/post-a-job-location'], navigationExtras);
 	}
 
-	BookMyJob(form)
+	async PostAJob(form)
 	{
-		console.log(form);
+		let handyman_category_id = (form.handyman_category_id) ? form.handyman_category_id : 0;
+		let user_id = (form.user_id) ? form.user_id : 0;
+		let job_description = (form.job_description) ? form.job_description : "";
+		let latitude = (form.latitude) ? form.latitude : "";
+		let longitude = (form.longitude) ? form.longitude : "";
+		let address = (form.address) ? form.address : "";
+
+		//LOADER
+		const loading = await this.loadingCtrl.create({
+			spinner: null,
+			//duration: 5000,
+			message: 'Please wait...',
+			translucent: true,
+			cssClass: 'custom-class custom-loading'
+		});
+		await loading.present();
+		//LOADER
+
+		let data = 
+		{
+			handyman_category_id:handyman_category_id,
+			user_id:user_id,
+			job_description:job_description,
+			latitude:latitude,
+			longitude:longitude,
+			address:address
+		}
+		await this.client.PostAJob(data).then(resultBook => 
+		{	
+			loading.dismiss();//DISMISS LOADER			
+			this.resultData=resultBook;
+			localStorage.removeItem('post-a-job');
+			if(this.resultData['id'] > 0)
+			{
+				this.client.showMessage("Job is added successfully!");
+			}
+			this.client.router.navigate(['/tabs/home']);
+		},
+		error => 
+		{
+			loading.dismiss();//DISMISS LOADER
+			console.log();
+		});
 	}
 }
