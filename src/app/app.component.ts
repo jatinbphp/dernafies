@@ -21,8 +21,8 @@ export class AppComponent
   public appPages = [
     { title: 'Home', title_for_menu:'Home', url: '/tabs/home', icon: 'home', is_function:0},//[0]
     { title: 'Profile', title_for_menu:'Profile', url: '#', icon: 'person', is_function:1},//[1]
-    { title: 'Post a Job', title_for_menu:'Post a Job', url: '#', icon: 'construct', is_function:1},//[2]
-    { title: 'View Jobs', title_for_menu:'View Jobs', url: '#', icon: 'construct', is_function:1},//[3]
+    { title: 'Post a Job', title_for_menu:'Post a Job', url: '#', icon: 'create', is_function:1},//[2]
+    { title: 'View Jobs', title_for_menu:'View Jobs', url: '#', icon: 'copy', is_function:1},//[3]
     { title: 'Current Requests', title_for_menu:'Current Requests', url: '/tabs/current-requests', icon: 'reorder-four', is_function:0},//[4]    
     { title: 'Past Requests', title_for_menu:'Past Requests', url: '/tabs/past-requests', icon: 'time', is_function:0},//[5]    
     { title: 'Settings', title_for_menu:'Settings', url: '/tabs/settings', icon: 'settings', is_function:0},//[6]    

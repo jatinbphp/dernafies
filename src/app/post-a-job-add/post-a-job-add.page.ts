@@ -17,7 +17,7 @@ export class PostAJobAddPage implements OnInit
   	public language_selected = '';
 	public default_language_data: any = [];
 	public accept_tems:boolean=false;
-	
+
 	public queryString: any=[];
 	public resultData:any=[];
 	public resultDataJob:any=[];

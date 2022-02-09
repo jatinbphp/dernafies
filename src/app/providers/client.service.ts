@@ -303,7 +303,8 @@ export class ClientService
 		{
 			this.http.get(this.api_url + "getCategories",headers).subscribe((res: any) =>       
 			{   
-				resolve(res.data);
+				resolve(res);
+				//resolve(res.data);
 			},
 			err => 
 			{
@@ -733,6 +734,75 @@ export class ClientService
 					let messageDisplay=this.showMessage(res.message);
 					reject(messageDisplay);
 				}
+			},
+			err => 
+			{
+				console.log(err);
+				let errorMessage=this.getErrorMessage(err);
+				//this.showMessage(errorMessage);
+				reject(errorMessage);
+			});
+		});
+	}
+
+	getAllAcceptedJobsOffers(data)
+	{
+		let headers = this.getHeaderOptions();
+		return new Promise((resolve, reject) => 
+		{
+			let dataToPost = new HttpParams().set("userID",data.user_id).set("userTypeID",data.user_type);
+			this.http.post(this.api_url + "getAllAcceptedJobsOffers",  dataToPost , headers).subscribe((res: any) =>       
+			{
+				if(res.status == true)
+				{
+					this.serverResponse=res.data;
+					resolve(this.serverResponse);					
+				}
+				else
+				{
+					let messageDisplay=this.showMessage(res.message);
+					reject(messageDisplay);
+				}
+			},
+			err => 
+			{
+				console.log(err);
+				let errorMessage=this.getErrorMessage(err);
+				//this.showMessage(errorMessage);
+				reject(errorMessage);
+			});
+		});
+	}
+
+	requestJobOffeResponce(data)
+	{
+		let headers = this.getHeaderOptions();
+		return new Promise((resolve, reject) => 
+		{
+			let dataToPost = new HttpParams().set("assignedTrademan",data.handyman_id).set("uniqueCode",data.unique_code).set("jobStatus",data.status_selected);
+			this.http.post(this.api_url + "requestJobOffeResponce",  dataToPost , headers).subscribe((res: any) =>       
+			{
+				resolve(res);
+			},
+			err => 
+			{
+				console.log(err);
+				let errorMessage=this.getErrorMessage(err);
+				//this.showMessage(errorMessage);
+				reject(errorMessage);
+			});
+		});
+	}
+
+	acceptedJobOffeByCustomer(data)
+	{
+		let headers = this.getHeaderOptions();
+		return new Promise((resolve, reject) => 
+		{
+			let dataToPost = new HttpParams().set("assignedTrademan",data.handyman_id).set("uniqueCode",data.unique_code).set("jobStatus",data.status_selected);
+			this.http.post(this.api_url + "acceptedJobOffeByCustomer",  dataToPost , headers).subscribe((res: any) =>       
+			{
+				resolve(res);
 			},
 			err => 
 			{

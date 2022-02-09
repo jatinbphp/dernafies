@@ -17,12 +17,15 @@ export class PostAJobPage
   public language_selected = '';
 	public default_language_data: any = [];  
 
+  public resultDataCategoriesResponse: any = [];
   public resultDataCategories: any = [];
   public language_key_exchange_array: any = [];
   public queryString: any=[];
   public resultDataSelectedCategories: any = [];
   public resultSelectedCategoriesData: any = [];
   public joinResultDataSelectedCategories:any = '';
+  public category_to_be_selected_limit:number=0;
+  public category_have_been_selected:number=0;
 
   constructor(public client: ClientService, public modalCtrl: ModalController, public loadingCtrl: LoadingController) 
   {
@@ -56,8 +59,10 @@ export class PostAJobPage
 		//LOADER
     await this.client.getCategories().then(result => 
     {	
-      loading.dismiss();//DISMISS LOADER			
-      this.resultDataCategories=result;
+      loading.dismiss();//DISMISS LOADER	
+      this.resultDataCategoriesResponse=result;
+      this.resultDataCategories=this.resultDataCategoriesResponse['data'];
+      this.category_to_be_selected_limit=this.resultDataCategoriesResponse['selection_limit'];
       console.log(this.resultDataCategories);
             
     },
@@ -94,13 +99,20 @@ export class PostAJobPage
     if(ev.detail.checked == true)
     {
       this.resultDataSelectedCategories.push(ev.detail.value);
+      this.category_have_been_selected=this.category_have_been_selected+1;
     }
     if(ev.detail.checked == false)
     {
-      this.resultDataSelectedCategories=this.removeUnCheckedCategories(this.resultDataSelectedCategories,ev.detail.value);      
+      this.resultDataSelectedCategories=this.removeUnCheckedCategories(this.resultDataSelectedCategories,ev.detail.value);
+      this.category_have_been_selected=this.category_have_been_selected-1;
     }
     this.joinResultDataSelectedCategories=this.resultDataSelectedCategories.join(",");
-    
+    console.log(this.category_have_been_selected+"@"+this.category_to_be_selected_limit);
+    if(this.category_have_been_selected > this.category_to_be_selected_limit)
+    {
+      this.client.showMessage("Maximum 2 can be selected!");
+      console.log(ev);
+    }
   }
 
   postJobForCategory()

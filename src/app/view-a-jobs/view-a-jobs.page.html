@@ -10,6 +10,45 @@
 
 <ion-content>		
   <div class="main-div">
+    <div class="rsr-sec" *ngIf="role == 'customer'">
+      <h2>{{default_language_data['translation'][0]['home'][0][language_selected][0]['recent_service_request']}}<span>({{AcceptedjobRequestsByHandyManLength}})</span></h2>
+      <p class="no-records" *ngIf="AcceptedjobRequestsByHandyManLength == 0">No records found.</p>
+      <!--<div *ngFor="let acceptedJobs of AcceptedjobRequestsByHandyMan | keyvalue;">-->
+        <!--{{acceptedJobs.key}}-->
+        <ion-slides *ngFor="let acceptedJobs of AcceptedjobRequestsByHandyMan | keyvalue;" pager="true" [options]="slideOpts">
+          <ion-slide *ngFor="let Handymans of acceptedJobs.value.requested; let h = index">
+            <ion-row class="rsr-list">
+              <ion-col class="rsr-item">
+                <div class="icon-details">
+                  <div class="rsr-icon">
+                    <img src="{{Handymans.categoryImage}}" >
+                  </div>
+                  <div class="rsr-details">
+                    <h3>{{Handymans[language_key_exchange_array[language_selected]]}}</h3>
+                    <p>{{Handymans.description}}</p>
+                    <ion-row>
+                      <ion-col class="loc-icon"><ion-icon name="location-sharp"></ion-icon></ion-col>
+                      <ion-col class="loc-text">
+                        <h5><strong>Street:</strong> {{Handymans.jobAddress}}</h5>
+                        <!--<h5><strong>City:</strong> Shawinigan</h5>-->
+                        <h5><strong>Province:</strong> {{Handymans[province_language_key_exchange_array[language_selected]]}}</h5>
+                      </ion-col>
+                    </ion-row>
+                  </div>
+                </div>
+                <div class="rsr-buttons">
+                  <ion-list>
+                    <ion-item><ion-button color="primary" (click)="showMapWithLocations(Handymans.id,Handymans.assignedTrademan,Handymans.latitude,Handymans.longitude)">{{default_language_data['translation'][0]['general'][0][language_selected][0]['location_map']}}</ion-button></ion-item>
+                    <ion-item><ion-button color="success" (click)="AcceptOrRejectPostAJobByCustomer(Handymans.assignedTrademan,Handymans.uniqueCode,1)"><ion-icon name="checkmark-outline"></ion-icon>{{default_language_data['translation'][0]['general'][0][language_selected][0]['accept_text']}}</ion-button></ion-item>
+                    <ion-item><ion-button color="danger" (click)="AcceptOrRejectPostAJobByCustomer(Handymans.assignedTrademan,Handymans.uniqueCode,2)"><ion-icon name="close-outline"></ion-icon>{{default_language_data['translation'][0]['general'][0][language_selected][0]['reject_text']}}</ion-button></ion-item>
+                  </ion-list>
+                </div>
+              </ion-col>        
+            </ion-row>
+          </ion-slide>          
+        </ion-slides>
+      <!--</div>-->
+    </div>
     <div class="rsr-sec" *ngIf="role == 'handyman'">
       <h2>{{default_language_data['translation'][0]['home'][0][language_selected][0]['recent_service_request']}}<span>({{requestedjobRequestsHandyMan.length}})</span></h2>
       <p class="no-records" *ngIf="requestedjobRequestsHandyMan.length == 0">No records found.</p>
@@ -34,9 +73,9 @@
           </div>
           <div class="rsr-buttons">
             <ion-list>
-              <ion-item><ion-button color="primary">{{default_language_data['translation'][0]['general'][0][language_selected][0]['location_map']}}</ion-button></ion-item>
-              <ion-item><ion-button color="success"><ion-icon name="checkmark-outline"></ion-icon>{{default_language_data['translation'][0]['general'][0][language_selected][0]['accept_text']}}</ion-button></ion-item>
-              <ion-item><ion-button color="danger"><ion-icon name="close-outline"></ion-icon>{{default_language_data['translation'][0]['general'][0][language_selected][0]['reject_text']}}</ion-button></ion-item>
+              <ion-item><ion-button color="primary" (click)="showMapWithLocations(job.id,job.assignedTrademan,job.latitude,job.longitude)">{{default_language_data['translation'][0]['general'][0][language_selected][0]['location_map']}}</ion-button></ion-item>
+              <ion-item><ion-button color="success" (click)="AcceptOrRejectPostAJobByHandyMan(job.assignedTrademan,job.uniqueCode,1)"><ion-icon name="checkmark-outline"></ion-icon>{{default_language_data['translation'][0]['general'][0][language_selected][0]['accept_text']}}</ion-button></ion-item>
+              <ion-item><ion-button color="danger" (click)="AcceptOrRejectPostAJobByHandyMan(job.assignedTrademan,job.uniqueCode,2)"><ion-icon name="close-outline"></ion-icon>{{default_language_data['translation'][0]['general'][0][language_selected][0]['reject_text']}}</ion-button></ion-item>
             </ion-list>
           </div>
         </ion-col>        
