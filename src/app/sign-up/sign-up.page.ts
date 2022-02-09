@@ -168,7 +168,7 @@ export class SignUpPage implements OnInit
     await this.client.getCategories().then(result => 
     {	
       loading.dismiss();//DISMISS LOADER			
-      this.resultDataCategories=result;
+      this.resultDataCategories=result['data'];
       console.log(this.resultDataCategories);
             
     },

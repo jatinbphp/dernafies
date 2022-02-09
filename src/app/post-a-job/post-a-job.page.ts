@@ -24,8 +24,10 @@ export class PostAJobPage
   public resultDataSelectedCategories: any = [];
   public resultSelectedCategoriesData: any = [];
   public joinResultDataSelectedCategories:any = '';
-  public category_to_be_selected_limit:number=0;
-  public category_have_been_selected:number=0;
+  
+  public category_to_be_selected_limit:number=0;//For disabling checkbox after limit
+  public checkeds = 0;//For disabling checkbox after limit
+  public podecheck = true;//For disabling checkbox after limit
 
   constructor(public client: ClientService, public modalCtrl: ModalController, public loadingCtrl: LoadingController) 
   {
@@ -62,6 +64,13 @@ export class PostAJobPage
       loading.dismiss();//DISMISS LOADER	
       this.resultDataCategoriesResponse=result;
       this.resultDataCategories=this.resultDataCategoriesResponse['data'];
+      if(this.resultDataCategories.length > 0)
+      {
+        for(let c=0;c<this.resultDataCategories.length;c++)
+        {
+          this.resultDataCategories[c]['isChecked']=false;
+        }
+      }
       this.category_to_be_selected_limit=this.resultDataCategoriesResponse['selection_limit'];
       console.log(this.resultDataCategories);
             
@@ -99,19 +108,26 @@ export class PostAJobPage
     if(ev.detail.checked == true)
     {
       this.resultDataSelectedCategories.push(ev.detail.value);
-      this.category_have_been_selected=this.category_have_been_selected+1;
     }
     if(ev.detail.checked == false)
     {
       this.resultDataSelectedCategories=this.removeUnCheckedCategories(this.resultDataSelectedCategories,ev.detail.value);
-      this.category_have_been_selected=this.category_have_been_selected-1;
     }
     this.joinResultDataSelectedCategories=this.resultDataSelectedCategories.join(",");
-    console.log(this.category_have_been_selected+"@"+this.category_to_be_selected_limit);
-    if(this.category_have_been_selected > this.category_to_be_selected_limit)
+    //console.log(this.joinResultDataSelectedCategories);
+  }
+
+  check(entry) 
+  {
+    if (!entry.isChecked)
     {
-      this.client.showMessage("Maximum 2 can be selected!");
-      console.log(ev);
+      this.checkeds++;
+      console.log(this.checkeds);
+    } 
+    else 
+    {
+      this.checkeds--;
+      console.log(this.checkeds);
     }
   }
 

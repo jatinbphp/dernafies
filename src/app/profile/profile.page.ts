@@ -73,6 +73,7 @@ export class ProfilePage implements OnInit
 		file_uri_gallery: [''],
 		selected_file_gallery: [''],
 		sourse_file_path_gallery: [''],
+		bio: [''],
 	});
 
 	validation_messages = 
@@ -117,6 +118,10 @@ export class ProfilePage implements OnInit
 		'service_in_km': 
 		[
 		  { type: 'required', message: 'Range service is required.' }
+		],
+		'bio': 
+		[
+		  { type: 'required', message: 'Bio is required.' }
 		]
 	};
   
@@ -159,7 +164,7 @@ export class ProfilePage implements OnInit
 		await this.client.getCategories().then(result => 
 		{	
 			loadingCategories.dismiss();//DISMISS LOADER			
-			this.resultDataCategories=result;
+			this.resultDataCategories=result['data'];
 			console.log(this.resultDataCategories);
 				
 		},
@@ -232,6 +237,7 @@ export class ProfilePage implements OnInit
 			//this.profileForm.controls['service_district'].setValue("");
 			//this.profileForm.controls['service_city'].setValue("");
 			this.profileForm.controls['service_in_km'].setValue("");
+			this.profileForm.controls['bio'].setValue("");
 			this.profileForm.controls['price_per_hour'].setValue("");
 			this.profileForm.controls['experience_in_year'].setValue("");
 			this.profileForm.get('specialized_in').clearValidators();     
@@ -250,6 +256,8 @@ export class ProfilePage implements OnInit
 			this.profileForm.get('phone_number').updateValueAndValidity();
 			this.profileForm.get('service_in_km').clearValidators();     
 			this.profileForm.get('service_in_km').updateValueAndValidity();
+			this.profileForm.get('bio').clearValidators();     
+			this.profileForm.get('bio').updateValueAndValidity();
 
 			let data = {
 				user_id:this.id
@@ -296,6 +304,8 @@ export class ProfilePage implements OnInit
 			this.profileForm.get('phone_number').updateValueAndValidity();
 			this.profileForm.get('service_in_km').setValidators([Validators.required]);     
 			this.profileForm.get('service_in_km').updateValueAndValidity();
+			this.profileForm.get('bio').setValidators([Validators.required]);     
+			this.profileForm.get('bio').updateValueAndValidity();
 
 			let data = {
 				id:this.id
@@ -312,6 +322,7 @@ export class ProfilePage implements OnInit
 				let phone_number = (this.resultData.phoneNumber) ? this.resultData.phoneNumber : "";
 				let price_per_hour = (this.resultData.price) ? this.resultData.price : "";
 				let service_in_km = (this.resultData.rangeServing) ? this.resultData.rangeServing : 0;
+				let bio = (this.resultData.bio) ? this.resultData.bio : "";
 				let experience_in_year = (this.resultData.no_of_experience) ? this.resultData.no_of_experience : 0;
 
 				let specialized_in : any = [];
@@ -331,6 +342,7 @@ export class ProfilePage implements OnInit
 				this.profileForm.controls['phone_number'].setValue(phone_number);
 				this.profileForm.controls['price_per_hour'].setValue(price_per_hour);
 				this.profileForm.controls['service_in_km'].setValue(service_in_km);
+				this.profileForm.controls['bio'].setValue(bio);
 				this.profileForm.controls['experience_in_year'].setValue(experience_in_year);
 			},
 			error => 
@@ -481,6 +493,7 @@ export class ProfilePage implements OnInit
 		let service_province = (form.service_province) ? form.service_province : "";
 		let phone_number = (form.phone_number) ? form.phone_number : "";
 		let service_in_km = (form.service_in_km) ? form.service_in_km : 0;
+		let bio = (form.bio) ? form.bio : "";
 		let price_per_hour = (form.price_per_hour) ? form.price_per_hour : 0;
 		let experience_in_year = (form.experience_in_year) ? form.experience_in_year : 0;
 
@@ -498,6 +511,7 @@ export class ProfilePage implements OnInit
 			service_province:service_province,
 			phone_number:phone_number,
 			service_in_km:service_in_km,
+			bio:bio,
 			price_per_hour:price_per_hour,
 			experience_in_year:experience_in_year,
 			latitude:this.latitude,

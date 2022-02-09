@@ -17,7 +17,8 @@
           <ion-label>{{categories[language_key_exchange_array[language_selected]]}}</ion-label>
           <!-- <ion-img src="{{categories.categoryImage}}"></ion-img> -->
           <img src="{{categories.categoryImage}}">
-          <ion-checkbox slot="end" (ionChange)="selectedCategories($event)" value="{{categories.id}}"></ion-checkbox>
+          <!--<ion-checkbox slot="end" (ionChange)="selectedCategories($event)" value="{{categories.id}}"></ion-checkbox>-->
+          <ion-checkbox slot="end" [(ngModel)]="categories.isChecked" (click)="check(categories)" [disabled]="!categories.isChecked && checkeds === category_to_be_selected_limit" (ionChange)="selectedCategories($event)" value="{{categories.id}}"></ion-checkbox>
         </div>
       </ion-item>
       <ion-item class="btns-sec">

@@ -230,6 +230,23 @@
 						<!--VALIDATION-->          
 					</ion-col>
 				</ion-row>
+				<ion-row *ngIf="role == 'handyman'">
+					<ion-col size="12">
+						<ion-label position="stacked">{{default_language_data['translation'][0]['profile'][0][language_selected][0]['bio']}}</ion-label>
+						<ion-textarea formControlName="bio" rows="5"></ion-textarea>
+						<!--VALIDATION-->
+						<div class="validation-errors">
+						<ng-container *ngFor="let validation of validation_messages.bio">
+							<div class="error-message"
+							*ngIf="profileForm.get('bio').hasError(validation.type) && (profileForm.get('bio').dirty || profileForm.get('bio').touched)">
+							<ion-icon name="information-circle-outline"></ion-icon>
+							<p>{{ validation.message }}</p>
+							</div>
+						</ng-container>
+						</div>
+						<!--VALIDATION-->          
+					</ion-col>
+				</ion-row>
 				<!--HANDYMAN-->			 
 				<!--<ion-row>
 				<ion-col size="12">

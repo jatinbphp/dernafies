@@ -105,6 +105,7 @@
                      "service_district": "Service District",
                      "service_city": "Service City",
                      "service_in_km":"Range Serving",
+                     "bio":"Bio",
                      "pricing": "Pricing",
                      "experience_in_year": "Experience",
                      "terms_of_service":"I agree to the",
@@ -132,6 +133,7 @@
                      "service_district": "منطقة الخدمة",
                      "service_city": "مدينة الخدمة",
                      "service_in_km":"خدمة الميدان",
+                     "bio":"السيرة الذاتية",
                      "pricing": "التسعير",
                      "experience_in_year": "خبرة",
                      "terms_of_service":"أنا أوافق على",
@@ -159,6 +161,7 @@
                      "service_district": "Navçeya Xizmetê",
                      "service_city": "City Service",
                      "service_in_km":"Range Serving",
+                     "bio":"Bio",
                      "pricing": "Pricing",
                      "experience_in_year": "Tecribe",
                      "terms_of_service":"Ez qebûl dikim",
@@ -189,6 +192,7 @@
                      "service_district": "Service District",
                      "service_city": "Service City",
                      "service_in_km":"Range Serving",
+                     "bio":"Bio",
                      "pricing": "Pricing",
                      "experience_in_year": "Experience",
                      "profile_button": "Update"
@@ -209,6 +213,7 @@
                      "service_district": "منطقة الخدمة",
                      "service_city": "مدينة الخدمة",
                      "service_in_km":"خدمة الميدان",
+                     "bio":"السيرة الذاتية",
                      "pricing": "التسعير",
                      "experience_in_year": "خبرة",
                      "profile_button": "تحديث"
@@ -229,6 +234,7 @@
                      "service_district": "Navçeya Xizmetê",
                      "service_city": "City Service",
                      "service_in_km":"Range Serving",
+                     "bio":"Bio",
                      "pricing": "Pricing",
                      "experience_in_year": "Tecribe",
                      "profile_button": "Nûvekirin"
