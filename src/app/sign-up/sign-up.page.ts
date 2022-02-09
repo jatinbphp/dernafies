@@ -61,6 +61,7 @@ export class SignUpPage implements OnInit
     service_in_km: [''],
     price_per_hour: [''],
     experience_in_year: [''],
+    bio: [''],
     latitude: [''],
     longitude: [''],
     subscription_plan: [''],
@@ -106,6 +107,9 @@ export class SignUpPage implements OnInit
     ]*/,
 		'experience_in_year': [
 			{ type: 'required', message: 'Experience in year is required.' }
+		],
+    'bio': [
+			{ type: 'required', message: 'Bio is required.' }
 		],
 		'price_per_hour': [
 			{ type: 'required', message: 'Hourly price is required.' }
@@ -259,6 +263,7 @@ export class SignUpPage implements OnInit
       this.registerForm.controls['service_in_km'].setValue("");
       this.registerForm.controls['price_per_hour'].setValue("");
       this.registerForm.controls['experience_in_year'].setValue("");
+      this.registerForm.controls['bio'].setValue("");
       this.registerForm.get('specialized_in').clearValidators();     
       this.registerForm.get('specialized_in').updateValueAndValidity();
       //this.registerForm.get('service_district').clearValidators();     
@@ -267,6 +272,8 @@ export class SignUpPage implements OnInit
       //this.registerForm.get('service_city').updateValueAndValidity();      
       this.registerForm.get('experience_in_year').clearValidators();     
 			this.registerForm.get('experience_in_year').updateValueAndValidity();
+      this.registerForm.get('bio').clearValidators();     
+			this.registerForm.get('bio').updateValueAndValidity();
       this.registerForm.get('price_per_hour').clearValidators();     
 			this.registerForm.get('price_per_hour').updateValueAndValidity();
       this.registerForm.get('service_province').clearValidators();     
@@ -410,6 +417,7 @@ export class SignUpPage implements OnInit
     let service_in_km = (form.service_in_km) ? form.service_in_km : 0;
     let price_per_hour = (form.price_per_hour) ? form.price_per_hour : 0;
     let experience_in_year = (form.experience_in_year) ? form.experience_in_year : 0;
+    let bio = (form.bio) ? form.bio : "";
     let subscription_plan = (form.subscription_plan) ? form.subscription_plan : 0;
 		let data=
 		{
@@ -426,6 +434,7 @@ export class SignUpPage implements OnInit
       service_in_km:service_in_km,
       price_per_hour:price_per_hour,
       experience_in_year:experience_in_year,
+      bio:bio,
       latitude:this.latitude,
       longitude:this.longitude,
       address:this.address,
@@ -489,6 +498,9 @@ export class SignUpPage implements OnInit
 
       this.registerForm.get('experience_in_year').setValidators([Validators.required]);     
 			this.registerForm.get('experience_in_year').updateValueAndValidity();
+
+      this.registerForm.get('bio').setValidators([Validators.required]);     
+			this.registerForm.get('bio').updateValueAndValidity();
       
       this.registerForm.get('price_per_hour').setValidators([Validators.required]);     
 			this.registerForm.get('price_per_hour').updateValueAndValidity();
@@ -524,6 +536,8 @@ export class SignUpPage implements OnInit
       //this.registerForm.get('service_city').updateValueAndValidity();      
       this.registerForm.get('experience_in_year').clearValidators();     
 			this.registerForm.get('experience_in_year').updateValueAndValidity();
+      this.registerForm.get('bio').clearValidators();     
+			this.registerForm.get('bio').updateValueAndValidity();
       this.registerForm.get('price_per_hour').clearValidators();     
 			this.registerForm.get('price_per_hour').updateValueAndValidity();
       this.registerForm.get('service_province').clearValidators();     

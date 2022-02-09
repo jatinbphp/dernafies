@@ -188,4 +188,10 @@ export class PostAJobPage
     }
   }
 
+  ionViewDidLeave()
+  {
+    this.resultDataSelectedCategories=[];
+    this.resultSelectedCategoriesData=[];
+    this.joinResultDataSelectedCategories='';
+  }
 }

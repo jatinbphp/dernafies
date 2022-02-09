@@ -96,6 +96,21 @@ ion-content {
                                 line-height: 44px;
                             }
         				}
+                        ion-textarea {
+        					width: 100%;
+        					border-radius: 10px;
+        					box-shadow: 2.046px 2.194px 25.5px rgba(4,7,7,0.06);
+        					background-color: #ffffff;
+        					--padding-start: 10px;
+        					font-size: 18px;
+        					color: var(--Black);
+        					font-family: var(--font-NeueHaasUnicaPro-Bold);
+                            --padding-top: 0;
+                            --padding-bottom: 0;
+                            @media(max-width:374px) {
+                                font-size: 15px;
+                            }
+        				}
         				ion-icon {
         					position: absolute;
     					    top: 50px;

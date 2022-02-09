@@ -122,7 +122,7 @@ export class ClientService
 		let headers = this.getHeaderOptions();
 		return new Promise((resolve, reject) => 
 		{
-			let dataToPost = new HttpParams().set("userTypeID",data.user_type).set("firstName",data.first_name).set("lastName", data.last_name).set("email",data.email).set("pwd", data.password).set("provinceID", data.service_province).set("location", data.address).set("latitude", data.latitude).set("longitude", data.longitude).set("categoryID", data.specialized_in).set("districtID", data.service_district).set("cityID", data.service_city).set("rangeServing", data.service_in_km).set("price", data.price_per_hour).set("no_of_experience", data.experience_in_year).set("phoneNumber", data.phone_number);
+			let dataToPost = new HttpParams().set("userTypeID",data.user_type).set("bio",data.bio).set("firstName",data.first_name).set("lastName", data.last_name).set("email",data.email).set("pwd", data.password).set("provinceID", data.service_province).set("location", data.address).set("latitude", data.latitude).set("longitude", data.longitude).set("categoryID", data.specialized_in).set("districtID", data.service_district).set("cityID", data.service_city).set("rangeServing", data.service_in_km).set("price", data.price_per_hour).set("no_of_experience", data.experience_in_year).set("phoneNumber", data.phone_number);
 			this.http.post(this.api_url + "register",  dataToPost , headers).subscribe((res: any) =>       
 			{
 				if(res.status == true)

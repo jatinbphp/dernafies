@@ -163,6 +163,23 @@ ion-content {
                             }
                             @media(max-width:374px) {}
                         }
+                        .bio{
+                            width: 100%;
+                            text-align: var(--text-center);
+                            font-size: 17px;
+                            line-height: 25px;
+                            font-family: var(--font-NeueHaasUnicaPro-Regular);
+                            color: var(--Black);
+                            text-transform: capitalize;
+                            letter-spacing: normal;
+                            margin: 0px 0px 12px;
+                            padding: 0px;
+                            @media(max-width:399px) {
+                                font-size: 14px;
+                                line-height: 22px;
+                            }
+                            @media(max-width:374px) {}
+                        }
                         .rating-stars {
                             width: 100%;
                             text-align: var(--text-center);
