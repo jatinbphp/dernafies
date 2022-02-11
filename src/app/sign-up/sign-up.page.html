@@ -262,19 +262,23 @@
         </ion-row>-->
         <ion-row *ngIf="signup_as_handyman == true">
           <ion-col size="12">
-            <ion-label position="stacked">{{default_language_data['translation'][0]['register'][0][language_selected][0]['service_in_km']}}</ion-label>
-            <ion-input type="number" formControlName="service_in_km"></ion-input>
-            <!--VALIDATION-->
-            <div class="validation-errors">
-              <ng-container *ngFor="let validation of validation_messages.service_in_km">
-                <div class="error-message"
-                  *ngIf="registerForm.get('service_in_km').hasError(validation.type) && (registerForm.get('service_in_km').dirty || registerForm.get('service_in_km').touched)">
-                  <ion-icon name="information-circle-outline"></ion-icon>
-                  <p>{{ validation.message }}</p>
-                </div>
-              </ng-container>
-            </div>
-            <!--VALIDATION-->          
+            <ion-item>
+              <ion-label position="stacked">{{default_language_data['translation'][0]['register'][0][language_selected][0]['service_in_km']}}</ion-label>
+              <ion-select formControlName="service_in_km">
+                <ion-select-option *ngFor="let km of max_service_range_km;let k = index;" value="{{km}}">{{km}}</ion-select-option>  
+              </ion-select>
+              <!--VALIDATION-->
+              <div class="validation-errors">
+                <ng-container *ngFor="let validation of validation_messages.service_in_km">
+                  <div class="error-message"
+                    *ngIf="registerForm.get('service_in_km').hasError(validation.type) && (registerForm.get('service_in_km').dirty || registerForm.get('service_in_km').touched)">
+                    <ion-icon name="information-circle-outline"></ion-icon>
+                    <p>{{ validation.message }}</p>
+                  </div>
+                </ng-container>
+              </div>
+              <!--VALIDATION-->
+            </ion-item>          
           </ion-col>
         </ion-row>
         <ion-row *ngIf="signup_as_handyman == true">

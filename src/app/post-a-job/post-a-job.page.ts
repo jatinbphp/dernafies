@@ -63,6 +63,7 @@ export class PostAJobPage
     {	
       loading.dismiss();//DISMISS LOADER	
       this.resultDataCategoriesResponse=result;
+      
       this.resultDataCategories=this.resultDataCategoriesResponse['data'];
       if(this.resultDataCategories.length > 0)
       {
@@ -71,9 +72,7 @@ export class PostAJobPage
           this.resultDataCategories[c]['isChecked']=false;
         }
       }
-      this.category_to_be_selected_limit=this.resultDataCategoriesResponse['selection_limit'];
-      console.log(this.resultDataCategories);
-            
+      this.category_to_be_selected_limit=Number(this.resultDataCategoriesResponse['selection_limit']);
     },
     error => 
     {

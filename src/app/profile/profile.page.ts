@@ -23,15 +23,17 @@ export class ProfilePage implements OnInit
 	@ViewChild('gooeleMap')  mapElement: ElementRef;
 	public language_selected = '';
 	public default_language_data: any = [];
-	
+	public resultDataCategoriesResponse: any = [];
 	public resultDataCategories: any = [];
 	public resultDataDistricts: any = [];
 	public resultDataCities: any = [];
 	public resultDataProvince: any = [];
+	public resultDataSubscriptionPlans: any = [];
 	public language_key_exchange_array: any = [];
 	public language_key_exchange_district_array: any = [];
 	public language_key_exchange_city_array: any = [];
 	public language_key_exchange_province_array: any = [];
+	public language_key_exchange_subscription_plan: any = [];
 
 	public gooeleMap: any;
 	public latitude:any='';
@@ -52,6 +54,12 @@ export class ProfilePage implements OnInit
   	public file_uri_gallery: string;//IMAGE CAPTURED FROM GALLERY
 	public selected_file_gallery: string;//IMAGE CAPTURED FROM GALLERY
   	public sourse_file_path_gallery: string;//IMAGE CAPTURED FROM GALLERY
+
+	public max_service_range:number=0;
+	public max_service_range_km:any=[];
+	public category_to_be_selected_limit:number=0;//For disabling checkbox after limit
+	public checkeds = 0;//For disabling checkbox after limit
+	public podecheck = true;//For disabling checkbox after limit
 
 	public profileForm = this.fb.group({
 		first_name: ['', Validators.required],
@@ -74,6 +82,7 @@ export class ProfilePage implements OnInit
 		selected_file_gallery: [''],
 		sourse_file_path_gallery: [''],
 		bio: [''],
+		subscription_plan: [''],
 	});
 
 	validation_messages = 
@@ -119,6 +128,10 @@ export class ProfilePage implements OnInit
 		[
 		  { type: 'required', message: 'Range service is required.' }
 		],
+		'subscription_plan': 
+		[
+		  { type: 'required', message: 'Selecting service plan is required.' }
+		],
 		'bio': 
 		[
 		  { type: 'required', message: 'Bio is required.' }
@@ -151,6 +164,10 @@ export class ProfilePage implements OnInit
 		this.language_key_exchange_province_array['arabic']='provinceNameArabic';
 		this.language_key_exchange_province_array['kurdish']='provinceNameKurdi';
 
+		this.language_key_exchange_subscription_plan['english']='planName';
+		this.language_key_exchange_subscription_plan['arabic']='planNameArabic';
+		this.language_key_exchange_subscription_plan['kurdish']='planNameKurdish';
+
 		//LOADER
 		const loadingCategories = await this.loadingCtrl.create({
 			spinner: null,
@@ -164,9 +181,25 @@ export class ProfilePage implements OnInit
 		await this.client.getCategories().then(result => 
 		{	
 			loadingCategories.dismiss();//DISMISS LOADER			
-			this.resultDataCategories=result['data'];
-			console.log(this.resultDataCategories);
-				
+			this.resultDataCategoriesResponse=result;
+			console.log(this.resultDataCategoriesResponse);
+			this.resultDataCategories=this.resultDataCategoriesResponse['data'];
+			if(this.resultDataCategories.length > 0)
+			{
+				for(let c=0;c<this.resultDataCategories.length;c++)
+				{
+				this.resultDataCategories[c]['isChecked']=false;
+				}
+			}
+			this.category_to_be_selected_limit=Number(this.resultDataCategoriesResponse['selection_limit']);
+			this.max_service_range=Number(this.resultDataCategoriesResponse['range_serving']);
+			if(this.max_service_range > 0)
+			{
+				for(let km = 1; km <= this.max_service_range; km ++)
+				{
+					this.max_service_range_km.push(km);
+				}
+			}
 		},
 		error => 
 		{
@@ -219,6 +252,29 @@ export class ProfilePage implements OnInit
 		});//Province
 
 		//LOADER
+		const loadingSubscriptionPlans = await this.loadingCtrl.create({
+			spinner: null,
+			//duration: 5000,
+			message: 'Please wait...',
+			translucent: true,
+			cssClass: 'custom-class custom-loading'
+		});
+		await loadingSubscriptionPlans.present();
+		//LOADER
+		await this.client.getSubscriptionPlan().then(resultSubscription => 
+		{	
+			loadingSubscriptionPlans.dismiss();//DISMISS LOADER			
+			this.resultDataSubscriptionPlans=resultSubscription;
+			console.log("Subscriptions",this.resultDataSubscriptionPlans);
+				
+		},
+		error => 
+		{
+			loadingSubscriptionPlans.dismiss();//DISMISS LOADER
+			console.log();
+		});//Subscriptions plans
+
+		//LOADER
 		const loading = await this.loadingCtrl.create({
 			spinner: null,
 			//duration: 5000,
@@ -237,6 +293,7 @@ export class ProfilePage implements OnInit
 			//this.profileForm.controls['service_district'].setValue("");
 			//this.profileForm.controls['service_city'].setValue("");
 			this.profileForm.controls['service_in_km'].setValue("");
+			this.profileForm.controls['subscription_plan'].setValue("");
 			this.profileForm.controls['bio'].setValue("");
 			this.profileForm.controls['price_per_hour'].setValue("");
 			this.profileForm.controls['experience_in_year'].setValue("");
@@ -256,6 +313,8 @@ export class ProfilePage implements OnInit
 			this.profileForm.get('phone_number').updateValueAndValidity();
 			this.profileForm.get('service_in_km').clearValidators();     
 			this.profileForm.get('service_in_km').updateValueAndValidity();
+			this.profileForm.get('subscription_plan').clearValidators();     
+			this.profileForm.get('subscription_plan').updateValueAndValidity();
 			this.profileForm.get('bio').clearValidators();     
 			this.profileForm.get('bio').updateValueAndValidity();
 
@@ -304,6 +363,8 @@ export class ProfilePage implements OnInit
 			this.profileForm.get('phone_number').updateValueAndValidity();
 			this.profileForm.get('service_in_km').setValidators([Validators.required]);     
 			this.profileForm.get('service_in_km').updateValueAndValidity();
+			this.profileForm.get('subscription_plan').setValidators([Validators.required]);     
+			this.profileForm.get('subscription_plan').updateValueAndValidity();			
 			this.profileForm.get('bio').setValidators([Validators.required]);     
 			this.profileForm.get('bio').updateValueAndValidity();
 
@@ -322,6 +383,7 @@ export class ProfilePage implements OnInit
 				let phone_number = (this.resultData.phoneNumber) ? this.resultData.phoneNumber : "";
 				let price_per_hour = (this.resultData.price) ? this.resultData.price : "";
 				let service_in_km = (this.resultData.rangeServing) ? this.resultData.rangeServing : 0;
+				let subscription_plan = (this.resultData.subscription_plan) ? this.resultData.subscription_plan : 0;
 				let bio = (this.resultData.bio) ? this.resultData.bio : "";
 				let experience_in_year = (this.resultData.no_of_experience) ? this.resultData.no_of_experience : 0;
 
@@ -342,6 +404,7 @@ export class ProfilePage implements OnInit
 				this.profileForm.controls['phone_number'].setValue(phone_number);
 				this.profileForm.controls['price_per_hour'].setValue(price_per_hour);
 				this.profileForm.controls['service_in_km'].setValue(service_in_km);
+				this.profileForm.controls['subscription_plan'].setValue(subscription_plan);
 				this.profileForm.controls['bio'].setValue(bio);
 				this.profileForm.controls['experience_in_year'].setValue(experience_in_year);
 			},
@@ -418,6 +481,21 @@ export class ProfilePage implements OnInit
 			//LOAD THE MAP WITH LATITUDE,LONGITUDE
 		});
 	}
+
+	check(entry) 
+	{
+		if (!entry.isChecked)
+		{
+		this.checkeds++;
+		console.log(this.checkeds);
+		} 
+		else 
+		{
+		this.checkeds--;
+		console.log(this.checkeds);
+		}
+	}
+
 	JustAssignLatLonAsGlobal()
 	{
 		console.log(this.latitude);
@@ -493,6 +571,7 @@ export class ProfilePage implements OnInit
 		let service_province = (form.service_province) ? form.service_province : "";
 		let phone_number = (form.phone_number) ? form.phone_number : "";
 		let service_in_km = (form.service_in_km) ? form.service_in_km : 0;
+		let subscription_plan = (form.subscription_plan) ? form.subscription_plan : 0;
 		let bio = (form.bio) ? form.bio : "";
 		let price_per_hour = (form.price_per_hour) ? form.price_per_hour : 0;
 		let experience_in_year = (form.experience_in_year) ? form.experience_in_year : 0;
@@ -511,6 +590,7 @@ export class ProfilePage implements OnInit
 			service_province:service_province,
 			phone_number:phone_number,
 			service_in_km:service_in_km,
+			subscription_plan:subscription_plan,
 			bio:bio,
 			price_per_hour:price_per_hour,
 			experience_in_year:experience_in_year,

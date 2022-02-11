@@ -21,6 +21,7 @@ export class SignUpPage implements OnInit
 	public default_language_data: any = [];
   public resultData:any;
   public signup_as_handyman: boolean = false;
+  public resultDataCategoriesResponse: any = [];
   public resultDataCategories: any = [];
   public resultDataDistricts: any = [];
   public resultDataCities: any = [];
@@ -44,6 +45,13 @@ export class SignUpPage implements OnInit
 	public ConfirmPasswordType: string = 'password';
 	public ConfirmPasswordIcon: string = 'eye-off';
   public accept_tems:boolean=false;
+
+  public max_service_range:number=0;
+	public max_service_range_km:any=[];
+	public category_to_be_selected_limit:number=0;//For disabling checkbox after limit
+	public checkeds = 0;//For disabling checkbox after limit
+	public podecheck = true;//For disabling checkbox after limit
+
   public registerForm = this.fb.group({
     first_name: ['', Validators.required],
     last_name: ['', Validators.required],
@@ -172,8 +180,25 @@ export class SignUpPage implements OnInit
     await this.client.getCategories().then(result => 
     {	
       loading.dismiss();//DISMISS LOADER			
-      this.resultDataCategories=result['data'];
-      console.log(this.resultDataCategories);
+      this.resultDataCategoriesResponse=result;
+			console.log(this.resultDataCategoriesResponse);
+			this.resultDataCategories=this.resultDataCategoriesResponse['data'];
+			if(this.resultDataCategories.length > 0)
+			{
+				for(let c=0;c<this.resultDataCategories.length;c++)
+				{
+				this.resultDataCategories[c]['isChecked']=false;
+				}
+			}
+			this.category_to_be_selected_limit=Number(this.resultDataCategoriesResponse['selection_limit']);
+			this.max_service_range=Number(this.resultDataCategoriesResponse['range_serving']);
+			if(this.max_service_range > 0)
+			{
+				for(let km = 1; km <= this.max_service_range; km ++)
+				{
+					this.max_service_range_km.push(km);
+				}
+			}
             
     },
     error => 
@@ -339,6 +364,20 @@ export class SignUpPage implements OnInit
     });
   }
 
+  check(entry) 
+	{
+		if (!entry.isChecked)
+		{
+		this.checkeds++;
+		console.log(this.checkeds);
+		} 
+		else 
+		{
+		this.checkeds--;
+		console.log(this.checkeds);
+		}
+	}
+  
   JustAssignLatLonAsGlobal()
   {
     console.log(this.latitude);

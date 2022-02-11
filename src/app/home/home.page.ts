@@ -149,7 +149,7 @@ export class HomePage
         translucent: true,
         cssClass: 'custom-class custom-loading'
       });
-      await loading.present();
+      //await loading.present();
       //LOADER
       await this.client.getCategories().then(result => 
       {	
@@ -172,7 +172,7 @@ export class HomePage
         translucent: true,
         cssClass: 'custom-class custom-loading'
       });
-      await loadingFeaturedHandyMan.present();
+      //await loadingFeaturedHandyMan.present();
       //LOADER
       let dataHandyMan = {
         categoryID:0,
@@ -201,7 +201,7 @@ export class HomePage
         translucent: true,
         cssClass: 'custom-class custom-loading'
       });
-      await loadingHandyManCompletedJobRequests.present();
+      //await loadingHandyManCompletedJobRequests.present();
       //LOADER
       let dataHandyManJobRequest = {
         user_id:this.id,        
@@ -230,7 +230,7 @@ export class HomePage
         translucent: true,
         cssClass: 'custom-class custom-loading'
       });
-      await loadingHandyManRequests.present();
+      //await loadingHandyManRequests.present();
       //LOADER
       let dataHandyManJobRequest = {
         user_id:this.id,        
@@ -256,6 +256,9 @@ export class HomePage
   {
     this.default_language_data = this.client.default_language_data;
 		this.language_selected = this.client.language_selected;
+    this.jobRequestsHandyMan=[];
+    this.completedJobRequestsHandyMan=[];
+    this.resultDataFeaturedHandyMan=[];
     //this.rtl_or_ltr = this.client.rtl_or_ltr;
     console.log(this.rtl_or_ltr);
     this.id=localStorage.getItem('id');
@@ -330,7 +333,7 @@ export class HomePage
         translucent: true,
         cssClass: 'custom-class custom-loading'
       });
-      await loading.present();
+      //await loading.present();
       //LOADER
       await this.client.getCategories().then(result => 
       {	
@@ -353,7 +356,7 @@ export class HomePage
         translucent: true,
         cssClass: 'custom-class custom-loading'
       });
-      await loadingFeaturedHandyMan.present();
+      //await loadingFeaturedHandyMan.present();
       //LOADER
       let dataHandyMan = {
         categoryID:0,
@@ -382,7 +385,7 @@ export class HomePage
         translucent: true,
         cssClass: 'custom-class custom-loading'
       });
-      await loadingHandyManCompletedJobRequests.present();
+      //await loadingHandyManCompletedJobRequests.present();
       //LOADER
       let dataHandyManJobRequest = {
         user_id:this.id,        
@@ -411,7 +414,7 @@ export class HomePage
         translucent: true,
         cssClass: 'custom-class custom-loading'
       });
-      await loadingHandyManRequests.present();
+      //await loadingHandyManRequests.present();
       //LOADER
       let dataHandyManJobRequest = {
         user_id:this.id,        
@@ -641,7 +644,7 @@ export class HomePage
       loading.dismiss();//DISMISS LOADER			
       this.resultJobUpdatedStatus=result; 
       this.client.showMessage(this.resultJobUpdatedStatus['message']);
-      this.ionViewWillEnter();
+      this.showHomeContent();
     },
     error => 
     {
