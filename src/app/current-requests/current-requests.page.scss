@@ -75,13 +75,18 @@ ion-content {
                 --color-hover: #0b8df4;
                 --color-checked: #0b8df4;
                 border: 1px solid #fff;
-                padding: 0px 16px;
                 text-transform: capitalize;
                 line-height: normal;
+                padding: 0px 16px;
                 min-height: 40px;
                 margin: 0px 6px;
-                @media screen and (max-width: 991px) {}
-                @media screen and (max-width: 767px) {}
+                @media screen and (min-width: 768px) and (max-width: 991px) {}
+                @media screen and (max-width: 767px) {
+                    font-size: 14px;
+                    padding: 0px 7px;
+                    min-height: 30px;
+                    margin: 0px 3px;
+                }
                 @media screen and (max-width: 481px) {}
                 &.segment-button-checked {
                     background-color: var(--White);
