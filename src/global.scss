@@ -58,6 +58,10 @@
 	display: unset !important;
 }
 
+:host(.segment-button-layout-icon-top) .button-native {
+    flex-direction: row !important;
+}
+
 ::slotted(ion-avatar) {
     width: unset;
     height: unset;
@@ -724,7 +728,7 @@ app-home {
 }
 
 // below-css-Keyboard-pushes-elements-out-of-view-for
-.scroll-content {
+.scroll-content, .inner-scroll {
     --padding-end: 0px !important;
     padding-inline-end: 0px !important;
     padding-bottom: 0 !important;

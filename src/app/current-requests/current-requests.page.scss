@@ -35,7 +35,7 @@ ion-content {
             width: 100%;
             display: flex;
             flex-flow: row;
-            justify-content: unset;
+            justify-content: center;
             overflow-y: hidden;
             overflow-x: auto;
             --background: none;
@@ -60,10 +60,6 @@ ion-content {
                 --indicator-box-shadow: 0;
                 --indicator-color: transparent;
                 --indicator-height: 100%;
-                font-size: 16px;
-                color: var(--White);
-                font-family: var(--font-NeueHaasUnicaPro-Medium);
-                font-weight: normal;
                 position: relative;
                 text-align: var(--text-center);
                 --padding-start: 0px;
@@ -75,11 +71,20 @@ ion-content {
                 --color-hover: #0b8df4;
                 --color-checked: #0b8df4;
                 border: 1px solid #fff;
-                text-transform: capitalize;
-                line-height: normal;
                 padding: 0px 16px;
                 min-height: 40px;
                 margin: 0px 6px;
+                ion-text {
+                    font-size: 16px;
+                    line-height: normal;
+                    color: var(--White);
+                    font-family: var(--font-NeueHaasUnicaPro-Medium);
+                    font-weight: normal;
+                    text-transform: capitalize;
+                    @media screen and (max-width: 767px) {
+                        font-size: 14px;
+                    }
+                }
                 @media screen and (min-width: 768px) and (max-width: 991px) {}
                 @media screen and (max-width: 767px) {
                     font-size: 14px;
@@ -88,9 +93,23 @@ ion-content {
                     margin: 0px 3px;
                 }
                 @media screen and (max-width: 481px) {}
+                img {
+                    max-width: 100%;
+                    min-width: 30px;
+                    width: 30px;
+                    height: 20px;
+                    object-fit: contain;
+                    object-position: center;
+                }
                 &.segment-button-checked {
                     background-color: var(--White);
                     color: #0b8df4;
+                    ion-text {
+                        color: #0b8df4;
+                    }
+                    img {
+                        filter: invert(39%) sepia(83%) saturate(2954%) hue-rotate(188deg) brightness(103%) contrast(92%);
+                    }
                 }
             }
         }
@@ -273,4 +292,8 @@ ion-content {
             }
         }
     }
+}
+
+:host(.segment-button-layout-icon-top) .button-native {
+    flex-direction: row !important;
 }

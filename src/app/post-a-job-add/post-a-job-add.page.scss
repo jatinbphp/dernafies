@@ -267,6 +267,86 @@ ion-content {
                     }
         		}
         	}
+            .ftr-cnt {
+                padding: 20px 16px 40px;
+                --background: transparent;
+                position: absolute;
+                bottom: 0px;
+                left: 0px;
+                right: 0px;
+                --border: 0px !important;
+                border: 0px !important;
+                // border-radius: 0px 0px 35px 35px;
+                // background-color: #f8f8f8;
+                ion-grid {
+                    &.terms-options {
+                        ion-row {
+                            justify-content: center;
+                            align-items: center;
+                            //margin: 40px 0px 0px;
+                            margin: 16px 0px 10px;
+                            ion-col {
+                                flex: unset !important;
+                                width: fit-content !important;
+                                max-width: fit-content !important;
+                                font-family: var(--font-NeueHaasUnicaPro-Regular);
+                                color: var(--Black);
+                                font-size: 18px;
+                                line-height: 22px;
+                                @media(max-width:374px) {
+                                    font-size: 16px;
+                                    line-height: 20px;
+                                }
+                                strong {
+                                    color: var(--theme-blue-text);
+                                    font-weight: normal;
+                                }
+                                ion-checkbox {
+                                    margin: 0px 10px;
+                                    --border-radius: 50%;
+                                    --border-width: 1px;
+                                    --border-style: solid;
+                                    --border-color: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.23);
+                                    --background: var(--ion-item-background, var(--ion-background-color, #fff));
+                                    --size: 26px;
+                                    width: var(--size);
+                                    height: var(--size);
+                                    --background-checked: #34b120;
+                                    --border-color-checked: #34b120;
+                                    --checkmark-color: var(--ion-color-primary-contrast, #fff);
+                                    --checkmark-width: 2px;
+                                    @media(max-width:374px) {
+                                        --size: 18px;
+                                        width: var(--size);
+                                        height: var(--size);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                ion-item {
+                    ion-button {
+                        width: 100%;
+                        --background: linear-gradient(160deg, #037ff1 0%, #17a3f5 100%);
+                        color: var(--White);
+                        font-size: 20px;
+                        height: 56px;
+                        line-height: 56px;
+                        --border-radius: 30px;
+                        text-transform: capitalize;
+                        letter-spacing: 1.5px;
+                        --box-shadow: none;
+                        font-family: var(--font-Poppins-SemiBold);
+                        margin: 0px;
+                        @media(max-width:374px) {
+                            height: 45px;
+                            line-height: 45px;
+                            font-size: 18px;
+                        }
+                    }
+                }
+            }
         }
     }
     .loc-con-box {
@@ -455,7 +535,7 @@ ion-content {
             }
         }
     }
-    ion-footer {
+    .ftr-cnt {
         padding: 20px 16px 40px;
         --background: transparent;
         position: absolute;

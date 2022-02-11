@@ -53,33 +53,19 @@
       <ion-item lines="none">
         <ion-button type="submit" color="" [disabled]="!BooKAJobForm.valid || accept_tems != true">{{default_language_data['translation'][0]['book_a_job'][0][language_selected][0]['post_a_job']}}</ion-button>
       </ion-item> -->
+      <div class="ftr-cnt">
+        <ion-grid class="terms-options">
+          <ion-row>
+            <ion-col size="1">
+              <ion-checkbox (ionChange)="acceptTerms($event)" [(ngModel)]="accept_tems" [ngModelOptions]="{standalone: true}"></ion-checkbox>
+            </ion-col>        
+            <ion-col size="11">{{default_language_data['translation'][0]['register'][0][language_selected][0]['terms_of_service']}} <strong (click)="openActionRequested('https://dernafies.ecnetsolutions.dev/terms-and-conditions')">{{default_language_data['translation'][0]['register'][0][language_selected][0]['terms_of_service_link_text']}}</strong></ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-item lines="none">
+          <ion-button type="submit" color="" [disabled]="!BooKAJobForm.valid || accept_tems != true">{{default_language_data['translation'][0]['book_a_job'][0][language_selected][0]['post_a_job']}}</ion-button>
+        </ion-item>
+      </div>
     </form>    
   </div>
-  <ion-footer>
-    <ion-grid class="terms-options">
-      <ion-row>
-        <ion-col size="1">
-          <ion-checkbox (ionChange)="acceptTerms($event)" [(ngModel)]="accept_tems" [ngModelOptions]="{standalone: true}"></ion-checkbox>
-        </ion-col>        
-        <ion-col size="11">{{default_language_data['translation'][0]['register'][0][language_selected][0]['terms_of_service']}} <strong (click)="openActionRequested('https://dernafies.ecnetsolutions.dev/terms-and-conditions')">{{default_language_data['translation'][0]['register'][0][language_selected][0]['terms_of_service_link_text']}}</strong></ion-col>
-      </ion-row>
-    </ion-grid>
-    <ion-item lines="none">
-      <ion-button type="submit" color="" [disabled]="!BooKAJobForm.valid || accept_tems != true">{{default_language_data['translation'][0]['book_a_job'][0][language_selected][0]['post_a_job']}}</ion-button>
-    </ion-item>
-  </ion-footer>
 </ion-content>
-
-<!-- <ion-footer>
-  <ion-grid class="terms-options">
-    <ion-row>
-      <ion-col size="1">
-        <ion-checkbox (ionChange)="acceptTerms($event)" [(ngModel)]="accept_tems" [ngModelOptions]="{standalone: true}"></ion-checkbox>
-      </ion-col>        
-      <ion-col size="11">{{default_language_data['translation'][0]['register'][0][language_selected][0]['terms_of_service']}} <strong (click)="openActionRequested('https://dernafies.ecnetsolutions.dev/terms-and-conditions')">{{default_language_data['translation'][0]['register'][0][language_selected][0]['terms_of_service_link_text']}}</strong></ion-col>
-    </ion-row>
-  </ion-grid>
-  <ion-item lines="none">
-    <ion-button type="submit" color="" [disabled]="!BooKAJobForm.valid || accept_tems != true">{{default_language_data['translation'][0]['book_a_job'][0][language_selected][0]['book_a_button']}}</ion-button>
-  </ion-item>
-</ion-footer> -->

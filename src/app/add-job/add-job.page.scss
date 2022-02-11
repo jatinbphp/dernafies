@@ -12,8 +12,8 @@ ion-header {
 ion-content {
     .main-div {
         width: 100%;
-        //border-radius: 0px 0px 35px 35px;
-        border-radius: 0px 0px;
+        border-radius: 0px 0px 35px 35px;
+        // border-radius: 0px 0px;
         background: #f8f8f8;
         //padding: 25px 16px 30px;
         padding: 25px 16px 0px;
@@ -37,7 +37,7 @@ ion-content {
         form {
         	width: 100%;
         	//padding: 0px 0px 40px;
-            padding: 0px 0px 20px;
+            padding: 40px 0px 20px;
         	ion-grid {
         		ion-row {
         			ion-col {
@@ -268,6 +268,80 @@ ion-content {
                     }
         		}
         	}
+            .ftr-cnt {
+                padding: 0px 16px 20px;
+                --background: transparent;
+                border-radius: 0px 0px 35px 35px;
+                background-color: #f8f8f8;
+                ion-grid {
+                    &.terms-options {
+                        ion-row {
+                            justify-content: center;
+                            align-items: center;
+                            //margin: 40px 0px 0px;
+                            margin: 16px 0px 10px;
+                            ion-col {
+                                flex: unset !important;
+                                width: fit-content !important;
+                                max-width: fit-content !important;
+                                font-family: var(--font-NeueHaasUnicaPro-Regular);
+                                color: var(--Black);
+                                font-size: 18px;
+                                line-height: 22px;
+                                @media(max-width:374px) {
+                                    font-size: 16px;
+                                    line-height: 20px;
+                                }
+                                strong {
+                                    color: var(--theme-blue-text);
+                                    font-weight: normal;
+                                }
+                                ion-checkbox {
+                                    margin: 0px 10px;
+                                    --border-radius: 50%;
+                                    --border-width: 1px;
+                                    --border-style: solid;
+                                    --border-color: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.23);
+                                    --background: var(--ion-item-background, var(--ion-background-color, #fff));
+                                    --size: 26px;
+                                    width: var(--size);
+                                    height: var(--size);
+                                    --background-checked: #34b120;
+                                    --border-color-checked: #34b120;
+                                    --checkmark-color: var(--ion-color-primary-contrast, #fff);
+                                    --checkmark-width: 2px;
+                                    @media(max-width:374px) {
+                                        --size: 18px;
+                                        width: var(--size);
+                                        height: var(--size);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                ion-item {
+                    ion-button {
+                        width: 100%;
+                        --background: linear-gradient(160deg, #037ff1 0%, #17a3f5 100%);
+                        color: var(--White);
+                        font-size: 20px;
+                        height: 56px;
+                        line-height: 56px;
+                        --border-radius: 30px;
+                        text-transform: capitalize;
+                        letter-spacing: 1.5px;
+                        --box-shadow: none;
+                        font-family: var(--font-Poppins-SemiBold);
+                        margin: 0px;
+                        @media(max-width:374px) {
+                            height: 45px;
+                            line-height: 45px;
+                            font-size: 18px;
+                        }
+                    }
+                }
+            }
         }
     }
     .loc-con-box {
@@ -289,7 +363,8 @@ ion-content {
             margin: 0px;
             .person-contact {
                 width: 100%;
-                margin: 10px 0px 24px;
+                //margin: 10px 0px 24px;
+                margin: 10px 0px 0px;
                 p {
                     width: 100%;
                     font-size: 18px;
@@ -314,18 +389,26 @@ ion-content {
                         color: #8bcd77;
                         font-size: 23px;
                         margin-right: 6px;
+                        width: 25px;
+                        height: 25px;
+                        line-height: 25px;
+                        object-fit: contain;
+                        object-position: center;
                         @media(max-width:374px) {
                             font-size: 21px;
+                            width: 23px;
+                            height: 23px;
+                            line-height: 23px;
                         }
                         @media(max-width:340px) {
                             transform: translateY(3px);
                         }
-                        &.md {
-                            font-size: 34px;
-                            @media(max-width:374px) {
-                                font-size: 32px;
-                            }
-                        }
+                        // &.md {
+                        //     font-size: 34px;
+                        //     @media(max-width:374px) {
+                        //         font-size: 32px;
+                        //     }
+                        // }
                     }
                 }
             }
@@ -456,7 +539,7 @@ ion-content {
             }
         }
     }
-    ion-footer {
+    .ftr-cnt {
         padding: 20px 16px 40px;
         --background: transparent;
         border-radius: 0px 0px 35px 35px;

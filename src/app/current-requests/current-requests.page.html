@@ -13,9 +13,9 @@
 <ion-content>  
   <ion-header>
     <ion-segment [(ngModel)]="CurrentRequestList" (ionChange)="segmentSelected($event)">
-        <ion-segment-button value="AcceptRequest">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['accept_request']}}</ion-segment-button>
-        <ion-segment-button value="Completed">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['completed']}}</ion-segment-button>
-        <ion-segment-button value="ScheduledTime">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['scheduled_time']}}</ion-segment-button>
+        <ion-segment-button value="AcceptRequest"><img src="../assets/images/handshake-icon1.png"><!-- <ion-text>{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['accept_request']}}</ion-text> --></ion-segment-button>
+        <ion-segment-button value="Completed"><img src="../assets/images/checkmark-icon1.png"><!-- <ion-text>{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['completed']}}</ion-text> --></ion-segment-button>
+        <ion-segment-button value="ScheduledTime"><img src="../assets/images/clock-icon1.png"><!-- <ion-text>{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['scheduled_time']}}</ion-text> --></ion-segment-button>
       </ion-segment>
   </ion-header>
   <ion-refresher slot="fixed" pullFactor="0.5" pullMin="100" pullMax="200" (ionRefresh)="doRefresh($event)">
