@@ -13,6 +13,7 @@ export class ClientService
 	public site_url: string ="https://dernafies.ecnetsolutions.dev/";
 	public api_url: string = "https://dernafies.ecnetsolutions.dev/api/";
 	public serverResponse: any=[];
+	public serverResponseOnExpirePlan: any=[];
 	public token:string = '';
 	private default_language_json = '../assets/language_default/language_default.json';
 	public default_language_data: any = [];
@@ -103,8 +104,10 @@ export class ClientService
 				}
 				else
 				{
+					this.serverResponseOnExpirePlan=res;
 					let messageDisplay=this.showMessage(res.message);
-					reject(messageDisplay);
+					resolve(this.serverResponseOnExpirePlan);
+					//reject(messageDisplay);
 				}
 			},
 			err => 
@@ -122,7 +125,7 @@ export class ClientService
 		let headers = this.getHeaderOptions();
 		return new Promise((resolve, reject) => 
 		{
-			let dataToPost = new HttpParams().set("userTypeID",data.user_type).set("bio",data.bio).set("firstName",data.first_name).set("lastName", data.last_name).set("email",data.email).set("pwd", data.password).set("provinceID", data.service_province).set("location", data.address).set("latitude", data.latitude).set("longitude", data.longitude).set("categoryID", data.specialized_in).set("districtID", data.service_district).set("cityID", data.service_city).set("rangeServing", data.service_in_km).set("price", data.price_per_hour).set("no_of_experience", data.experience_in_year).set("phoneNumber", data.phone_number);
+			let dataToPost = new HttpParams().set("userTypeID",data.user_type).set("bio",data.bio).set("firstName",data.first_name).set("lastName", data.last_name).set("email",data.email).set("pwd", data.password).set("provinceID", data.service_province).set("location", data.address).set("latitude", data.latitude).set("longitude", data.longitude).set("categoryID", data.specialized_in).set("districtID", data.service_district).set("cityID", data.service_city).set("rangeServing", data.service_in_km).set("price", data.price_per_hour).set("no_of_experience", data.experience_in_year).set("phoneNumber", data.phone_number).set("subscriptionID", data.subscription_plan);
 			this.http.post(this.api_url + "register",  dataToPost , headers).subscribe((res: any) =>       
 			{
 				if(res.status == true)
@@ -801,6 +804,26 @@ export class ClientService
 		{
 			let dataToPost = new HttpParams().set("assignedTrademan",data.handyman_id).set("uniqueCode",data.unique_code).set("jobStatus",data.status_selected);
 			this.http.post(this.api_url + "acceptedJobOffeByCustomer",  dataToPost , headers).subscribe((res: any) =>       
+			{
+				resolve(res);
+			},
+			err => 
+			{
+				console.log(err);
+				let errorMessage=this.getErrorMessage(err);
+				//this.showMessage(errorMessage);
+				reject(errorMessage);
+			});
+		});
+	}
+
+	renewalSubscriptionPlan(data)
+	{
+		let headers = this.getHeaderOptions();
+		return new Promise((resolve, reject) => 
+		{
+			let dataToPost = new HttpParams().set("subscriptionID",data.subscription_plan).set("trademanID",data.handyman_id);
+			this.http.post(this.api_url + "addSubscriptionPlanToHandyman",  dataToPost , headers).subscribe((res: any) =>       
 			{
 				resolve(res);
 			},

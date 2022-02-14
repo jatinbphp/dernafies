@@ -655,4 +655,20 @@ export class SignUpPage implements OnInit
     });
     //GET ADDRESS FROM LAT,LON
   }
+
+  checkSelectedOptions(ev)
+  {
+    if(ev.detail!=null && ev.detail!=undefined && ev.detail!='null' && ev.detail!='undefined' && ev.detail.value.length > this.category_to_be_selected_limit)
+    {
+      let message = "<strong>You have crossed the maximum limit of selection!!</strong>";
+      message += "<br />\n<br />\n";
+      message += "The maximum allowed limit is "+this.category_to_be_selected_limit+" for <strong>"+this.default_language_data['translation'][0]['register'][0][this.language_selected][0]['specialized_in']+"</strong>."
+      this.client.showMessage(message);
+      this.registerForm.controls['specialized_in'].setValue("");
+      this.registerForm.get('specialized_in').clearValidators();     
+      this.registerForm.get('specialized_in').updateValueAndValidity();
+      this.registerForm.get('specialized_in').setValidators([Validators.required]);     
+      this.registerForm.get('specialized_in').updateValueAndValidity();
+    }
+  }
 }

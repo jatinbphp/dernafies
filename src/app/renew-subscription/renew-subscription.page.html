@@ -1,0 +1,52 @@
+<ion-content [fullscreen]="true">
+  <ion-header no-border class="ion-no-border" [translucent]="true">
+    <ion-toolbar class="pb-0 ion-text-center">
+      <ion-button slot="start" routerDirection="root" routerLink="/sign-in">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-toolbar>
+    <ion-toolbar class="ptb-20 ion-text-center">
+      <img src="../../assets/images/logo-white.png">
+    </ion-toolbar>
+    <ion-toolbar class="pt-0 ion-text-center">
+      <!--<ion-buttons slot="start">
+        <ion-menu-button><img src="../../assets/images/menu-icon1.png"></ion-menu-button>
+      </ion-buttons>-->
+      <ion-title>{{default_language_data['translation'][0]['renew-subscription'][0][language_selected][0]['screen_title']}}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <div class="main-div">
+    <form [formGroup]="subscriptionPlanForm" (ngSubmit)="RenewMyPackage(subscriptionPlanForm.value)">
+      <ion-input type="hidden" formControlName="handyman_id"></ion-input>
+      <ion-grid>
+        <ion-radio-group class="radio-list" formControlName="subscription_plan">
+          <ion-list>
+            <ion-label class="main-title">{{default_language_data['translation'][0]['renew-subscription'][0][language_selected][0]['subscription_plan_title']}}</ion-label>
+            <ion-item *ngFor="let subscriptions of resultDataSubscriptionPlans;">
+              <div class="plan-box-inner">
+                <ion-label>{{subscriptions[language_key_exchange_subscription_plan[language_selected]]}}</ion-label>
+                <p><strong>IQD</strong>&nbsp;{{subscriptions.planPrice}}</p>
+                <ion-radio value="{{subscriptions.id}}"></ion-radio>
+              </div>
+            </ion-item>            
+          </ion-list>
+        </ion-radio-group>
+        <!--VALIDATION-->
+        <div class="validation-errors">
+          <ng-container *ngFor="let validation of validation_messages.subscription_plan">
+            <div class="error-message"
+              *ngIf="subscriptionPlanForm.get('subscription_plan').hasError(validation.type) && (subscriptionPlanForm.get('subscription_plan').dirty || subscriptionPlanForm.get('subscription_plan').touched)">
+              <ion-icon name="information-circle-outline"></ion-icon>
+              <p>{{ validation.message }}</p>
+            </div>
+          </ng-container>
+        </div>
+        <!--VALIDATION-->
+        <!--SUBSCRIPTIONS PLANS-->                      
+      </ion-grid>      
+      <ion-item lines="none">
+        <ion-button type="submit" color="" [disabled]="!subscriptionPlanForm.valid">{{default_language_data['translation'][0]['renew-subscription'][0][language_selected][0]['submit_button']}}</ion-button>
+      </ion-item>
+    </form>    
+  </div>
+</ion-content>

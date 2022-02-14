@@ -29,7 +29,12 @@ export class ProfilePage implements OnInit
 	public resultDataCities: any = [];
 	public resultDataProvince: any = [];
 	public resultDataSubscriptionPlans: any = [];
+
+	public resultDataMyCurrentSubscriptionPlan: any = [];
+	public MyCurrentSubscriptionPlan: number = 0;
+
 	public language_key_exchange_array: any = [];
+
 	public language_key_exchange_district_array: any = [];
 	public language_key_exchange_city_array: any = [];
 	public language_key_exchange_province_array: any = [];
@@ -176,7 +181,7 @@ export class ProfilePage implements OnInit
 			translucent: true,
 			cssClass: 'custom-class custom-loading'
 		});
-		await loadingCategories.present();
+		//await loadingCategories.present();
 		//LOADER
 		await this.client.getCategories().then(result => 
 		{	
@@ -215,7 +220,7 @@ export class ProfilePage implements OnInit
 			translucent: true,
 			cssClass: 'custom-class custom-loading'
 		});
-		await loadingDestrict.present();
+		//await loadingDestrict.present();
 		//LOADER
 		await this.client.getDistricts().then(resultDistricts => 
 		{	
@@ -237,7 +242,7 @@ export class ProfilePage implements OnInit
 			translucent: true,
 			cssClass: 'custom-class custom-loading'
 		});
-		await loadingProvince.present();
+		//await loadingProvince.present();
 		//LOADER
 		await this.client.getProvinces().then(resultProvinces => 
 		{	
@@ -259,7 +264,7 @@ export class ProfilePage implements OnInit
 			translucent: true,
 			cssClass: 'custom-class custom-loading'
 		});
-		await loadingSubscriptionPlans.present();
+		//await loadingSubscriptionPlans.present();
 		//LOADER
 		await this.client.getSubscriptionPlan().then(resultSubscription => 
 		{	
@@ -375,6 +380,8 @@ export class ProfilePage implements OnInit
 			{	
 				loading.dismiss();//DISMISS LOADER			
 				this.resultData=result;
+				this.resultDataMyCurrentSubscriptionPlan=this.resultData['handymanActiveSubscriptionPlansInfo'];
+				console.log(this.resultDataMyCurrentSubscriptionPlan);
 				console.log(this.resultData);
 				let firstName = (this.resultData.firstName) ? this.resultData.firstName : "";
 				let last_name = (this.resultData.lastName) ? this.resultData.lastName : "";
@@ -383,7 +390,7 @@ export class ProfilePage implements OnInit
 				let phone_number = (this.resultData.phoneNumber) ? this.resultData.phoneNumber : "";
 				let price_per_hour = (this.resultData.price) ? this.resultData.price : "";
 				let service_in_km = (this.resultData.rangeServing) ? this.resultData.rangeServing : 0;
-				let subscription_plan = (this.resultData.subscription_plan) ? this.resultData.subscription_plan : 0;
+				let subscription_plan = (this.resultDataMyCurrentSubscriptionPlan[0].subscriptionID) ? this.resultDataMyCurrentSubscriptionPlan[0].subscriptionID : 0;
 				let bio = (this.resultData.bio) ? this.resultData.bio : "";
 				let experience_in_year = (this.resultData.no_of_experience) ? this.resultData.no_of_experience : 0;
 
@@ -571,7 +578,7 @@ export class ProfilePage implements OnInit
 		let service_province = (form.service_province) ? form.service_province : "";
 		let phone_number = (form.phone_number) ? form.phone_number : "";
 		let service_in_km = (form.service_in_km) ? form.service_in_km : 0;
-		let subscription_plan = (form.subscription_plan) ? form.subscription_plan : 0;
+		//let subscription_plan = (form.subscription_plan) ? form.subscription_plan : 0;
 		let bio = (form.bio) ? form.bio : "";
 		let price_per_hour = (form.price_per_hour) ? form.price_per_hour : 0;
 		let experience_in_year = (form.experience_in_year) ? form.experience_in_year : 0;
@@ -590,7 +597,7 @@ export class ProfilePage implements OnInit
 			service_province:service_province,
 			phone_number:phone_number,
 			service_in_km:service_in_km,
-			subscription_plan:subscription_plan,
+			//subscription_plan:subscription_plan,
 			bio:bio,
 			price_per_hour:price_per_hour,
 			experience_in_year:experience_in_year,
@@ -986,4 +993,24 @@ export class ProfilePage implements OnInit
 			loading.dismiss();//DISMISS LOADER
 		}	
   	}
+
+	checkSelectedOptions(ev)
+	{
+		if(ev.detail!=null && ev.detail!=undefined && ev.detail!='null' && ev.detail!='undefined' && ev.detail.value.length > this.category_to_be_selected_limit)
+		{
+			let message = "<strong>You have crossed the maximum limit of selection!!</strong>";
+			message += "<br />\n<br />\n";
+			message += "The maximum allowed limit is "+this.category_to_be_selected_limit+" for <strong>"+this.default_language_data['translation'][0]['register'][0][this.language_selected][0]['specialized_in']+"</strong>."
+			this.client.showMessage(message);
+			let specialized_in : any = [];
+			if(this.resultData.categories.length > 0)
+			{
+				for(let c = 0 ; c < this.resultData.categories.length; c ++)
+				{
+					specialized_in.push(this.resultData.categories[c]['id']);
+				}
+			}
+			this.profileForm.controls['specialized_in'].setValue(specialized_in);
+		}
+	}
 }

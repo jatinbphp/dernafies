@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { SignUpPageRoutingModule } from './sign-up-routing.module';
-import { SignUpPage } from './sign-up.page';
+import { RenewSubscriptionPageRoutingModule } from './renew-subscription-routing.module';
+import { RenewSubscriptionPage } from './renew-subscription.page';
 
 @NgModule({
   imports: [
@@ -11,8 +11,8 @@ import { SignUpPage } from './sign-up.page';
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
-    SignUpPageRoutingModule
+    RenewSubscriptionPageRoutingModule
   ],
-  declarations: [SignUpPage]
+  declarations: [RenewSubscriptionPage]
 })
-export class SignUpPageModule {}
+export class RenewSubscriptionPageModule {}

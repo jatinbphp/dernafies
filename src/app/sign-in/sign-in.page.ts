@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ClientService } from '../providers/client.service';
 import { LoadingController } from '@ionic/angular';
+import { NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-sign-in',
@@ -16,6 +17,9 @@ export class SignInPage implements OnInit
 	public rtl_or_ltr = '';
 
 	public resultData:any={};
+	public resultDataOnExpirePlan:any={};
+	public queryString: any=[];
+
 	public passwordType: string = 'password';
 	public passwordIcon: string = 'eye-off';
 
@@ -73,6 +77,8 @@ export class SignInPage implements OnInit
 
 	async makeMeLoggedin(form)
 	{
+		this.resultData=[];
+		this.resultDataOnExpirePlan=[];
 		//LOADER
 		const loading = await this.loadingCtrl.create({
 			spinner: null,
@@ -109,9 +115,25 @@ export class SignInPage implements OnInit
 				localStorage.setItem('role',this.resultData.role);
 				this.client.router.navigate(['/tabs/home']);
 			}
-			
-			console.log(this.resultData);
-						
+			if(this.resultData.status==false)
+			{
+				this.resultDataOnExpirePlan=this.resultData['lastSubscriptionPlan'];
+				
+				this.queryString = 
+				{
+					trademanID:this.resultDataOnExpirePlan['trademanID'],					
+				};
+				let navigationExtras: NavigationExtras = 
+				{
+					queryParams: 
+					{
+						special: JSON.stringify(this.queryString)
+					}
+				};
+				this.client.router.navigate(['/renew-subscription'], navigationExtras);
+			}
+			//console.log(this.resultData);
+			console.log(this.resultDataOnExpirePlan);			
 		},
 		error => 
 		{

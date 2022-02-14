@@ -17,7 +17,7 @@
                ],
                "arabic": [
                   {
-                     "home":"مسكن",
+                     "home":"الصفحة الرئيسية",
                      "profile":"الملف الشخصي",
                      "post_a_job":"انشر وظيفة",
                      "view_a_job":"مشاهدة الوظائف",
@@ -87,6 +87,31 @@
                ]
             }
          ],
+         "renew-subscription": [
+            {
+               "english": [
+                  {
+                     "screen_title":"Renew",
+                     "subscription_plan_title": "Select Plan",
+                     "submit_button":"Renew"
+                  }
+               ],
+               "arabic": [
+                  {
+                     "screen_title":"تجديد",
+                     "subscription_plan_title": "اختر خطة",
+                     "submit_button":"تجديد"
+                  }
+               ],
+               "kurdish": [
+                  {
+                     "screen_title":"Nukirin",
+                     "subscription_plan_title": "Plana Hilbijêre",
+                     "submit_button":"Nukirin"
+                  }
+               ]
+            }
+         ],
          "register": [
             {
                "english": [
@@ -114,6 +139,7 @@
                      "login_text":"Login",
                      "register_button": "Sign Up",
                      "subscription_plan_title": "Select Plan",
+                     "subscription_plan_title_profile": "Selected Plan",
                      "subscription_plan_button_text": "Select"
                   }
                ],
@@ -142,6 +168,7 @@
                      "login_text":"تسجيل الدخول",
                      "register_button": "اشتراك",
                      "subscription_plan_title": "اختر خطة",
+                     "subscription_plan_title_profile": "الخطة المختارة",
                      "subscription_plan_button_text": "يختار"
                   }
                ],
@@ -170,6 +197,7 @@
                      "login_text":"Login",
                      "register_button": "Tomar kirin",
                      "subscription_plan_title": "Plana Hilbijêre",
+                     "subscription_plan_title_profile": "Plana Hilbijartî",
                      "subscription_plan_button_text": "Neqandin"
                   }
                ]
