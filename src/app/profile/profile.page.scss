@@ -334,6 +334,8 @@ ion-content {
         	ion-item {
                 /*width: 100%;
                 margin: 30px 0px;*/
+                --border-width: 0px !important;
+                --border-color: transparent !important;
         		ion-button {
         			width: 100%;
     				--background: linear-gradient(160deg, #037ff1 0%, #17a3f5 100%);
