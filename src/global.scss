@@ -288,21 +288,13 @@ ion-header {
 	}
 }
 
-ion-app {
-    background: #ffffff;
-    background-color: #ffffff;
-}
-
 app-sign-up, app-home, app-categories, app-search, app-settings, 
 app-profile, app-job-location-on-map, app-current-requests, app-past-requests, app-review-rating,
 app-handyman-view-all, app-handyman-selected, app-handyman-send-location, app-add-job, 
 app-review-and-rating, app-complete-the-job, app-reschedule-job, app-messages-customer-handyman, 
 app-post-a-job, app-post-a-job-add, app-post-a-job-location, app-view-a-jobs, app-renew-subscription {
     // background: var(--background-gradient);
-    // background: var(--White);
-    background: #ffffff;
-    background-color: #ffffff;
-    background-image: linear-gradient(0deg, #ffffff, #ffffff);
+    background: var(--White);
 }
 app-sign-up:before, app-home:before, app-categories:before, app-search:before, app-settings:before, 
 app-profile:before, app-job-location-on-map:before, app-current-requests:before, app-past-requests:before, app-review-rating:before,
