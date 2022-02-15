@@ -8,9 +8,84 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-header></ion-header>
+<ion-content [fullscreen]="true">
   <div class="main-div">
+    <!--<ion-accordion-group>
+      <ion-accordion value="colors">
+        <ion-item slot="header">
+          <ion-label>Filters</ion-label>
+        </ion-item>
+        <ion-grid slot="content">
+          <ion-row>
+            <ion-col size="6">
+              <ion-item>
+                <ion-label position="floating">Categories</ion-label>
+                <ion-select [interfaceOptions]="customPopoverOptions" interface="popover" placeholder="Select Category">
+                  <ion-select-option *ngFor="let categories of resultDataCategories;" value="categories.id">{{categories[language_key_exchange_array[language_selected]]}}</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+            <ion-col size="6">
+              <ion-item>
+                <ion-label position="floating">Experience</ion-label>
+                <ion-select [interfaceOptions]="customPopoverOptions" interface="popover" placeholder="Years of Experience">
+                  <ion-select-option>Hello</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="6">
+              <ion-item>
+                <ion-label position="floating">Price</ion-label>
+                <ion-select [interfaceOptions]="customPopoverOptions" interface="popover" placeholder="Price Range">
+                  <ion-select-option>Hello</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+            <ion-col size="6">
+              <ion-item>
+                <ion-label position="floating">Rating</ion-label>
+                <ion-select [interfaceOptions]="customPopoverOptions" interface="popover" placeholder="User Rating">
+                  <ion-select-option>Hello</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="12">
+              <ion-button>Filter</ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>        
+      </ion-accordion>  
+    </ion-accordion-group>-->
+    <div class="src-box-main">
+      <form #searchHandyMan="ngForm" novalidate class="search-form">
+        <ion-searchbar placeholder="{{default_language_data['translation'][0]['home'][0][language_selected][0]['search_for_services']}}" type="search" autocomplete="off" autocorrect="off" spellcheck="false" name="search_text" [(ngModel)]="search_for_handyman.keyword" [ngModelOptions]="{standalone: false}" (keydown.enter)="searchForHandyMan(searchHandyMan)"></ion-searchbar>
+      </form>
+    </div>
     <p *ngIf="resultDataSearch.length == 0" class="no-records">No records found.</p>
-  </div>
+		<ion-slides pager [options]="handymanSlide" *ngIf="resultDataSearchPerSlide.length > 0">
+		    <ion-slide *ngFor="let slide of resultDataSearchPerSlide; let s = index;">
+				<ion-row class="handyman-list">
+					<ion-col *ngFor="let handyMan of resultDataSearchPerSlide[s]; let h = index;" class="handyman-item" (click)="showHandyMan(handyMan.id)">
+						<div class="featured-box-main">
+				            <div class="featured-box-img">
+				              <img src="{{handyMan.profilePic}}">
+				            </div>
+				            <div class="featured-box-txt">
+				            	<p class="rating">
+									<ionic-rating-component #featuredRating{{h+1}} activeIcon = "star" defaultIcon = "star" activeColor = "#ffcd3c" defaultColor = "#f4f4f4" readonly = "true" rating = "{{handyMan.total_ratings}}" fontSize = "17px"></ionic-rating-component>									
+								</p>
+								<h2 class="name">{{handyMan.firstName}} {{handyMan.lastName}}</h2>
+								<h4 class="experience">{{handyMan.no_of_experience}} years experience</h4>
+								<h3 class="hr-txt">${{handyMan.price}}<span>/</span>Hr</h3>
+				            </div>
+				        </div>
+				    </ion-col>
+				</ion-row>
+			</ion-slide>			
+		</ion-slides>
+	</div>
 </ion-content>

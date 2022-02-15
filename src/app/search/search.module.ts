@@ -5,8 +5,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchPage } from './search.page';
 import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
-
 import { SearchPageRoutingModule } from './search-routing.module';
+import { IonicRatingComponentModule } from 'ionic-rating-component';
 
 @NgModule({
   imports: [
@@ -15,6 +15,7 @@ import { SearchPageRoutingModule } from './search-routing.module';
     FormsModule,
     ReactiveFormsModule,
     ExploreContainerComponentModule,
+    IonicRatingComponentModule,
     RouterModule.forChild([{ path: '', component: SearchPage }]),
     SearchPageRoutingModule,
   ],
