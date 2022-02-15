@@ -11,62 +11,64 @@
 </ion-header>
 
 <ion-content>
-  <div class="loc-con-box" *ngIf="role == 'customer'">
-		<div class="review-box-txt">
-      <h2 class="title">{{resultDataHandyManForJob.firstName}} {{resultDataHandyManForJob.lastName}}</h2>
-      <h3 class="sub-title" [innerHTML]="resultDataJobDetail[language_key_exchange_array[language_selected]]"></h3>
-      <h3 class="sub-title" [innerHTML]="resultDataJobDetail.description"></h3>
-			<!--<div class="person-contact">
-				<p><ion-icon name="call"></ion-icon>{{resultDataHandyManForJob.phoneNumber}}</p>
-				<p><ion-icon name="mail"></ion-icon>{{resultDataHandyManForJob.email}}</p>
-			</div>-->
-		</div>		
-	</div>
-  <div class="loc-con-box" *ngIf="role == 'handyman'">
-		<div class="review-box-txt">
-      <h2 class="title">{{resultDataCustomerForJob.firstName}} {{resultDataCustomerForJob.lastName}}</h2>
-      <h3 class="sub-title" [innerHTML]="resultDataJobDetail[language_key_exchange_array[language_selected]]"></h3>
-      <h3 class="sub-title" [innerHTML]="resultDataJobDetail.description"></h3>
-			<!--<div class="person-contact">
-				<p><ion-icon name="call"></ion-icon>{{resultDataCustomerForJob.phoneNumber}}</p>
-				<p><ion-icon name="mail"></ion-icon>{{resultDataCustomerForJob.email}}</p>
-			</div>-->
-		</div>		
-	</div>
-  <div class="message-wrap">
-    <p *ngIf="resultDataCommunications.length == 0" class="no-data">No communications</p>
-    <div *ngFor="let msg of resultDataCommunications" class="message">
-      <div class="message-left" *ngIf="msg.message_added_by == 'customer'">
-          <img class="user-img" alt="" src="../../assets/images/logo-small.png" *ngIf="msg.user_image==''">
-          <img class="user-img" alt="" src="{{msg.user_image}}" *ngIf="msg.user_image!=''">
+  <div class="main-div">
+    <div class="loc-con-box" *ngIf="role == 'customer'">
+  		<div class="review-box-txt">
+        <h2 class="title">{{resultDataHandyManForJob.firstName}} {{resultDataHandyManForJob.lastName}}</h2>
+        <h3 class="sub-title" [innerHTML]="resultDataJobDetail[language_key_exchange_array[language_selected]]"></h3>
+        <h3 class="sub-title" [innerHTML]="resultDataJobDetail.description"></h3>
+  			<!--<div class="person-contact">
+  				<p><ion-icon name="call"></ion-icon>{{resultDataHandyManForJob.phoneNumber}}</p>
+  				<p><ion-icon name="mail"></ion-icon>{{resultDataHandyManForJob.email}}</p>
+  			</div>-->
+  		</div>		
+  	</div>
+    <div class="loc-con-box" *ngIf="role == 'handyman'">
+  		<div class="review-box-txt">
+        <h2 class="title">{{resultDataCustomerForJob.firstName}} {{resultDataCustomerForJob.lastName}}</h2>
+        <h3 class="sub-title" [innerHTML]="resultDataJobDetail[language_key_exchange_array[language_selected]]"></h3>
+        <h3 class="sub-title" [innerHTML]="resultDataJobDetail.description"></h3>
+  			<!--<div class="person-contact">
+  				<p><ion-icon name="call"></ion-icon>{{resultDataCustomerForJob.phoneNumber}}</p>
+  				<p><ion-icon name="mail"></ion-icon>{{resultDataCustomerForJob.email}}</p>
+  			</div>-->
+  		</div>		
+  	</div>
+    <div class="message-wrap">
+      <p *ngIf="resultDataCommunications.length == 0" class="no-data">No communications</p>
+      <div *ngFor="let msg of resultDataCommunications" class="message">
+        <div class="message-left" *ngIf="msg.message_added_by == 'customer'">
+            <img class="user-img" alt="" src="../../assets/images/logo-small.png" *ngIf="msg.user_image==''">
+            <img class="user-img" alt="" src="{{msg.user_image}}" *ngIf="msg.user_image!=''">
+            <div class="msg-detail">
+              <div class="msg-info">
+                <p>{{msg.user_name}}&nbsp;&nbsp;&nbsp;{{msg.message_added_date | amLocale:'en' | amDateFormat: 'MMM,DD YYYY hh:mm a'}}</p>
+              </div>
+              <div class="msg-content">
+                <span class="triangle"></span>
+                <p class="line-breaker ">{{msg.message}}</p>
+              </div>
+            </div>          
+        </div>
+        <div class="message-right" *ngIf="msg.message_added_by == 'handyman'">
+          <img class="user-img" alt="" src="../../assets/images/logo-small.png" *ngIf="msg.handyman_image==''">
+          <img class="user-img" alt="" src="{{msg.handyman_image}}" *ngIf="msg.handyman_image!=''">
           <div class="msg-detail">
-            <div class="msg-info">
-              <p>{{msg.user_name}}&nbsp;&nbsp;&nbsp;{{msg.message_added_date | amLocale:'en' | amDateFormat: 'MMM,DD YYYY hh:mm a'}}</p>
+            <div class="msg-info" *ngIf="msg.message != null">
+              <p>{{msg.handyman_name}}&nbsp;&nbsp;&nbsp;{{msg.message_added_date | amLocale:'en' | amDateFormat: 'MMM,DD YYYY hh:mm a'}}</p>
             </div>
-            <div class="msg-content">
+            <div class="msg-content" *ngIf="msg.message != null">
               <span class="triangle"></span>
               <p class="line-breaker ">{{msg.message}}</p>
             </div>
-          </div>          
-      </div>
-      <div class="message-right" *ngIf="msg.message_added_by == 'handyman'">
-        <img class="user-img" alt="" src="../../assets/images/logo-small.png" *ngIf="msg.handyman_image==''">
-        <img class="user-img" alt="" src="{{msg.handyman_image}}" *ngIf="msg.handyman_image!=''">
-        <div class="msg-detail">
-          <div class="msg-info" *ngIf="msg.message != null">
-            <p>{{msg.handyman_name}}&nbsp;&nbsp;&nbsp;{{msg.message_added_date | amLocale:'en' | amDateFormat: 'MMM,DD YYYY hh:mm a'}}</p>
-          </div>
-          <div class="msg-content" *ngIf="msg.message != null">
-            <span class="triangle"></span>
-            <p class="line-breaker ">{{msg.message}}</p>
-          </div>
-        </div>  
-      </div>
-    </div>    
-  </div>  
+          </div>  
+        </div>
+      </div>    
+    </div> 
+  </div> 
 </ion-content>
 <ion-footer>
-  <ion-toolbar color="light">
+  <ion-toolbar>
     <form [formGroup]="MessageBetweenCustomerAndHandyManForm" (ngSubmit)="sendMessage(MessageBetweenCustomerAndHandyManForm.value)">            
       <ion-grid>
         <ion-row class="ion-align-items-center">

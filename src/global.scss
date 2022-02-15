@@ -290,13 +290,17 @@ ion-header {
 
 app-sign-up, app-home, app-categories, app-search, app-settings, 
 app-profile, app-job-location-on-map, app-current-requests, app-past-requests, app-review-rating,
-app-handyman-view-all, app-handyman-selected, app-handyman-send-location, app-add-job, app-review-and-rating, app-complete-the-job, app-reschedule-job, app-messages-customer-handyman, app-post-a-job, app-post-a-job-add, app-post-a-job-location, app-view-a-jobs, app-renew-subscription {
+app-handyman-view-all, app-handyman-selected, app-handyman-send-location, app-add-job, 
+app-review-and-rating, app-complete-the-job, app-reschedule-job, app-messages-customer-handyman, 
+app-post-a-job, app-post-a-job-add, app-post-a-job-location, app-view-a-jobs, app-renew-subscription {
     // background: var(--background-gradient);
     background: var(--White);
 }
 app-sign-up:before, app-home:before, app-categories:before, app-search:before, app-settings:before, 
 app-profile:before, app-job-location-on-map:before, app-current-requests:before, app-past-requests:before, app-review-rating:before,
-app-handyman-view-all:before, app-handyman-selected:before, app-handyman-send-location:before, app-add-job::before, app-review-and-rating::before, app-complete-the-job::before, app-reschedule-job::before, app-messages-customer-handyman::before, app-post-a-job:before, app-post-a-job-add:before, app-post-a-job-location:before, app-view-a-jobs:before, app-renew-subscription:before {
+app-handyman-view-all:before, app-handyman-selected:before, app-handyman-send-location:before, app-add-job::before, app-review-and-rating::before, 
+app-complete-the-job::before, app-reschedule-job::before, app-messages-customer-handyman::before, 
+app-post-a-job:before, app-post-a-job-add:before, app-post-a-job-location:before, app-view-a-jobs:before, app-renew-subscription:before {
     position: absolute;
     content: '';
     top: 0px;
@@ -534,6 +538,10 @@ ion-header ion-toolbar ion-title {
 }
 // header-overlap-issue-fix-style-end
 
+ion-header ion-toolbar ion-title::first-child {
+    padding-left: 0px !important;
+}
+
 // iphone-issue-fixed-style-start
 .ios ion-header.header-ios ion-toolbar {
     padding: 0px !important;
@@ -563,6 +571,9 @@ ion-header ion-toolbar ion-title {
 // iphone-issue-fixed-style-end
 
 // right-to-left-content-issue-fixed-style-start
+[dir=rtl] ion-header ion-toolbar ion-title::first-child {
+    padding-right: 0px !important;
+}
 [dir=rtl] .sc-ion-searchbar-md-h .searchbar-input.sc-ion-searchbar-md {
     padding-left: 40px !important;
     padding-right: 18px !important;
@@ -727,6 +738,21 @@ app-home {
     }
 }
 
+app-messages-customer-handyman {
+    form {
+        ion-textarea {
+            .textarea-wrapper { 
+                textarea {
+                    width: 100% !important;
+                    &::focus-visible {
+                        outline: transparent auto 0px !important;
+                    }
+                }
+            }
+        }
+    }
+}
+
 // below-css-Keyboard-pushes-elements-out-of-view-for
 .scroll-content, .inner-scroll {
     --padding-end: 0px !important;
@@ -742,3 +768,12 @@ app-home {
 // }
 
 // above-css-Keyboard-pushes-elements-out-of-view-for
+
+
+// below-css-full-page-screen-height-for
+.scroll {
+    max-height: 100% !important;
+    height: 100% !important;
+    min-height: 100% !important;
+}
+// above-css-full-page-screen-height-for

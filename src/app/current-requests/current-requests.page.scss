@@ -73,7 +73,25 @@ ion-content {
                 border: 1px solid #fff;
                 padding: 0px 16px;
                 min-height: 40px;
-                margin: 0px 6px;
+                margin: 0px 10px;
+                @media screen and (min-width: 768px) and (max-width: 991px) {}
+                @media screen and (max-width: 767px) {
+                    font-size: 14px;
+                    padding: 0px 7px;
+                    min-height: 30px;
+                    // margin: 0px 3px;
+                }
+                @media screen and (max-width: 370px) {
+                    margin: 0px 6px;
+                }
+                &::before {
+                    border: 0px !important;
+                    border-color: transparent !important;
+                    --border: 0px !important;
+                    --border-color: transparent !important;
+                    margin: 0px !important;
+                    opacity: 0 !important;
+                }
                 ion-text {
                     font-size: 16px;
                     line-height: normal;
@@ -85,14 +103,6 @@ ion-content {
                         font-size: 14px;
                     }
                 }
-                @media screen and (min-width: 768px) and (max-width: 991px) {}
-                @media screen and (max-width: 767px) {
-                    font-size: 14px;
-                    padding: 0px 7px;
-                    min-height: 30px;
-                    margin: 0px 3px;
-                }
-                @media screen and (max-width: 481px) {}
                 img {
                     max-width: 100%;
                     min-width: 30px;
