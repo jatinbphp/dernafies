@@ -738,20 +738,22 @@ app-home {
     }
 }
 
-// app-messages-customer-handyman {
-//     form {
-//         ion-textarea {
-//             .textarea-wrapper { 
-//                 textarea {
-//                     width: 100% !important;
-//                     &::focus-visible {
-//                         outline: transparent auto 0px !important;
-//                     }
-//                 }
-//             }
-//         }
-//     }
-// }
+app-messages-customer-handyman {
+    form {
+        ion-textarea {
+            .textarea-wrapper { 
+                height: 100% !important;
+                textarea {
+                    width: 100% !important;
+                    height: 100% !important;
+                    // &::focus-visible {
+                    //     outline: transparent auto 0px !important;
+                    // }
+                }
+            }
+        }
+    }
+}
 
 // below-css-Keyboard-pushes-elements-out-of-view-for
 .scroll-content, .inner-scroll {
