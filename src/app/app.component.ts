@@ -15,9 +15,15 @@ export class AppComponent
   public rtl_or_ltr = '';
   public language_selected = '';
   public default_language_data: any = [];
+  public is_remember_me_on:string="No";
+  public token:any='';
+  public user_id:any='';
   public should_menu_enable:boolean = false;
   public role:any='';
   public queryString: any=[];
+  public resultDataHandyMan: any=[];
+  public resultDataHandyManPlanInfo: any=[];
+
   public appPages = [
     { title: 'Home', title_for_menu:'Home', url: '/tabs/home', icon: 'home', is_function:0},//[0]
     { title: 'Profile', title_for_menu:'Profile', url: '#', icon: 'person', is_function:1},//[1]
@@ -59,6 +65,8 @@ export class AppComponent
   async InitializeAPP()
   {
     let role = (localStorage.getItem('role')) ? localStorage.getItem('role') : undefined;
+    this.is_remember_me_on = (localStorage.getItem('remember_me')) ? localStorage.getItem('remember_me') : "No";
+
     if(role!='' && role!='null' && role!=null && role!=undefined && role!='undefined')
     {
       this.role = role;
@@ -84,6 +92,71 @@ export class AppComponent
     this.appPages[5].title = this.default_language_data['translation'][0]['menu'][0][this.language_selected][0]['past_requests'];
     this.appPages[6].title = this.default_language_data['translation'][0]['menu'][0][this.language_selected][0]['settings'];
     this.appPages[7].title = this.default_language_data['translation'][0]['menu'][0][this.language_selected][0]['logout'];
+
+    if(this.is_remember_me_on == "Yes")
+    {
+      this.token=(localStorage.getItem('token')) ? localStorage.getItem('token') : "";
+      console.log("Token",this.token);
+      if(this.token != null && this.token != undefined && this.token != '')
+      {
+        //CHECK THE SUBSCRIPTION OF HANDYMAN
+        if(this.role!='' && this.role!='null' && this.role!=null && this.role!=undefined && this.role!='undefined')
+        {
+          if(this.role == 'handyman')
+          {
+            this.user_id = (localStorage.getItem('id')) ? localStorage.getItem('id') : "";
+            if(this.user_id!='' && this.user_id!='null' && this.user_id!=null && this.user_id!=undefined && this.user_id!='undefined')
+            {
+              let dataHandyMan = {
+                id:this.user_id
+              }
+              
+              await this.client.getHandymanDetailById(dataHandyMan).then(result => 
+              {	
+                this.resultDataHandyMan=result;
+                this.resultDataHandyManPlanInfo=this.resultDataHandyMan['handymanActiveSubscriptionPlansInfo'];
+                if(this.resultDataHandyManPlanInfo.length > 0)
+                {
+                  if(this.resultDataHandyManPlanInfo[0].isExpired == 0)
+                  {
+                    this.client.router.navigate(['/tabs/home']);
+                  }
+                  if(this.resultDataHandyManPlanInfo[0].isExpired == 1)
+                  {
+                    this.queryString = 
+                    {
+                      trademanID:this.user_id,					
+                    };
+                    let navigationExtras: NavigationExtras = 
+                    {
+                      queryParams: 
+                      {
+                        special: JSON.stringify(this.queryString)
+                      }
+                    };
+                    this.client.router.navigate(['/renew-subscription'], navigationExtras);
+                  }
+                }
+              },
+              error => 
+              {
+                console.log();
+              });
+            }
+          }
+        } 
+        //CHECK THE SUBSCRIPTION OF HANDYMAN
+        this.client.router.navigate(['/tabs/home']);  
+      }
+      else 
+      {
+        this.client.router.navigate(['sign-in']);  
+      }
+    }
+    else
+    {
+      this.client.router.navigate(['sign-in']);
+    }
   }
 
   async showMyProfile()

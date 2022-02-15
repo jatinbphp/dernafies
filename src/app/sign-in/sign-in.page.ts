@@ -23,6 +23,8 @@ export class SignInPage implements OnInit
 	public passwordType: string = 'password';
 	public passwordIcon: string = 'eye-off';
 
+	public is_remember_me_on:string="No";
+
 	public loginForm = this.fb.group({
 		username: ['', Validators.required],
 		password: ['', Validators.required]
@@ -106,6 +108,7 @@ export class SignInPage implements OnInit
 					should_menu_enable: true,
 					role:this.resultData.role
 				});//THIS OBSERVABLE IS USED TO KNOW IS ANY HAS SIGNIN
+				
 				localStorage.setItem('token',this.resultData.token);
 				localStorage.setItem('id',this.resultData.id);
 				localStorage.setItem('email',this.resultData.email);
@@ -113,6 +116,7 @@ export class SignInPage implements OnInit
 				localStorage.setItem('firstName',this.resultData.firstName);
 				localStorage.setItem('lastName',this.resultData.lastName);
 				localStorage.setItem('role',this.resultData.role);
+				localStorage.setItem('remember_me',this.is_remember_me_on);
 				this.client.router.navigate(['/tabs/home']);
 			}
 			if(this.resultData.status==false)
@@ -150,5 +154,18 @@ export class SignInPage implements OnInit
 			language_selected: language
 		});//THIS OBSERVABLE IS USED TO SET DEFAULT OR SELECTED LANGUAGE
 		//console.log(ev);
+	}
+
+	RememberMe(ev)
+	{
+		if(ev.detail.checked == true)
+		{
+			this.is_remember_me_on = "Yes";
+		}
+		if(ev.detail.checked == false)
+		{
+			this.is_remember_me_on = "No";
+		}
+		console.log(this.is_remember_me_on);
 	}
 }

@@ -19,13 +19,7 @@
             <!-- <ion-col size="12" class="ion-no-padding">
               <h3>{{default_language_data['translation'][0]['login'][0][language_selected][0]['screen_title']}}</h3>
             </ion-col> -->
-            <ion-col size="12" class="ion-no-padding">
-              <!-- <ion-label position="stacked">{{default_language_data['translation'][0]['login'][0][language_selected][0]['language_dropdown_title']}}</ion-label>
-              <ion-select placeholder="{{default_language_data['translation'][0]['login'][0][language_selected][0]['language_dropdown_placeholder']}}" (ionChange)="changeDefaultLanguage($event)">
-                <ion-select-option value="arabic">Arabic</ion-select-option>
-                <ion-select-option value="kurdish">Kurdish</ion-select-option>
-                <ion-select-option value="english">English</ion-select-option>
-              </ion-select> -->
+            <ion-col size="12" class="ion-no-padding">              
                 <ion-radio-group class="radio-list" (ionChange)="changeDefaultLanguage($event)">
                   <ion-list>
                     <ion-label>{{default_language_data['translation'][0]['login'][0][language_selected][0]['language_dropdown_title']}}</ion-label>
@@ -33,28 +27,16 @@
                       <ion-label>Arabic</ion-label>
                       <ion-radio value="arabic"></ion-radio>
                     </ion-item>
-                    <ion-item>
+                    <!--<ion-item>
                       <ion-label>Kurdish</ion-label>
                       <ion-radio value="kurdish"></ion-radio>
-                    </ion-item>
+                    </ion-item>-->
                     <ion-item>
                       <ion-label>English</ion-label>
                       <ion-radio value="english"></ion-radio>
                     </ion-item>
                   </ion-list>
-                </ion-radio-group>
-                <!--<ion-item>
-                  <ion-checkbox></ion-checkbox>
-                  <p>Arabic</p>
-                </ion-item>
-                <ion-item>
-                  <ion-checkbox></ion-checkbox>
-                  <p>Kurdish</p>
-                </ion-item>
-                <ion-item>
-                  <ion-checkbox></ion-checkbox>
-                  <p>English</p>
-                </ion-item>-->
+                </ion-radio-group>                
             </ion-col>
             <ion-col size="12" class="ion-no-padding">
               <ion-label position="stacked">{{default_language_data['translation'][0]['login'][0][language_selected][0]['email_address']}}</ion-label>
@@ -86,7 +68,7 @@
           </ion-row>
           <ion-row class="otr-lang">
             <ion-col class="ion-text-left align-center ion-no-padding width-size">
-              <ion-checkbox></ion-checkbox>
+              <ion-checkbox (ionChange)="RememberMe($event)"></ion-checkbox>
               <p>{{default_language_data['translation'][0]['login'][0][language_selected][0]['remember_me']}}</p>
             </ion-col>
             <ion-col class="ion-text-right ion-no-padding width-size">

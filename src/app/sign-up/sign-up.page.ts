@@ -46,6 +46,7 @@ export class SignUpPage implements OnInit
 	public ConfirmPasswordIcon: string = 'eye-off';
   public accept_tems:boolean=false;
 
+  public default_km:any='25';
   public max_service_range:number=0;
 	public max_service_range_km:any=[];
 	public category_to_be_selected_limit:number=0;//For disabling checkbox after limit
@@ -199,7 +200,6 @@ export class SignUpPage implements OnInit
 					this.max_service_range_km.push(km);
 				}
 			}
-            
     },
     error => 
     {
@@ -556,7 +556,7 @@ export class SignUpPage implements OnInit
       this.registerForm.get('subscription_plan').setValidators([Validators.required]);     
       this.registerForm.get('subscription_plan').updateValueAndValidity();
 
-      
+      this.registerForm.controls['service_in_km'].setValue(this.default_km);
     }
     if(this.signup_as_handyman == false)
     {
