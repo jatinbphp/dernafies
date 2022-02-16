@@ -62,7 +62,7 @@
     </ion-accordion-group>-->
     <div class="src-box-main">
       <form #searchHandyMan="ngForm" novalidate class="search-form">
-        <ion-searchbar placeholder="{{default_language_data['translation'][0]['home'][0][language_selected][0]['search_for_services']}}" type="search" autocomplete="off" autocorrect="off" spellcheck="false" name="search_text" [(ngModel)]="search_for_handyman.keyword" [ngModelOptions]="{standalone: false}" (keydown.enter)="searchForHandyMan(searchHandyMan)"></ion-searchbar>
+        <ion-searchbar placeholder="{{default_language_data['translation'][0]['home'][0][language_selected][0]['search_for_services']}}" type="search" autocomplete="off" autocorrect="off" spellcheck="false" name="search_text" [(ngModel)]="search_text" [ngModelOptions]="{standalone: false}" (keydown.enter)="searchForHandyMan(searchHandyMan)"></ion-searchbar>
       </form>
     </div>
     <p *ngIf="resultDataSearch.length == 0" class="no-records">No records found.</p>

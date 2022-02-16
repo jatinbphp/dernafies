@@ -93,6 +93,10 @@ export class AppComponent
     this.appPages[6].title = this.default_language_data['translation'][0]['menu'][0][this.language_selected][0]['settings'];
     this.appPages[7].title = this.default_language_data['translation'][0]['menu'][0][this.language_selected][0]['logout'];
 
+    //SETUP PUSH NOTIFICATION
+    await this.client.pushSetup();
+    //SETUP PUSH NOTIFICATION
+
     if(this.is_remember_me_on == "Yes")
     {
       this.token=(localStorage.getItem('token')) ? localStorage.getItem('token') : "";

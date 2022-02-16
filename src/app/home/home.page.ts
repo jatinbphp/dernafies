@@ -36,6 +36,11 @@ export class HomePage
   public resultJobUpdatedStatus: any = [];
   public language_key_exchange_array: any = [];
   public province_language_key_exchange_array: any = [];
+  
+  public device_id: string = '';//PUSH NOTIFICATION
+  public device_type: string = '';//PUSH NOTIFICATION
+	public deviceUpdateInfo:any=[];//PUSH NOTIFICATION
+
   public categorieSlide = 
   {
     //slidesPerView: 1.3,
@@ -66,7 +71,11 @@ export class HomePage
     this.province_language_key_exchange_array['english']='provinceName';
     this.province_language_key_exchange_array['arabic']='provinceNameArabic';
     this.province_language_key_exchange_array['kurdish']='provinceNameKurdi';
-
+    
+    this.id=localStorage.getItem('id');
+    this.role = localStorage.getItem('role');
+    
+    this.UpdatePushToken();
     this.showHomeContent();
   }
 
@@ -251,6 +260,42 @@ export class HomePage
     }
     */
   }
+
+  async UpdatePushToken()
+	{	
+		await this.platform.ready().then(() => 
+    {
+      if(this.platform.is('android')) 
+      {
+        localStorage.setItem('device_type','android');
+      }
+      if(this.platform.is('ios')) 
+      {
+        localStorage.setItem('device_type','ios');
+      }
+    });//PUSH NOTIFICATION
+
+    this.device_id = (localStorage.getItem('device_id')) ? localStorage.getItem('device_id') : "";
+    this.device_type = (localStorage.getItem('device_type')) ? localStorage.getItem('device_type') : "";
+    if(this.device_id != null && this.device_id != undefined && this.device_id && this.device_type)
+		{	
+      let dataToUpdate = 
+      {
+        user_id : this.id,
+        device_id: this.device_id,
+        device_type: this.device_type
+      }
+      await this.client.UpdatePushToken(dataToUpdate).then(result => 
+      {
+        this.deviceUpdateInfo = result;
+        console.log("Device Info",this.deviceUpdateInfo);        
+      },
+      error => 
+      {
+        console.log();
+      });
+		}
+	}//PUSH NOTIFICATION
 
   async showHomeContent()
   {
@@ -684,7 +729,7 @@ export class HomePage
 
   searchForHandyMan(form)
   {
-    let searched_text = form.controls.search_text.value;
+    let searched_text = (form.controls.search_text.value) ? form.controls.search_text.value : "";
     let objSearch=
     {
       keyword:(searched_text) ? searched_text : "",

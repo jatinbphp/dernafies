@@ -25,6 +25,7 @@ export class SearchPage
   public handyMaxPrice:number=0;
   public handyManExperienceInYears: any = [];
 
+  public search_text:any = '';
   public resultDataCategories: any = [];
   public search_for_handyman: any = [];
   public resultDataSearch: any = [];
@@ -84,8 +85,7 @@ export class SearchPage
   }
 
   async ionViewWillEnter()
-  {
-    
+  { 
     this.resultDataSearch=[];//RESET DATA
     this.resultDataSearchPerSlide=[];//RESET DATA
     this.resultDataSearchPerSlideTemp=[];//RESET DATA
@@ -96,6 +96,7 @@ export class SearchPage
     this.search_for_handyman=JSON.parse(localStorage.getItem('search_for_handyman'));
     if(this.search_for_handyman!=null && this.search_for_handyman!=undefined && this.search_for_handyman!='null' && this.search_for_handyman!='undefined')
     {
+      this.search_text = (this.search_for_handyman.keyword) ? this.search_for_handyman.keyword : "";
       //LOADER
       const loading = await this.loadingCtrl.create({
         spinner: null,
@@ -231,6 +232,7 @@ export class SearchPage
   searchForHandyMan(form)
   {
     let searched_text = form.controls.search_text.value;
+    this.search_text = searched_text;
     let objSearch=
     {
       keyword:(searched_text) ? searched_text : "",
