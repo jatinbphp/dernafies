@@ -94,6 +94,16 @@ export class SearchPage
     this.tempH=0;//RESET DATA
 
     this.search_for_handyman=JSON.parse(localStorage.getItem('search_for_handyman'));
+    //REQUIRED TO CONTINUE TOWARDS JOB BOOKING PROCESS
+    let obj_way_to_select_handyman = 
+    {
+        handyman_category_id:0,
+        latitude:(this.search_for_handyman.latitude) ? this.search_for_handyman.latitude : "",
+        longitude:(this.search_for_handyman.longitude) ? this.search_for_handyman.longitude : "",
+        to_be_show_featured_handyman:"no"
+    };
+    localStorage.setItem("way_to_select_handyman",JSON.stringify(obj_way_to_select_handyman));
+    //REQUIRED TO CONTINUE TOWARDS JOB BOOKING PROCESS
     if(this.search_for_handyman!=null && this.search_for_handyman!=undefined && this.search_for_handyman!='null' && this.search_for_handyman!='undefined')
     {
       this.search_text = (this.search_for_handyman.keyword) ? this.search_for_handyman.keyword : "";

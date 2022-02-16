@@ -911,6 +911,10 @@ export class ClientService
 			localStorage.removeItem('firstName');
 			localStorage.removeItem('lastName');
 			localStorage.removeItem('role');
+			localStorage.removeItem('job');
+			localStorage.removeItem('post-a-job');
+			localStorage.removeItem('search_for_handyman');
+			localStorage.removeItem('way_to_select_handyman');
 		    this.router.navigate(['sign-in']);
 		}
 		else

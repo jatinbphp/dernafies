@@ -205,6 +205,10 @@ export class AppComponent
     localStorage.removeItem('firstName');
     localStorage.removeItem('lastName');
     localStorage.removeItem('role');
+    localStorage.removeItem('job');
+    localStorage.removeItem('post-a-job');
+    localStorage.removeItem('search_for_handyman');
+    localStorage.removeItem('way_to_select_handyman');
     this.client.router.navigate(['sign-in']);
   }
 }
