@@ -321,7 +321,7 @@ export class SignUpPage implements OnInit
       this.registerForm.get('service_in_km').clearValidators();     
       this.registerForm.get('service_in_km').updateValueAndValidity();
     }//DEFAULT CONFIGURATIN FOR CUSTOMER
-    this.platform.ready().then(async () => 
+    await this.platform.ready().then(async () => 
     {
       if(this.platform.is("android") == true)
       {

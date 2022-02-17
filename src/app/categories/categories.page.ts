@@ -5,6 +5,8 @@ import { NavigationExtras } from '@angular/router';
 import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
 import { NativeGeocoder, NativeGeocoderResult, NativeGeocoderOptions } from '@awesome-cordova-plugins/native-geocoder/ngx';
 import { ProfilePage } from '../profile/profile.page';
+import { LocationAccuracy } from '@awesome-cordova-plugins/location-accuracy/ngx';
+import { AndroidPermissions } from '@awesome-cordova-plugins/android-permissions/ngx';
 
 @Component({
   selector: 'app-categories',
@@ -23,7 +25,10 @@ export class CategoriesPage
   public resultDataCategories: any = [];
   public language_key_exchange_array: any = [];
   public queryString: any=[];
-  constructor(public client: ClientService, public modalCtrl: ModalController, public loadingCtrl: LoadingController, private geolocation: Geolocation, private platform: Platform, private nativeGeocoder: NativeGeocoder) 
+  
+  public locationCordinates: any;
+  public timestamp: any;
+  constructor(public client: ClientService, public modalCtrl: ModalController, public loadingCtrl: LoadingController, private geolocation: Geolocation, private platform: Platform, private nativeGeocoder: NativeGeocoder, private androidPermissions: AndroidPermissions, private locationAccuracy: LocationAccuracy) 
   {
     this.client.getObservableOnLanguageChange().subscribe((data) => {
 			this.language_selected = data.language_selected;
@@ -43,11 +48,24 @@ export class CategoriesPage
     this.language_key_exchange_array['arabic']='categoryNameArabic';
     this.language_key_exchange_array['kurdish']='categoryNameKurdi';
 
-    this.platform.ready().then(async () => 
+    this.locationCordinates = 
     {
-      const coordinates = await this.geolocation.getCurrentPosition();
-      this.current_latitude=Number(coordinates.coords.latitude);
-      this.current_longitude=Number(coordinates.coords.longitude);
+      latitude: "",
+      longitude: "",
+      accuracy: "",
+      timestamp: ""
+    }
+    this.timestamp = Date.now();
+    await this.platform.ready().then(async () => 
+    {
+      if(this.platform.is("android") == true)
+      {
+        this.checkPermission();
+      }
+      else 
+      {
+        this.currentLocPosition();
+      }
     });
     
     //LOADER
@@ -114,5 +132,74 @@ export class CategoriesPage
     {
       this.client.router.navigate(['sign-in']);  
     }
+  }
+
+  checkPermission() 
+  {
+    this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.ACCESS_COARSE_LOCATION).then(
+      result => {
+        if (result.hasPermission) 
+        {
+          this.enableGPS();
+        } 
+        else 
+        {
+          this.locationAccPermission();
+        }
+      },
+      error => {
+        alert("1"+error);
+      }
+    );
+  }
+
+  locationAccPermission() 
+  {
+    this.locationAccuracy.canRequest().then((canRequest: boolean) => 
+    {
+      if (canRequest) {} 
+      else 
+      {
+        this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.ACCESS_COARSE_LOCATION)
+          .then(() => 
+            {
+              this.enableGPS();
+            },
+            error => 
+            {
+              alert("2"+error)
+            }
+          );
+      }
+    });
+  }
+
+  enableGPS() 
+  {
+    this.locationAccuracy.request(this.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY).then(
+      () => {
+        this.currentLocPosition()
+      },
+      error => {
+        alert("3"+JSON.stringify(error));
+      }
+    );
+  }
+
+  async currentLocPosition() 
+  {
+    await this.geolocation.getCurrentPosition().then((response) => 
+    {
+      this.locationCordinates.latitude = response.coords.latitude;
+      this.locationCordinates.longitude = response.coords.longitude;
+      this.locationCordinates.accuracy = response.coords.accuracy;
+      this.locationCordinates.timestamp = response.timestamp;
+    }).catch((error) => 
+    {
+      alert('4-Error: ' + error);
+    });
+    
+    this.current_latitude=Number(this.locationCordinates.latitude);
+    this.current_longitude=Number(this.locationCordinates.longitude);
   }
 }

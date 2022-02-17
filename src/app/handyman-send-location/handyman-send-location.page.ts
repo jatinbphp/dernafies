@@ -4,6 +4,8 @@ import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
 import { NativeGeocoder, NativeGeocoderResult, NativeGeocoderOptions } from '@awesome-cordova-plugins/native-geocoder/ngx';
 import { ActivatedRoute, Router, NavigationExtras } from "@angular/router";
 import { ClientService } from '../providers/client.service';
+import { LocationAccuracy } from '@awesome-cordova-plugins/location-accuracy/ngx';
+import { AndroidPermissions } from '@awesome-cordova-plugins/android-permissions/ngx';
 
 declare var google;
 
@@ -31,11 +33,15 @@ export class HandymanSendLocationPage implements OnInit
   public latitudeCenter:any='';
   public longitudeCenter:any='';
   public queryStringData: any=[];
-  constructor(private client: ClientService, private loadingCtrl: LoadingController, private platform: Platform, private geolocation: Geolocation, private nativeGeocoder: NativeGeocoder, private route: ActivatedRoute)
+  
+  public locationCordinates: any;
+  public timestamp: any;
+  constructor(private client: ClientService, private loadingCtrl: LoadingController, private platform: Platform, private geolocation: Geolocation, private nativeGeocoder: NativeGeocoder, private route: ActivatedRoute, private androidPermissions: AndroidPermissions, private locationAccuracy: LocationAccuracy)
   { }
 
-  ngOnInit()
+  async ngOnInit()
   { 
+    /*
     this.platform.ready().then(async () => 
     {
       const coordinates = await this.geolocation.getCurrentPosition();
@@ -95,7 +101,26 @@ export class HandymanSendLocationPage implements OnInit
     });
     console.log("LAT",this.latitude);
     console.log("LON",this.longitude);
-    
+    */
+    this.locationCordinates = 
+    {
+      latitude: "",
+      longitude: "",
+      accuracy: "",
+      timestamp: ""
+    }
+    this.timestamp = Date.now();
+    await this.platform.ready().then(async () => 
+    {
+      if(this.platform.is("android") == true)
+      {
+        this.checkPermission();
+      }
+      else 
+      {
+        this.currentLocPosition();
+      }
+    });
   }
 
   async ionViewWillEnter()
@@ -210,5 +235,125 @@ export class HandymanSendLocationPage implements OnInit
       }
     };
     this.client.router.navigate(['/tabs/handyman-selected'], navigationExtras);
+  }
+
+  checkPermission() 
+  {
+    this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.ACCESS_COARSE_LOCATION).then(
+      result => {
+        if (result.hasPermission) 
+        {
+          this.enableGPS();
+        } 
+        else 
+        {
+          this.locationAccPermission();
+        }
+      },
+      error => {
+        alert("1"+error);
+      }
+    );
+  }
+
+  locationAccPermission() 
+  {
+    this.locationAccuracy.canRequest().then((canRequest: boolean) => 
+    {
+      if (canRequest) {} 
+      else 
+      {
+        this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.ACCESS_COARSE_LOCATION)
+          .then(() => 
+            {
+              this.enableGPS();
+            },
+            error => 
+            {
+              alert("2"+error)
+            }
+          );
+      }
+    });
+  }
+
+  enableGPS() 
+  {
+    this.locationAccuracy.request(this.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY).then(
+      () => {
+        this.currentLocPosition()
+      },
+      error => {
+        alert("3"+JSON.stringify(error));
+      }
+    );
+  }
+
+  async currentLocPosition() 
+  {
+    await this.geolocation.getCurrentPosition().then((response) => 
+    {
+      this.locationCordinates.latitude = response.coords.latitude;
+      this.locationCordinates.longitude = response.coords.longitude;
+      this.locationCordinates.accuracy = response.coords.accuracy;
+      this.locationCordinates.timestamp = response.timestamp;
+    }).catch((error) => 
+    {
+      alert('4-Error: ' + error);
+    });
+    
+    this.latitude=Number(this.locationCordinates.latitude);
+    this.longitude=Number(this.locationCordinates.longitude);
+
+    this.latitude_for_geocoder = String(this.latitude);
+    this.longitude_for_geocoder = String(this.longitude);
+
+    let latLng = new google.maps.LatLng(this.latitude, this.longitude);
+    let mapOptions = 
+    {
+      center: latLng,
+      zoom: 12,
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      draggable: true,//THIS WILL NOW ALLOW MAP TO DRAG
+      disableDefaultUI: true,//THIS WILL REMOVE THE ZOOM OPTION +/-
+    } 
+
+    //LOAD THE MAP WITH THE PREVIOUS VALUES AS PARAMETERS.
+    this.gooeleMap = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+    this.gooeleMap.addListener('tilesloaded', () => 
+    {
+      this.latitudeCenter = this.gooeleMap.center.lat();
+      this.longitudeCenter = this.gooeleMap.center.lng();
+    });
+
+    const myLatLng = { lat: this.latitude, lng: this.longitude };
+    let image = 
+    {
+      url: './assets/images/marker-home1.png', // image is 512 x 512
+      scaledSize: new google.maps.Size(60, 60),
+    };
+    let markerToReturn = new google.maps.Marker({
+      draggable: true,
+      position: myLatLng,
+      map: this.gooeleMap,
+      animation: 'DROP',
+      title: '',
+      icon: image
+    });
+
+    //THIS PORTION ALLOW TO DRAG MARKER AND GET THE POSITION
+    let classObj = this;//This is the class object we can say "HandymanSendLocationPage"
+    await google.maps.event.addListener(markerToReturn, 'dragend', function(this)//here "this" means "HandymanSendLocationPage"
+    {
+      this.markerlatlong = markerToReturn.getPosition();        
+      classObj.latitude=markerToReturn.getPosition().lat();
+      classObj.longitude=markerToReturn.getPosition().lng();
+      classObj.getAddressFromLatitudeAndLongitude(classObj.latitude, classObj.longitude);//THIS WILL GET ADDRESS ON BASES OF LATITUDE AND LONGITUDE
+      //console.log("latlong"+this.markerlatlong);
+      //console.log("lat"+markerToReturn.getPosition().lat());
+      //console.log("long"+markerToReturn.getPosition().lng());
+    });//THIS PORTION ALLOW TO DRAG MARKER AND GET THE POSITION
+
+    this.getAddressFromLatitudeAndLongitude(this.latitude_for_geocoder, this.longitude_for_geocoder);//THIS WILL GET ADDRESS ON BASES OF LATITUDE AND LONGITUDE
   }
 }

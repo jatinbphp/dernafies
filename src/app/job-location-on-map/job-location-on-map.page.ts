@@ -90,7 +90,7 @@ export class JobLocationOnMapPage implements OnInit
 			});
     }
 
-    this.platform.ready().then(async () => 
+    await this.platform.ready().then(async () => 
     {
       let latLng = new google.maps.LatLng(this.job_latitude, this.job_longitude);
       let mapOptions = 

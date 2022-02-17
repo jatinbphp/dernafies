@@ -7,6 +7,8 @@ import { JobLocationOnMapPage } from '../job-location-on-map/job-location-on-map
 import { NavigationExtras } from '@angular/router';
 import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
 import { NativeGeocoder, NativeGeocoderResult, NativeGeocoderOptions } from '@awesome-cordova-plugins/native-geocoder/ngx';
+import { LocationAccuracy } from '@awesome-cordova-plugins/location-accuracy/ngx';
+import { AndroidPermissions } from '@awesome-cordova-plugins/android-permissions/ngx';
 
 @Component({
   selector: 'app-home',
@@ -52,7 +54,10 @@ export class HomePage
   public jobRequestsHandyMan: any=[];
   public completedJobRequestsHandyMan: any=[];
 
-  constructor(public fb: FormBuilder, public client: ClientService, public menu: MenuController, public loadingCtrl: LoadingController, public modalCtrl: ModalController, public alertController: AlertController, private geolocation: Geolocation, private platform: Platform, private nativeGeocoder: NativeGeocoder) 
+  public locationCordinates: any;
+  public timestamp: any;
+
+  constructor(public fb: FormBuilder, public client: ClientService, public menu: MenuController, public loadingCtrl: LoadingController, public modalCtrl: ModalController, public alertController: AlertController, private geolocation: Geolocation, private platform: Platform, private nativeGeocoder: NativeGeocoder, private androidPermissions: AndroidPermissions, private locationAccuracy: LocationAccuracy) 
   {
     this.client.getObservableOnLanguageChange().subscribe((data) => {
 			this.language_selected = data.language_selected;
@@ -75,8 +80,27 @@ export class HomePage
     this.id=localStorage.getItem('id');
     this.role = localStorage.getItem('role');
     
-    this.UpdatePushToken();
-    this.showHomeContent();
+    this.default_language_data = this.client.default_language_data;
+		this.language_selected = this.client.language_selected;
+    this.locationCordinates = 
+    {
+      latitude: "",
+      longitude: "",
+      accuracy: "",
+      timestamp: ""
+    }
+    this.timestamp = Date.now();
+    await this.platform.ready().then(async () => 
+    {
+      if(this.platform.is("android") == true)
+      {
+        this.checkPermission();
+      }
+      else 
+      {
+        await this.currentLocPosition();
+      }
+    });
   }
 
   async ionViewWillEnter()
@@ -141,124 +165,6 @@ export class HomePage
       let lastName = (localStorage.getItem('lastName')) ? localStorage.getItem('lastName') : "";
       this.welcome_text = 'Hi, '+firstName+' '+lastName;      
     }
-    /*
-    if(this.role == 'customer')
-    {
-      this.platform.ready().then(async () => 
-      {
-        const coordinates = await this.geolocation.getCurrentPosition();
-        this.current_latitude=Number(coordinates.coords.latitude);
-        this.current_longitude=Number(coordinates.coords.longitude);
-      });
-      //LOADER
-      const loading = await this.loadingCtrl.create({
-        spinner: null,
-        //duration: 5000,
-        message: 'Please wait...',
-        translucent: true,
-        cssClass: 'custom-class custom-loading'
-      });
-      //await loading.present();
-      //LOADER
-      await this.client.getCategories().then(result => 
-      {	
-        loading.dismiss();//DISMISS LOADER			
-        this.resultDataCategories=result;
-        console.log(this.resultDataCategories);
-              
-      },
-      error => 
-      {
-        loading.dismiss();//DISMISS LOADER
-        console.log();
-      });//CATEGORIES
-
-      //LOADER
-      const loadingFeaturedHandyMan = await this.loadingCtrl.create({
-        spinner: null,
-        //duration: 5000,
-        message: 'Please wait...',
-        translucent: true,
-        cssClass: 'custom-class custom-loading'
-      });
-      //await loadingFeaturedHandyMan.present();
-      //LOADER
-      let dataHandyMan = {
-        categoryID:0,
-        latitude:this.current_latitude,
-        longitude:this.current_longitude,
-        limit:3
-      }
-      await this.client.getFeaturedHandyman(dataHandyMan).then(result => 
-      {	
-        loadingFeaturedHandyMan.dismiss();//DISMISS LOADER			
-        this.resultDataFeaturedHandyMan=result; 
-        console.log("Featured",this.resultDataFeaturedHandyMan);
-              
-      },
-      error => 
-      {
-        loadingFeaturedHandyMan.dismiss();//DISMISS LOADER
-        console.log();
-      });//FEATURED HANDYMAN
-
-      //LOADER
-      const loadingHandyManCompletedJobRequests = await this.loadingCtrl.create({
-        spinner: null,
-        //duration: 5000,
-        message: 'Please wait...',
-        translucent: true,
-        cssClass: 'custom-class custom-loading'
-      });
-      //await loadingHandyManCompletedJobRequests.present();
-      //LOADER
-      let dataHandyManJobRequest = {
-        user_id:this.id,        
-        user_type:this.user_type
-      }
-      await this.client.getJobRequestsForHandyMan(dataHandyManJobRequest).then(result => 
-      {	
-        loadingHandyManCompletedJobRequests.dismiss();//DISMISS LOADER			
-        this.completedJobRequestsHandyMan=result['completed']; 
-        console.log("COMPLETED JOBS",this.completedJobRequestsHandyMan);
-              
-      },
-      error => 
-      {
-        loadingHandyManCompletedJobRequests.dismiss();//DISMISS LOADER
-        console.log();
-      });//COMPLETED JOB REQUESTS FOR HANDYMAN
-    }
-    if(this.role == 'handyman')
-    {
-      //LOADER
-      const loadingHandyManRequests = await this.loadingCtrl.create({
-        spinner: null,
-        //duration: 5000,
-        message: 'Please wait...',
-        translucent: true,
-        cssClass: 'custom-class custom-loading'
-      });
-      //await loadingHandyManRequests.present();
-      //LOADER
-      let dataHandyManJobRequest = {
-        user_id:this.id,        
-        user_type:this.user_type
-      }
-      await this.client.getJobRequestsForHandyMan(dataHandyManJobRequest).then(result => 
-      {	
-        loadingHandyManRequests.dismiss();//DISMISS LOADER			
-        this.jobRequestsHandyMan=result['requested']; 
-        console.log("JOBS",this.jobRequestsHandyMan);
-              
-      },
-      error => 
-      {
-        loadingHandyManRequests.dismiss();//DISMISS LOADER
-        console.log();
-      });//JOB REQUESTS FOR HANDYMAN
-    }
-    */
   }
 
   async UpdatePushToken()
@@ -364,12 +270,6 @@ export class HomePage
     }
     if(this.role == 'customer')
     {
-      await this.platform.ready().then(async () => 
-      {
-        const coordinates = await this.geolocation.getCurrentPosition();
-        this.current_latitude=Number(coordinates.coords.latitude);
-        this.current_longitude=Number(coordinates.coords.longitude);
-      });
       //LOADER
       const loading = await this.loadingCtrl.create({
         spinner: null,
@@ -742,5 +642,89 @@ export class HomePage
     }
     localStorage.setItem('search_for_handyman',JSON.stringify(objSearch));
     this.client.router.navigate(['tabs/search']);
+  }
+
+  checkPermission() 
+  {
+    this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.ACCESS_COARSE_LOCATION).then(
+      result => {
+        if (result.hasPermission) 
+        {
+          this.enableGPS();
+        } 
+        else 
+        {
+          this.locationAccPermission();
+        }
+      },
+      error => {
+        alert("1"+error);
+      }
+    );
+  }
+
+  locationAccPermission() 
+  {
+    this.locationAccuracy.canRequest().then((canRequest: boolean) => 
+    {
+      if (canRequest) {} 
+      else 
+      {
+        this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.ACCESS_COARSE_LOCATION)
+          .then(() => 
+            {
+              this.enableGPS();
+            },
+            error => 
+            {
+              alert("2"+error)
+            }
+          );
+      }
+    });
+  }
+
+  enableGPS() 
+  {
+    this.locationAccuracy.request(this.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY).then(
+      async () => {
+        await this.currentLocPosition();
+      },
+      error => {
+        alert("3"+JSON.stringify(error));
+      }
+    );
+  }
+
+  async currentLocPosition() 
+  {
+     //LOADER
+     const loadingLocation = await this.loadingCtrl.create({
+      spinner: null,
+      //duration: 5000,
+      message: 'Please wait...',
+      translucent: true,
+      cssClass: 'custom-class custom-loading'
+    });
+    await loadingLocation.present();
+    //LOADER
+    await this.geolocation.getCurrentPosition().then((response) => 
+    {
+      loadingLocation.dismiss();//DISMISS LOADER
+      this.locationCordinates.latitude = response.coords.latitude;
+      this.locationCordinates.longitude = response.coords.longitude;
+      this.locationCordinates.accuracy = response.coords.accuracy;
+      this.locationCordinates.timestamp = response.timestamp;
+    }).catch((error) => 
+    {
+      loadingLocation.dismiss();//DISMISS LOADER
+      alert('4-Error: ' + error);
+    });
+    
+    this.current_latitude=Number(this.locationCordinates.latitude);
+    this.current_longitude=Number(this.locationCordinates.longitude);
+
+    this.UpdatePushToken();
+    this.showHomeContent();
   }
 }

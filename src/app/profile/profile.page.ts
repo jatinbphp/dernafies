@@ -9,6 +9,8 @@ import { FileTransfer, FileUploadOptions, FileTransferObject } from '@awesome-co
 import { File } from '@awesome-cordova-plugins/file/ngx';
 import { FilePath } from '@awesome-cordova-plugins/file-path/ngx';
 import { Chooser } from '@awesome-cordova-plugins/chooser/ngx';
+import { LocationAccuracy } from '@awesome-cordova-plugins/location-accuracy/ngx';
+import { AndroidPermissions } from '@awesome-cordova-plugins/android-permissions/ngx';
 
 declare var google;
 
@@ -65,6 +67,9 @@ export class ProfilePage implements OnInit
 	public category_to_be_selected_limit:number=0;//For disabling checkbox after limit
 	public checkeds = 0;//For disabling checkbox after limit
 	public podecheck = true;//For disabling checkbox after limit
+
+	public locationCordinates: any;
+  	public timestamp: any;
 
 	public profileForm = this.fb.group({
 		first_name: ['', Validators.required],
@@ -143,7 +148,7 @@ export class ProfilePage implements OnInit
 		]
 	};
   
-  	constructor(public client: ClientService, public fb: FormBuilder, public loadingCtrl: LoadingController, public modalCtrl: ModalController, private geolocation: Geolocation, private platform: Platform, private nativeGeocoder: NativeGeocoder, private camera: Camera, private file: File, private filePath: FilePath, private chooser: Chooser, private transfer: FileTransfer, private actionSheetController: ActionSheetController)
+  	constructor(public client: ClientService, public fb: FormBuilder, public loadingCtrl: LoadingController, public modalCtrl: ModalController, private geolocation: Geolocation, private platform: Platform, private nativeGeocoder: NativeGeocoder, private camera: Camera, private file: File, private filePath: FilePath, private chooser: Chooser, private transfer: FileTransfer, private actionSheetController: ActionSheetController, private androidPermissions: AndroidPermissions, private locationAccuracy: LocationAccuracy)
 	{ 
 		this.default_language_data = this.client.default_language_data;
 		this.language_selected = this.client.language_selected;
@@ -173,6 +178,11 @@ export class ProfilePage implements OnInit
 		this.language_key_exchange_subscription_plan['arabic']='planNameArabic';
 		this.language_key_exchange_subscription_plan['kurdish']='planNameKurdish';
 
+		
+	}
+
+	async ionViewWillEnter()
+	{	
 		//LOADER
 		const loadingCategories = await this.loadingCtrl.create({
 			spinner: null,
@@ -278,7 +288,7 @@ export class ProfilePage implements OnInit
 			loadingSubscriptionPlans.dismiss();//DISMISS LOADER
 			console.log();
 		});//Subscriptions plans
-
+		
 		//LOADER
 		const loading = await this.loadingCtrl.create({
 			spinner: null,
@@ -421,71 +431,26 @@ export class ProfilePage implements OnInit
 				console.log();
 			});
 		}
-	}
+		
 
-	async ionViewWillEnter()
-	{
-		this.platform.ready().then(async () => 
+		this.locationCordinates = 
 		{
-			const coordinates = await this.geolocation.getCurrentPosition();
-			if(this.resultData.latitude != '' && this.resultData.latitude != null && this.resultData.latitude != undefined && this.resultData.latitude != 'null' && this.resultData.latitude != 'undefined')
+			latitude: "",
+			longitude: "",
+			accuracy: "",
+			timestamp: ""
+		}
+		this.timestamp = Date.now();
+		await this.platform.ready().then(async () => 
+		{
+			if(this.platform.is("android") == true)
 			{
-				this.latitude=Number(this.resultData.latitude);
-				this.longitude=Number(this.resultData.longitude);
+				this.checkPermission();
 			}
 			else 
 			{
-				this.latitude=Number(coordinates.coords.latitude);
-				this.longitude=Number(coordinates.coords.longitude);
+				this.currentLocPosition();
 			}
-			this.JustAssignLatLonAsGlobal();
-			
-			//LOAD THE MAP WITH LATITUDE,LONGITUDE
-			let latLng = new google.maps.LatLng(this.latitude, this.longitude);
-			let mapOptions = 
-			{
-				center: latLng,
-				zoom: 12,
-				mapTypeId: google.maps.MapTypeId.ROADMAP,
-				draggable: true,//THIS WILL NOW ALLOW MAP TO DRAG
-				disableDefaultUI: true,//THIS WILL REMOVE THE ZOOM OPTION +/-
-			} 
-			this.gooeleMap = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-			this.gooeleMap.addListener('tilesloaded', () => 
-			{
-				this.latitudeCenter = this.gooeleMap.center.lat();
-				this.longitudeCenter = this.gooeleMap.center.lng();
-			});
-
-			const myLatLng = { lat: this.latitude, lng: this.longitude };
-			let image = 
-			{
-				url: './assets/images/marker-home1.png', // image is 512 x 512
-				scaledSize: new google.maps.Size(60, 60),
-			};
-			
-			let markerToReturn = new google.maps.Marker({
-				draggable: true,
-				position: myLatLng,
-				map: this.gooeleMap,
-				//animation: 'DROP',
-				title: '',
-				icon: image
-			});
-			
-			//THIS PORTION ALLOW TO DRAG MARKER AND GET THE POSITION
-			let classObj = this;//This is the class object we can say "SignUpPage"
-			await google.maps.event.addListener(markerToReturn, 'dragend', function(this)//here "this" means "SignUpPage"
-			{
-				this.markerlatlong = markerToReturn.getPosition();        
-				classObj.latitude=markerToReturn.getPosition().lat();
-				classObj.longitude=markerToReturn.getPosition().lng();
-				classObj.JustAssignLatLonAsGlobal();
-				//console.log("latlong"+this.markerlatlong);
-				//console.log("lat"+markerToReturn.getPosition().lat());
-				//console.log("long"+markerToReturn.getPosition().lng());
-			});//THIS PORTION ALLOW TO DRAG MARKER AND GET THE POSITION
-			//LOAD THE MAP WITH LATITUDE,LONGITUDE
 		});
 	}
 
@@ -1012,5 +977,132 @@ export class ProfilePage implements OnInit
 			}
 			this.profileForm.controls['specialized_in'].setValue(specialized_in);
 		}
+	}
+
+	checkPermission() 
+	{
+		this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.ACCESS_COARSE_LOCATION).then(
+		result => {
+			if (result.hasPermission) 
+			{
+			this.enableGPS();
+			} 
+			else 
+			{
+			this.locationAccPermission();
+			}
+		},
+		error => {
+			alert("1"+error);
+		}
+		);
+	}
+
+	locationAccPermission() 
+	{
+		this.locationAccuracy.canRequest().then((canRequest: boolean) => 
+		{
+		if (canRequest) {} 
+		else 
+		{
+			this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.ACCESS_COARSE_LOCATION)
+			.then(() => 
+				{
+				this.enableGPS();
+				},
+				error => 
+				{
+				alert("2"+error)
+				}
+			);
+		}
+		});
+	}
+
+	enableGPS() 
+	{
+		this.locationAccuracy.request(this.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY).then(
+		() => {
+			this.currentLocPosition()
+		},
+		error => {
+			alert("3"+JSON.stringify(error));
+		}
+		);
+	}
+
+	async currentLocPosition() 
+	{
+		await this.geolocation.getCurrentPosition().then((response) => 
+		{
+			this.locationCordinates.latitude = response.coords.latitude;
+			this.locationCordinates.longitude = response.coords.longitude;
+			this.locationCordinates.accuracy = response.coords.accuracy;
+			this.locationCordinates.timestamp = response.timestamp;
+		}).catch((error) => 
+		{
+			alert('4-Error: ' + error);
+		});
+		
+
+		if(this.resultData.latitude != '' && this.resultData.latitude != null && this.resultData.latitude != undefined && this.resultData.latitude != 'null' && this.resultData.latitude != 'undefined')
+		{
+			this.latitude=Number(this.resultData.latitude);
+			this.longitude=Number(this.resultData.longitude);
+		}
+		else 
+		{
+			this.latitude=Number(this.locationCordinates.latitude);
+			this.longitude=Number(this.locationCordinates.longitude);
+		}
+
+		this.JustAssignLatLonAsGlobal();
+			
+		//LOAD THE MAP WITH LATITUDE,LONGITUDE
+		let latLng = new google.maps.LatLng(this.latitude, this.longitude);
+		let mapOptions = 
+		{
+			center: latLng,
+			zoom: 12,
+			mapTypeId: google.maps.MapTypeId.ROADMAP,
+			draggable: true,//THIS WILL NOW ALLOW MAP TO DRAG
+			disableDefaultUI: true,//THIS WILL REMOVE THE ZOOM OPTION +/-
+		} 
+		this.gooeleMap = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+		this.gooeleMap.addListener('tilesloaded', () => 
+		{
+			this.latitudeCenter = this.gooeleMap.center.lat();
+			this.longitudeCenter = this.gooeleMap.center.lng();
+		});
+
+		const myLatLng = { lat: this.latitude, lng: this.longitude };
+		let image = 
+		{
+			url: './assets/images/marker-home1.png', // image is 512 x 512
+			scaledSize: new google.maps.Size(60, 60),
+		};
+		
+		let markerToReturn = new google.maps.Marker({
+			draggable: true,
+			position: myLatLng,
+			map: this.gooeleMap,
+			//animation: 'DROP',
+			title: '',
+			icon: image
+		});
+		
+		//THIS PORTION ALLOW TO DRAG MARKER AND GET THE POSITION
+		let classObj = this;//This is the class object we can say "SignUpPage"
+		await google.maps.event.addListener(markerToReturn, 'dragend', function(this)//here "this" means "SignUpPage"
+		{
+			this.markerlatlong = markerToReturn.getPosition();        
+			classObj.latitude=markerToReturn.getPosition().lat();
+			classObj.longitude=markerToReturn.getPosition().lng();
+			classObj.JustAssignLatLonAsGlobal();
+			//console.log("latlong"+this.markerlatlong);
+			//console.log("lat"+markerToReturn.getPosition().lat());
+			//console.log("long"+markerToReturn.getPosition().lng());
+		});//THIS PORTION ALLOW TO DRAG MARKER AND GET THE POSITION
+		//LOAD THE MAP WITH LATITUDE,LONGITUDE
 	}
 }
