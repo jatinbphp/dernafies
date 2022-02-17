@@ -5,6 +5,8 @@ import { Platform, LoadingController } from '@ionic/angular';
 import { InAppBrowser, InAppBrowserOptions } from '@awesome-cordova-plugins/in-app-browser/ngx';
 import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
 import { NativeGeocoder, NativeGeocoderResult, NativeGeocoderOptions } from '@awesome-cordova-plugins/native-geocoder/ngx';
+import { LocationAccuracy } from '@awesome-cordova-plugins/location-accuracy/ngx';
+import { AndroidPermissions } from '@awesome-cordova-plugins/android-permissions/ngx';
 
 declare var google;
 
@@ -52,6 +54,9 @@ export class SignUpPage implements OnInit
 	public category_to_be_selected_limit:number=0;//For disabling checkbox after limit
 	public checkeds = 0;//For disabling checkbox after limit
 	public podecheck = true;//For disabling checkbox after limit
+
+  public locationCordinates: any;
+  public timestamp: any;
 
   public registerForm = this.fb.group({
     first_name: ['', Validators.required],
@@ -138,7 +143,7 @@ export class SignUpPage implements OnInit
       { type: 'required', message: 'Selecting service plan is required.' }
     ]
   };
-  constructor(public client: ClientService, public fb: FormBuilder, public loadingCtrl: LoadingController, private inAppBrowser: InAppBrowser, private geolocation: Geolocation, private platform: Platform, private nativeGeocoder: NativeGeocoder)
+  constructor(public client: ClientService, public fb: FormBuilder, public loadingCtrl: LoadingController, private inAppBrowser: InAppBrowser, private geolocation: Geolocation, private platform: Platform, private nativeGeocoder: NativeGeocoder, private androidPermissions: AndroidPermissions, private locationAccuracy: LocationAccuracy)
   { 
     this.default_language_data = this.client.default_language_data;
 		this.language_selected = this.client.language_selected;
@@ -279,6 +284,14 @@ export class SignUpPage implements OnInit
 
   async ionViewWillEnter()
   {
+    this.locationCordinates = 
+    {
+      latitude: "",
+      longitude: "",
+      accuracy: "",
+      timestamp: ""
+    }
+    this.timestamp = Date.now();
     this.signup_as_handyman = false;
     if(this.signup_as_handyman == false)
     {
@@ -310,57 +323,14 @@ export class SignUpPage implements OnInit
     }//DEFAULT CONFIGURATIN FOR CUSTOMER
     this.platform.ready().then(async () => 
     {
-      const coordinates = await this.geolocation.getCurrentPosition();
-      this.latitude=Number(coordinates.coords.latitude);
-      this.longitude=Number(coordinates.coords.longitude);
-      this.JustAssignLatLonAsGlobal();
-      
-      //LOAD THE MAP WITH LATITUDE,LONGITUDE
-      let latLng = new google.maps.LatLng(this.latitude, this.longitude);
-      let mapOptions = 
+      if(this.platform.is("android") == true)
       {
-        center: latLng,
-        zoom: 12,
-        mapTypeId: google.maps.MapTypeId.ROADMAP,
-        draggable: true,//THIS WILL NOW ALLOW MAP TO DRAG
-        disableDefaultUI: true,//THIS WILL REMOVE THE ZOOM OPTION +/-
-      } 
-      this.gooeleMap = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-      this.gooeleMap.addListener('tilesloaded', () => 
+        this.checkPermission();
+      }
+      else 
       {
-        this.latitudeCenter = this.gooeleMap.center.lat();
-        this.longitudeCenter = this.gooeleMap.center.lng();
-      });
-
-      const myLatLng = { lat: this.latitude, lng: this.longitude };
-      let image = 
-      {
-        url: './assets/images/marker-home1.png', // image is 512 x 512
-        scaledSize: new google.maps.Size(60, 60),
-      };
-      
-      let markerToReturn = new google.maps.Marker({
-        draggable: true,
-        position: myLatLng,
-        map: this.gooeleMap,
-        //animation: 'DROP',
-        title: '',
-        icon: image
-      });
-      
-      //THIS PORTION ALLOW TO DRAG MARKER AND GET THE POSITION
-      let classObj = this;//This is the class object we can say "SignUpPage"
-      await google.maps.event.addListener(markerToReturn, 'dragend', function(this)//here "this" means "SignUpPage"
-      {
-        this.markerlatlong = markerToReturn.getPosition();        
-        classObj.latitude=markerToReturn.getPosition().lat();
-        classObj.longitude=markerToReturn.getPosition().lng();
-        classObj.JustAssignLatLonAsGlobal();
-        //console.log("latlong"+this.markerlatlong);
-        //console.log("lat"+markerToReturn.getPosition().lat());
-        //console.log("long"+markerToReturn.getPosition().lng());
-      });//THIS PORTION ALLOW TO DRAG MARKER AND GET THE POSITION
-      //LOAD THE MAP WITH LATITUDE,LONGITUDE
+        this.currentLocPosition();
+      }
     });
   }
 
@@ -368,13 +338,13 @@ export class SignUpPage implements OnInit
 	{
 		if (!entry.isChecked)
 		{
-		this.checkeds++;
-		console.log(this.checkeds);
+		  this.checkeds++;
+		  console.log(this.checkeds);
 		} 
 		else 
 		{
-		this.checkeds--;
-		console.log(this.checkeds);
+		  this.checkeds--;
+		  console.log(this.checkeds);
 		}
 	}
   
@@ -670,5 +640,123 @@ export class SignUpPage implements OnInit
       this.registerForm.get('specialized_in').setValidators([Validators.required]);     
       this.registerForm.get('specialized_in').updateValueAndValidity();
     }
+  }
+
+  checkPermission() 
+  {
+    this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.ACCESS_COARSE_LOCATION).then(
+      result => {
+        if (result.hasPermission) 
+        {
+          this.enableGPS();
+        } 
+        else 
+        {
+          this.locationAccPermission();
+        }
+      },
+      error => {
+        alert("1"+error);
+      }
+    );
+  }
+
+  locationAccPermission() 
+  {
+    this.locationAccuracy.canRequest().then((canRequest: boolean) => 
+    {
+      if (canRequest) {} 
+      else 
+      {
+        this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.ACCESS_COARSE_LOCATION)
+          .then(() => 
+            {
+              this.enableGPS();
+            },
+            error => 
+            {
+              alert("2"+error)
+            }
+          );
+      }
+    });
+  }
+
+  enableGPS() 
+  {
+    this.locationAccuracy.request(this.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY).then(
+      () => {
+        this.currentLocPosition()
+      },
+      error => {
+        alert("3"+JSON.stringify(error));
+      }
+    );
+  }
+
+  async currentLocPosition() 
+  {
+    await this.geolocation.getCurrentPosition().then((response) => 
+    {
+      this.locationCordinates.latitude = response.coords.latitude;
+      this.locationCordinates.longitude = response.coords.longitude;
+      this.locationCordinates.accuracy = response.coords.accuracy;
+      this.locationCordinates.timestamp = response.timestamp;
+    }).catch((error) => 
+    {
+      alert('4-Error: ' + error);
+    });
+    
+    this.latitude=Number(this.locationCordinates.latitude);
+    this.longitude=Number(this.locationCordinates.longitude);
+
+    this.JustAssignLatLonAsGlobal();
+    
+    //LOAD THE MAP WITH LATITUDE,LONGITUDE
+    let latLng = new google.maps.LatLng(this.latitude, this.longitude);
+    let mapOptions = 
+    {
+      center: latLng,
+      zoom: 12,
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      draggable: true,//THIS WILL NOW ALLOW MAP TO DRAG
+      disableDefaultUI: true,//THIS WILL REMOVE THE ZOOM OPTION +/-
+    } 
+    this.gooeleMap = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+    this.gooeleMap.addListener('tilesloaded', () => 
+    {
+      this.latitudeCenter = this.gooeleMap.center.lat();
+      this.longitudeCenter = this.gooeleMap.center.lng();
+    });
+
+    const myLatLng = { lat: this.latitude, lng: this.longitude };
+    let image = 
+    {
+      url: './assets/images/marker-home1.png', // image is 512 x 512
+      scaledSize: new google.maps.Size(60, 60),
+    };
+    
+    let markerToReturn = new google.maps.Marker({
+      draggable: true,
+      position: myLatLng,
+      map: this.gooeleMap,
+      //animation: 'DROP',
+      title: '',
+      icon: image
+    });
+    
+    //THIS PORTION ALLOW TO DRAG MARKER AND GET THE POSITION
+    let classObj = this;//This is the class object we can say "SignUpPage"
+    await google.maps.event.addListener(markerToReturn, 'dragend', function(this)//here "this" means "SignUpPage"
+    {
+      this.markerlatlong = markerToReturn.getPosition();        
+      classObj.latitude=markerToReturn.getPosition().lat();
+      classObj.longitude=markerToReturn.getPosition().lng();
+      classObj.JustAssignLatLonAsGlobal();
+      //console.log("latlong"+this.markerlatlong);
+      //console.log("lat"+markerToReturn.getPosition().lat());
+      //console.log("long"+markerToReturn.getPosition().lng());
+    });//THIS PORTION ALLOW TO DRAG MARKER AND GET THE POSITION
+    //LOAD THE MAP WITH LATITUDE,LONGITUDE
   }
 }

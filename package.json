@@ -20,6 +20,7 @@
     "@angular/platform-browser": "~13.0.0",
     "@angular/platform-browser-dynamic": "~13.0.0",
     "@angular/router": "~13.0.0",
+    "@awesome-cordova-plugins/android-permissions": "^5.39.1",
     "@awesome-cordova-plugins/camera": "^5.38.0",
     "@awesome-cordova-plugins/chooser": "^5.38.0",
     "@awesome-cordova-plugins/core": "^5.37.3",
@@ -28,6 +29,7 @@
     "@awesome-cordova-plugins/file-transfer": "^5.38.0",
     "@awesome-cordova-plugins/geolocation": "^5.37.3",
     "@awesome-cordova-plugins/in-app-browser": "^5.37.3",
+    "@awesome-cordova-plugins/location-accuracy": "^5.39.1",
     "@awesome-cordova-plugins/native-geocoder": "^5.37.3",
     "@awesome-cordova-plugins/push": "^5.39.1",
     "@ionic/angular": "^6.0.0",
@@ -58,6 +60,7 @@
     "@typescript-eslint/parser": "5.3.0",
     "cordova-android": "^9.1.0",
     "cordova-plugin-add-swift-support": "^2.0.2",
+    "cordova-plugin-android-permissions": "^1.1.3",
     "cordova-plugin-camera": "^5.0.3",
     "cordova-plugin-chooser": "^1.3.2",
     "cordova-plugin-device": "^2.0.2",
@@ -69,6 +72,7 @@
     "cordova-plugin-ionic-keyboard": "^2.2.0",
     "cordova-plugin-ionic-webview": "^4.2.1",
     "cordova-plugin-nativegeocoder": "^3.4.1",
+    "cordova-plugin-request-location-accuracy": "^2.3.0",
     "cordova-plugin-splashscreen": "^5.0.2",
     "cordova-plugin-statusbar": "^2.4.2",
     "cordova-plugin-whitelist": "^1.3.3",
@@ -117,7 +121,11 @@
       "phonegap-plugin-push": {
         "ANDROID_SUPPORT_V13_VERSION": "27.+",
         "FCM_VERSION": "17.0.+"
-      }
+      },
+      "cordova-plugin-request-location-accuracy": {
+        "PLAY_SERVICES_LOCATION_VERSION": "16.+"
+      },
+      "cordova-plugin-android-permissions": {}
     },
     "platforms": [
       "android"

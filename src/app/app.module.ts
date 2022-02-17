@@ -10,6 +10,8 @@ import { InAppBrowser } from '@awesome-cordova-plugins/in-app-browser/ngx';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
 import { NativeGeocoder, NativeGeocoderResult, NativeGeocoderOptions } from '@awesome-cordova-plugins/native-geocoder/ngx';
+import { LocationAccuracy } from '@awesome-cordova-plugins/location-accuracy/ngx';
+import { AndroidPermissions } from '@awesome-cordova-plugins/android-permissions/ngx';
 import { Camera } from '@awesome-cordova-plugins/camera/ngx';
 import { File } from '@awesome-cordova-plugins/file/ngx';
 import { FilePath } from '@awesome-cordova-plugins/file-path/ngx';
@@ -38,6 +40,8 @@ import { AngularFireModule } from '@angular/fire/compat';
     HttpClient,
     Geolocation,
     NativeGeocoder,
+    LocationAccuracy,
+    AndroidPermissions,
     InAppBrowser,
     Camera,
     File,
