@@ -76,11 +76,12 @@
 				            </div>
 				            <div class="featured-box-txt">
 				            	<p class="rating">
-									<ionic-rating-component #featuredRating{{h+1}} activeIcon = "star" defaultIcon = "star" activeColor = "#ffcd3c" defaultColor = "#f4f4f4" readonly = "true" rating = "{{handyMan.total_ratings}}" fontSize = "17px"></ionic-rating-component>									
-								</p>
-								<h2 class="name">{{handyMan.firstName}} {{handyMan.lastName}}</h2>
-								<h4 class="experience">{{handyMan.no_of_experience}} years experience</h4>
-								<h3 class="hr-txt">${{handyMan.price}}<span>/</span>Hr</h3>
+                        <ionic-rating-component #featuredRating{{h+1}} activeIcon = "star" defaultIcon = "star" activeColor = "#ffcd3c" defaultColor = "#f4f4f4" readonly = "true" rating = "{{handyMan.total_ratings}}" fontSize = "17px"></ionic-rating-component>									
+                      </p>
+                      <h2 class="name">{{handyMan.firstName}} {{handyMan.lastName}}</h2>
+                      <h4 class="experience">{{handyMan.no_of_experience}} years experience</h4>
+                      <h3 class="hr-txt">${{handyMan.price}}<span>/</span>{{handyMan.pricingTypeName}}</h3>
+                      <h3 class="pr-txt" *ngIf="handyMan.unitPricingType!=null">{{handyMan.unitPricingType}}</h3>
 				            </div>
 				        </div>
 				    </ion-col>
