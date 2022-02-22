@@ -157,6 +157,8 @@ export class HandymanViewAllPage implements OnInit
           no_of_experience:this.resultDataHandyMan[h].no_of_experience,
           price:this.resultDataHandyMan[h].price,
           total_ratings:this.resultDataHandyMan[h].total_ratings,
+          pricingTypeName:(this.resultDataHandyMan[h].pricingTypes.pricingTypeName) ? this.resultDataHandyMan[h].pricingTypes.pricingTypeName : "",
+          unitPricingType:(this.resultDataHandyMan[h].pricingTypes.unitPricingType) ? this.resultDataHandyMan[h].pricingTypes.unitPricingType : "",
         }
         this.resultDataHandyManPerSlideTemp.push(objHandyMan);
         if(this.tempH % this.handyManToBeShowOnSingleSlide == 0)

@@ -30,7 +30,8 @@
 							<ion-icon name="star"></ion-icon>
 							<ion-icon name="star"></ion-icon>-->
 						</p>
-						<h4 class="hr-txt">${{resultDataHandyMan.price}}<span>/</span>Hr</h4>
+						<h4 class="hr-txt">${{resultDataHandyMan.price}}<span>/</span>{{pricingTypeName}}</h4>
+						<h3 class="pr-txt" *ngIf="unitPricingType!=null">{{unitPricingType}}</h3>
 					</div>
 					<div class="review-counte-list">
 						<div class="review-counte-item">
@@ -70,7 +71,8 @@
 							<ion-icon name="star"></ion-icon>
 							<ion-icon name="star"></ion-icon>-->
 						</p>
-						<h4 class="hr-txt">${{resultDataHandyMan.price}}<span>/</span>Hr</h4>
+						<h4 class="hr-txt">${{resultDataHandyMan.price}}<span>/</span>{{pricingTypeName}}</h4>
+						<h3 class="pr-txt" *ngIf="unitPricingType!=null">{{unitPricingType}}</h3>
 					</div>
 					<div class="review-counte-list">
 						<div class="review-counte-item">

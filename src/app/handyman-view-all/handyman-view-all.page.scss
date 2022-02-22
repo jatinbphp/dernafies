@@ -147,6 +147,7 @@ ion-content {
                                     letter-spacing: normal;
                                     margin: 0px auto 12px;
                                     padding: 0px;
+                                    min-height: 32px;//MAULIK::ADDED
                                     @media(max-width:374px) {
                                         font-size: 12px;
                                         line-height: 15px;
@@ -166,6 +167,32 @@ ion-content {
                                     border-top: 1px solid #5cc9e5;
                                     @media(max-width:374px) {
                                         font-size: 16px;
+                                        line-height: 24px;
+                                    }
+                                    span {
+                                        font-size: 12px;
+                                        line-height: normal;
+                                        margin: 0px 1px;
+                                        @media(max-width:374px) {
+                                            font-size: 12px;
+                                            line-height: normal;
+                                        }
+                                    }
+                                }
+                                .pr-txt {
+                                    width: 100%;
+                                    text-align: var(--text-center);
+                                    font-size: 15px;
+                                    line-height: 25px;
+                                    font-family: var(--font-Poppins-Medium);
+                                    color: var(--White);
+                                    text-transform: capitalize;
+                                    letter-spacing: normal;
+                                    margin: 0px;
+                                    padding: 6px 0px 6px;
+                                    border-top: 1px solid #5cc9e5;
+                                    @media(max-width:374px) {
+                                        font-size: 15px;
                                         line-height: 24px;
                                     }
                                     span {

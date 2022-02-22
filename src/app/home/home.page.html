@@ -108,6 +108,8 @@
                 <p><span></span>{{jobCompleted.dateCompleted | amDateFormat: 'DD MMM yyyy'}}<!--20 Sep 21--></p>
                 <p><span></span>{{jobCompleted.jobHours}}Hrs</p>
                 <p><span></span>${{jobCompleted.jobPrice}}</p>
+                <p><span></span>{{jobCompleted.jobPricingType}}</p>
+                <p *ngIf="jobCompleted.jobUnitPricingType!=null"><span></span>{{jobCompleted.jobUnitPricingType}}</p>
               </div>
             </div>
           </div>
@@ -136,7 +138,8 @@
                 </p>
                 <h2 class="name">{{handyMan.firstName}} {{handyMan.lastName}}</h2>
                 <h4 class="experience">{{handyMan.no_of_experience}} years experience</h4>
-                <h3 class="hr-txt">${{handyMan.price}}<span>/</span>Hr</h3>
+                <h3 class="hr-txt">${{handyMan.price}}<span>/</span>{{handyMan.pricingTypes.pricingTypeName}}</h3>
+                <h3 class="pr-txt" *ngIf="handyMan.pricingTypes.unitPricingType!=null">{{handyMan.pricingTypes.unitPricingType}}</h3>
               </div>
             </div>
           </ion-slide>
@@ -158,7 +161,8 @@
                 </p>
                 <h2 class="name">{{handyMan.firstName}} {{handyMan.lastName}}</h2>
                 <h4 class="experience">{{handyMan.no_of_experience}} years experience</h4>
-                <h3 class="hr-txt">${{handyMan.price}}<span>/</span>Hr</h3>
+                <h3 class="hr-txt">${{handyMan.price}}<span>/</span>{{handyMan.pricingTypes.pricingTypeName}}</h3>
+                <h3 class="pr-txt" *ngIf="handyMan.pricingTypes.unitPricingType!=null">{{handyMan.pricingTypes.unitPricingType}}</h3>
               </div>
             </div>
           </ion-slide>          

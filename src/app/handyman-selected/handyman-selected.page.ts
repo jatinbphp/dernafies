@@ -18,6 +18,8 @@ export class HandymanSelectedPage implements OnInit
 	public default_language_data: any = [];
   public language_key_exchange_array: any = [];
   public resultDataHandyMan: any=[];
+  public pricingTypeName:string='';
+  public unitPricingType:string='';
   public is_handy_man_selected:boolean = false;
   public queryString: any=[];
   public queryStringData: any=[];
@@ -72,6 +74,9 @@ export class HandymanSelectedPage implements OnInit
     {	
       loadingFeaturedHandyMan.dismiss();//DISMISS LOADER			
       this.resultDataHandyMan=result;
+      this.pricingTypeName=(this.resultDataHandyMan['pricingTypes']['pricingTypeName']) ? this.resultDataHandyMan['pricingTypes']['pricingTypeName'] : "";
+      this.unitPricingType=(this.resultDataHandyMan['pricingTypes']['unitPricingType']!=null) ? this.resultDataHandyMan['pricingTypes']['unitPricingType'] : null;
+      console.log(this.pricingTypeName+"@"+this.unitPricingType);
       this.totalAssignedJobs=this.resultDataHandyMan['assignedJobs'].length; 
       console.log(this.resultDataHandyMan);
             
