@@ -34,6 +34,8 @@ export class SignUpPage implements OnInit
   public language_key_exchange_city_array: any = [];
   public language_key_exchange_province_array: any = [];
   public language_key_exchange_subscription_plan: any = [];
+  public resultPricingTypes: any = [];
+  public show_unit_type:boolean = false;
 
   public gooeleMap: any;
   public latitude:any='';
@@ -73,6 +75,8 @@ export class SignUpPage implements OnInit
     service_province: ['', Validators.required],
     phone_number: ['', Validators.required],
     service_in_km: [''],
+    pricing_type: [''],
+    unite_type: [''],
     price_per_hour: [''],
     experience_in_year: [''],
     bio: [''],
@@ -128,6 +132,12 @@ export class SignUpPage implements OnInit
 		'price_per_hour': [
 			{ type: 'required', message: 'Hourly price is required.' }
 		],
+		'pricing_type': [
+			{ type: 'required', message: 'Pricing type is required.' }
+		],
+		'unite_type': [
+			{ type: 'required', message: 'Unit type is required.' }
+		],
     'service_province': [
       { type: 'required', message: 'Selecting province is required.' }
     ],
@@ -181,7 +191,7 @@ export class SignUpPage implements OnInit
 			translucent: true,
 			cssClass: 'custom-class custom-loading'
 		});
-		await loading.present();
+		//await loading.present();
 		//LOADER
     await this.client.getCategories().then(result => 
     {	
@@ -220,7 +230,7 @@ export class SignUpPage implements OnInit
 			translucent: true,
 			cssClass: 'custom-class custom-loading'
 		});
-		await loadingDestrict.present();
+		//await loadingDestrict.present();
 		//LOADER
     await this.client.getDistricts().then(resultDistricts => 
     {	
@@ -243,7 +253,7 @@ export class SignUpPage implements OnInit
 			translucent: true,
 			cssClass: 'custom-class custom-loading'
 		});
-		await loadingProvince.present();
+		//await loadingProvince.present();
 		//LOADER
     await this.client.getProvinces().then(resultProvinces => 
     {	
@@ -266,7 +276,7 @@ export class SignUpPage implements OnInit
 			translucent: true,
 			cssClass: 'custom-class custom-loading'
 		});
-		await loadingSubscriptionPlans.present();
+		//await loadingSubscriptionPlans.present();
 		//LOADER
     await this.client.getSubscriptionPlan().then(resultSubscription => 
     {	
@@ -280,6 +290,29 @@ export class SignUpPage implements OnInit
       loadingSubscriptionPlans.dismiss();//DISMISS LOADER
       console.log();
     });//Subscriptions plans
+
+    //LOADER
+		const loadingPricingType = await this.loadingCtrl.create({
+			spinner: null,
+			//duration: 5000,
+			message: 'Please wait...',
+			translucent: true,
+			cssClass: 'custom-class custom-loading'
+		});
+		//await loadingPricingType.present();
+		//LOADER
+    await this.client.getPricingTypes().then(resultPricing => 
+    {	
+      loadingPricingType.dismiss();//DISMISS LOADER			
+      this.resultPricingTypes=resultPricing;
+      console.log("Pricing",this.resultPricingTypes);
+            
+    },
+    error => 
+    {
+      loadingPricingType.dismiss();//DISMISS LOADER
+      console.log();
+    });//Pricing Types
   }
 
   async ionViewWillEnter()
@@ -300,6 +333,8 @@ export class SignUpPage implements OnInit
       //this.registerForm.controls['service_city'].setValue("");
       this.registerForm.controls['service_in_km'].setValue("");
       this.registerForm.controls['price_per_hour'].setValue("");
+      this.registerForm.controls['pricing_type'].setValue("");
+      this.registerForm.controls['unite_type'].setValue("");
       this.registerForm.controls['experience_in_year'].setValue("");
       this.registerForm.controls['bio'].setValue("");
       this.registerForm.get('specialized_in').clearValidators();     
@@ -314,6 +349,10 @@ export class SignUpPage implements OnInit
 			this.registerForm.get('bio').updateValueAndValidity();
       this.registerForm.get('price_per_hour').clearValidators();     
 			this.registerForm.get('price_per_hour').updateValueAndValidity();
+      this.registerForm.get('pricing_type').clearValidators();     
+			this.registerForm.get('pricing_type').updateValueAndValidity();
+      this.registerForm.get('unite_type').clearValidators();     
+			this.registerForm.get('unite_type').updateValueAndValidity();
       this.registerForm.get('service_province').clearValidators();     
       this.registerForm.get('service_province').updateValueAndValidity();
       this.registerForm.get('phone_number').clearValidators();     
@@ -425,6 +464,8 @@ export class SignUpPage implements OnInit
     let phone_number = (form.phone_number) ? form.phone_number : "";    
     let service_in_km = (form.service_in_km) ? form.service_in_km : 0;
     let price_per_hour = (form.price_per_hour) ? form.price_per_hour : 0;
+    let pricing_type = (form.pricing_type) ? form.pricing_type : "";
+    let unite_type = (form.unite_type) ? form.unite_type : "";
     let experience_in_year = (form.experience_in_year) ? form.experience_in_year : 0;
     let bio = (form.bio) ? form.bio : "";
     let subscription_plan = (form.subscription_plan) ? form.subscription_plan : 0;
@@ -442,6 +483,8 @@ export class SignUpPage implements OnInit
       phone_number:phone_number,
       service_in_km:service_in_km,
       price_per_hour:price_per_hour,
+      pricing_type:pricing_type,
+      unite_type:unite_type,
       experience_in_year:experience_in_year,
       bio:bio,
       latitude:this.latitude,
@@ -513,6 +556,12 @@ export class SignUpPage implements OnInit
       
       this.registerForm.get('price_per_hour').setValidators([Validators.required]);     
 			this.registerForm.get('price_per_hour').updateValueAndValidity();
+
+      this.registerForm.get('pricing_type').setValidators([Validators.required]);     
+			this.registerForm.get('pricing_type').updateValueAndValidity();
+
+      this.registerForm.get('unite_type').setValidators([Validators.required]);     
+			this.registerForm.get('unite_type').updateValueAndValidity();
       
       this.registerForm.get('service_province').setValidators([Validators.required]);     
       this.registerForm.get('service_province').updateValueAndValidity();
@@ -536,6 +585,8 @@ export class SignUpPage implements OnInit
       this.registerForm.controls['service_in_km'].setValue("");
       this.registerForm.controls['subscription_plan'].setValue("");
       this.registerForm.controls['price_per_hour'].setValue("");
+      this.registerForm.controls['pricing_type'].setValue("");
+      this.registerForm.controls['unite_type'].setValue("");
       this.registerForm.controls['experience_in_year'].setValue("");
       this.registerForm.get('specialized_in').clearValidators();     
       this.registerForm.get('specialized_in').updateValueAndValidity();
@@ -549,6 +600,10 @@ export class SignUpPage implements OnInit
 			this.registerForm.get('bio').updateValueAndValidity();
       this.registerForm.get('price_per_hour').clearValidators();     
 			this.registerForm.get('price_per_hour').updateValueAndValidity();
+      this.registerForm.get('pricing_type').clearValidators();     
+			this.registerForm.get('pricing_type').updateValueAndValidity();
+      this.registerForm.get('unite_type').clearValidators();     
+			this.registerForm.get('unite_type').updateValueAndValidity();
       this.registerForm.get('service_province').clearValidators();     
       this.registerForm.get('service_province').updateValueAndValidity();
       this.registerForm.get('phone_number').clearValidators();     
@@ -758,5 +813,18 @@ export class SignUpPage implements OnInit
       //console.log("long"+markerToReturn.getPosition().lng());
     });//THIS PORTION ALLOW TO DRAG MARKER AND GET THE POSITION
     //LOAD THE MAP WITH LATITUDE,LONGITUDE
+  }
+
+  checkPricingType(ev)
+  {
+    let PricintType = (ev.detail.value) ? ev.detail.value : 0;
+    if(PricintType == 4)
+    {
+      this.show_unit_type = true;
+    }
+    else 
+    {
+      this.show_unit_type = false;
+    }
   }
 }

@@ -183,6 +183,48 @@
         <ion-row *ngIf="signup_as_handyman == true">
           <ion-col size="12">
             <ion-item lines="none" class="ion-no-padding">
+              <ion-label position="stacked">{{default_language_data['translation'][0]['register'][0][language_selected][0]['pricing_type']}}</ion-label>
+              <ion-select formControlName="pricing_type" (ionChange)="checkPricingType($event)">
+                <ion-select-option *ngFor="let pricingType of resultPricingTypes;let s = index;" value="{{pricingType.id}}">{{pricingType.JobPricingTypeName}}</ion-select-option>  
+              </ion-select>
+            </ion-item>
+            <!--VALIDATION-->
+            <div class="validation-errors">
+              <ng-container *ngFor="let validation of validation_messages.pricing_type">
+                <div class="error-message"
+                  *ngIf="registerForm.get('pricing_type').hasError(validation.type) && (registerForm.get('pricing_type').dirty || registerForm.get('pricing_type').touched)">
+                  <ion-icon name="information-circle-outline"></ion-icon>
+                  <p>{{ validation.message }}</p>
+                </div>
+              </ng-container>
+            </div>
+            <!--VALIDATION-->
+          </ion-col>       
+        </ion-row>
+        <ion-row *ngIf="signup_as_handyman == true && show_unit_type == true">
+          <ion-col size="12">
+            <ion-item lines="none" class="ion-no-padding">
+              <ion-label position="stacked">{{default_language_data['translation'][0]['register'][0][language_selected][0]['unite_type']}}</ion-label>
+              <ion-select formControlName="unite_type">
+                <ion-select-option *ngFor="let unitType of resultPricingTypes[3].unit_pricing_types;let s = index;" value="{{unitType.UnitType}}">{{unitType.UnitType}}</ion-select-option>  
+              </ion-select>
+            </ion-item>
+            <!--VALIDATION-->
+            <div class="validation-errors">
+              <ng-container *ngFor="let validation of validation_messages.unite_type">
+                <div class="error-message"
+                  *ngIf="registerForm.get('unite_type').hasError(validation.type) && (registerForm.get('unite_type').dirty || registerForm.get('unite_type').touched)">
+                  <ion-icon name="information-circle-outline"></ion-icon>
+                  <p>{{ validation.message }}</p>
+                </div>
+              </ng-container>
+            </div>
+            <!--VALIDATION-->
+          </ion-col>       
+        </ion-row>
+        <ion-row *ngIf="signup_as_handyman == true">
+          <ion-col size="12">
+            <ion-item lines="none" class="ion-no-padding">
               <ion-label position="stacked">{{default_language_data['translation'][0]['register'][0][language_selected][0]['pricing']}}</ion-label>
               <ion-input type="number" formControlName="price_per_hour"></ion-input>
             </ion-item>

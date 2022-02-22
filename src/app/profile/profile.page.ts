@@ -49,6 +49,8 @@ export class ProfilePage implements OnInit
 	public longitudeCenter:any='';
 	public address:any='';
 
+	public resultPricingTypes: any = [];
+  	public show_unit_type:boolean = false;
 	
 	public resultData:any = [];
 	public id:any='';
@@ -81,6 +83,8 @@ export class ProfilePage implements OnInit
 		service_province: ['', Validators.required],
 		phone_number: ['', Validators.required],
 		service_in_km: [''],
+		pricing_type: [''],
+    	unite_type: [''],
 		price_per_hour: [''],
 		experience_in_year: [''],
 		latitude: [''],
@@ -127,6 +131,12 @@ export class ProfilePage implements OnInit
 		],
 		'price_per_hour': [
 			{ type: 'required', message: 'Hourly price is required.' }
+		],
+		'pricing_type': [
+			{ type: 'required', message: 'Pricing type is required.' }
+		],
+		'unite_type': [
+			{ type: 'required', message: 'Unit type is required.' }
 		],
 		'service_province': [
 		  { type: 'required', message: 'Selecting province is required.' }
@@ -290,6 +300,29 @@ export class ProfilePage implements OnInit
 		});//Subscriptions plans
 		
 		//LOADER
+		const loadingPricingType = await this.loadingCtrl.create({
+			spinner: null,
+			//duration: 5000,
+			message: 'Please wait...',
+			translucent: true,
+			cssClass: 'custom-class custom-loading'
+		});
+		//await loadingPricingType.present();
+		//LOADER
+		await this.client.getPricingTypes().then(resultPricing => 
+		{	
+			loadingPricingType.dismiss();//DISMISS LOADER			
+			this.resultPricingTypes=resultPricing;
+			console.log("Pricing",this.resultPricingTypes);
+				
+		},
+		error => 
+		{
+			loadingPricingType.dismiss();//DISMISS LOADER
+			console.log();
+		});//Pricing Types
+
+		//LOADER
 		const loading = await this.loadingCtrl.create({
 			spinner: null,
 			//duration: 5000,
@@ -311,6 +344,8 @@ export class ProfilePage implements OnInit
 			this.profileForm.controls['subscription_plan'].setValue("");
 			this.profileForm.controls['bio'].setValue("");
 			this.profileForm.controls['price_per_hour'].setValue("");
+			this.profileForm.controls['pricing_type'].setValue("");
+			this.profileForm.controls['unite_type'].setValue("");
 			this.profileForm.controls['experience_in_year'].setValue("");
 			this.profileForm.get('specialized_in').clearValidators();     
 			this.profileForm.get('specialized_in').updateValueAndValidity();
@@ -322,6 +357,10 @@ export class ProfilePage implements OnInit
 			this.profileForm.get('experience_in_year').updateValueAndValidity();
 			this.profileForm.get('price_per_hour').clearValidators();     
 			this.profileForm.get('price_per_hour').updateValueAndValidity();
+			this.profileForm.get('pricing_type').clearValidators();     
+			this.profileForm.get('pricing_type').updateValueAndValidity();
+			this.profileForm.get('unite_type').clearValidators();     
+			this.profileForm.get('unite_type').updateValueAndValidity();
 			this.profileForm.get('service_province').clearValidators();     
 			this.profileForm.get('service_province').updateValueAndValidity();
 			this.profileForm.get('phone_number').clearValidators();     
@@ -371,7 +410,11 @@ export class ProfilePage implements OnInit
 			this.profileForm.get('experience_in_year').setValidators([Validators.required]);     
 			this.profileForm.get('experience_in_year').updateValueAndValidity();			
 			this.profileForm.get('price_per_hour').setValidators([Validators.required]);     
-			this.profileForm.get('price_per_hour').updateValueAndValidity();			
+			this.profileForm.get('price_per_hour').updateValueAndValidity();
+			this.profileForm.get('pricing_type').setValidators([Validators.required]);     
+			this.profileForm.get('pricing_type').updateValueAndValidity();
+			this.profileForm.get('unite_type').setValidators([Validators.required]);     
+			this.profileForm.get('unite_type').updateValueAndValidity();			
 			this.profileForm.get('service_province').setValidators([Validators.required]);     
 			this.profileForm.get('service_province').updateValueAndValidity();
 			this.profileForm.get('phone_number').setValidators([Validators.required]);     
@@ -399,6 +442,8 @@ export class ProfilePage implements OnInit
 				let province = (this.resultData.provinceID) ? this.resultData.provinceID : "";
 				let phone_number = (this.resultData.phoneNumber) ? this.resultData.phoneNumber : "";
 				let price_per_hour = (this.resultData.price) ? this.resultData.price : "";
+				let pricing_type = (this.resultData.pricingType) ? this.resultData.pricingType : 0;
+				let unite_type = (this.resultData.unitPricingType) ? this.resultData.unitPricingType : "";
 				let service_in_km = (this.resultData.rangeServing) ? this.resultData.rangeServing : 0;
 				let subscription_plan = (this.resultDataMyCurrentSubscriptionPlan[0].subscriptionID) ? this.resultDataMyCurrentSubscriptionPlan[0].subscriptionID : 0;
 				let bio = (this.resultData.bio) ? this.resultData.bio : "";
@@ -420,6 +465,8 @@ export class ProfilePage implements OnInit
 				this.profileForm.controls['service_province'].setValue(province);
 				this.profileForm.controls['phone_number'].setValue(phone_number);
 				this.profileForm.controls['price_per_hour'].setValue(price_per_hour);
+				this.profileForm.controls['pricing_type'].setValue(pricing_type);
+				this.profileForm.controls['unite_type'].setValue(unite_type);
 				this.profileForm.controls['service_in_km'].setValue(service_in_km);
 				this.profileForm.controls['subscription_plan'].setValue(subscription_plan);
 				this.profileForm.controls['bio'].setValue(bio);
@@ -546,6 +593,8 @@ export class ProfilePage implements OnInit
 		//let subscription_plan = (form.subscription_plan) ? form.subscription_plan : 0;
 		let bio = (form.bio) ? form.bio : "";
 		let price_per_hour = (form.price_per_hour) ? form.price_per_hour : 0;
+		let pricing_type = (form.pricing_type) ? form.pricing_type : 0;
+		let unite_type = (form.unite_type) ? form.unite_type : "";
 		let experience_in_year = (form.experience_in_year) ? form.experience_in_year : 0;
 
 		let data=
@@ -565,11 +614,14 @@ export class ProfilePage implements OnInit
 			//subscription_plan:subscription_plan,
 			bio:bio,
 			price_per_hour:price_per_hour,
+			pricing_type:pricing_type,
+			unite_type:unite_type,
 			experience_in_year:experience_in_year,
 			latitude:this.latitude,
 			longitude:this.longitude,
 			address:this.address
 		}
+		
 		await this.client.updateProfile(data).then(result => 
 		{	
 			loading.dismiss();//DISMISS LOADER			
@@ -1104,5 +1156,18 @@ export class ProfilePage implements OnInit
 			//console.log("long"+markerToReturn.getPosition().lng());
 		});//THIS PORTION ALLOW TO DRAG MARKER AND GET THE POSITION
 		//LOAD THE MAP WITH LATITUDE,LONGITUDE
+	}
+
+	checkPricingType(ev)
+	{
+		let PricintType = (ev.detail.value) ? ev.detail.value : 0;
+		if(PricintType == 4)
+		{
+		this.show_unit_type = true;
+		}
+		else 
+		{
+		this.show_unit_type = false;
+		}
 	}
 }

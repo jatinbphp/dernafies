@@ -132,6 +132,8 @@
                      "service_in_km":"Range Serving",
                      "bio":"Bio",
                      "pricing": "Pricing",
+                     "pricing_type": "Pricing Type",
+                     "unite_type": "Unit Type",
                      "experience_in_year": "Experience",
                      "terms_of_service":"I agree to the",
                      "terms_of_service_link_text":"Terms of service",
@@ -161,6 +163,8 @@
                      "service_in_km":"خدمة الميدان",
                      "bio":"السيرة الذاتية",
                      "pricing": "التسعير",
+                     "pricing_type": "نوع التسعير",
+                     "unite_type": "نوع الوحدة",
                      "experience_in_year": "خبرة",
                      "terms_of_service":"أنا أوافق على",
                      "terms_of_service_link_text":"شروط الخدمة",
@@ -190,6 +194,8 @@
                      "service_in_km":"Range Serving",
                      "bio":"Bio",
                      "pricing": "Pricing",
+                     "pricing_type": "Pricing Type",
+                     "unite_type": "Type Unit",
                      "experience_in_year": "Tecribe",
                      "terms_of_service":"Ez qebûl dikim",
                      "terms_of_service_link_text":"Mercên xizmetê",
@@ -222,6 +228,8 @@
                      "service_in_km":"Range Serving",
                      "bio":"Bio",
                      "pricing": "Pricing",
+                     "pricing_type": "Pricing Type",
+                     "unite_type": "Unit Type",
                      "experience_in_year": "Experience",
                      "profile_button": "Update"
                   }
@@ -243,6 +251,8 @@
                      "service_in_km":"خدمة الميدان",
                      "bio":"السيرة الذاتية",
                      "pricing": "التسعير",
+                     "pricing_type": "نوع التسعير",
+                     "unite_type": "نوع الوحدة",
                      "experience_in_year": "خبرة",
                      "profile_button": "تحديث"
                   }
@@ -264,6 +274,8 @@
                      "service_in_km":"Range Serving",
                      "bio":"Bio",
                      "pricing": "Pricing",
+                     "pricing_type": "Pricing Type",
+                     "unite_type": "Type Unit",
                      "experience_in_year": "Tecribe",
                      "profile_button": "Nûvekirin"
                   }
