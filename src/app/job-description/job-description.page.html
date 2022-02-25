@@ -1,0 +1,98 @@
+<ion-header no-border class="ion-no-border">
+  <ion-toolbar>
+    <!-- <ion-buttons slot="start">
+        <ion-menu-button><img src="../../assets/images/menu-icon1.png"></ion-menu-button>
+    </ion-buttons> -->
+    <ion-title slot="">{{default_language_data['translation'][0]['job-description'][0][language_selected][0]['page_title']}}</ion-title>
+    <ion-button slot="end" (click)="dismissModal()">
+      <ion-icon name="close-sharp"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="main-div">
+    <ion-grid>
+      <ion-row class="review-boxes-list">
+        <ion-col class="review-box-item" *ngIf="role == 'customer'">
+          <div class="review-box-inner">
+            <div class="review-box-img">
+              <img src="{{resultDataHandyMan.profilePic}}">
+            </div>
+            <div class="review-box-txt">
+              <h2 class="title">{{resultDataHandyMan.firstName}} {{resultDataHandyMan.lastName}}</h2>
+              <h3 class="sub-title">{{resultData[language_key_exchange_array[language_selected]]}}</h3>
+              <p class="bio">{{resultData.description}}</p>
+              <p class="bio">{{resultData.jobAddress}}</p>
+              <p class="rating-stars">
+                <ionic-rating-component #Rating activeIcon = "star" defaultIcon = "star" activeColor = "#ffcd3c" defaultColor = "#f4f4f4" readonly = "true" rating = "{{resultDataHandyMan.total_ratings}}" fontSize = "17px"></ionic-rating-component>                
+              </p>
+              <h4 class="hr-txt">{{resultData.currencyType}} {{resultData.jobPrice}}<span>/</span>{{resultData.jobPricingType}}</h4>
+              <h3 class="pr-txt" *ngIf="resultData.jobUnitPricingType!=null">{{resultData.jobUnitPricingType}}</h3>
+            </div>
+            <div class="review-counte-list">
+              <div class="review-counte-item">
+                <h2 *ngIf="resultData.paid==1">{{resultData.jobHours}}</h2>
+                <h2 *ngIf="resultData.paid==0">NA</h2>
+                <h6>{{default_language_data['translation'][0]['job-description'][0][language_selected][0]['job_hours']}}</h6>
+              </div>
+              <div class="review-counte-item">
+                <h2 *ngIf="resultData.paid==1">{{default_language_data['translation'][0]['job-description'][0][language_selected][0]['paid_text']}}</h2>
+                <h2 *ngIf="resultData.paid==0">{{default_language_data['translation'][0]['job-description'][0][language_selected][0]['un_paid_text']}}</h2>
+                <h6>{{default_language_data['translation'][0]['job-description'][0][language_selected][0]['payment_status']}}</h6>
+              </div>
+              <div class="review-counte-item">
+                <h2 *ngIf="resultData.paid==1">{{resultData.dateCompleted | amDateFormat: 'DD MMM yyyy'}}</h2>
+                <h2 *ngIf="resultData.paid==0">{{resultData.dateRequested | amDateFormat: 'DD MMM yyyy'}}</h2>
+                <h6 *ngIf="resultData.paid==1">{{default_language_data['translation'][0]['job-description'][0][language_selected][0]['completed_date']}}</h6>
+                <h6 *ngIf="resultData.paid==0">{{default_language_data['translation'][0]['job-description'][0][language_selected][0]['request_date']}}</h6>
+              </div>
+            </div>
+            <div class="review-box-txt" *ngIf="resultData.paid==1">
+              <p class="bio">{{resultData.paymentNote}}</p>
+            </div>            
+          </div>
+        </ion-col>
+        <ion-col class="review-box-item" *ngIf="role == 'handyman'">
+          <div class="review-box-inner">
+            <div class="review-box-img">
+              <img src="{{resultDataCustomer.profilePic}}">
+            </div>
+            <div class="review-box-txt">
+              <h2 class="title">{{resultDataCustomer.firstName}} {{resultDataCustomer.lastName}}</h2>
+              <h3 class="sub-title">{{resultData[language_key_exchange_array[language_selected]]}}</h3>
+              <p class="bio">{{resultData.description}}</p>
+              <p class="bio">{{resultData.jobAddress}}</p>
+              <!--<p class="rating-stars">
+                <ionic-rating-component #Rating activeIcon = "star" defaultIcon = "star" activeColor = "#ffcd3c" defaultColor = "#f4f4f4" readonly = "true" rating = "{{resultDataHandyMan.total_ratings}}" fontSize = "17px"></ionic-rating-component>                
+              </p>-->
+              <h4 class="hr-txt">{{resultData.currencyType}} {{resultData.jobPrice}}<span>/</span>{{resultData.jobPricingType}}</h4>
+              <h3 class="pr-txt" *ngIf="resultData.jobUnitPricingType!=null">{{resultData.jobUnitPricingType}}</h3>
+            </div>
+            <div class="review-counte-list">
+              <div class="review-counte-item">
+                <h2 *ngIf="resultData.paid==1">{{resultData.jobHours}}</h2>
+                <h2 *ngIf="resultData.paid==0">NA</h2>
+                <h6>{{default_language_data['translation'][0]['job-description'][0][language_selected][0]['job_hours']}}</h6>
+              </div>
+              <div class="review-counte-item">
+                <h2 *ngIf="resultData.paid==1">{{default_language_data['translation'][0]['job-description'][0][language_selected][0]['paid_text']}}</h2>
+                <h2 *ngIf="resultData.paid==0">{{default_language_data['translation'][0]['job-description'][0][language_selected][0]['un_paid_text']}}</h2>
+                <h6>{{default_language_data['translation'][0]['job-description'][0][language_selected][0]['payment_status']}}</h6>
+              </div>
+              <div class="review-counte-item">
+                <h2 *ngIf="resultData.paid==1">{{resultData.dateCompleted | amDateFormat: 'DD MMM yyyy'}}</h2>
+                <h2 *ngIf="resultData.paid==0">{{resultData.dateRequested | amDateFormat: 'DD MMM yyyy'}}</h2>
+                <h6 *ngIf="resultData.paid==1">{{default_language_data['translation'][0]['job-description'][0][language_selected][0]['completed_date']}}</h6>
+                <h6 *ngIf="resultData.paid==0">{{default_language_data['translation'][0]['job-description'][0][language_selected][0]['request_date']}}</h6>
+              </div>
+            </div>
+            <div class="review-box-txt" *ngIf="resultData.paid==1">
+              <p class="bio">{{resultData.paymentNote}}</p>
+            </div>            
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>
