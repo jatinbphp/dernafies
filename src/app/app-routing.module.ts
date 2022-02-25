@@ -101,6 +101,10 @@ const routes: Routes = [
   {
     path: 'job-description',
     loadChildren: () => import('./job-description/job-description.module').then( m => m.JobDescriptionPageModule)
+  },
+  {
+    path: 'change-password',
+    loadChildren: () => import('./change-password/change-password.module').then( m => m.ChangePasswordPageModule)
   }
 ];
 @NgModule({

@@ -288,6 +288,34 @@
                ]
             }
          ],
+         "change-password": [
+            {
+               "english": [
+                  {
+                     "screen_title":"Change Password",
+                     "password": "Password",
+                     "confirm_password": "Confirm Password",
+                     "change_password_in_button": "Submit"
+                  }
+               ],
+               "arabic": [
+                  {
+                     "screen_title":"تغيير كلمة المرور",
+                     "password": "كلمة المرور",
+                     "confirm_password": "تأكيد كلمة المرور",
+                     "change_password_in_button": "يقدم"
+                  }
+               ],
+               "kurdish": [
+                  {
+                     "screen_title":"Şîfre biguherînin",
+                     "password": "Şîfre",
+                     "confirm_password": "di pêşîyê da em sipas dikin",
+                     "change_password_in_button": "Nermijîn"
+                  }
+               ]
+            }
+         ],
          "forgot-password": [
             {
                "english": [

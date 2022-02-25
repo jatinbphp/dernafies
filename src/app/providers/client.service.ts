@@ -966,6 +966,26 @@ export class ClientService
 		});
 	}
 
+	changePassword(data)
+	{
+		let headers = this.getHeaderOptions();
+		return new Promise((resolve, reject) => 
+		{
+			let dataToPost = new HttpParams().set("user_id",data.user_id).set("pwd",data.password);
+			this.http.post(this.api_url + "updatePassword",  dataToPost , headers).subscribe((res: any) =>       
+			{
+				resolve(res);
+			},
+			err => 
+			{
+				console.log(err);
+				let errorMessage=this.getErrorMessage(err);
+				//this.showMessage(errorMessage);
+				reject(errorMessage);
+			});
+		});
+	}
+
   	getErrorMessage(err)
 	{	
 		if(err.error == null)
