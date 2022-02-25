@@ -162,6 +162,7 @@ export class SearchPage
               pwd:this.resultDataSearch[h].pwd,
               userTypeID:this.resultDataSearch[h].userTypeID,
               no_of_experience:this.resultDataSearch[h].no_of_experience,
+              currency_code:this.resultDataSearch[h].currencyType,
               price:this.resultDataSearch[h].price,
               total_ratings:this.resultDataSearch[h].total_ratings,
               pricingTypeName:(this.resultDataSearch[h].pricingTypes.pricingTypeName) ? this.resultDataSearch[h].pricingTypes.pricingTypeName : "",

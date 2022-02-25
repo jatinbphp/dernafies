@@ -69,19 +69,16 @@
 						</ion-item>
 					</ion-list>
 				</ion-accordion>
-				<ion-accordion value="shapes" toggle-icon="chevron-down">
+				<ion-accordion value="shapes" toggle-icon="chevron-down" *ngIf="role=='handyman'">
 					<ion-item slot="header">
 						<ion-label>{{default_language_data['translation'][0]['settings'][0][language_selected][0]['currency']}}</ion-label>
 					</ion-item>
 					<ion-list slot="content">
-						<ion-item>
-							<ion-label>CAD</ion-label>
+						<ion-item (click)="updateDefaultCurrency('IQD')">
+							<ion-label>IQD</ion-label>
 						</ion-item>
-						<ion-item>
+						<ion-item (click)="updateDefaultCurrency('USD')">
 							<ion-label>USD</ion-label>
-						</ion-item>
-						<ion-item>
-							<ion-label>INR</ion-label>
 						</ion-item>
 					</ion-list>
 				</ion-accordion>

@@ -225,6 +225,28 @@
         <ion-row *ngIf="signup_as_handyman == true">
           <ion-col size="12">
             <ion-item lines="none" class="ion-no-padding">
+              <ion-label position="stacked">{{default_language_data['translation'][0]['register'][0][language_selected][0]['currency_code']}}</ion-label>
+              <ion-select formControlName="currency_code">
+                <ion-select-option value="IQD">IQD</ion-select-option>
+                <ion-select-option value="USD">USD</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <!--VALIDATION-->
+            <div class="validation-errors">
+              <ng-container *ngFor="let validation of validation_messages.currency_code">
+                <div class="error-message"
+                  *ngIf="registerForm.get('currency_code').hasError(validation.type) && (registerForm.get('currency_code').dirty || registerForm.get('currency_code').touched)">
+                  <ion-icon name="information-circle-outline"></ion-icon>
+                  <p>{{ validation.message }}</p>
+                </div>
+              </ng-container>
+            </div>
+            <!--VALIDATION-->
+          </ion-col>       
+        </ion-row>
+        <ion-row *ngIf="signup_as_handyman == true">
+          <ion-col size="12">
+            <ion-item lines="none" class="ion-no-padding">
               <ion-label position="stacked">{{default_language_data['translation'][0]['register'][0][language_selected][0]['pricing']}}</ion-label>
               <ion-input type="number" formControlName="price_per_hour"></ion-input>
             </ion-item>

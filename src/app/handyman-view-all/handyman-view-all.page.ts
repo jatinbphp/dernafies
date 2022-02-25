@@ -155,6 +155,7 @@ export class HandymanViewAllPage implements OnInit
           pwd:this.resultDataHandyMan[h].pwd,
           userTypeID:this.resultDataHandyMan[h].userTypeID,
           no_of_experience:this.resultDataHandyMan[h].no_of_experience,
+          currency_code:this.resultDataHandyMan[h].currencyType,
           price:this.resultDataHandyMan[h].price,
           total_ratings:this.resultDataHandyMan[h].total_ratings,
           pricingTypeName:(this.resultDataHandyMan[h].pricingTypes.pricingTypeName) ? this.resultDataHandyMan[h].pricingTypes.pricingTypeName : "",

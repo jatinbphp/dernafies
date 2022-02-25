@@ -126,7 +126,7 @@ export class ClientService
 		let headers = this.getHeaderOptions();
 		return new Promise((resolve, reject) => 
 		{
-			let dataToPost = new HttpParams().set("userTypeID",data.user_type).set("bio",data.bio).set("firstName",data.first_name).set("lastName", data.last_name).set("email",data.email).set("pwd", data.password).set("provinceID", data.service_province).set("location", data.address).set("latitude", data.latitude).set("longitude", data.longitude).set("categoryID", data.specialized_in).set("districtID", data.service_district).set("cityID", data.service_city).set("rangeServing", data.service_in_km).set("price", data.price_per_hour).set("pricingType", data.pricing_type).set("unitPricingType", data.unite_type).set("no_of_experience", data.experience_in_year).set("phoneNumber", data.phone_number).set("subscriptionID", data.subscription_plan);
+			let dataToPost = new HttpParams().set("userTypeID",data.user_type).set("bio",data.bio).set("firstName",data.first_name).set("lastName", data.last_name).set("email",data.email).set("pwd", data.password).set("provinceID", data.service_province).set("location", data.address).set("latitude", data.latitude).set("longitude", data.longitude).set("categoryID", data.specialized_in).set("districtID", data.service_district).set("cityID", data.service_city).set("rangeServing", data.service_in_km).set("currencyType", data.currency_code).set("price", data.price_per_hour).set("pricingType", data.pricing_type).set("unitPricingType", data.unite_type).set("no_of_experience", data.experience_in_year).set("phoneNumber", data.phone_number).set("subscriptionID", data.subscription_plan);
 			this.http.post(this.api_url + "register",  dataToPost , headers).subscribe((res: any) =>       
 			{
 				if(res.status == true)
@@ -244,7 +244,7 @@ export class ClientService
 		return new Promise((resolve, reject) => 
 		{
 			//let dataToPost = new HttpParams().set("user_id",data.user_id).set("firstName",data.first_name).set("lastName",data.last_name);
-			let dataToPost = new HttpParams().set("user_id",data.user_id).set("bio",data.bio).set("userTypeID",data.user_type).set("firstName",data.first_name).set("lastName", data.last_name).set("email",data.email).set("pwd", data.password).set("provinceID", data.service_province).set("location", data.address).set("latitude", data.latitude).set("longitude", data.longitude).set("categoryID", data.specialized_in).set("districtID", data.service_district).set("cityID", data.service_city).set("rangeServing", data.service_in_km).set("price", data.price_per_hour).set("pricingType", data.pricing_type).set("unitPricingType", data.unite_type).set("no_of_experience", data.experience_in_year).set("phoneNumber", data.phone_number);
+			let dataToPost = new HttpParams().set("user_id",data.user_id).set("bio",data.bio).set("userTypeID",data.user_type).set("firstName",data.first_name).set("lastName", data.last_name).set("email",data.email).set("pwd", data.password).set("provinceID", data.service_province).set("location", data.address).set("latitude", data.latitude).set("longitude", data.longitude).set("categoryID", data.specialized_in).set("districtID", data.service_district).set("cityID", data.service_city).set("rangeServing", data.service_in_km).set("currencyType", data.currency_code).set("price", data.price_per_hour).set("pricingType", data.pricing_type).set("unitPricingType", data.unite_type).set("no_of_experience", data.experience_in_year).set("phoneNumber", data.phone_number);
 			this.http.post(this.api_url + "updateProfile",  dataToPost , headers).subscribe((res: any) =>       
 			{
 				if(res.status == true)
@@ -275,12 +275,43 @@ export class ClientService
 		return new Promise((resolve, reject) => 
 		{
 			//let dataToPost = new HttpParams().set("user_id",data.user_id).set("firstName",data.first_name).set("lastName",data.last_name);
-			let dataToPost = new HttpParams().set("user_id",data.user_id).set("defaultLanguage",data.language);
+			let dataToPost = new HttpParams().set("userID",data.user_id).set("defaultLanguage",data.language);
 			this.http.post(this.api_url + "updateLanguage",  dataToPost , headers).subscribe((res: any) =>       
 			{
 				if(res.status == true)
 				{
 					this.showMessage("Default language updated!!");
+					this.serverResponse=res.data;
+					resolve(this.serverResponse);					
+				}
+				else
+				{
+					let messageDisplay=this.showMessage(res.message);
+					reject(messageDisplay);
+				}
+			},
+			err => 
+			{
+				console.log(err);
+				let errorMessage=this.getErrorMessage(err);
+				this.showMessage(errorMessage);
+				reject(errorMessage);
+			});
+		});
+	}
+
+	updateDefaultCurrency(data)
+	{	
+		let headers = this.getHeaderOptions();
+		return new Promise((resolve, reject) => 
+		{
+			//let dataToPost = new HttpParams().set("user_id",data.user_id).set("firstName",data.first_name).set("lastName",data.last_name);
+			let dataToPost = new HttpParams().set("userID",data.user_id).set("currencyType",data.currency_code);
+			this.http.post(this.api_url + "updateCurrency",  dataToPost , headers).subscribe((res: any) =>       
+			{
+				if(res.status == true)
+				{
+					this.showMessage("Default currency updated!!");
 					this.serverResponse=res.data;
 					resolve(this.serverResponse);					
 				}

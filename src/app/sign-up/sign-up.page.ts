@@ -77,6 +77,7 @@ export class SignUpPage implements OnInit
     service_in_km: [''],
     pricing_type: [''],
     unite_type: [''],
+    currency_code: [''],
     price_per_hour: [''],
     experience_in_year: [''],
     bio: [''],
@@ -128,8 +129,11 @@ export class SignUpPage implements OnInit
 		],
     'bio': [
 			{ type: 'required', message: 'Bio is required.' }
+		],    
+		'currency_code': [
+			{ type: 'required', message: 'Selecting currency is required.' }
 		],
-		'price_per_hour': [
+    'price_per_hour': [
 			{ type: 'required', message: 'Hourly price is required.' }
 		],
 		'pricing_type': [
@@ -333,6 +337,7 @@ export class SignUpPage implements OnInit
       //this.registerForm.controls['service_city'].setValue("");
       this.registerForm.controls['service_in_km'].setValue("");
       this.registerForm.controls['price_per_hour'].setValue("");
+      this.registerForm.controls['currency_code'].setValue("");
       this.registerForm.controls['pricing_type'].setValue("");
       this.registerForm.controls['unite_type'].setValue("");
       this.registerForm.controls['experience_in_year'].setValue("");
@@ -349,6 +354,8 @@ export class SignUpPage implements OnInit
 			this.registerForm.get('bio').updateValueAndValidity();
       this.registerForm.get('price_per_hour').clearValidators();     
 			this.registerForm.get('price_per_hour').updateValueAndValidity();
+      this.registerForm.get('currency_code').clearValidators();     
+			this.registerForm.get('currency_code').updateValueAndValidity();
       this.registerForm.get('pricing_type').clearValidators();     
 			this.registerForm.get('pricing_type').updateValueAndValidity();
       this.registerForm.get('unite_type').clearValidators();     
@@ -464,6 +471,8 @@ export class SignUpPage implements OnInit
     let phone_number = (form.phone_number) ? form.phone_number : "";    
     let service_in_km = (form.service_in_km) ? form.service_in_km : 0;
     let price_per_hour = (form.price_per_hour) ? form.price_per_hour : 0;
+    let currency_code = (form.currency_code) ? form.currency_code : "";
+
     let pricing_type = (form.pricing_type) ? form.pricing_type : "";
     let unite_type = (form.unite_type) ? form.unite_type : "";
     let experience_in_year = (form.experience_in_year) ? form.experience_in_year : 0;
@@ -483,6 +492,7 @@ export class SignUpPage implements OnInit
       phone_number:phone_number,
       service_in_km:service_in_km,
       price_per_hour:price_per_hour,
+      currency_code:currency_code,
       pricing_type:pricing_type,
       unite_type:unite_type,
       experience_in_year:experience_in_year,
@@ -557,6 +567,9 @@ export class SignUpPage implements OnInit
       this.registerForm.get('price_per_hour').setValidators([Validators.required]);     
 			this.registerForm.get('price_per_hour').updateValueAndValidity();
 
+      this.registerForm.get('currency_code').setValidators([Validators.required]);     
+			this.registerForm.get('currency_code').updateValueAndValidity();
+
       this.registerForm.get('pricing_type').setValidators([Validators.required]);     
 			this.registerForm.get('pricing_type').updateValueAndValidity();
 
@@ -585,6 +598,7 @@ export class SignUpPage implements OnInit
       this.registerForm.controls['service_in_km'].setValue("");
       this.registerForm.controls['subscription_plan'].setValue("");
       this.registerForm.controls['price_per_hour'].setValue("");
+      this.registerForm.controls['currency_code'].setValue("");
       this.registerForm.controls['pricing_type'].setValue("");
       this.registerForm.controls['unite_type'].setValue("");
       this.registerForm.controls['experience_in_year'].setValue("");
@@ -600,6 +614,8 @@ export class SignUpPage implements OnInit
 			this.registerForm.get('bio').updateValueAndValidity();
       this.registerForm.get('price_per_hour').clearValidators();     
 			this.registerForm.get('price_per_hour').updateValueAndValidity();
+      this.registerForm.get('currency_code').clearValidators();     
+			this.registerForm.get('currency_code').updateValueAndValidity();
       this.registerForm.get('pricing_type').clearValidators();     
 			this.registerForm.get('pricing_type').updateValueAndValidity();
       this.registerForm.get('unite_type').clearValidators();     

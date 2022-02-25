@@ -16,6 +16,8 @@ export class SettingsPage implements OnInit
   public language_selected = '';
 	public default_language_data: any = [];
   public language_key_exchange_array: any = [];
+  public id:any = '';
+  public role:any = '';
 
   constructor(public fb: FormBuilder, public client: ClientService, public menu: MenuController, public loadingCtrl: LoadingController, public modalCtrl: ModalController) 
   { 
@@ -35,6 +37,9 @@ export class SettingsPage implements OnInit
     this.language_key_exchange_array['english']='categoryName';
     this.language_key_exchange_array['arabic']='categoryNameArabic';
     this.language_key_exchange_array['kurdish']='categoryNameKurdi';
+
+    this.id=localStorage.getItem('id');
+    this.role = localStorage.getItem('role');
   }
 
   async showMyProfile()
@@ -114,6 +119,37 @@ export class SettingsPage implements OnInit
       language:language_to_update
     }
     await this.client.updateLanguage(data).then(result => 
+    {	
+      loading.dismiss();//DISMISS LOADER			
+      this.ngOnInit();
+            
+    },
+    error => 
+    {
+      loading.dismiss();//DISMISS LOADER
+      console.log();
+    });
+  }
+
+  async updateDefaultCurrency(currency_code)
+  {
+    //LOADER
+		const loading = await this.loadingCtrl.create({
+			spinner: null,
+			//duration: 5000,
+			message: 'Please wait...',
+			translucent: true,
+			cssClass: 'custom-class custom-loading'
+		});
+		await loading.present();
+		//LOADER
+    let user_id = (localStorage.getItem('id')) ? localStorage.getItem('id') : 0;
+    let data=
+		{
+      user_id:user_id,
+      currency_code:currency_code
+    }
+    await this.client.updateDefaultCurrency(data).then(result => 
     {	
       loading.dismiss();//DISMISS LOADER			
       this.ngOnInit();

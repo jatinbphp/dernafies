@@ -32,7 +32,7 @@
 								</p>
 								<h2 class="name">{{handyMan.firstName}} {{handyMan.lastName}}</h2>
 								<h4 class="experience">{{handyMan.no_of_experience}} years experience</h4>
-								<h3 class="hr-txt">${{handyMan.price}}<span>/</span>{{handyMan.pricingTypeName}}</h3>
+								<h3 class="hr-txt">{{handyMan.currency_code}} {{handyMan.price}}<span>/</span>{{handyMan.pricingTypeName}}</h3>
 								<h3 class="pr-txt" *ngIf="handyMan.unitPricingType!=null">{{handyMan.unitPricingType}}</h3>
 				            </div>
 				        </div>

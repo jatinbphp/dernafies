@@ -19,7 +19,7 @@
                   {
                      "home":"الصفحة الرئيسية",
                      "profile":"الملف الشخصي",
-                     "post_a_job":"انشر وظيفة",
+                     "post_a_job":"طلبخدمة",
                      "view_a_job":"مشاهدة الوظائف",
                      "current_requests":"الطلبات الحالية",
                      "past_requests":"الطلبات السابقة",
@@ -131,6 +131,7 @@
                      "service_city": "Service City",
                      "service_in_km":"Range Serving",
                      "bio":"Bio",
+                     "currency_code": "Currency",
                      "pricing": "Pricing",
                      "pricing_type": "Pricing Type",
                      "unite_type": "Unit Type",
@@ -162,6 +163,7 @@
                      "service_city": "مدينة الخدمة",
                      "service_in_km":"خدمة الميدان",
                      "bio":"السيرة الذاتية",
+                     "currency_code": "عملة",
                      "pricing": "التسعير",
                      "pricing_type": "نوع التسعير",
                      "unite_type": "نوع الوحدة",
@@ -193,6 +195,7 @@
                      "service_city": "City Service",
                      "service_in_km":"Range Serving",
                      "bio":"Bio",
+                     "currency_code": "Diravcins",
                      "pricing": "Pricing",
                      "pricing_type": "Pricing Type",
                      "unite_type": "Type Unit",
@@ -227,6 +230,7 @@
                      "service_city": "Service City",
                      "service_in_km":"Range Serving",
                      "bio":"Bio",
+                     "currency_code": "Currency",
                      "pricing": "Pricing",
                      "pricing_type": "Pricing Type",
                      "unite_type": "Unit Type",
@@ -250,6 +254,7 @@
                      "service_city": "مدينة الخدمة",
                      "service_in_km":"خدمة الميدان",
                      "bio":"السيرة الذاتية",
+                     "currency_code": "عملة",
                      "pricing": "التسعير",
                      "pricing_type": "نوع التسعير",
                      "unite_type": "نوع الوحدة",
@@ -273,6 +278,7 @@
                      "service_city": "City Service",
                      "service_in_km":"Range Serving",
                      "bio":"Bio",
+                     "currency_code": "Diravcins",
                      "pricing": "Pricing",
                      "pricing_type": "Pricing Type",
                      "unite_type": "Type Unit",
@@ -529,7 +535,7 @@
                      "screen_title":"الكتاب",
                      "job_description":"المسمى الوظيفي",
                      "book_a_button":"احجز الآن",
-                     "post_a_job":"وظيفة بعد"
+                     "post_a_job":"طلبخدمة"
                   }
                ],
                "kurdish": [
@@ -538,6 +544,25 @@
                      "job_description":"Danasîna Kar",
                      "book_a_button":"Book Now",
                      "post_a_job":"Post Job"
+                  }
+               ]
+            }
+         ],
+         "post_a_job": [
+            {
+               "english": [
+                  {
+                     "post_a_job":"Post A Job"
+                  }
+               ],
+               "arabic": [
+                  {
+                     "post_a_job":"طلبخدمة"
+                  }
+               ],
+               "kurdish": [
+                  {
+                     "post_a_job":"Karek Bişînin"
                   }
                ]
             }

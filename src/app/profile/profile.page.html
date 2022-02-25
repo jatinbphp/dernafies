@@ -186,7 +186,27 @@
 					  </div>
 					  <!--VALIDATION-->
 					</ion-col>       
-				  </ion-row>
+				</ion-row>
+				<ion-row *ngIf="role == 'handyman'">
+					<ion-col size="12">					
+						<ion-label position="stacked">{{default_language_data['translation'][0]['profile'][0][language_selected][0]['currency_code']}}</ion-label>
+						<ion-select formControlName="currency_code">
+							<ion-select-option value="IQD">IQD</ion-select-option>
+							<ion-select-option value="USD">USD</ion-select-option>
+						</ion-select>
+						<!--VALIDATION-->
+						<div class="validation-errors">
+						<ng-container *ngFor="let validation of validation_messages.currency_code">
+							<div class="error-message"
+							*ngIf="profileForm.get('currency_code').hasError(validation.type) && (profileForm.get('currency_code').dirty || profileForm.get('currency_code').touched)">
+							<ion-icon name="information-circle-outline"></ion-icon>
+							<p>{{ validation.message }}</p>
+							</div>
+						</ng-container>
+						</div>
+						<!--VALIDATION-->
+					</ion-col>       
+				</ion-row>
 				<ion-row *ngIf="role == 'handyman'">
 					<ion-col size="12">					
 						<ion-label position="stacked">{{default_language_data['translation'][0]['profile'][0][language_selected][0]['pricing']}}</ion-label>
