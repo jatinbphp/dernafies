@@ -265,7 +265,7 @@ ion-content {
                     }
                     .requ-box-btns {
                         width: 34%;
-                        display: flex;
+                        /*display: flex;MAULIK::REMOVED*/
                         flex-wrap: wrap;
                         justify-content: space-between;
                         align-items: flex-start;
@@ -347,6 +347,7 @@ ion-content {
                             --padding-start: 20px;
                             --padding-end: 20px;
                             position: relative;
+                            padding: 5px 0 0 0;//MAULIK::ADDED
                             ion-icon {
                                 position: absolute;
                                 left: -6px;

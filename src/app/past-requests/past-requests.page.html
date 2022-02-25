@@ -42,7 +42,7 @@
                     </div>
                     <div class="requ-box-btns">                        
                         <ion-badge color="success">{{jobs.currencyType}} {{jobs.jobPrice}}<span>Received</span></ion-badge>
-                        
+                        <ion-button color="success" (click)="ViewJobDetail(jobs.id)">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['button_view']}}</ion-button>
                     </div>
                 </div>
                 <div class="requ-box-inner" *ngIf="role == 'customer'">
@@ -56,6 +56,7 @@
                     </div>
                     <div class="requ-box-btns">
                         <ion-button color="primary">{{default_language_data['translation'][0]['past-requests'][0][language_selected][0]['book_again_button']}}</ion-button>
+                        <ion-button color="success" (click)="ViewJobDetail(jobs.id)">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['button_view']}}</ion-button>
                     </div>
                 </div>
             </ion-col>            

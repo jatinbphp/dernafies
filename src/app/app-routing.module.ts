@@ -97,6 +97,10 @@ const routes: Routes = [
   {
     path: 'renew-subscription',
     loadChildren: () => import('./renew-subscription/renew-subscription.module').then( m => m.RenewSubscriptionPageModule)
+  },
+  {
+    path: 'job-description',
+    loadChildren: () => import('./job-description/job-description.module').then( m => m.JobDescriptionPageModule)
   }
 ];
 @NgModule({

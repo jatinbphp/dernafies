@@ -235,11 +235,14 @@ ion-content {
                                     background-color: var(--Black);
                                     display: inline-block;
                                 }
+                                strong{
+                                    font-weight: 500;
+                                }
                             }
                         }
                         .requ-box-btns {
                             width: 40%;
-                            display: flex;
+                            /*display: flex;MAULIK::COMMENTED*/
                             flex-wrap: wrap;
                             justify-content: space-between;
                             align-items: flex-start;
@@ -265,6 +268,7 @@ ion-content {
                                 --padding-start: 20px;
                                 --padding-end: 20px;
                                 position: relative;
+                                padding: 0 0 5px 0;//MAULIK::ADDED
                                 &[disabled] {
                                     --ion-color-base: #e3e5e6 !important;
                                 }

@@ -4,6 +4,7 @@ import { ClientService } from '../providers/client.service';
 import { NavigationExtras } from '@angular/router';
 import { RescheduleJobPage } from '../reschedule-job/reschedule-job.page';
 import { MessagesCustomerHandymanPage } from '../messages-customer-handyman/messages-customer-handyman.page';
+import { JobDescriptionPage } from '../job-description/job-description.page';
 
 @Component({
   selector: 'app-current-requests',
@@ -286,5 +287,17 @@ export class CurrentRequestsPage implements OnInit
         this.showHomeContent();
         ev.target.complete();
     }, 2000);
+  }
+
+  async ViewJobDetail(job_id)
+  {
+    const modal = await this.modalCtrl.create({
+      component: JobDescriptionPage,
+      componentProps: {
+        'job_id': job_id
+      }
+    });
+
+    return await modal.present();
   }
 }

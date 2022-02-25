@@ -11,8 +11,12 @@ import { Push, PushObject, PushOptions } from '@awesome-cordova-plugins/push/ngx
 
 export class ClientService 
 {
-	public site_url: string ="https://dernafies.ecnetsolutions.dev/";
-	public api_url: string = "https://dernafies.ecnetsolutions.dev/api/";
+	public site_url: string ="https://app.dernafies.com/";
+	//DEV::https://dernafies.ecnetsolutions.dev/
+	//LIVE::https://app.dernafies.com/
+	public api_url: string = "https://app.dernafies.com/api/";
+	//DEV::https://dernafies.ecnetsolutions.dev/api/
+	//LIVE::https://app.dernafies.com/api/
 	public serverResponse: any=[];
 	public serverResponseOnExpirePlan: any=[];
 	public token:string = '';
@@ -928,6 +932,35 @@ export class ClientService
 				console.log(err);
 				let errorMessage=this.getErrorMessage(err);
 				//this.showMessage(errorMessage);
+				reject(errorMessage);
+			});
+		});
+	}
+
+	getJobDetailByID(data)
+	{
+		let headers = this.getHeaderOptions();
+		return new Promise((resolve, reject) => 
+		{
+			let dataToPost = new HttpParams().set("jobID",data.job_id);
+			this.http.post(this.api_url + "getJobsOfferDetails",  dataToPost , headers).subscribe((res: any) =>       
+			{
+				if(res.status == true)
+				{
+					this.serverResponse=res.data;
+					resolve(this.serverResponse);					
+				}
+				else
+				{
+					let messageDisplay=this.showMessage(res.message);
+					reject(messageDisplay);
+				}
+			},
+			err => 
+			{
+				console.log(err);
+				let errorMessage=this.getErrorMessage(err);
+				this.showMessage(errorMessage);
 				reject(errorMessage);
 			});
 		});

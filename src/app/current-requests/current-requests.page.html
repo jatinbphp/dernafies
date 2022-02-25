@@ -36,12 +36,13 @@
               <h2 class="title">{{jobToAccept.customer.firstName}} {{jobToAccept.customer.lastName}}</h2>
               <h6 class="sub-title">{{jobToAccept[language_key_exchange_array[language_selected]]}}</h6>
               <p>{{jobToAccept.dateRequested | amDateFormat: 'DD MMM yyyy'}}<!--<span></span>2Hrs--><span></span>{{jobToAccept.currencyType}} {{jobToAccept.jobPrice}}</p>
-              <p>{{jobToAccept.jobPricingType}}<span *ngIf="jobToAccept.jobUnitPricingType!=null">{{jobToAccept.jobUnitPricingType}}</span></p>
+              <p>{{jobToAccept.jobPricingType}}<span></span><strong *ngIf="jobToAccept.jobUnitPricingType!=null">{{jobToAccept.jobUnitPricingType}}</strong></p>
             </div>
             <div class="requ-box-btns">
               <ion-button color="success" (click)="completeTheJob(jobToAccept.id)">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['button_completed']}}</ion-button>
               <!--<ion-button color="primary" disabled="true">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['button_request_review']}}</ion-button>-->
               <ion-button color="primary" (click)="messageBetweenCustomerAndHandyman(jobToAccept.id,jobToAccept.userID,jobToAccept.assignedTrademan,jobToAccept.firebase_message_id_for_job)">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['button_message']}}</ion-button>
+              <ion-button color="success" (click)="ViewJobDetail(jobToAccept.id)">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['button_view']}}</ion-button>
             </div>
           </div>
         </ion-col>        
@@ -55,12 +56,13 @@
             <div class="requ-box-txt">
               <h2 class="title">{{completedJob.customer.firstName}} {{completedJob.customer.lastName}}</h2>
               <h6 class="sub-title">{{completedJob[language_key_exchange_array[language_selected]]}}</h6>
-              <p>{{completedJob.dateCompleted | amDateFormat: 'DD MMM yyyy'}}<span></span>{{completedJob.jobHours}}Hrs<span></span>{{completedJob.currencyType}} {{completedJob.jobPrice}}</p>
-              <p>{{completedJob.jobPricingType}}<span *ngIf="completedJob.jobUnitPricingType!=null">{{completedJob.jobUnitPricingType}}</span></p>
+              <p>{{completedJob.dateRequested | amDateFormat: 'DD MMM yyyy'}}<!--<span></span>2Hrs--><span></span>{{completedJob.currencyType}} {{completedJob.jobPrice}}</p>
+              <p>{{completedJob.jobPricingType}}<span></span><strong *ngIf="completedJob.jobUnitPricingType!=null">{{completedJob.jobUnitPricingType}}</strong></p>
             </div>
             <div class="requ-box-btns">
               <ion-button color="success" disabled="true">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['completed']}}</ion-button>
               <ion-button color="primary" (click)="requestCustomerForReview(completedJob.id)">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['button_request_review']}}</ion-button>
+              <ion-button color="success" (click)="ViewJobDetail(completedJob.id)">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['button_view']}}</ion-button>
             </div>
           </div>
         </ion-col>        
@@ -75,12 +77,13 @@
               <h2 class="title">{{requestedJob.customer.firstName}} {{requestedJob.customer.lastName}}</h2>
               <h6 class="sub-title">{{requestedJob[language_key_exchange_array[language_selected]]}}</h6>
               <p>{{requestedJob.dateRequested | amDateFormat: 'DD MMM yyyy'}}<!--<span></span>2Hrs--><span></span>{{requestedJob.currencyType}} {{requestedJob.jobPrice}}</p>
-              <p>{{requestedJob.jobPricingType}}<span *ngIf="requestedJob.jobUnitPricingType!=null">{{requestedJob.jobUnitPricingType}}</span></p>
-            </div>
+              <p>{{requestedJob.jobPricingType}}<span></span><strong *ngIf="requestedJob.jobUnitPricingType!=null">{{requestedJob.jobUnitPricingType}}</strong></p>
+            </div><!--THIS IS DONE-->
             <div class="requ-box-btns">              
               <ion-button color="primary" (click)="JobResechedule(requestedJob.id)">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['scheduled_time']}}</ion-button>
               <ion-button color="success" disabled="true">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['button_completed']}}</ion-button>
               <!--<ion-button color="primary" disabled="true">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['button_request_review']}}</ion-button>-->
+              <ion-button color="success" (click)="ViewJobDetail(requestedJob.id)">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['button_view']}}</ion-button>
             </div>
           </div>
         </ion-col>
@@ -100,13 +103,14 @@
               <h2 class="title">{{jobToAccept.handyman.firstName}} {{jobToAccept.handyman.lastName}}</h2>
               <h6 class="sub-title">{{jobToAccept[language_key_exchange_array[language_selected]]}}</h6>
               <p>{{jobToAccept.dateRequested | amDateFormat: 'DD MMM yyyy'}}<!--<span></span>2Hrs--><span></span>{{jobToAccept.currencyType}} {{jobToAccept.jobPrice}}</p>
-              <p>{{jobToAccept.jobPricingType}}<span *ngIf="jobToAccept.jobUnitPricingType!=null">{{jobToAccept.jobUnitPricingType}}</span></p>
+              <p>{{jobToAccept.jobPricingType}}<span></span><strong *ngIf="jobToAccept.jobUnitPricingType!=null">{{jobToAccept.jobUnitPricingType}}</strong></p>
             </div>
             <div class="requ-box-btns">
               <!--<ion-button color="success" (click)="confirmUpdateJobStatus(jobToAccept.id,3)">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['button_completed']}}</ion-button>-->
               <!--<ion-button color="success" disabled="true">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['button_completed']}}</ion-button>-->
               <ion-button color="primary" (click)="messageBetweenCustomerAndHandyman(jobToAccept.id,jobToAccept.userID,jobToAccept.assignedTrademan,jobToAccept.firebase_message_id_for_job)">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['button_message']}}</ion-button>
               <ion-button color="primary" disabled="true">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['button_rate_and_review']}}</ion-button>
+              <ion-button color="success" (click)="ViewJobDetail(jobToAccept.id)">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['button_view']}}</ion-button>
             </div>
           </div>
         </ion-col>        
@@ -120,12 +124,13 @@
             <div class="requ-box-txt">
               <h2 class="title">{{completedJob.handyman.firstName}} {{completedJob.handyman.lastName}}</h2>
               <h6 class="sub-title">{{completedJob[language_key_exchange_array[language_selected]]}}</h6>
-              <p>{{completedJob.dateCompleted | amDateFormat: 'DD MMM yyyy'}}<span></span>{{completedJob.jobHours}}Hrs<span></span>{{completedJob.currencyType}} {{completedJob.jobPrice}}</p>
-              <p>{{completedJob.jobPricingType}}<span *ngIf="completedJob.jobUnitPricingType!=null">{{completedJob.jobUnitPricingType}}</span></p>
+              <p>{{completedJob.dateRequested | amDateFormat: 'DD MMM yyyy'}}<!--<span></span>2Hrs--><span></span>{{completedJob.currencyType}} {{completedJob.jobPrice}}</p>
+              <p>{{completedJob.jobPricingType}}<span></span><strong *ngIf="completedJob.jobUnitPricingType!=null">{{completedJob.jobUnitPricingType}}</strong></p>
             </div>
             <div class="requ-box-btns">
               <ion-button color="success" disabled="true">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['completed']}}</ion-button>
               <ion-button color="primary" (click)="addReviewAndRating(completedJob.id,completedJob[language_key_exchange_array[language_selected]],completedJob.assignedTrademan)">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['button_rate_and_review']}}</ion-button>
+              <ion-button color="success" (click)="ViewJobDetail(completedJob.id)">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['button_view']}}</ion-button>
             </div>
           </div>
         </ion-col>        
@@ -140,11 +145,12 @@
               <h2 class="title">{{requestedJob.handyman.firstName}} {{requestedJob.handyman.lastName}}</h2>
               <h6 class="sub-title">{{requestedJob[language_key_exchange_array[language_selected]]}}</h6>
               <p>{{requestedJob.dateRequested | amDateFormat: 'DD MMM yyyy'}}<!--<span></span>2Hrs--><span></span>{{requestedJob.currencyType}} {{requestedJob.jobPrice}}</p>
-              <p>{{requestedJob.jobPricingType}}<span *ngIf="requestedJob.jobUnitPricingType!=null">{{requestedJob.jobUnitPricingType}}</span></p>
+              <p>{{requestedJob.jobPricingType}}<span></span><strong *ngIf="requestedJob.jobUnitPricingType!=null">{{requestedJob.jobUnitPricingType}}</strong></p>
             </div>
             <div class="requ-box-btns">
               <ion-button color="primary" (click)="JobResechedule(requestedJob.id)">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['scheduled_time']}}</ion-button>
               <ion-button color="success" disabled="true">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['button_completed']}}</ion-button>
+              <ion-button color="success" (click)="ViewJobDetail(requestedJob.id)">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['button_view']}}</ion-button>
               <!--<ion-button color="primary" disabled="true">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['button_rate_and_review']}}</ion-button>-->
             </div>
           </div>

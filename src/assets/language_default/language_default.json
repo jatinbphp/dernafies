@@ -408,6 +408,7 @@
                      "completed":"Completed",
                      "scheduled_time":"Scheduled Time",
                      "button_message":"Message",
+                     "button_view":"View",
                      "button_completed":"Completed",
                      "button_request_review":"Request Review",
                      "button_rate_and_review":"Rate & Review"
@@ -420,6 +421,7 @@
                      "completed":"مكتمل",
                      "scheduled_time":"جدول زمني",
                      "button_message":"تعبث",
+                     "button_view":"رأي",
                      "button_completed":"مكتمل",
                      "button_request_review":"طلب مراجعة",
                      "button_rate_and_review":"مراجعة معدل"
@@ -432,6 +434,7 @@
                      "completed":"Temam kirin",
                      "scheduled_time":"Demjimêra plankirî",
                      "button_message":"Mess",
+                     "button_view":"Dîtinî",
                      "button_completed":"Temam kirin",
                      "button_request_review":"Daxwaza Review",
                      "button_rate_and_review":"Binirxînin & Binirxînin"
@@ -747,6 +750,43 @@
                "kurdish": [
                   {
                      "page_title":"Gerr"
+                  }
+               ]
+            }
+         ],
+         "job-description": [
+            {
+               "english": [
+                  {
+                     "page_title":"Job Detail",
+                     "job_hours":"Job Hours",
+                     "paid_text":"Paid",
+                     "un_paid_text":"Unpaid",
+                     "payment_status":"Payment Status",
+                     "request_date":"Request Date",
+                     "completed_date":"Complete Date"
+                  }
+               ],
+               "arabic": [
+                  {
+                     "page_title":"تفاصيل الوظيفة",
+                     "job_hours":"ساعات العمل",
+                     "paid_text":"مدفوع",
+                     "un_paid_text":"غير مدفوعة",
+                     "payment_status":"حالة السداد",
+                     "request_date":"تاريخ الطلب",
+                     "completed_date":"التاريخ الكامل"
+                  }
+               ],
+               "kurdish": [
+                  {
+                     "page_title":"Detail Kar",
+                     "job_hours":"Saetên Kar",
+                     "paid_text":"Pere kirin",
+                     "un_paid_text":"Bêpere",
+                     "payment_status":"Rewşa Payment",
+                     "request_date":"Dîroka Daxwazê",
+                     "completed_date":"Dîroka Temam"
                   }
                ]
             }

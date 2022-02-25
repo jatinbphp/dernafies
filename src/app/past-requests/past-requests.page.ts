@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ClientService } from '../providers/client.service';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, ModalController } from '@ionic/angular';
+import { JobDescriptionPage } from '../job-description/job-description.page';
 
 @Component({
 	selector: 'app-past-requests',
@@ -21,7 +22,7 @@ export class PastRequestsPage implements OnInit
   	public user_type:any = '';
 	public jobRequestsHandyMan: any=[];
 
-	constructor(public client: ClientService, public loadingCtrl: LoadingController)
+	constructor(public client: ClientService, public loadingCtrl: LoadingController, public modalCtrl: ModalController)
 	{ 
 		this.default_language_data = this.client.default_language_data;
 		this.language_selected = this.client.language_selected;
@@ -124,4 +125,16 @@ export class PastRequestsPage implements OnInit
 			ev.target.complete();
 		}, 2000);
 	}
+
+	async ViewJobDetail(job_id)
+  {
+    const modal = await this.modalCtrl.create({
+      component: JobDescriptionPage,
+      componentProps: {
+        'job_id': job_id
+      }
+    });
+
+    return await modal.present();
+  }
 }
