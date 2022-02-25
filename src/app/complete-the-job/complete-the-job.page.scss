@@ -14,7 +14,8 @@ ion-content {
         width: 100%;
         border-radius: 0px 0px 35px 35px;
         background: #f8f8f8;
-        padding: 45px 16px 60px;
+        // padding: 45px 16px 60px;
+        padding: 20px 16px 60px;
         height: fit-content;
         height: -webkit-fit-content;
         height: -moz-fit-content;
@@ -264,6 +265,16 @@ ion-content {
                     }
         		}
         	}
+        }
+        .loc-con-box {
+            width: 100%;
+            position: unset;
+            margin: 0px 0px 20px;
+            .review-box-txt {
+                .person-contact {
+                    margin-bottom: 0px;
+                }
+            }
         }
     }
     .loc-con-box {
