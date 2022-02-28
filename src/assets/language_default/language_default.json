@@ -19,7 +19,7 @@
                   {
                      "home":"الصفحة الرئيسية",
                      "profile":"الملف الشخصي",
-                     "post_a_job":"طلبخدمة",
+                     "post_a_job":"طلب  خدمة",
                      "view_a_job":"مشاهدة الوظائف",
                      "current_requests":"الطلبات الحالية",
                      "past_requests":"الطلبات السابقة",
@@ -362,7 +362,8 @@
                      "accept_text":"Accept",
                      "reject_text":"Reject",
                      "handyman_text":"Handyman",
-                     "button_rate_and_review":"Rate & Review"
+                     "button_rate_and_review":"Rate & Review",
+                     "clear_search":"Clear search"
                   }
                ],
                "arabic": [
@@ -378,7 +379,8 @@
                      "accept_text":"قبول",
                      "reject_text":"يرفض",
                      "handyman_text":"عامل ",
-                     "button_rate_and_review":"مراجعة معدل"
+                     "button_rate_and_review":"مراجعة معدل",
+                     "clear_search":"مسح البحث"
                   }
                ],
                "kurdish": [
@@ -394,7 +396,8 @@
                      "accept_text":"Baweranîn",
                      "reject_text":"Refzkirin",
                      "handyman_text":"Handyman",
-                     "button_rate_and_review":"Binirxînin & Binirxînin"
+                     "button_rate_and_review":"Binirxînin & Binirxînin",
+                     "clear_search":"Lêgerînê paqij bike"
                   }
                ]
             }
@@ -566,7 +569,7 @@
                      "screen_title":"الكتاب",
                      "job_description":"المسمى الوظيفي",
                      "book_a_button":"احجز الآن",
-                     "post_a_job":"طلبخدمة"
+                     "post_a_job":"طلب  خدمة"
                   }
                ],
                "kurdish": [
@@ -588,7 +591,7 @@
                ],
                "arabic": [
                   {
-                     "post_a_job":"طلبخدمة"
+                     "post_a_job":"طلب  خدمة"
                   }
                ],
                "kurdish": [

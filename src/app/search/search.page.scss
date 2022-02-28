@@ -50,6 +50,17 @@ ion-content {
         .src-box-main {
             width: 100%;
             padding: 0px 0px 16px;
+            ion-item{
+                ion-label{
+                    &.clear-search
+                    {
+                        padding: 0 5px 0 0;
+                        margin: 0;
+                        color:#ff0000;
+                        text-align: right;
+                    }
+                }
+            }
         }
         ion-slides {
             height: fit-content;

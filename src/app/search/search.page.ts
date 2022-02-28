@@ -95,6 +95,10 @@ export class SearchPage
 
   async ionViewWillEnter()
   { 
+    this.default_language_data = this.client.default_language_data;
+		this.language_selected = this.client.language_selected;
+		this.rtl_or_ltr = (this.language_selected == 'arabic') ? 'rtl' : 'ltr';
+    
     this.resultDataSearch=[];//RESET DATA
     this.resultDataSearchPerSlide=[];//RESET DATA
     this.resultDataSearchPerSlideTemp=[];//RESET DATA
@@ -277,12 +281,20 @@ export class SearchPage
 
   searchForHandyMan(form)
   {
+    this.search_for_handyman=JSON.parse(localStorage.getItem('search_for_handyman'));
+    let lat = '';
+    let lon = ''
+    if(this.search_for_handyman!=null && this.search_for_handyman!=undefined && this.search_for_handyman!='null' && this.search_for_handyman!='undefined')
+    {
+      lat = (this.current_latitude) ? this.current_latitude : this.search_for_handyman.latitude;
+      lon = (this.current_longitude) ? this.current_longitude : this.search_for_handyman.longitude;
+    }
     let searched_text = (form.controls.search_text.value) ? form.controls.search_text.value : "";
     let objSearch=
     {
       keyword:(searched_text) ? searched_text : "",
-      latitude:(this.current_latitude) ? this.current_latitude : "",
-      longitude:(this.current_longitude) ? this.current_longitude : "",
+      latitude:lat,
+      longitude:lon,
       category_id:0,
       experience:0,
       price_range:0,
@@ -371,5 +383,13 @@ export class SearchPage
     
     this.current_latitude=Number(this.locationCordinates.latitude);
     this.current_longitude=Number(this.locationCordinates.longitude);
+  }
+
+  ClearSearch()
+  {
+    this.search_for_handyman=[];
+    this.search_text='';
+    localStorage.removeItem('search_for_handyman');
+    this.ionViewWillEnter();
   }
 }

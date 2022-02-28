@@ -41,7 +41,7 @@ export class CurrentRequestsPage implements OnInit
     this.language_key_exchange_array['english']='categoryName';
     this.language_key_exchange_array['arabic']='categoryNameArabic';
     this.language_key_exchange_array['kurdish']='categoryNameKurdi';
-    this.showHomeContent();
+    //this.showHomeContent();
   }
 
   async ionViewWillEnter()
@@ -51,7 +51,6 @@ export class CurrentRequestsPage implements OnInit
     this.id=localStorage.getItem('id');
     this.role = localStorage.getItem('role');
     this.user_type = (this.role == 'handyman') ? 2 : 3;
-    /*
     //LOADER
     const loadingHandyManAcceptedRequests = await this.loadingCtrl.create({
       spinner: null,
@@ -83,7 +82,6 @@ export class CurrentRequestsPage implements OnInit
       loadingHandyManAcceptedRequests.dismiss();//DISMISS LOADER
       console.log();
     });//JOB REQUESTED,ACCEPTED,COMPLETED
-    */
   }
   
   async showHomeContent()

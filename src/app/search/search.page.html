@@ -64,6 +64,9 @@
       <form #searchHandyMan="ngForm" novalidate class="search-form">
         <ion-searchbar placeholder="{{default_language_data['translation'][0]['home'][0][language_selected][0]['search_for_services']}}" type="search" autocomplete="off" autocorrect="off" spellcheck="false" name="search_text" [(ngModel)]="search_text" [ngModelOptions]="{standalone: false}" (keydown.enter)="searchForHandyMan(searchHandyMan)"></ion-searchbar>
       </form>
+      <ion-item lines="none" no-padding *ngIf="search_for_handyman!='' && search_for_handyman!=null && search_for_handyman!=undefined && search_for_handyman!='null' && search_for_handyman!='undefined'">
+        <ion-label class="clear-search" (click)="ClearSearch()">{{default_language_data['translation'][0]['general'][0][language_selected][0]['clear_search']}}</ion-label>
+      </ion-item>
     </div>
     <p *ngIf="resultDataSearch.length == 0" class="no-records">No records found.</p>
 		<ion-slides pager [options]="handymanSlide" *ngIf="resultDataSearchPerSlide.length > 0">
