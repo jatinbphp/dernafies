@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
 import { Subject } from 'rxjs'; 
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, Platform } from '@ionic/angular';
 import { Push, PushObject, PushOptions } from '@awesome-cordova-plugins/push/ngx';
 
 @Injectable({
@@ -27,7 +27,7 @@ export class ClientService
 	private SubjectDefaultLanguage = new Subject<any>();//THIS OBSERVABLE IS USED TO SET DEFAULT OR SELECTED LANGUAGE
 	private SubjectOnSignIn = new Subject<any>();//THIS OBSERVABLE IS USED TO KNOW IS ANY HAS SIGNIN
 
-	constructor(public http: HttpClient, public router: Router, private alertCtrl: AlertController, private push: Push)
+	constructor(public http: HttpClient, public router: Router, private alertCtrl: AlertController, private push: Push, private platform: Platform)
 	{ 
 		this.language_selected = localStorage.getItem('default_language');
 		this.getObservableOnLanguageChange().subscribe((data) => {
@@ -894,27 +894,30 @@ export class ClientService
 
 	async pushSetup()
 	{
-		console.log("Registered Push notification start: "); 
-		const options: PushOptions = 
-		{
-			android: 
+		await this.platform.ready().then(async () => 
+    	{
+			console.log("Registered Push notification start: "); 
+			const options: PushOptions = 
 			{
-				senderID:'AAAAGwqYDqU:APA91bFXTiu8gMsZZuFJ7_pYjiywivAjHdXyqahy7OFnB5WoKzAv7RpxsqGZ5Awt75mew7O26jGIpWN1z_0wCLoebn5I_CCOpzm-vBT-BhdbcXpIS7_uXDVaJKmoHCnTWqN-j7gDelQ7'//SERVER KEY
-			},
-			ios: 
+				android: 
+				{
+					senderID:'AAAAGwqYDqU:APA91bFXTiu8gMsZZuFJ7_pYjiywivAjHdXyqahy7OFnB5WoKzAv7RpxsqGZ5Awt75mew7O26jGIpWN1z_0wCLoebn5I_CCOpzm-vBT-BhdbcXpIS7_uXDVaJKmoHCnTWqN-j7gDelQ7'//SERVER KEY
+				},
+				ios: 
+				{
+					alert: 'true',
+					badge: true,
+					sound: 'true'
+				}
+			} 
+			const pushObject: PushObject = this.push.init(options);
+			pushObject.on('notification').subscribe((notification: any) => console.log('Received a notification', notification)); 
+			pushObject.on('registration').subscribe((registration: any) => 
 			{
-				alert: 'true',
-				badge: true,
-				sound: 'true'
-			}
-		} 
-		const pushObject: PushObject = this.push.init(options);
-		pushObject.on('notification').subscribe((notification: any) => console.log('Received a notification', notification)); 
-		pushObject.on('registration').subscribe((registration: any) => 
-		{
-			localStorage.setItem('device_id',registration.registrationId);
+				localStorage.setItem('device_id',registration.registrationId);
+			});
+			pushObject.on('error').subscribe(error => console.error('Error with Push plugin', error));
 		});
-		pushObject.on('error').subscribe(error => console.error('Error with Push plugin', error));
 	}
 
 	UpdatePushToken(data)
