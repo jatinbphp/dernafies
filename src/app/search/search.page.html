@@ -82,7 +82,7 @@
                         <ionic-rating-component #featuredRating{{h+1}} activeIcon = "star" defaultIcon = "star" activeColor = "#ffcd3c" defaultColor = "#f4f4f4" readonly = "true" rating = "{{handyMan.total_ratings}}" fontSize = "17px"></ionic-rating-component>									
                       </p>
                       <h2 class="name">{{handyMan.firstName}} {{handyMan.lastName}}</h2>
-                      <h4 class="experience">{{handyMan.no_of_experience}} years experience</h4>
+                      <h4 class="experience">{{handyMan.no_of_experience}} years {{default_language_data['translation'][0]['home'][0][language_selected][0]['experience_in_year']}}</h4>
                       <h3 class="hr-txt">{{handyMan.currency_code}} {{handyMan.price}}<span>/</span>{{handyMan.pricingTypeName}}</h3>
                       <h3 class="pr-txt" *ngIf="handyMan.unitPricingType!=null">{{handyMan.unitPricingType}}</h3>
 				            </div>

@@ -160,7 +160,7 @@
                   <ion-icon name="star"></ion-icon>-->
                 </p>
                 <h2 class="name">{{handyMan.firstName}} {{handyMan.lastName}}</h2>
-                <h4 class="experience">{{handyMan.no_of_experience}} years experience</h4>
+                <h4 class="experience">{{handyMan.no_of_experience}} {{default_language_data['translation'][0]['home'][0][language_selected][0]['experience_in_year']}}</h4>
                 <h3 class="hr-txt">{{handyMan.currencyType}} {{handyMan.price}}<span>/</span>{{handyMan.pricingTypes.pricingTypeName}}</h3>
                 <h3 class="pr-txt" *ngIf="handyMan.pricingTypes.unitPricingType!=null">{{handyMan.pricingTypes.unitPricingType}}</h3>
               </div>
