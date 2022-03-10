@@ -6,7 +6,7 @@
     <ion-button slot="start" (click)="GoBack()">
       <ion-icon name="arrow-back-outline"></ion-icon>
     </ion-button>
-    <ion-title>Job Description</ion-title>
+    <ion-title>{{default_language_data['translation'][0]['add-job'][0][language_selected][0]['screen_title']}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -55,7 +55,7 @@
         <ion-row>
           <ion-col size="12">
             <ion-item lines="none" class="ion-no-padding">
-              <ion-label position="stacked">{{default_language_data['translation'][0]['book_a_job'][0][language_selected][0]['job_description']}}</ion-label>
+              <ion-label position="stacked">{{default_language_data['translation'][0]['add-job'][0][language_selected][0]['job_description']}}</ion-label>
               <ion-textarea formControlName="job_description"></ion-textarea>
             </ion-item>
             <!--VALIDATION-->
@@ -82,7 +82,7 @@
           </ion-row>
         </ion-grid>
         <ion-item lines="none">
-          <ion-button type="submit" color="" [disabled]="!BooKAJobForm.valid || accept_tems != true">{{default_language_data['translation'][0]['book_a_job'][0][language_selected][0]['book_a_button']}}</ion-button>
+          <ion-button type="submit" color="" [disabled]="!BooKAJobForm.valid || accept_tems != true">{{default_language_data['translation'][0]['add-job'][0][language_selected][0]['book_now']}}</ion-button>
         </ion-item>
       </div>
     </form>

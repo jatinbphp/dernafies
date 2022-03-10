@@ -289,6 +289,11 @@ export class SearchPage
       lat = (this.current_latitude) ? this.current_latitude : this.search_for_handyman.latitude;
       lon = (this.current_longitude) ? this.current_longitude : this.search_for_handyman.longitude;
     }
+    else 
+    {
+      lat = (this.current_latitude) ? this.current_latitude : "";
+      lon = (this.current_longitude) ? this.current_longitude : "";
+    }
     let searched_text = (form.controls.search_text.value) ? form.controls.search_text.value : "";
     let objSearch=
     {

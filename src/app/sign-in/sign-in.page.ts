@@ -35,7 +35,7 @@ export class SignInPage implements OnInit
 		'username': 
 		[
 			{ type: 'required', message: 'Email is required.' },
-			{ type: 'pattern', message: 'Please enter a valid email.' }
+			//{ type: 'pattern', message: 'Please enter a valid email.' }
 		],
 		'password': 
 		[

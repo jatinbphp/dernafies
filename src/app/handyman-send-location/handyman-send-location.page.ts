@@ -18,6 +18,10 @@ declare var google;
 export class HandymanSendLocationPage implements OnInit 
 {
   @ViewChild('gooeleMap')  mapElement: ElementRef;
+  public rtl_or_ltr = '';
+  public language_selected = '';
+	public default_language_data: any = [];
+
   public handyman_id:any='';
   public handyman_category_id:any='';
 
@@ -37,10 +41,19 @@ export class HandymanSendLocationPage implements OnInit
   public locationCordinates: any;
   public timestamp: any;
   constructor(private client: ClientService, private loadingCtrl: LoadingController, private platform: Platform, private geolocation: Geolocation, private nativeGeocoder: NativeGeocoder, private route: ActivatedRoute, private androidPermissions: AndroidPermissions, private locationAccuracy: LocationAccuracy)
-  { }
+  { 
+    this.client.getObservableOnLanguageChange().subscribe((data) => {
+			this.language_selected = data.language_selected;
+			this.rtl_or_ltr = (this.language_selected == 'arabic') ? 'rtl' : 'ltr';
+			console.log('Data received', data);
+		});//THIS OBSERVABLE IS USED TO SET DEFAULT OR SELECTED LANGUAGE
+  }
 
   async ngOnInit()
   { 
+    this.default_language_data = this.client.default_language_data;
+		this.language_selected = this.client.language_selected;
+		this.rtl_or_ltr = (this.language_selected == 'arabic') ? 'rtl' : 'ltr';
     /*
     this.platform.ready().then(async () => 
     {

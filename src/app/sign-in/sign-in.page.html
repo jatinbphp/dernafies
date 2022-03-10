@@ -40,7 +40,7 @@
             </ion-col>
             <ion-col size="12" class="ion-no-padding">
               <ion-label position="stacked">{{default_language_data['translation'][0]['login'][0][language_selected][0]['email_address']}}</ion-label>
-              <ion-input type="text" placeholder="" formControlName="username" pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})"></ion-input>
+              <ion-input type="text" placeholder="" formControlName="username"></ion-input><!--pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})"-->
               <!--VALIDATION-->
               <div *ngFor="let validation of validation_messages.username">
                 <div class="validation-errors">

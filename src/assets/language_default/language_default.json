@@ -23,7 +23,7 @@
                      "view_a_job":"مشاهدة الوظائف",
                      "current_requests":"الطلبات الحالية",
                      "past_requests":"الطلبات السابقة",
-                     "settings":"إعدادات",
+                     "settings":"الاعدادات",
                      "logout":"تسجيل خروج"
                   }
                ],
@@ -47,12 +47,12 @@
                   {
                      "screen_title":"Login",
                      "remember_me":"Remember me",
-                     "forgot_password":"Forgot password?",
-                     "dont_have_account":"Don't have a account?",
+                     "forgot_password":"Forgot Password",
+                     "dont_have_account":"Don't have an account?",
                      "sign_up":"Sign up",
-                     "email_address": "Email Address",
+                     "email_address": "Email or Phone number",
                      "password": "Password",
-                     "login_in_button": "Log In",
+                     "login_in_button": "Login",
                      "language_dropdown_title":"Languages",
                      "language_dropdown_placeholder":"Select Language"
                   }
@@ -61,12 +61,12 @@
                   {
                      "screen_title":"تسجيل الدخول",
                      "remember_me":"تذكرني",
-                     "forgot_password":"هل نسيت كلمة السر؟",
+                     "forgot_password":"نسيت كلمة المرور",
                      "dont_have_account":"ليس لديك حساب؟",
-                     "sign_up":"اشتراك",
-                     "email_address":"عنوان البريد الالكتروني",
-                     "password": "كلمه السر",
-                     "login_in_button": "تسجيل الدخول",
+                     "sign_up":" انشاء حساب",
+                     "email_address":"البريد الالكتروني او رقم الهاتف",
+                     "password": "كلمة المرور",
+                     "login_in_button": "تسجيل دخول",
                      "language_dropdown_title":"اللغات",
                      "language_dropdown_placeholder":"اختار اللغة"
                   }
@@ -75,12 +75,12 @@
                   {
                      "screen_title":"Login",
                      "remember_me":"Min bîne bîra xwe",
-                     "forgot_password":"Şîfre ji bîr kir?",
-                     "dont_have_account":"Hesabê we tune?",
+                     "forgot_password":"Şîfre ji bîr kir",
+                     "dont_have_account":"Hesabê xwe tune?",
                      "sign_up":"Tomar kirin",
-                     "email_address": "Navnîşana emailê",
+                     "email_address": "E-name an jimara têlefonê",
                      "password": "Şîfre",
-                     "login_in_button": "log.in",
+                     "login_in_button": "Login",
                      "language_dropdown_title":"Languages",
                      "language_dropdown_placeholder":"Ziman hilbijêrin"
                   }
@@ -116,8 +116,9 @@
             {
                "english": [
                   {
-                     "screen_title":"Sign Up",
-                     "signup_as_handyman":"Sign up as handyman ?",
+                     "screen_title":"Signup",
+                     "signup_as_handyman":"Signup as a handyman?",
+                     "current_position":"You are currently located at this position. If you wish to make a more accurate location please drag the marker to your desired place.",
                      "first_name":"First Name",
                      "last_name":"Last Name",
                      "email_address":"Email",
@@ -125,7 +126,7 @@
                      "confirm_password":"Confirm Password",
                      "province":"Province",
                      "phone_number":"Phone Number",
-                     "specialized_in": "Specialized In",
+                     "specialized_in": "Specialized in",
                      "service_location": "Service Location",
                      "service_district": "Service District",
                      "service_city": "Service City",
@@ -148,31 +149,32 @@
                ],
                "arabic": [
                   {
-                     "screen_title": "اشتراك",
-                     "signup_as_handyman":"سجل كعامل بارع؟",
-                     "first_name":"الاسم",
-                     "last_name":"اسم العائلة",
-                     "email_address":"البريد الالكتروني",
+                     "screen_title": "انشاء حساب",
+                     "signup_as_handyman":"انشاء حساب كعامل",
+                     "current_position":"انت حاليا في الموقع المحدد على الخريطة يمكنك تغيير الموقع عن طريق تحديد الموقع الذي تريده على الخريطة.",
+                     "first_name":"الاسم الثلاثي",
+                     "last_name":"اللقب",
+                     "email_address":"عنوان البريد الالكتروني",
                      "password":"كلمة المرور",
-                     "confirm_password":"تأكيد كلمة المرور",
+                     "confirm_password":"تاكيد كلمة المرور",
                      "province":"المحافظة",
-                     "phone_number":"رقم التليفون",
+                     "phone_number":"رقم الهاتف",
                      "specialized_in": "متخصص في",
                      "service_location": "موقع الخدمة",
                      "service_district": "منطقة الخدمة",
                      "service_city": "مدينة الخدمة",
-                     "service_in_km":"خدمة الميدان",
+                     "service_in_km":"نطاق تقديم الخدمة",
                      "bio":"السيرة الذاتية",
                      "currency_code": "عملة",
-                     "pricing": "التسعير",
+                     "pricing": "السعر",
                      "pricing_type": "نوع التسعير",
                      "unite_type": "نوع الوحدة",
-                     "experience_in_year": "خبرة",
-                     "terms_of_service":"أنا أوافق على",
+                     "experience_in_year": "الخبرة",
+                     "terms_of_service":"انا موافق على",
                      "terms_of_service_link_text":"شروط الخدمة",
-                     "have_an_account":"هل لديك حساب؟",
-                     "login_text":"تسجيل الدخول",
-                     "register_button": "اشتراك",
+                     "have_an_account":"يمكنك تسجيل الدخول؟",
+                     "login_text":"لديك حساب",
+                     "register_button": "انشاء حساب",
                      "subscription_plan_title": "اختر خطة",
                      "subscription_plan_title_profile": "الخطة المختارة",
                      "subscription_plan_button_text": "يختار"
@@ -181,7 +183,8 @@
                "kurdish": [
                   {
                      "screen_title":"Tomar kirin",
-                     "signup_as_handyman":"Wek handyman qeyd bikin?",
+                     "signup_as_handyman":"Signup wek handyman?",
+                     "current_position":"Hûn niha li vê pozîsyonê ne. Ger hûn dixwazin cîhek rasttir çêbikin, ji kerema xwe nîşankerê kaş bikin cîhê xweya xwestinê.",
                      "first_name":"Nav",
                      "last_name":"Paşnav",
                      "email_address":"Email",
@@ -224,7 +227,7 @@
                      "confirm_password":"Confirm Password",
                      "province":"Province",
                      "phone_number":"Phone Number",
-                     "specialized_in": "Specialized In",
+                     "specialized_in": "Specialized in",
                      "service_location": "Service Location",
                      "service_district": "Service District",
                      "service_city": "Service City",
@@ -235,30 +238,32 @@
                      "pricing_type": "Pricing Type",
                      "unite_type": "Unit Type",
                      "experience_in_year": "Experience",
+                     "current_position":"You are currently located at this position. If you wish to make a more accurate location please drag the marker to your desired place.",
                      "profile_button": "Update"
                   }
                ],
                "arabic": [
                   {
                      "screen_title": "الملف الشخصي",
-                     "first_name":"الاسم",
-                     "last_name":"اسم العائلة",
-                     "email_address":"البريد الالكتروني",
+                     "first_name":"الاسم الثلاثي",
+                     "last_name":"اللقب",
+                     "email_address":"عنوان البريد الالكتروني",
                      "password":"كلمة المرور",
-                     "confirm_password":"تأكيد كلمة المرور",
+                     "confirm_password":"تاكيد كلمة المرور",
                      "province":"المحافظة",
-                     "phone_number":"رقم التليفون",
+                     "phone_number":"رقم الهاتف",
                      "specialized_in": "متخصص في",
                      "service_location": "موقع الخدمة",
                      "service_district": "منطقة الخدمة",
                      "service_city": "مدينة الخدمة",
-                     "service_in_km":"خدمة الميدان",
+                     "service_in_km":"نطاق تقديم الخدمة",
                      "bio":"السيرة الذاتية",
                      "currency_code": "عملة",
-                     "pricing": "التسعير",
+                     "pricing": "السعر",
                      "pricing_type": "نوع التسعير",
                      "unite_type": "نوع الوحدة",
-                     "experience_in_year": "خبرة",
+                     "experience_in_year": "الخبرة",
+                     "current_position":"انت حاليا في الموقع المحدد على الخريطة يمكنك تغيير الموقع عن طريق تحديد الموقع الذي تريده على الخريطة.",
                      "profile_button": "تحديث"
                   }
                ],
@@ -272,7 +277,7 @@
                      "confirm_password":"di pêşîyê da em sipas dikin",
                      "province":"Herêm",
                      "phone_number":"Jimare telefon",
-                     "specialized_in": "Specialized In",
+                     "specialized_in": "Pispor di",
                      "service_location": "Cihê Xizmetê",
                      "service_district": "Navçeya Xizmetê",
                      "service_city": "City Service",
@@ -283,6 +288,7 @@
                      "pricing_type": "Pricing Type",
                      "unite_type": "Type Unit",
                      "experience_in_year": "Tecribe",
+                     "current_position":"Hûn niha li vê pozîsyonê ne. Ger hûn dixwazin cîhek rasttir çêbikin, ji kerema xwe nîşankerê kaş bikin cîhê xweya xwestinê.",
                      "profile_button": "Nûvekirin"
                   }
                ]
@@ -302,8 +308,8 @@
                   {
                      "screen_title":"تغيير كلمة المرور",
                      "password": "كلمة المرور",
-                     "confirm_password": "تأكيد كلمة المرور",
-                     "change_password_in_button": "يقدم"
+                     "confirm_password": "تاكيد كلمة المرور",
+                     "change_password_in_button": "موافق"
                   }
                ],
                "kurdish": [
@@ -369,7 +375,7 @@
                "arabic": [
                   {
                      "categories":"التصنيفات",
-                     "view_all":"مشاهدة الكل",
+                     "view_all":"عرض الكل",
                      "completed_text": "مكتمل",
                      "pending_text": "قيد الانتظار",
                      "cancelled_text": "ألغيت",
@@ -409,15 +415,17 @@
                      "completed_services":"Completed Services",
                      "featured_handyman":"Featured Handyman",
                      "search_for_services":"Search for services",
-                     "recent_service_request":"Recent Service Requests"
+                     "recent_service_request":"Recent Service Requests",
+                     "experience_in_year":"Years Experience"
                   }
                ],
                "arabic": [
                   {
                      "completed_services":"الخدمات المكتملة",
-                     "featured_handyman":"عامل مميز",
-                     "search_for_services":"ابحث عن الخدمات",
-                     "recent_service_request":"طلبات الخدمة الأخيرة"
+                     "featured_handyman":"عامل متميز",
+                     "search_for_services":"البحث عن الخدمات",
+                     "recent_service_request":"طلبات الخدمة الأخيرة",
+                     "experience_in_year":"سنوات الخبرة"
                   }
                ],
                "kurdish": [
@@ -425,7 +433,8 @@
                      "completed_services":"Xizmetên qedandî",
                      "featured_handyman":"Featured Handyman",
                      "search_for_services":"Ji bo xizmetên lêgerîn",
-                     "recent_service_request":"Daxwazên Xizmeta Dawî"
+                     "recent_service_request":"Daxwazên Xizmeta Dawî",
+                     "experience_in_year":"Tecrûbeya Salan"
                   }
                ]
             }
@@ -434,7 +443,7 @@
             {
                "english": [
                   {
-                     "screen_title":"My Current Requests",
+                     "screen_title":"Current Requests",
                      "accept_request":"Accept",
                      "completed":"Completed",
                      "scheduled_time":"Scheduled Time",
@@ -447,15 +456,15 @@
                ],
                "arabic": [
                   {
-                     "screen_title":"طلباتي الحالية",
+                     "screen_title":"الطلبات الحالية",
                      "accept_request":"قبول",
-                     "completed":"مكتمل",
-                     "scheduled_time":"جدول زمني",
-                     "button_message":"تعبث",
-                     "button_view":"رأي",
-                     "button_completed":"مكتمل",
-                     "button_request_review":"طلب مراجعة",
-                     "button_rate_and_review":"مراجعة معدل"
+                     "completed":"المكتملة",
+                     "scheduled_time":"جدول المواعيد",
+                     "button_message":"رسائل",
+                     "button_view":"عرض",
+                     "button_completed":"المكتملة",
+                     "button_request_review":"طلب تقييم",
+                     "button_rate_and_review":"تقييم"
                   }
                ],
                "kurdish": [
@@ -479,21 +488,24 @@
                   {
                      "screen_title":"Past Requests",
                      "filter_text":"Filter",
-                     "book_again_button":"Book Again"
+                     "book_again_button":"Book Again",
+                     "received":"Received"
                   }
                ],
                "arabic": [
                   {
                      "screen_title":"الطلبات السابقة",
                      "filter_text":"منقي",
-                     "book_again_button":"احجز مرة أخرى"
+                     "book_again_button":"احجز مرة أخرى",
+                     "received":"مستلمة"
                   }
                ],
                "kurdish": [
                   {
                      "screen_title":"Daxwazên berê",
                      "filter_text":"Parzûn",
-                     "book_again_button":"Pirtûka Dîsa"
+                     "book_again_button":"Pirtûka Dîsa",
+                     "received":"Wergirtin"
                   }
                ]
             }
@@ -527,18 +539,18 @@
                      "text_2":"Ongoing",
                      "text_3":"Clients",
                      "select_handy_man_button":"Select Handyman",
-                     "send_location_pin_button":"Send Location Pin"
+                     "send_location_pin_button":"Send Location"
                   }
                ],
                "arabic": [
                   {
-                     "screen_title":"في القلب المختار",
-                     "text_experience":"سنوات خبرة",
-                     "text_1":"المراجعات",
+                     "screen_title":"العامل الذي تم اختياره",
+                     "text_experience":"سنوات الخبرة",
+                     "text_1":"تقييم",
                      "text_2":"جاري التنفيذ",
-                     "text_3":"العملاء",
+                     "text_3":"الزبائن",
                      "select_handy_man_button":"حدد العامل الماهر",
-                     "send_location_pin_button":"إرسال رقم التعريف الشخصي للموقع"
+                     "send_location_pin_button":"ارسال الموقع"
                   }
                ],
                "kurdish": [
@@ -550,6 +562,53 @@
                      "text_3":"Clients",
                      "select_handy_man_button":"Handyman hilbijêre",
                      "send_location_pin_button":"Pîneya Cihê bişînin"
+                  }
+               ]
+            }
+         ],
+         "handyman-send-location": [
+            {
+               "english": [
+                  {
+                     "screen_title":"Send Location",
+                     "send_location_pin_button":"Send Location"
+                  }
+               ],
+               "arabic": [
+                  {
+                     "screen_title":"ارسال الموقع",
+                     "send_location_pin_button":"ارسال الموقع"
+                  }
+               ],
+               "kurdish": [
+                  {
+                     "screen_title":"Cih bişînin",
+                     "send_location_pin_button":"Cih bişînin"
+                  }
+               ]
+            }
+         ],
+         "add-job": [
+            {
+               "english": [
+                  {
+                     "screen_title":"Job Description",
+                     "job_description":"Job Description",
+                     "book_now":"Book Now"
+                  }
+               ],
+               "arabic": [
+                  {
+                     "screen_title":"شرح العمل",
+                     "job_description":"شرح العمل",
+                     "book_now":"الحجز الان"
+                  }
+               ],
+               "kurdish": [
+                  {
+                     "screen_title":"Danasîna Kar",
+                     "job_description":"Danasîna Kar",
+                     "book_now":"Book Now"
                   }
                ]
             }
@@ -627,27 +686,29 @@
                      "screen_title":"Settings",
                      "account":"Account",
                      "change_password":"Change Password",
-                     "notifications":"Ongoing",
+                     "on_going":"Ongoing",
+                     "notifications":"Notifications",
                      "privacy_settings":"Privacy Settings",
                      "signout":"Sign Out",
                      "other":"Other",
-                     "text_messages":"Text Messages",
+                     "text_messages":"Text messages",
                      "currency":"Currency",
                      "languages":"Languages"
                   }
                ],
                "arabic": [
                   {
-                     "screen_title":"إعدادات",
+                     "screen_title":"الاعدادات",
                      "account":"الحساب",
                      "change_password":"تغيير كلمة المرور",
+                     "on_going":"جاري التنفيذ",
                      "notifications":"الاشعارات",
-                     "privacy_settings":"إعدادات الخصوصية",
-                     "signout":"خروج",
-                     "other":"آخر",
+                     "privacy_settings":"اعدادات الخصوصية",
+                     "signout":"تسجيل الخروج",
+                     "other":"اخرى",
                      "text_messages":"رسائل نصية",
-                     "currency":"عملة",
-                     "languages":"اللغات"
+                     "currency":"العملة",
+                     "languages":"اللغة"
                   }
                ],
                "kurdish": [
@@ -655,7 +716,8 @@
                      "screen_title":"Settings",
                      "account":"Konto",
                      "change_password":"Şîfre biguherînin",
-                     "notifications":"Berdewam",
+                     "on_going":"Berdewam",
+                     "notifications":"Notifications",
                      "privacy_settings":"Mîhengên Nepenîtiyê",
                      "signout":"Guhê xwe nedene",
                      "other":"Yên din",
@@ -724,17 +786,17 @@
                "english": [
                   {
                      "screen_title":"Rate & Review",
-                     "rate_this_handyman":"Rate this handyman",
+                     "rate_this_handyman":"Rate This Handyman",
                      "write_a_review":"Write a review",
                      "button_text":"Submit"
                   }
                ],
                "arabic": [
                   {
-                     "screen_title":"ليلة ومراجعة",
-                     "rate_this_handyman":"في الليل في القلب",
-                     "write_a_review":"اكتب هذا الاستعراض",
-                     "button_text":"مقدم"
+                     "screen_title":"تقييم",
+                     "rate_this_handyman":"تقييم هذا العامل",
+                     "write_a_review":"اكتب تقييمك",
+                     "button_text":"موافق"
                   }
                ],
                "kurdish": [

@@ -41,7 +41,7 @@
                         <p>Comleted by {{jobs.dateCompleted | amDateFormat: 'DD MMM yyyy'}}<!--10 May 2021--></p>
                     </div>
                     <div class="requ-box-btns">                        
-                        <ion-badge color="success">{{jobs.currencyType}} {{jobs.jobPrice}}<span>Received</span></ion-badge>
+                        <ion-badge color="success">{{jobs.currencyType}} {{jobs.jobPrice}}<span>{{default_language_data['translation'][0]['past-requests'][0][language_selected][0]['received']}}</span></ion-badge>
                         <ion-button color="success" (click)="ViewJobDetail(jobs.id)">{{default_language_data['translation'][0]['current-request'][0][language_selected][0]['button_view']}}</ion-button>
                     </div>
                 </div>

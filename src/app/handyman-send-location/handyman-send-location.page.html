@@ -6,7 +6,7 @@
     <ion-button slot="start" (click)="GoBack()">
 		<ion-icon name="arrow-back-outline"></ion-icon>
 	</ion-button>
-    <ion-title>Send Location</ion-title>
+    <ion-title>{{default_language_data['translation'][0]['handyman-send-location'][0][language_selected][0]['screen_title']}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -22,7 +22,7 @@
 		</div>
 		<div class="review-box-btns">
 			<ion-button color="secondary" (click)="SendLocationPin()">
-				<ion-icon name="location-sharp"></ion-icon>Send Location Pin
+				<ion-icon name="location-sharp"></ion-icon>{{default_language_data['translation'][0]['handyman-send-location'][0][language_selected][0]['send_location_pin_button']}}
 			</ion-button>
 		</div>
 	</div>

@@ -29,6 +29,7 @@ export class HomePage
   public user_type:any = '';
   public welcome_text:any = '';
   public greetings:any = '';
+  public hi_in_languages:any = '';
   public current_latitude:any = '';
   public current_longitude:any = '';
 
@@ -115,20 +116,24 @@ export class HomePage
     if(this.id!='' && this.id!=null && this.id!=undefined && this.id!='null' && this.id!='undefined')
     {
       let today = new Date()
-      let curHr = today.getHours()
+      let curHr = today.getHours();
+      
       if(curHr < 12)
       {
         if(this.language_selected == "english")
         {
           this.greetings='Good Morning';
+          this.hi_in_languages = 'Hi';
         }
         if(this.language_selected == "arabic")
         {
           this.greetings='صباح الخير';
+          this.hi_in_languages = 'اهلا';
         }
         if(this.language_selected == "kurdish")
         {
           this.greetings='Roj baş';
+          this.hi_in_languages = 'Hi';
         }
       }
       else if (curHr < 18) 
@@ -136,14 +141,17 @@ export class HomePage
         if(this.language_selected == "english")
         {
           this.greetings='Good Afternoon';
+          this.hi_in_languages = 'Hi';
         }
         if(this.language_selected == "arabic")
         {
           this.greetings='طاب مسائك';
+          this.hi_in_languages = 'اهلا';
         }
         if(this.language_selected == "kurdish")
         {
           this.greetings='Paş nîvro';
+          this.hi_in_languages = 'Hi';
         }
       }
       else
@@ -151,19 +159,22 @@ export class HomePage
         if(this.language_selected == "english")
         {
           this.greetings='Good Evening';
+          this.hi_in_languages = 'Hi';
         }
         if(this.language_selected == "arabic")
         {
           this.greetings='مساء الخير';
+          this.hi_in_languages = 'اهلا';
         }
         if(this.language_selected == "kurdish")
         {
           this.greetings='Êvar baş';
+          this.hi_in_languages = 'Hi';
         }
       }
       let firstName = (localStorage.getItem('firstName')) ? localStorage.getItem('firstName') : "";
       let lastName = (localStorage.getItem('lastName')) ? localStorage.getItem('lastName') : "";
-      this.welcome_text = 'Hi, '+firstName+' '+lastName;      
+      this.welcome_text = this.hi_in_languages+', '+firstName+' '+lastName;      
     }
   }
 
