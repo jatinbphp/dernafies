@@ -57,6 +57,7 @@ export class SignUpPage implements OnInit
 	public checkeds = 0;//For disabling checkbox after limit
 	public podecheck = true;//For disabling checkbox after limit
 
+  public PricintType: number = 0;//If this is 4 then show "unite_type" Field only  
   public locationCordinates: any;
   public timestamp: any;
 
@@ -572,9 +573,6 @@ export class SignUpPage implements OnInit
 
       this.registerForm.get('pricing_type').setValidators([Validators.required]);     
 			this.registerForm.get('pricing_type').updateValueAndValidity();
-
-      this.registerForm.get('unite_type').setValidators([Validators.required]);     
-			this.registerForm.get('unite_type').updateValueAndValidity();
       
       this.registerForm.get('service_province').setValidators([Validators.required]);     
       this.registerForm.get('service_province').updateValueAndValidity();
@@ -618,8 +616,6 @@ export class SignUpPage implements OnInit
 			this.registerForm.get('currency_code').updateValueAndValidity();
       this.registerForm.get('pricing_type').clearValidators();     
 			this.registerForm.get('pricing_type').updateValueAndValidity();
-      this.registerForm.get('unite_type').clearValidators();     
-			this.registerForm.get('unite_type').updateValueAndValidity();
       this.registerForm.get('service_province').clearValidators();     
       this.registerForm.get('service_province').updateValueAndValidity();
       this.registerForm.get('phone_number').clearValidators();     
@@ -833,13 +829,18 @@ export class SignUpPage implements OnInit
 
   checkPricingType(ev)
   {
-    let PricintType = (ev.detail.value) ? ev.detail.value : 0;
-    if(PricintType == 4)
+    this.PricintType = (ev.detail.value) ? ev.detail.value : 0;
+    if(this.PricintType == 4)
     {
+      this.registerForm.get('unite_type').setValidators([Validators.required]);     
+			this.registerForm.get('unite_type').updateValueAndValidity();
       this.show_unit_type = true;
     }
     else 
     {
+      this.registerForm.get('unite_type').clearValidators();     
+			this.registerForm.get('unite_type').updateValueAndValidity();
+      this.PricintType = 0;
       this.show_unit_type = false;
     }
   }
