@@ -154,6 +154,70 @@ export class ClientService
 		});
 	}
 
+	SignupAsGuest(data)
+	{	
+		let headers = this.getHeaderOptions();
+		return new Promise((resolve, reject) => 
+		{
+			let dataToPost = new HttpParams().set("firstName",data.first_name).set("lastName", data.last_name).set("location", data.address).set("latitude", data.latitude).set("longitude", data.longitude).set("phoneNumber", data.phone_number).set("uniqueDeviceID", data.unique_device_id).set("guestPinCode", data.four_digit_pin);
+			this.http.post(this.api_url + "guestregister",  dataToPost , headers).subscribe((res: any) =>       
+			{
+				if(res.status == true)
+				{
+					//this.showMessage(res.message);
+					this.serverResponse=res;
+					resolve(this.serverResponse);					
+				}
+				else
+				{
+					this.serverResponseOnExpirePlan=res;
+					let messageDisplay=this.showMessage(res.message);
+					resolve(this.serverResponseOnExpirePlan);
+					//reject(messageDisplay);
+				}
+			},
+			err => 
+			{
+				console.log(err);
+				let errorMessage=this.getErrorMessage(err);
+				this.showMessage(errorMessage);
+				reject(errorMessage);
+			});
+		});
+	}
+
+	SigninAsGuest(data)
+	{	
+		let headers = this.getHeaderOptions();
+		return new Promise((resolve, reject) => 
+		{
+			let dataToPost = new HttpParams().set("uniqueDeviceID",data.unique_device_id).set("guestPinCode", data.four_digit_pin);
+			this.http.post(this.api_url + "guestlogin",  dataToPost , headers).subscribe((res: any) =>       
+			{
+				if(res.status == true)
+				{
+					//this.showMessage(res.message);
+					this.serverResponse=res;
+					resolve(this.serverResponse);					
+				}
+				else
+				{
+					this.serverResponseOnExpirePlan=res;
+					let messageDisplay=this.showMessage(res.message);
+					resolve(this.serverResponseOnExpirePlan);
+					//reject(messageDisplay);
+				}
+			},
+			err => 
+			{
+				console.log(err);
+				let errorMessage=this.getErrorMessage(err);
+				this.showMessage(errorMessage);
+				reject(errorMessage);
+			});
+		});
+	}
+
 	resetMyPassword(data)
 	{	
 		let headers = this.getHeaderOptions();

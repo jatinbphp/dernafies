@@ -22,7 +22,7 @@
     </ion-toolbar>
   </ion-header>
   <div class="main-div">
-    <form [formGroup]="signInWithDigitForm" (ngSubmit)="makeMeRegistered(signInWithDigitForm.value)">
+    <form [formGroup]="signInWithDigitForm" (ngSubmit)="SignupAsGuest(signInWithDigitForm.value)">
       <ion-input type="hidden" formControlName="latitude"></ion-input>
       <ion-input type="hidden" formControlName="longitude"></ion-input>
       <ion-input type="hidden" formControlName="unique_device_id"></ion-input>

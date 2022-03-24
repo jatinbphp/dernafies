@@ -27,7 +27,7 @@ export class SignInPage implements OnInit
 	public passwordPINIcon: string = 'eye-off';
 
 	public is_remember_me_on:string="No";
-
+	public unique_device_id:any = '';
 	public loginWithPINForm = this.fb.group({
 		four_digit_pin: ['', Validators.required]
 	});
@@ -84,6 +84,7 @@ export class SignInPage implements OnInit
 	{
 		this.default_language_data = this.client.default_language_data;
 		this.language_selected = this.client.language_selected;
+		this.unique_device_id = localStorage.getItem('unique_device_id') ? localStorage.getItem('unique_device_id') : "";
 	}
 	
   	hideShowPassword()
@@ -190,13 +191,58 @@ export class SignInPage implements OnInit
 		console.log(this.is_remember_me_on);
 	}
 
-	checkPIN(ev)
+	async SignupAsGuest(ev)
 	{
 		let four_digit_pin = (ev.detail.value) ? ev.detail.value : "";
 		let four_digit_pin_length = four_digit_pin.length;
 		if(four_digit_pin_length == 4)
 		{
-			console.log("SUBMIT");
+			//LOADER
+			const loading = await this.loadingCtrl.create({
+				spinner: null,
+				//duration: 5000,
+				message: 'Please wait...',
+				translucent: true,
+				cssClass: 'custom-class custom-loading'
+			});
+			await loading.present();
+			//LOADER
+
+			let data=
+			{
+				four_digit_pin:four_digit_pin,
+				unique_device_id:this.unique_device_id,
+			}
+
+			await this.client.SigninAsGuest(data).then(result => 
+			{	
+				loading.dismiss();//DISMISS LOADER			
+				this.resultData=result;
+				
+				if(this.resultData.status==true)
+				{
+					this.client.publishSomeDataOnSignIn({
+						should_menu_enable: true,
+						role:this.resultData.role
+					});//THIS OBSERVABLE IS USED TO KNOW IS ANY HAS SIGNIN
+					
+					localStorage.setItem('token',this.resultData.token);
+					localStorage.setItem('id',this.resultData.id);
+					localStorage.setItem('email',this.resultData.email);
+					localStorage.setItem('userTypeID',this.resultData.userTypeID);
+					localStorage.setItem('firstName',this.resultData.firstName);
+					localStorage.setItem('lastName',this.resultData.lastName);
+					localStorage.setItem('role',this.resultData.role);
+					localStorage.setItem('remember_me',"Yes");
+					this.client.router.navigate(['/tabs/home']);
+				}
+				console.log(this.resultData);
+			},
+			error => 
+			{
+				loading.dismiss();//DISMISS LOADER
+				console.log();
+			});
 		}
 	}
 }

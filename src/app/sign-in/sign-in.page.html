@@ -14,7 +14,7 @@
     </div>
     <div class="form-div">
       <!--FORM WITH PIN STARTS-->
-      <form [formGroup]="loginWithPINForm" (ngSubmit)="makeMeLoggedin(loginWithPINForm.value)">
+      <form [formGroup]="loginWithPINForm" (ngSubmit)="SignupAsGuest(loginWithPINForm.value)">
         <ion-grid class="ion-no-padding">
           <ion-row>
             <ion-col size="12" class="ion-no-padding">              
@@ -38,7 +38,7 @@
             </ion-col>
             <ion-col size="12">
               <ion-label position="stacked">{{default_language_data['translation'][0]['sign-in-as-guest'][0][language_selected][0]['four_digit_pin']}}</ion-label>
-              <ion-input [type]="passwordPINType" formControlName="four_digit_pin" maxlength="4" (ionChange)="checkPIN($event)"></ion-input>
+              <ion-input [type]="passwordPINType" formControlName="four_digit_pin" maxlength="4" (ionChange)="SignupAsGuest($event)"></ion-input>
               <ion-icon item-end [name]="passwordPINIcon" class="passwordIcon" (click)='hideShowPasswordPIN()'></ion-icon>
               <!--VALIDATION-->
               <div class="validation-errors">

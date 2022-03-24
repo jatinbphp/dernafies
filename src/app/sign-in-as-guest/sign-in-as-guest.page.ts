@@ -304,4 +304,68 @@ export class SignInAsGuestPage implements OnInit
     this.signInWithDigitForm.controls['longitude'].setValue(this.longitude);
     this.getAddressFromLatitudeAndLongitude(this.latitude, this.longitude);//THIS WILL GET ADDRESS ON BASES OF LATITUDE AND LONGITUDE
   }
+
+  async SignupAsGuest(form)
+  {
+    let first_name = (form.first_name) ? form.first_name : "";
+    let last_name = (form.last_name) ? form.last_name : "";
+    let phone_number = (form.phone_number) ? form.phone_number : "";
+    let four_digit_pin = (form.four_digit_pin) ? form.four_digit_pin : "";
+    let latitude = (form.latitude) ? form.latitude : "";
+    let longitude = (form.longitude) ? form.longitude : "";
+    let unique_device_id = (form.unique_device_id) ? form.unique_device_id : "";
+    let address = (this.address) ? this.address : "";
+
+    //LOADER
+		const loading = await this.loadingCtrl.create({
+			spinner: null,
+			//duration: 5000,
+			message: 'Please wait...',
+			translucent: true,
+			cssClass: 'custom-class custom-loading'
+		});
+		await loading.present();
+		//LOADER
+
+		let data=
+		{
+			first_name:first_name, 
+			last_name:last_name,
+      phone_number:phone_number,
+      four_digit_pin:four_digit_pin,
+      latitude:latitude,
+      longitude:longitude,
+      address:address,
+      unique_device_id:unique_device_id,
+		}
+		await this.client.SignupAsGuest(data).then(result => 
+		{	
+			loading.dismiss();//DISMISS LOADER			
+			this.resultData=result;
+			
+			if(this.resultData.status==true)
+			{
+				this.client.publishSomeDataOnSignIn({
+					should_menu_enable: true,
+					role:this.resultData.role
+				});//THIS OBSERVABLE IS USED TO KNOW IS ANY HAS SIGNIN
+				
+				localStorage.setItem('token',this.resultData.token);
+				localStorage.setItem('id',this.resultData.id);
+				localStorage.setItem('email',this.resultData.email);
+				localStorage.setItem('userTypeID',this.resultData.userTypeID);
+				localStorage.setItem('firstName',this.resultData.firstName);
+				localStorage.setItem('lastName',this.resultData.lastName);
+				localStorage.setItem('role',this.resultData.role);
+				localStorage.setItem('remember_me',"Yes");
+				this.client.router.navigate(['/tabs/home']);
+			}
+			console.log(this.resultData);
+		},
+		error => 
+		{
+			loading.dismiss();//DISMISS LOADER
+			console.log();
+		});
+  }
 }
