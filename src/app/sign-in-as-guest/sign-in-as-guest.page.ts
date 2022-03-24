@@ -42,7 +42,7 @@ export class SignInAsGuestPage implements OnInit
     first_name: ['', Validators.required],
     last_name: ['', Validators.required],
     phone_number: ['', Validators.required],
-    four_digit_pin: ['', Validators.required],
+    four_digit_pin: ['', [Validators.required, Validators.minLength(4), Validators.pattern('^[0-9]+$')]],
     latitude: [''],
     longitude: [''],
     unique_device_id:['', Validators.required]
@@ -62,7 +62,9 @@ export class SignInAsGuestPage implements OnInit
       { type: 'required', message: 'Phone number is required.' }
     ],
     'four_digit_pin': [
-      { type: 'required', message: '4 Digit pin is required.' }
+      { type: 'required', message: '4 Digit pin is required.' },
+      { type: 'minlength', message: 'Pin should be of 4 numbers.' },
+      { type: 'pattern', message: 'Please enter a valid number.' }
     ]
   };
 
@@ -315,57 +317,59 @@ export class SignInAsGuestPage implements OnInit
     let longitude = (form.longitude) ? form.longitude : "";
     let unique_device_id = (form.unique_device_id) ? form.unique_device_id : "";
     let address = (this.address) ? this.address : "";
+    if(!isNaN(four_digit_pin))
+    {
+      //LOADER
+      const loading = await this.loadingCtrl.create({
+        spinner: null,
+        //duration: 5000,
+        message: 'Please wait...',
+        translucent: true,
+        cssClass: 'custom-class custom-loading'
+      });
+      await loading.present();
+      //LOADER
 
-    //LOADER
-		const loading = await this.loadingCtrl.create({
-			spinner: null,
-			//duration: 5000,
-			message: 'Please wait...',
-			translucent: true,
-			cssClass: 'custom-class custom-loading'
-		});
-		await loading.present();
-		//LOADER
-
-		let data=
-		{
-			first_name:first_name, 
-			last_name:last_name,
-      phone_number:phone_number,
-      four_digit_pin:four_digit_pin,
-      latitude:latitude,
-      longitude:longitude,
-      address:address,
-      unique_device_id:unique_device_id,
-		}
-		await this.client.SignupAsGuest(data).then(result => 
-		{	
-			loading.dismiss();//DISMISS LOADER			
-			this.resultData=result;
-			
-			if(this.resultData.status==true)
-			{
-				this.client.publishSomeDataOnSignIn({
-					should_menu_enable: true,
-					role:this.resultData.role
-				});//THIS OBSERVABLE IS USED TO KNOW IS ANY HAS SIGNIN
-				
-				localStorage.setItem('token',this.resultData.token);
-				localStorage.setItem('id',this.resultData.id);
-				localStorage.setItem('email',this.resultData.email);
-				localStorage.setItem('userTypeID',this.resultData.userTypeID);
-				localStorage.setItem('firstName',this.resultData.firstName);
-				localStorage.setItem('lastName',this.resultData.lastName);
-				localStorage.setItem('role',this.resultData.role);
-				localStorage.setItem('remember_me',"Yes");
-				this.client.router.navigate(['/tabs/home']);
-			}
-			console.log(this.resultData);
-		},
-		error => 
-		{
-			loading.dismiss();//DISMISS LOADER
-			console.log();
-		});
+      let data=
+      {
+        first_name:first_name, 
+        last_name:last_name,
+        phone_number:phone_number,
+        four_digit_pin:four_digit_pin,
+        latitude:latitude,
+        longitude:longitude,
+        address:address,
+        unique_device_id:unique_device_id,
+      }
+      await this.client.SignupAsGuest(data).then(result => 
+      {	
+        loading.dismiss();//DISMISS LOADER			
+        this.resultData=result;
+        
+        if(this.resultData.status==true)
+        {
+          this.client.publishSomeDataOnSignIn({
+            should_menu_enable: true,
+            role:this.resultData.role
+          });//THIS OBSERVABLE IS USED TO KNOW IS ANY HAS SIGNIN
+          
+          localStorage.setItem('token',this.resultData.token);
+          localStorage.setItem('id',this.resultData.id);
+          localStorage.setItem('email',this.resultData.email);
+          localStorage.setItem('userTypeID',this.resultData.userTypeID);
+          localStorage.setItem('firstName',this.resultData.firstName);
+          localStorage.setItem('lastName',this.resultData.lastName);
+          localStorage.setItem('role',this.resultData.role);
+          localStorage.setItem('remember_me',"Yes");
+          this.client.router.navigate(['/tabs/home']);
+        }
+        console.log(this.resultData);
+      },
+      error => 
+      {
+        loading.dismiss();//DISMISS LOADER
+        console.log();
+      });
+    }
   }
 }

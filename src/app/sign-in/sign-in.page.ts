@@ -29,7 +29,7 @@ export class SignInPage implements OnInit
 	public is_remember_me_on:string="No";
 	public unique_device_id:any = '';
 	public loginWithPINForm = this.fb.group({
-		four_digit_pin: ['', Validators.required]
+		four_digit_pin: ['', [Validators.required, Validators.minLength(4), Validators.pattern('^[0-9]+$')]],
 	});
 	
 	public loginForm = this.fb.group({
@@ -41,7 +41,9 @@ export class SignInPage implements OnInit
 	{		
 		'four_digit_pin': 
 		[
-			{ type: 'required', message: 'PIN is required.' },
+			{ type: 'required', message: '4 Digit pin is required.' },
+			{ type: 'minlength', message: 'Pin should be of 4 numbers.' },
+			{ type: 'pattern', message: 'Please enter a valid number.' }
 		]
 	};
 
@@ -195,7 +197,7 @@ export class SignInPage implements OnInit
 	{
 		let four_digit_pin = (ev.detail.value) ? ev.detail.value : "";
 		let four_digit_pin_length = four_digit_pin.length;
-		if(four_digit_pin_length == 4)
+		if(four_digit_pin_length == 4 && !isNaN(four_digit_pin))
 		{
 			//LOADER
 			const loading = await this.loadingCtrl.create({

@@ -377,6 +377,31 @@
                ]
             }
          ],
+         "change-password-pin": [
+            {
+               "english": [
+                  {
+                     "screen_title":"Set Pin",
+                     "four_digit_pin":"Four digit pin",
+                     "change_pin_button": "Submit"
+                  }
+               ],
+               "arabic": [
+                  {
+                     "screen_title":"تعيين دبوس",
+                     "four_digit_pin":"دبوس مكون من أربعة أرقام",
+                     "change_pin_button": "موافق"
+                  }
+               ],
+               "kurdish": [
+                  {
+                     "screen_title":"Set Pin",
+                     "four_digit_pin":"Pîneya çar reqem",
+                     "change_pin_button": "Nermijîn"
+                  }
+               ]
+            }
+         ],
          "forgot-password": [
             {
                "english": [
@@ -741,6 +766,7 @@
                      "screen_title":"Settings",
                      "account":"Account",
                      "change_password":"Change Password",
+                     "change_password_pin":"Change Four Digit Pin",
                      "on_going":"Ongoing",
                      "notifications":"Notifications",
                      "privacy_settings":"Privacy Settings",
@@ -756,6 +782,7 @@
                      "screen_title":"الاعدادات",
                      "account":"الحساب",
                      "change_password":"تغيير كلمة المرور",
+                     "change_password_pin":"تغيير الدبوس المكون من أربعة أرقام",
                      "on_going":"جاري التنفيذ",
                      "notifications":"الاشعارات",
                      "privacy_settings":"اعدادات الخصوصية",
@@ -771,6 +798,7 @@
                      "screen_title":"Settings",
                      "account":"Konto",
                      "change_password":"Şîfre biguherînin",
+                     "change_password_pin":"Guhertina Pina Çar Hêjmar",
                      "on_going":"Berdewam",
                      "notifications":"Notifications",
                      "privacy_settings":"Mîhengên Nepenîtiyê",
