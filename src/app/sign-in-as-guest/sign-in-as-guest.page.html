@@ -1,0 +1,125 @@
+<!-- <ion-header no-border class="ion-no-border" [translucent]="true">
+  <ion-toolbar>
+    <ion-title>{{default_language_data['translation'][0]['sign-in-as-guest'][0][language_selected][0]['screen_title']}}</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content [fullscreen]="true">
+  <ion-header no-border class="ion-no-border" [translucent]="true">
+    <ion-toolbar class="pb-0 ion-text-center">
+      <ion-button slot="start" routerDirection="root" routerLink="/sign-in">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-toolbar>
+    <ion-toolbar class="ptb-20 ion-text-center">
+      <img src="../../assets/images/logo-white.png">
+    </ion-toolbar>
+    <ion-toolbar class="pt-0 ion-text-center">
+      <!--<ion-buttons slot="start">
+        <ion-menu-button><img src="../../assets/images/menu-icon1.png"></ion-menu-button>
+      </ion-buttons>-->
+      <ion-title>{{default_language_data['translation'][0]['sign-in-as-guest'][0][language_selected][0]['screen_title']}}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <div class="main-div">
+    <form [formGroup]="registerForm" (ngSubmit)="makeMeRegistered(registerForm.value)">
+      <ion-input type="hidden" formControlName="latitude"></ion-input>
+      <ion-input type="hidden" formControlName="longitude"></ion-input>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="12">
+            <ion-label position="stacked">{{default_language_data['translation'][0]['sign-in-as-guest'][0][language_selected][0]['first_name']}}</ion-label>
+            <ion-input type="text" formControlName="first_name"></ion-input>
+            <!--VALIDATION-->
+            <div class="validation-errors">
+              <ng-container *ngFor="let validation of validation_messages.first_name">
+                <div class="error-message"
+                  *ngIf="registerForm.get('first_name').hasError(validation.type) && (registerForm.get('first_name').dirty || registerForm.get('first_name').touched)">
+                  <ion-icon name="information-circle-outline"></ion-icon>
+                  <p>{{ validation.message }}</p>
+                </div>
+              </ng-container>
+            </div>
+            <!--VALIDATION-->          
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <ion-label position="stacked">{{default_language_data['translation'][0]['sign-in-as-guest'][0][language_selected][0]['last_name']}}</ion-label>
+            <ion-input type="text" formControlName="last_name"></ion-input>
+            <!--VALIDATION-->
+            <div class="validation-errors">
+              <ng-container *ngFor="let validation of validation_messages.last_name">
+                <div class="error-message"
+                  *ngIf="registerForm.get('last_name').hasError(validation.type) && (registerForm.get('last_name').dirty || registerForm.get('last_name').touched)">
+                  <ion-icon name="information-circle-outline"></ion-icon>
+                  <p>{{ validation.message }}</p>
+                </div>
+              </ng-container>
+            </div>
+            <!--VALIDATION-->          
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <ion-item lines="none" class="ion-no-padding">
+              <ion-label position="stacked">{{default_language_data['translation'][0]['sign-in-as-guest'][0][language_selected][0]['phone_number']}}</ion-label>
+              <ion-input type="number" formControlName="phone_number"></ion-input>
+            </ion-item>
+            <!--VALIDATION-->
+            <div class="validation-errors">
+              <ng-container *ngFor="let validation of validation_messages.phone_number">
+                <div class="error-message"
+                  *ngIf="registerForm.get('phone_number').hasError(validation.type) && (registerForm.get('phone_number').dirty || registerForm.get('phone_number').touched)">
+                  <ion-icon name="information-circle-outline"></ion-icon>
+                  <p>{{ validation.message }}</p>
+                </div>
+              </ng-container>
+            </div>
+            <!--VALIDATION-->
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <ion-label position="stacked">{{default_language_data['translation'][0]['sign-in-as-guest'][0][language_selected][0]['four_digit_pin']}}</ion-label>
+            <ion-input [type]="passwordType" formControlName="four_digit_pin" maxlength="4"></ion-input>
+            <ion-icon item-end [name]="passwordIcon" class="passwordIcon" (click)='hideShowPassword()'></ion-icon>
+            <!--VALIDATION-->
+            <div class="validation-errors">
+              <ng-container *ngFor="let validation of validation_messages.four_digit_pin">
+                <div class="error-message"
+                  *ngIf="registerForm.get('four_digit_pin').hasError(validation.type) && (registerForm.get('four_digit_pin').dirty || registerForm.get('four_digit_pin').touched)">
+                  <ion-icon name="information-circle-outline"></ion-icon>
+                  <p>{{ validation.message }}</p>
+                </div>
+              </ng-container>
+            </div>
+            <!--VALIDATION-->          
+          </ion-col>
+        </ion-row>               
+        <ion-row>
+          <ion-col size="12">
+            <ion-label position="stacked">{{default_language_data['translation'][0]['sign-in-as-guest'][0][language_selected][0]['current_position']}}</ion-label>
+            <div #gooeleMap id="gooeleMap" style="height: 300px;"></div>
+          </ion-col>
+        </ion-row>                              
+      </ion-grid>      
+      <ion-grid class="terms-options">
+        <ion-row>
+          <ion-col size="1">
+            <ion-checkbox (ionChange)="acceptTerms($event)" [(ngModel)]="accept_tems" [ngModelOptions]="{standalone: true}"></ion-checkbox>
+          </ion-col>        
+          <ion-col size="11">{{default_language_data['translation'][0]['sign-in-as-guest'][0][language_selected][0]['terms_of_service']}} <strong (click)="openActionRequested('https://dernafies.ecnetsolutions.dev/terms-and-conditions')">{{default_language_data['translation'][0]['sign-in-as-guest'][0][language_selected][0]['terms_of_service_link_text']}}</strong></ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-item lines="none">
+        <ion-button type="submit" color="" [disabled]="!registerForm.valid || accept_tems != true">{{default_language_data['translation'][0]['sign-in-as-guest'][0][language_selected][0]['login_text']}}</ion-button>
+      </ion-item>
+    </form>
+    <ion-grid class="other-options">
+      <ion-row>        
+        <ion-col size="12" class="ion-text-center" routerDirection="root" routerLink="/sign-in">{{default_language_data['translation'][0]['sign-in-as-guest'][0][language_selected][0]['have_an_account']}} <strong>{{default_language_data['translation'][0]['sign-in-as-guest'][0][language_selected][0]['login_text']}}</strong></ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

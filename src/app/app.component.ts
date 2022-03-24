@@ -23,6 +23,9 @@ export class AppComponent
   public queryString: any=[];
   public resultDataHandyMan: any=[];
   public resultDataHandyManPlanInfo: any=[];
+  
+  public get_unique_device_id: any='';//THIS WILL BE USED FOR GUEST SIGNUP ONLY
+  public unique_device_id : any = '';//THIS WILL BE USED FOR GUEST SIGNUP ONLY
 
   public appPages = [
     { title: 'Home', title_for_menu:'Home', url: '/tabs/home', icon: 'home', is_function:0},//[0]
@@ -64,6 +67,15 @@ export class AppComponent
 
   async InitializeAPP()
   {
+    //THIS WILL BE USED FOR GUEST SIGNUP ONLY
+    this.get_unique_device_id = (localStorage.getItem('unique_device_id')) ? localStorage.getItem('unique_device_id') : null;
+    if(this.get_unique_device_id==null)
+    {
+      this.unique_device_id = this.client.generateRandomString("50");
+      localStorage.setItem('unique_device_id',this.unique_device_id);
+    }
+    //THIS WILL BE USED FOR GUEST SIGNUP ONLY
+
     let role = (localStorage.getItem('role')) ? localStorage.getItem('role') : undefined;
     this.is_remember_me_on = (localStorage.getItem('remember_me')) ? localStorage.getItem('remember_me') : "No";
 

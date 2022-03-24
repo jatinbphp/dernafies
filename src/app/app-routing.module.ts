@@ -105,6 +105,10 @@ const routes: Routes = [
   {
     path: 'change-password',
     loadChildren: () => import('./change-password/change-password.module').then( m => m.ChangePasswordPageModule)
+  },
+  {
+    path: 'sign-in-as-guest',
+    loadChildren: () => import('./sign-in-as-guest/sign-in-as-guest.module').then( m => m.SignInAsGuestPageModule)
   }
 ];
 @NgModule({
