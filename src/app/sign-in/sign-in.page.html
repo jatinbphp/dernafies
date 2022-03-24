@@ -13,31 +13,53 @@
       <img src="../../assets/images/logo.png">
     </div>
     <div class="form-div">
+      <!--FORM WITH PIN STARTS-->
+      <form [formGroup]="loginWithPINForm" (ngSubmit)="makeMeLoggedin(loginWithPINForm.value)">
+        <ion-grid class="ion-no-padding">
+          <ion-row>
+            <ion-col size="12" class="ion-no-padding">              
+              <ion-radio-group class="radio-list" (ionChange)="changeDefaultLanguage($event)">
+                <ion-list>
+                  <ion-label>{{default_language_data['translation'][0]['login'][0][language_selected][0]['language_dropdown_title']}}</ion-label>
+                  <ion-item>
+                    <ion-label>Arabic</ion-label>
+                    <ion-radio value="arabic"></ion-radio>
+                  </ion-item>
+                  <!--<ion-item>
+                    <ion-label>Kurdish</ion-label>
+                    <ion-radio value="kurdish"></ion-radio>
+                  </ion-item>-->
+                  <ion-item>
+                    <ion-label>English</ion-label>
+                    <ion-radio value="english"></ion-radio>
+                  </ion-item>
+                </ion-list>
+              </ion-radio-group>                
+            </ion-col>
+            <ion-col size="12">
+              <ion-label position="stacked">{{default_language_data['translation'][0]['sign-in-as-guest'][0][language_selected][0]['four_digit_pin']}}</ion-label>
+              <ion-input [type]="passwordPINType" formControlName="four_digit_pin" maxlength="4" (ionChange)="checkPIN($event)"></ion-input>
+              <ion-icon item-end [name]="passwordPINIcon" class="passwordIcon" (click)='hideShowPasswordPIN()'></ion-icon>
+              <!--VALIDATION-->
+              <div class="validation-errors">
+                <ng-container *ngFor="let validation of validation_messages_four_digit_pin.four_digit_pin">
+                  <div class="error-message"
+                    *ngIf="loginWithPINForm.get('four_digit_pin').hasError(validation.type) && (loginWithPINForm.get('four_digit_pin').dirty || loginWithPINForm.get('four_digit_pin').touched)">
+                    <ion-icon name="information-circle-outline"></ion-icon>
+                    <p>{{ validation.message }}</p>
+                  </div>
+                </ng-container>
+              </div>
+              <!--VALIDATION-->          
+            </ion-col>
+          </ion-row>          
+        </ion-grid>
+      </form>
+      <!--FORM WITH PIN ENDS-->
+      <!--FORM WITH EMAIL/PASSWORD STARTS-->
       <form [formGroup]="loginForm" (ngSubmit)="makeMeLoggedin(loginForm.value)">
         <ion-grid class="ion-no-padding">
           <ion-row>
-            <!-- <ion-col size="12" class="ion-no-padding">
-              <h3>{{default_language_data['translation'][0]['login'][0][language_selected][0]['screen_title']}}</h3>
-            </ion-col> -->
-            <ion-col size="12" class="ion-no-padding">              
-                <ion-radio-group class="radio-list" (ionChange)="changeDefaultLanguage($event)">
-                  <ion-list>
-                    <ion-label>{{default_language_data['translation'][0]['login'][0][language_selected][0]['language_dropdown_title']}}</ion-label>
-                    <ion-item>
-                      <ion-label>Arabic</ion-label>
-                      <ion-radio value="arabic"></ion-radio>
-                    </ion-item>
-                    <!--<ion-item>
-                      <ion-label>Kurdish</ion-label>
-                      <ion-radio value="kurdish"></ion-radio>
-                    </ion-item>-->
-                    <ion-item>
-                      <ion-label>English</ion-label>
-                      <ion-radio value="english"></ion-radio>
-                    </ion-item>
-                  </ion-list>
-                </ion-radio-group>                
-            </ion-col>
             <ion-col size="12" class="ion-no-padding">
               <ion-label position="stacked">{{default_language_data['translation'][0]['login'][0][language_selected][0]['email_address']}}</ion-label>
               <ion-input type="text" placeholder="" formControlName="username"></ion-input><!--pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})"-->
@@ -88,6 +110,7 @@
           </ion-row>
         </ion-grid>
       </form>
+      <!--FORM WITH EMAIL/PASSWORD ENDS-->
     </div>
   </div>
 </ion-content>

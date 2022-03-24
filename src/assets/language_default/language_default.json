@@ -50,7 +50,7 @@
                      "first_name":"First Name",
                      "last_name":"Last Name",
                      "phone_number":"Phone Number",
-                     "four_digit_pin":"4 Digit PIN",
+                     "four_digit_pin":"Four digit pin",
                      "terms_of_service":"I agree to the",
                      "terms_of_service_link_text":"Terms of service",
                      "have_an_account":"Have an account?",
@@ -64,7 +64,7 @@
                      "first_name":"الاسم الثلاثي",
                      "last_name":"اللقب",
                      "phone_number":"رقم الهاتف",
-                     "four_digit_pin":"4 أرقام PIN",
+                     "four_digit_pin":"دبوس مكون من أربعة أرقام",
                      "terms_of_service":"انا موافق على",
                      "terms_of_service_link_text":"شروط الخدمة",
                      "have_an_account":"يمكنك تسجيل الدخول؟",
@@ -78,7 +78,7 @@
                      "first_name":"Nav",
                      "last_name":"Paşnav",
                      "phone_number":"Jimare telefon",
-                     "four_digit_pin":"4 PIN jimare",
+                     "four_digit_pin":"Pîneya çar reqem",
                      "terms_of_service":"Ez qebûl dikim",
                      "terms_of_service_link_text":"Mercên xizmetê",
                      "have_an_account":"Hesabek heye?",
@@ -92,6 +92,7 @@
                "english": [
                   {
                      "screen_title":"Login",
+                     "screen_title_2":"Login with pin",
                      "remember_me":"Remember me",
                      "forgot_password":"Forgot Password",
                      "dont_have_account":"Don't have an account?",
@@ -101,12 +102,14 @@
                      "login_in_button": "Login",
                      "language_dropdown_title":"Languages",
                      "language_dropdown_placeholder":"Select Language",
-                     "guest_login":"Guest Login"
+                     "guest_login":"Guest Login",
+                     "four_digit_pin":"Four digit pin"
                   }
                ],
                "arabic": [
                   {
                      "screen_title":"تسجيل الدخول",
+                     "screen_title_2":"تسجيل الدخول باستخدام رقم التعريف الشخصي",
                      "remember_me":"تذكرني",
                      "forgot_password":"نسيت كلمة المرور",
                      "dont_have_account":"ليس لديك حساب؟",
@@ -116,12 +119,14 @@
                      "login_in_button": "تسجيل دخول",
                      "language_dropdown_title":"اللغات",
                      "language_dropdown_placeholder":"اختار اللغة",
-                     "guest_login":"زائر الرجاء تسجيل الدخول"
+                     "guest_login":"زائر الرجاء تسجيل الدخول",
+                     "four_digit_pin":"دبوس مكون من أربعة أرقام"
                   }
                ],
                "kurdish": [
                   {
                      "screen_title":"Login",
+                     "screen_title_2":"Têkeve bi pin",
                      "remember_me":"Min bîne bîra xwe",
                      "forgot_password":"Şîfre ji bîr kir",
                      "dont_have_account":"Hesabê xwe tune?",
@@ -131,7 +136,8 @@
                      "login_in_button": "Login",
                      "language_dropdown_title":"Languages",
                      "language_dropdown_placeholder":"Ziman hilbijêrin",
-                     "guest_login":"Têketina Mêvan"
+                     "guest_login":"Têketina Mêvan",
+                     "four_digit_pin":"Pîneya çar reqem"
                   }
                ]
             }

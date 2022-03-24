@@ -37,13 +37,15 @@ export class SignInAsGuestPage implements OnInit
   public locationCordinates: any;
   public timestamp: any;
 
-  public registerForm = this.fb.group({
+  public unique_device_id:any = '';
+  public signInWithDigitForm = this.fb.group({
     first_name: ['', Validators.required],
     last_name: ['', Validators.required],
     phone_number: ['', Validators.required],
     four_digit_pin: ['', Validators.required],
     latitude: [''],
-    longitude: ['']
+    longitude: [''],
+    unique_device_id:['', Validators.required]
   });
 
   validation_messages = 
@@ -85,6 +87,9 @@ export class SignInAsGuestPage implements OnInit
 
   async ionViewWillEnter()
   {
+    this.unique_device_id = localStorage.getItem('unique_device_id') ? localStorage.getItem('unique_device_id') : "";
+    this.signInWithDigitForm.controls['unique_device_id'].setValue(this.unique_device_id);
+
     await this.platform.ready().then(async () => 
     {
       if(this.platform.is("android") == true)
@@ -295,8 +300,8 @@ export class SignInAsGuestPage implements OnInit
   {
     console.log(this.latitude);
     console.log(this.longitude);
-    this.registerForm.controls['latitude'].setValue(this.latitude);
-    this.registerForm.controls['longitude'].setValue(this.longitude);
+    this.signInWithDigitForm.controls['latitude'].setValue(this.latitude);
+    this.signInWithDigitForm.controls['longitude'].setValue(this.longitude);
     this.getAddressFromLatitudeAndLongitude(this.latitude, this.longitude);//THIS WILL GET ADDRESS ON BASES OF LATITUDE AND LONGITUDE
   }
 }

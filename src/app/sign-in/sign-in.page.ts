@@ -23,12 +23,27 @@ export class SignInPage implements OnInit
 	public passwordType: string = 'password';
 	public passwordIcon: string = 'eye-off';
 
+	public passwordPINType: string = 'password';
+	public passwordPINIcon: string = 'eye-off';
+
 	public is_remember_me_on:string="No";
 
+	public loginWithPINForm = this.fb.group({
+		four_digit_pin: ['', Validators.required]
+	});
+	
 	public loginForm = this.fb.group({
 		username: ['', Validators.required],
 		password: ['', Validators.required]
 	});
+
+	validation_messages_four_digit_pin = 
+	{		
+		'four_digit_pin': 
+		[
+			{ type: 'required', message: 'PIN is required.' },
+		]
+	};
 
   	validation_messages = 
 	{		
@@ -75,6 +90,12 @@ export class SignInPage implements OnInit
 	{
 		this.passwordType = this.passwordType === 'text' ? 'password' : 'text';
     	this.passwordIcon = this.passwordIcon === 'eye-off' ? 'eye' : 'eye-off';
+	}
+
+	hideShowPasswordPIN()
+	{
+		this.passwordPINType = this.passwordPINType === 'text' ? 'password' : 'text';
+    	this.passwordPINIcon = this.passwordPINIcon === 'eye-off' ? 'eye' : 'eye-off';
 	}
 
 	async makeMeLoggedin(form)
@@ -167,5 +188,15 @@ export class SignInPage implements OnInit
 			this.is_remember_me_on = "No";
 		}
 		console.log(this.is_remember_me_on);
+	}
+
+	checkPIN(ev)
+	{
+		let four_digit_pin = (ev.detail.value) ? ev.detail.value : "";
+		let four_digit_pin_length = four_digit_pin.length;
+		if(four_digit_pin_length == 4)
+		{
+			console.log("SUBMIT");
+		}
 	}
 }
