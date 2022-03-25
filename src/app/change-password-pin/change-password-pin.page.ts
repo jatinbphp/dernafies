@@ -80,9 +80,10 @@ export class ChangePasswordPinPage implements OnInit
 		let data=
 		{
 			user_id:this.user_id, 
-			password:form.password,
+			four_digit_pin:form.four_digit_pin,
+      unique_device_id:this.unique_device_id
 		}
-		await this.client.changePassword(data).then(result => 
+		await this.client.changePasswordPin(data).then(result => 
 		{	
 			loading.dismiss();//DISMISS LOADER			
 			this.resultData=result;

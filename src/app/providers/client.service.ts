@@ -1053,6 +1053,26 @@ export class ClientService
 		});
 	}
 
+	changePasswordPin(data)
+	{
+		let headers = this.getHeaderOptions();
+		return new Promise((resolve, reject) => 
+		{
+			let dataToPost = new HttpParams().set("user_id",data.user_id).set("guestPinCode",data.four_digit_pin).set("uniqueDeviceID",data.unique_device_id);
+			this.http.post(this.api_url + "updateguestPinCode",  dataToPost , headers).subscribe((res: any) =>       
+			{
+				resolve(res);
+			},
+			err => 
+			{
+				console.log(err);
+				let errorMessage=this.getErrorMessage(err);
+				//this.showMessage(errorMessage);
+				reject(errorMessage);
+			});
+		});
+	}
+
 	generateRandomString(length)
 	{
 		var result = '';
