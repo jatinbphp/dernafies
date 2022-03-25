@@ -421,3 +421,40 @@ ion-content {
         }
     }
 }
+
+.separation {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-size: 18px;
+    line-height: 26px;
+    text-transform: capitalize;
+    color: var(--Black);
+    font-family: var(--font-Poppins-Medium);
+    padding: 10px 0px;
+    margin: 10px 0px 20px;
+    position: relative;
+}
+.separation:before, .separation:after {
+    content: '';
+    position: absolute;
+    bottom: 0px;
+    top: 0px;
+    margin: auto;
+    width: 25%;
+    height: 1px;
+    // background-color: rgba(255, 255, 255, 0.7);
+    background: radial-gradient(circle at top left,transparent 25%,#ffffff 25.5%, #ffffff 36%, transparent 37%, transparent 100%),radial-gradient(circle at bottom right,transparent 34%,#ffffff 34.5%, #ffffff 45.5%, transparent 46%, transparent 100%);
+    background-size: 3em 3em;
+    background-color: transparent;
+    opacity: 1;
+    display: none;
+}
+.separation:before {
+    left: 0px;
+    right: unset;
+}
+.separation:after {
+    right: 0px;
+    left: unset;
+}
