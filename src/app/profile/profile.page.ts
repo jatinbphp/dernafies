@@ -128,7 +128,7 @@ export class ProfilePage implements OnInit
 		  { type: 'required', message: 'Selecting city is required.' }
 		]*/,
 		'experience_in_year': [
-			{ type: 'required', message: 'Experience in year is required.' }
+			{ type: 'required', message: 'Years of experience is required.' }
 		],
 		'currency_code': [
 			{ type: 'required', message: 'Selecting currency is required.' }

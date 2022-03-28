@@ -126,7 +126,7 @@ export class SignUpPage implements OnInit
       { type: 'required', message: 'Selecting city is required.' }
     ]*/,
 		'experience_in_year': [
-			{ type: 'required', message: 'Experience in year is required.' }
+			{ type: 'required', message: 'Years of experience is required.' }
 		],
     'bio': [
 			{ type: 'required', message: 'Bio is required.' }
