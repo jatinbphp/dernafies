@@ -113,6 +113,14 @@ const routes: Routes = [
   {
     path: 'change-password-pin',
     loadChildren: () => import('./change-password-pin/change-password-pin.module').then( m => m.ChangePasswordPinPageModule)
+  },
+  {
+    path: 'sign-up-with-pin',
+    loadChildren: () => import('./sign-up-with-pin/sign-up-with-pin.module').then( m => m.SignUpWithPinPageModule)
+  },
+  {
+    path: 'sign-up-with-pin-completion',
+    loadChildren: () => import('./sign-up-with-pin-completion/sign-up-with-pin-completion.module').then( m => m.SignUpWithPinCompletionPageModule)
   }
 ];
 @NgModule({

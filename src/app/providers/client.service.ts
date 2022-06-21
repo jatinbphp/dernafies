@@ -186,6 +186,93 @@ export class ClientService
 		});
 	}
 
+	signUpWithOTP(data)
+	{	
+		let headers = this.getHeaderOptions();
+		return new Promise((resolve, reject) => 
+		{
+			let dataToPost = new HttpParams().set("firstName",data.first_name).set("lastName",data.last_name).set("userTypeID",data.user_type).set("phoneNumber", data.phone_number).set("userLocation",data.user_country);
+			this.http.post(this.api_url + "registerwithotp",  dataToPost , headers).subscribe((res: any) =>       
+			{
+				if(res.status == true)
+				{
+					this.showMessage(res.message);
+					resolve(res);					
+				}
+				else
+				{
+					let messageDisplay=this.showMessage(res.message);
+					reject(messageDisplay);
+				}
+			},
+			err => 
+			{
+				console.log(err);
+				let errorMessage=this.getErrorMessage(err);
+				this.showMessage(errorMessage);
+				reject(errorMessage);
+			});
+		});
+	}
+
+	signInWithOTP(data)
+	{	
+		let headers = this.getHeaderOptions();
+		return new Promise((resolve, reject) => 
+		{
+			let dataToPost = new HttpParams().set("phoneNumber",data.phone_number).set("userLocation",data.user_country);
+			this.http.post(this.api_url + "loginwithmobileotp",  dataToPost , headers).subscribe((res: any) =>       
+			{
+				if(res.status == true)
+				{
+					this.showMessage(res.message);
+					resolve(res);					
+				}
+				else
+				{
+					let messageDisplay=this.showMessage(res.message);
+					reject(messageDisplay);
+				}
+			},
+			err => 
+			{
+				console.log(err);
+				let errorMessage=this.getErrorMessage(err);
+				this.showMessage(errorMessage);
+				reject(errorMessage);
+			});
+		});
+	}
+
+	verifyOTP(data)
+	{	
+		let headers = this.getHeaderOptions();
+		return new Promise((resolve, reject) => 
+		{
+			let dataToPost = new HttpParams().set("phoneNumber",data.phone_number).set("otpCode",data.otp);
+			this.http.post(this.api_url + "mobilenumberoptverified",  dataToPost , headers).subscribe((res: any) =>       
+			{
+				if(res.status == true)
+				{
+					//this.showMessage(res.message);
+					resolve(res);					
+				}
+				else
+				{
+					let messageDisplay=this.showMessage(res.message);
+					reject(messageDisplay);
+				}
+			},
+			err => 
+			{
+				console.log(err);
+				let errorMessage=this.getErrorMessage(err);
+				this.showMessage(errorMessage);
+				reject(errorMessage);
+			});
+		});
+	}
+
 	SigninAsGuest(data)
 	{	
 		let headers = this.getHeaderOptions();
@@ -225,6 +312,36 @@ export class ClientService
 		{
 			let dataToPost = new HttpParams().set("email",data.username);
 			this.http.post(this.api_url + "resetPassword",  dataToPost , headers).subscribe((res: any) =>       
+			{
+				if(res.status == true)
+				{
+					this.showMessage(res.message);
+					this.serverResponse=res;
+					resolve(this.serverResponse);					
+				}
+				else
+				{
+					let messageDisplay=this.showMessage(res.message);
+					reject(messageDisplay);
+				}
+			},
+			err => 
+			{
+				console.log(err);
+				let errorMessage=this.getErrorMessage(err);
+				this.showMessage(errorMessage);
+				reject(errorMessage);
+			});
+		});
+	}
+
+	recoverMyPasswordWithPhone(data)
+	{	
+		let headers = this.getHeaderOptions();
+		return new Promise((resolve, reject) => 
+		{
+			let dataToPost = new HttpParams().set("phoneNumber",data.phone_number).set("userLocation",data.user_country);
+			this.http.post(this.api_url + "resetPasswordNew",  dataToPost , headers).subscribe((res: any) =>       
 			{
 				if(res.status == true)
 				{

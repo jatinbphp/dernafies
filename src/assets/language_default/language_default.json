@@ -103,7 +103,10 @@
                      "language_dropdown_title":"Languages",
                      "language_dropdown_placeholder":"Select Language",
                      "guest_login":"Guest Login",
-                     "four_digit_pin":"Four digit pin"
+                     "four_digit_pin":"Four digit pin",
+                     "signin_with_otp":"Signin with OTP",
+                     "phonenumber":"Phone number",
+                     "otp_in_button": "Send OTP"
                   }
                ],
                "arabic": [
@@ -120,7 +123,10 @@
                      "language_dropdown_title":"اللغات",
                      "language_dropdown_placeholder":"اختار اللغة",
                      "guest_login":"زائر الرجاء تسجيل الدخول",
-                     "four_digit_pin":"دبوس مكون من أربعة أرقام"
+                     "four_digit_pin":"دبوس مكون من أربعة أرقام",
+                     "signin_with_otp":"تسجيل الدخول باستخدام OTP",
+                     "phonenumber":"رقم الهاتف",
+                     "otp_in_button": "أرسل OTP"
                   }
                ],
                "kurdish": [
@@ -137,7 +143,10 @@
                      "language_dropdown_title":"Languages",
                      "language_dropdown_placeholder":"Ziman hilbijêrin",
                      "guest_login":"Têketina Mêvan",
-                     "four_digit_pin":"Pîneya çar reqem"
+                     "four_digit_pin":"Pîneya çar reqem",
+                     "signin_with_otp":"Bi OTP re têkevin",
+                     "phonenumber":"Jimare telefon",
+                     "otp_in_button": "OTP bişînin"
                   }
                ]
             }
@@ -172,6 +181,8 @@
                "english": [
                   {
                      "screen_title":"Signup",
+                     "screen_title_with_otp":"Verify one time password",
+                     "screen_submit_with_otp":"Submit",
                      "signup_as_handyman":"Signup as a handyman?",
                      "current_position":"You are currently located at this position. If you wish to make a more accurate location please drag the marker to your desired place.",
                      "first_name":"First Name",
@@ -205,6 +216,8 @@
                "arabic": [
                   {
                      "screen_title": "انشاء حساب",
+                     "screen_title_with_otp":"تحقق من كلمة المرور لمرة واحدة",
+                     "screen_submit_with_otp":"يُقدِّم",
                      "signup_as_handyman":"انشاء حساب كعامل",
                      "current_position":"انت حاليا في الموقع المحدد على الخريطة يمكنك تغيير الموقع عن طريق تحديد الموقع الذي تريده على الخريطة.",
                      "first_name":"الاسم الثلاثي",
@@ -238,6 +251,8 @@
                "kurdish": [
                   {
                      "screen_title":"Tomar kirin",
+                     "screen_title_with_otp":"Şîfreya Yek carî verast bikin",
+                     "screen_submit_with_otp":"Nermijîn",
                      "signup_as_handyman":"Signup wek handyman?",
                      "current_position":"Hûn niha li vê pozîsyonê ne. Ger hûn dixwazin cîhek rasttir çêbikin, ji kerema xwe nîşankerê kaş bikin cîhê xweya xwestinê.",
                      "first_name":"Nav",
@@ -410,6 +425,7 @@
                      "back_to_login":"Back to ",
                      "sign_in":"Sign in",
                      "email_address": "Email Address",
+                     "phone_number": "Phone number",
                      "forgotpassword_in_button": "Submit"
                   }
                ],
@@ -419,6 +435,7 @@
                      "back_to_login":"ارجع الى",
                      "sign_in":"تسجيل الدخول",
                      "email_address":"عنوان البريد الالكتروني",
+                     "phone_number": "رقم الهاتف",
                      "forgotpassword_in_button": "إرسال"
                   }
                ],
@@ -428,6 +445,7 @@
                      "back_to_login":"Vegere",
                      "sign_in":"Têketin",
                      "email_address": "Navnîşana emailê",
+                     "phone_number": "Jimare telefon",
                      "forgotpassword_in_button": "Nermijîn"
                   }
                ]
